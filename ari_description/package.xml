@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package format="2">
+
+  <name>ari_description</name>
+  <version>0.0.0</version>
+  <description>This package contains the description (mechanical, kinematic, visual,
+      etc.) of the ARI robot.  The files in this package are parsed and used by
+      a variety of other components.  Most users will not interact directly
+      with this package.</description>
+  <maintainer email="alessandro.difava@pal-robotics.com">Alessandro Di Fava</maintainer>
+  <maintainer email="victor.lopez@pal-robotics.com">Victor Lopez</maintainer>
+  <license>Creative Commons BY-NC-ND 3.0</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>xacro</exec_depend>
+  <!--exec_depend>pmb2_description</exec_depend>
+  <exec_depend>hey5_description</exec_depend>
+  <exec_depend>pal_gripper_description</exec_depend>
+  <exec_depend>pal_wsg_gripper_description</exec_depend>
+  <exec_depend>tiago_description_calibration</exec_depend-->
+
+  <test_depend>rostest</test_depend>
+  <test_depend>urdf_test</test_depend>
+
+</package>
