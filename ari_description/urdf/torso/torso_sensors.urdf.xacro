@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<!--
+
+  Copyright (c) 2019, PAL Robotics, S.L.
+  All rights reserved.
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!--File includes-->
+  <xacro:include filename="$(find ari_description)/urdf/deg_to_rad.xacro" />
+  <xacro:include filename="$(find realsense_gazebo_plugin)/urdf/d435.urdf.xacro" />
+  <!--xacro:include filename="$(find ari_description_calibration)/urdf/calibration/calibration_constants.urdf.xacro" /-->
+
+  <!--Constant parameters-->
+  <xacro:property name="torso_front_camera_position_x" value="-0.11249" />
+  <xacro:property name="torso_front_camera_position_y" value="0.0" />
+  <xacro:property name="torso_front_camera_position_z" value="0.97052" />
+  <xacro:property name="torso_front_camera_orientation_r" value="0.0" />
+  <xacro:property name="torso_front_camera_orientation_p" value="${42.5 * deg_to_rad}" />
+  <xacro:property name="torso_front_camera_orientation_y" value="0.0" />
+
+  <xacro:macro name="torso_sensors" params="name parent">
+
+  <!-- Torso sensors -->
+  <!-- Torso front camera -->
+  <sensor_d435_gazebo parent="${parent}" name="${name}_front_camera" topics_ns="${name}_front_camera">
+    <origin xyz="${torso_front_camera_position_x} ${torso_front_camera_position_y} ${torso_front_camera_position_z}" 
+            rpy="${torso_front_camera_orientation_r} ${torso_front_camera_orientation_p} ${torso_front_camera_orientation_y}"/>
+  </sensor_d435_gazebo>
+
+  <!-- Torso back camera -->
+  <link name="${name}_camera_2_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0"/>
+      <inertia ixx="0" ixy="0" ixz="0"
+               iyy="0" iyz="0"
+               izz="0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://ari_description/meshes/sensors/${name}_camera_2.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="White"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <mesh filename="package://ari_description/meshes/sensors/${name}_camera_2.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="${name}_camera_2_joint" type="fixed">
+    <origin rpy="0 0.26179938779914 -3.14159265358979" xyz="-0.327497577576678 0.00899999999999999 1.03369506830427" />
+    <parent link="${parent}" />
+    <child link="${name}_camera_2_link" />
+    <axis xyz="0 0 0" />
+  </joint>
+
+ </xacro:macro>
+</robot>

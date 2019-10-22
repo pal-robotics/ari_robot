@@ -5,10 +5,10 @@ find_package(catkin REQUIRED)
 
 catkin_package()
 
-#foreach(dir gazebo Media meshes robots urdf config)
-#    install(DIRECTORY ${dir}/
-#        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/${dir})
-#endforeach(dir)
+foreach(dir gazebo meshes robots urdf config)
+    install(DIRECTORY ${dir}/
+        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/${dir})
+endforeach(dir)
 
 #############
 ## Testing ##

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+
+<!--
+Copyright (c) 2019, PAL Robotics, S.L.
+All rights reserved.
+
+This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!--xacro:include filename="$(find ari_description)/urdf/wheels/wheel.transmission.xacro"/>
+  <xacro:include filename="$(find ari_description)/urdf/wheels/wheel.gazebo.xacro"/-->
+
+  <xacro:macro name="wheel" params="side reflect radius width torque velocity parent">
+    <link name="wheel_${side}_link">
+      <inertial>
+        <origin xyz="-5.88442419331937E-06 -7.00561276577305E-05 ${-0.0022290297150058 * reflect}" rpy="0 0 0"/>
+        <mass value="1.65650861485769"/>
+        <inertia ixx="0.00630296404438552" ixy="1.03127988436767E-10" ixz="${-7.08413960046181E-07 * reflect}"
+                 iyy="0.00630218683572695" iyz="${-5.36273885065753E-08 * reflect}"
+                 izz="0.0111537170515013"/>
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://ari_description/meshes/wheels/wheel_${side}.stl"/>
+        </geometry>
+        <material name="White"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://ari_description/meshes/wheels/wheel_${side}.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="wheel_${side}_joint" type="continuous">
+      <parent link="${parent}_link"/>
+      <child link="wheel_${side}_link"/>
+      <origin xyz="0 ${-0.22 * reflect} 0" rpy="${90.0 * deg_to_rad} 0 0"/>
+      <axis xyz="0 0 -1"/>
+      <!--limit effort="${torque}" velocity="${velocity / radius}"/-->
+    </joint>
+
+    <!-- Transmission -->
+    <!--xacro:wheel_transmission side="${side}"/-->
+
+    <!-- Gazebo extensions -->
+    <!--xacro:wheel_gazebo side="${side}"/-->
+
+  </xacro:macro>
+</robot>

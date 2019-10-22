@@ -1,0 +1,87 @@
+<?xml version="1.0" ?>
+<!--
+
+  Copyright (c) 2019, PAL Robotics, S.L.
+  All rights reserved.
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!--File includes-->
+  <xacro:include filename="$(find ari_description)/urdf/deg_to_rad.xacro" />
+  <xacro:include filename="$(find ari_description)/urdf/wheels/wheel.urdf.xacro"/>
+  <!--xacro:include filename="$(find ari_description)/urdf/sensors/microphone.urdf.xacro"/-->
+
+  <!-- Wheel characteristics -->
+  <xacro:property name="wheel_radius"     value="0.0"/>
+  <xacro:property name="wheel_width"     value="0.0"/>
+  <xacro:property name="wheel_torque"     value="0.0"/>
+  <xacro:property name="wheel_velocity"     value="0.0"/>
+  <!--xacro:property name="wheel_radius"     value="0.101"/>
+  <xacro:property name="wheel_width"      value="0.040"/>
+  <xacro:property name="wheel_separation" value="0.4554"/>
+  <xacro:property name="wheel_pair_separation" value="0.420"/>
+  <xacro:property name="wheel_torque"     value="6.0"/>
+  <xacro:property name="wheel_velocity"   value="1.0"/-->
+
+  <xacro:macro name="base" params="name">
+
+  <!-- Base -->
+  <link name="${name}_link">
+    <inertial>
+      <origin xyz="-0.1896 -0.003234 0.27382" rpy="0 0 0"/>
+      <mass value="43.891"/>
+      <inertia ixx="0.71827" ixy="-7.1158E-05" ixz="0.054913"
+               iyy="0.74483" iyz="-9.085E-06"
+               izz="0.45676"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ari_description/meshes/base/base.stl" />
+      </geometry>
+      <material name="Grey" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ari_description/meshes/base/base.stl" />
+      </geometry>
+      <material name="Grey" />
+    </collision>
+  </link>
+  <gazebo reference="${name}_link">
+    <material>Gazebo/Grey</material>
+  </gazebo>
+
+  <!-- Base footprint -->
+  <link name="${name}_footprint"/>
+
+  <joint name="${name}_footprint_joint" type="fixed">
+    <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0" />
+    <child link="${name}_link" />
+    <parent link="${name}_footprint"/>
+  </joint>
+
+  <!-- gazebo parameters are given here for base_link thru base_footprint -->
+  <gazebo reference="${name}_footprint">
+    <kp>100000000.0</kp>
+    <kd>10.0</kd>
+    <mu1>0.1</mu1>
+    <mu2>0.1</mu2>
+    <fdir1>1 0 0</fdir1>
+    <maxVel>10.0</maxVel>
+    <minDepth>0.0005</minDepth>
+    <laserRetro>0</laserRetro>
+  </gazebo>
+
+  <!-- Wheels -->
+  <xacro:wheel side="right" reflect=" 1.0" radius="${wheel_radius}" width="${wheel_width}" torque="${wheel_torque}" velocity="${wheel_velocity}" parent="${name}"/>
+  <xacro:wheel side="left"  reflect="-1.0" radius="${wheel_radius}" width="${wheel_width}" torque="${wheel_torque}" velocity="${wheel_velocity}" parent="${name}"/>
+
+  </xacro:macro>
+
+</robot>
