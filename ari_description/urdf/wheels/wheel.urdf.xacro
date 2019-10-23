@@ -11,8 +11,8 @@ Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <!--xacro:include filename="$(find ari_description)/urdf/wheels/wheel.transmission.xacro"/>
-  <xacro:include filename="$(find ari_description)/urdf/wheels/wheel.gazebo.xacro"/-->
+  <xacro:include filename="$(find ari_description)/urdf/wheels/wheel.transmission.xacro"/>
+  <xacro:include filename="$(find ari_description)/urdf/wheels/wheel.gazebo.xacro"/>
 
   <xacro:macro name="wheel" params="side reflect radius width torque velocity parent">
     <link name="wheel_${side}_link">
@@ -47,10 +47,10 @@ Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041
     </joint>
 
     <!-- Transmission -->
-    <!--xacro:wheel_transmission side="${side}"/-->
+    <xacro:wheel_transmission side="${side}"/>
 
     <!-- Gazebo extensions -->
-    <!--xacro:wheel_gazebo side="${side}"/-->
+    <xacro:wheel_gazebo side="${side}"/>
 
   </xacro:macro>
 </robot>

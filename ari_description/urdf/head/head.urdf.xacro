@@ -12,9 +12,11 @@
 
   <!--File includes-->
   <xacro:include filename="$(find ari_description)/urdf/deg_to_rad.xacro" />
-  <!--xacro:include filename="$(find tiago_description)/urdf/head/head.transmission.xacro" /-->
+  <xacro:include filename="$(find tiago_description)/urdf/head/head.transmission.xacro" />
 
   <!--Constant parameters-->
+  <xacro:property name="head_1_joint_offset" value="0.0" />
+  <xacro:property name="head_2_joint_offset" value="0.0" />
   <!--xacro:property name="head_friction" value="1.0" />
   <xacro:property name="head_damping"  value="0.5" />
   <xacro:property name="head_max_vel"  value="3.0" />
@@ -78,7 +80,7 @@
 
 
     <!-- extensions -->
-    <!--xacro:head_transmission name="${name}" reduction="1" offset_value="${head_1_joint_offset}"/-->
+    <xacro:head_transmission name="${name}" reduction="1" offset_value="${head_1_joint_offset}"/>
 
   </xacro:macro>
 
@@ -99,13 +101,14 @@
         <geometry>
           <mesh filename="package://ari_description/meshes/head/head_2.stl" scale="1 1 1"/>
         </geometry>
-        <material name="Yellow" />
+        <material name="White" />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://ari_description/meshes/head/head_2.stl" scale="1 1 1"/>
         </geometry>
+        <material name="White" />
       </collision>
     </link>
 
@@ -124,7 +127,7 @@
                          soft_upper_limit="${head_2_upper_limit * deg_to_rad}" /-->
     </joint>
 
-    <!--xacro:head_transmission name="${name}" reduction="1" offset_value="${head_2_joint_offset}"/-->
+    <xacro:head_transmission name="${name}" reduction="1" offset_value="${head_2_joint_offset}"/>
 
   </xacro:macro>
 
