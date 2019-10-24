@@ -13,6 +13,7 @@
   <!--File includes-->
   <xacro:include filename="$(find ari_description)/urdf/deg_to_rad.xacro" />
   <xacro:include filename="$(find realsense_gazebo_plugin)/urdf/d435.urdf.xacro" />
+  <xacro:include filename="$(find realsense_gazebo_plugin)/urdf/t265.urdf.xacro" />
   <!--xacro:include filename="$(find ari_description_calibration)/urdf/calibration/calibration_constants.urdf.xacro" /-->
 
   <!--Constant parameters-->
@@ -22,6 +23,12 @@
   <xacro:property name="torso_front_camera_orientation_r" value="0.0" />
   <xacro:property name="torso_front_camera_orientation_p" value="${42.5 * deg_to_rad}" />
   <xacro:property name="torso_front_camera_orientation_y" value="0.0" />
+  <xacro:property name="torso_back_camera_position_x" value="-0.3275" />
+  <xacro:property name="torso_back_camera_position_y" value="0.009" />
+  <xacro:property name="torso_back_camera_position_z" value="1.0337" />
+  <xacro:property name="torso_back_camera_orientation_r" value="${75 * deg_to_rad}" />
+  <xacro:property name="torso_back_camera_orientation_p" value="0.0" />
+  <xacro:property name="torso_back_camera_orientation_y" value="${90 * deg_to_rad}" />
 
   <xacro:macro name="torso_sensors" params="name parent">
 
@@ -33,7 +40,11 @@
   </sensor_d435_gazebo>
 
   <!-- Torso back camera -->
-  <link name="${name}_camera_2_link">
+  <sensor_t265_gazebo parent="${parent}" name="${name}_back_camera" topics_ns="${name}_back_camera">
+    <origin xyz="${torso_back_camera_position_x} ${torso_back_camera_position_y} ${torso_back_camera_position_z}" 
+            rpy="${torso_back_camera_orientation_r} ${torso_back_camera_orientation_p} ${torso_back_camera_orientation_y}"/>
+  </sensor_t265_gazebo>
+  <!--link name="${name}_camera_2_link">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <mass value="0"/>
@@ -61,7 +72,7 @@
     <parent link="${parent}" />
     <child link="${name}_camera_2_link" />
     <axis xyz="0 0 0" />
-  </joint>
+  </joint-->
 
  </xacro:macro>
 </robot>

@@ -16,16 +16,12 @@
   <!--xacro:include filename="$(find ari_description)/urdf/sensors/microphone.urdf.xacro"/-->
 
   <!-- Wheel characteristics -->
-  <xacro:property name="wheel_radius"     value="0.0"/>
-  <xacro:property name="wheel_width"     value="0.0"/>
-  <xacro:property name="wheel_torque"     value="0.0"/>
-  <xacro:property name="wheel_velocity"     value="0.0"/>
-  <!--xacro:property name="wheel_radius"     value="0.101"/>
+  <xacro:property name="wheel_radius"     value="0.101"/>
   <xacro:property name="wheel_width"      value="0.040"/>
   <xacro:property name="wheel_separation" value="0.4554"/>
   <xacro:property name="wheel_pair_separation" value="0.420"/>
   <xacro:property name="wheel_torque"     value="6.0"/>
-  <xacro:property name="wheel_velocity"   value="1.0"/-->
+  <xacro:property name="wheel_velocity"   value="1.0"/>
 
   <xacro:macro name="base" params="name">
 

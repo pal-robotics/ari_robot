@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <include file="$(find ari_controller_configuration)/launch/joint_state_controller.launch"/>
+    <include file="$(find ari_controller_configuration)/launch/default_controllers.launch"/>
+
+</launch>
+

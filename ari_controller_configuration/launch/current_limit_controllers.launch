@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <!-- Current limit controllers -->
+  <rosparam command="load" file="$(find ari_controller_configuration)/config/current_limit_controllers.yaml" />
+
+  <!-- Controllers that come up started -->
+  <node name="current_limit_controllers_spawner"
+        pkg="controller_manager" type="spawner" output="screen"
+        args="wheels_current_limit_controller" />
+</launch>

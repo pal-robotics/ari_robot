@@ -1,0 +1,27 @@
+gains:
+  head_1_joint: {p: 100,  d: 0, i: 10, i_clamp: 1.5}
+  head_2_joint: {p: 100,  d: 0, i: 10, i_clamp: 1.5}
+#  xtion_frame_joint: {p: 0.5,  d: 0, i: 0, i_clamp: 1.5}
+
+  FFJ4: &shadow_gains {p: 100,  d: 0,  i: 10}
+  FFJ3: *shadow_gains
+  FFJ2: *shadow_gains
+  FFJ1: *shadow_gains
+  MFJ4: *shadow_gains
+  MFJ3: *shadow_gains
+  MFJ2: *shadow_gains
+  MFJ1: *shadow_gains
+  RFJ4: *shadow_gains
+  RFJ3: *shadow_gains
+  RFJ2: *shadow_gains
+  RFJ1: *shadow_gains
+  THJ5: *shadow_gains
+  THJ4: *shadow_gains
+  THJ2: *shadow_gains
+  THJ1: *shadow_gains
+
+velocity:
+  gains:
+     wheel_right_joint: {p: 30,  d: 0, i: 0, i_clamp: 1.}
+     wheel_left_joint: {p: 30,  d: 0, i: 0, i_clamp: 1.0}
+
