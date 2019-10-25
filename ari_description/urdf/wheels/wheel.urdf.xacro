@@ -17,11 +17,11 @@ Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041
   <xacro:macro name="wheel" params="side reflect radius width torque velocity separation parent">
     <link name="wheel_${side}_link">
       <inertial>
-        <origin xyz="-5.88442419331937E-06 -7.00561276577305E-05 ${-0.0022290297150058 * reflect}" rpy="0 0 0"/>
-        <mass value="1.65650861485769"/>
-        <inertia ixx="0.00630296404438552" ixy="1.03127988436767E-10" ixz="${-7.08413960046181E-07 * reflect}"
-                 iyy="0.00630218683572695" iyz="${-5.36273885065753E-08 * reflect}"
-                 izz="0.0111537170515013"/>
+        <origin xyz="-5.88525464208667E-06 -7.00561297658359E-05 ${-0.00222902971508132 * reflect}" rpy="0 0 0"/>
+        <mass value="1.65651"/>
+        <inertia ixx="0.00630296404438488" ixy="1.03273612245952E-10" ixz="${-7.08413602420107E-07 * reflect}"
+                 iyy="0.00630218683572781" iyz="${-5.36273874221441E-08 * reflect}"
+                 izz="0.0111537170515009"/>
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>

@@ -5,14 +5,10 @@ collision_model_parameters:
     default:
       - first: ground_plane
         second: base_link
-#      - first: ground_plane
-#        second: caster_left_1_link
-#      - first: ground_plane
-#        second: caster_left_2_link
-#      - first: ground_plane
-#        second: caster_right_1_link
-#      - first: ground_plane
-#        second: caster_right_2_link
+      - first: ground_plane
+        second: caster_left_link
+      - first: ground_plane
+        second: caster_right_link
       - first: ground_plane
         second: wheel_right_link
       - first: ground_plane

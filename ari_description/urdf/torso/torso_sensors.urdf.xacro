@@ -44,35 +44,6 @@
     <origin xyz="${torso_back_camera_position_x} ${torso_back_camera_position_y} ${torso_back_camera_position_z}" 
             rpy="${torso_back_camera_orientation_r} ${torso_back_camera_orientation_p} ${torso_back_camera_orientation_y}"/>
   </sensor_t265_gazebo>
-  <!--link name="${name}_camera_2_link">
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <mass value="0"/>
-      <inertia ixx="0" ixy="0" ixz="0"
-               iyy="0" iyz="0"
-               izz="0"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0" />
-      <geometry>
-        <mesh filename="package://ari_description/meshes/sensors/${name}_camera_2.stl" scale="1 1 1"/>
-      </geometry>
-      <material name="White"/>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0" />
-      <geometry>
-        <mesh filename="package://ari_description/meshes/sensors/${name}_camera_2.stl" scale="1 1 1"/>
-      </geometry>
-    </collision>
-  </link>
-
-  <joint name="${name}_camera_2_joint" type="fixed">
-    <origin rpy="0 0.26179938779914 -3.14159265358979" xyz="-0.327497577576678 0.00899999999999999 1.03369506830427" />
-    <parent link="${parent}" />
-    <child link="${name}_camera_2_link" />
-    <axis xyz="0 0 0" />
-  </joint-->
 
  </xacro:macro>
 </robot>

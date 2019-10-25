@@ -25,24 +25,22 @@
   <xacro:property name="wheel_velocity"   value="1.0"/>
 
   <!-- Caster wheel characteristics -->
-  <xacro:property name="caster_radius"       value="0.025"/>
-  <xacro:property name="caster_width"        value="0.015"/>
-  <xacro:property name="caster_separation_x" value="0.343"/>
-  <xacro:property name="caster_separation_y" value="0.204"/>
-  <xacro:property name="caster_offset_x"     value="-0.002"/>
-  <xacro:property name="caster_offset_y"     value="0.0"/>
-  <xacro:property name="caster_offset_z"     value="-0.0335"/>
+  <xacro:property name="caster_radius"       value="0.045"/>
+  <xacro:property name="caster_width"        value="0.055"/>
+  <xacro:property name="caster_separation_x" value="0.91"/>
+  <xacro:property name="caster_separation_y" value="0.205"/>
+  <xacro:property name="caster_offset_z"     value="-0.08"/>
 
   <xacro:macro name="base" params="name">
 
   <!-- Base -->
   <link name="${name}_link">
     <inertial>
-      <origin xyz="-0.1896 -0.003234 0.27382" rpy="0 0 0"/>
-      <mass value="43.891"/>
-      <inertia ixx="0.71827" ixy="-7.1158E-05" ixz="0.054913"
-               iyy="0.74483" iyz="-9.085E-06"
-               izz="0.45676"/>
+      <origin xyz="-0.18664 -0.0032701 0.2776" rpy="0 0 0"/>
+      <mass value="43.407"/>
+      <inertia ixx="0.71785" ixy="-7.1158E-05" ixz="0.054913"
+               iyy="0.74432" iyz="-9.0871E-06"
+               izz="0.45635"/>
     </inertial>
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -89,8 +87,10 @@
   <xacro:wheel side="left"  reflect="-1.0" radius="${wheel_radius}" width="${wheel_width}" torque="${wheel_torque}" velocity="${wheel_velocity}" separation="${wheel_separation}" parent="${name}"/>
 
   <!-- Casters wheels -->
-  <!--xacro:caster side="back_right"  radius="${caster_radius}" width="${caster_width}" separation_x="${-caster_separation_x}" separation_y="${ caster_separation_y}" offset_x="${caster_offset_x}" offset_y="${caster_offset_y}" offset_z="${caster_offset_z}" parent="${name}"/>
-  <xacro:caster side="back_left"   radius="${caster_radius}" width="${caster_width}" separation_x="${-caster_separation_x}" separation_y="${-caster_separation_y}" offset_x="${caster_offset_x}" offset_y="${caster_offset_y}" offset_z="${caster_offset_z}" parent="${name}"/-->
+  <xacro:caster side="right" reflect=" 1.0" radius="${caster_radius}" width="${caster_width}" separation_x="${caster_separation_x}" separation_y="${caster_separation_y}" 
+                offset_z="${caster_offset_z}" parent="${name}"/>
+  <xacro:caster side="left"  reflect="-1.0" radius="${caster_radius}" width="${caster_width}" separation_x="${caster_separation_x}" separation_y="${caster_separation_y}" 
+                offset_z="${caster_offset_z}" parent="${name}"/>
 
   </xacro:macro>
 

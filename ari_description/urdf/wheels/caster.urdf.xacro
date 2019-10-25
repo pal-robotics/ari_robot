@@ -13,44 +13,21 @@
 
   <xacro:include filename="$(find ari_description)/urdf/wheels/caster.gazebo.xacro"/>
 
-  <xacro:macro name="caster" params="side radius width separation_x separation_y offset_x offset_y offset_z parent">
-    <link name="caster_${side}_1_link">
+  <xacro:macro name="caster" params="side reflect radius width separation_x separation_y offset_z parent">
+    <link name="caster_${side}_link">
       <inertial>
-        <origin xyz="-0.00634599 0.00005347 -0.02037519" rpy="0 0 0"/>
-        <mass value="0.05144761"/>
-        <inertia  ixx="0.00001513" ixy="-0.00000003" ixz="0.00000267"
-                  iyy="0.00001309" iyz="-0.00000005"
-                  izz="0.00001198"/>
+        <origin xyz="${1.4445E-06 * reflect} 0.016213 ${-0.00019766 * reflect}" rpy="0 0 0"/>
+        <mass value="0.24242"/>
+        <inertia  ixx="0.0002099" ixy="${-5.5806E-09 * reflect}" ixz="-6.9375E-11"
+                  iyy="0.00020239" iyz="${-2.6771E-09 * reflect}"
+                  izz="0.00025496"/>
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://ari_description/meshes/wheels/caster_1.stl"/>
+          <mesh filename="package://ari_description/meshes/wheels/caster_${side}.stl"/>
         </geometry>
         <material name="Grey"/>
-      </visual>
-      <!--collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <geometry>
-          <cylinder radius="${radius}" length="${width}"/>
-        </geometry>
-      </collision-->
-    </link>
-
-    <link name="caster_${side}_2_link">
-      <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <mass value="0.08855784"/>
-        <inertia  ixx="0.00001075" ixy="0" ixz="0"
-                  iyy="0.00001541" iyz="0"
-                  izz="0.00001075"/>
-        </inertial>
-      <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <geometry>
-          <mesh filename="package://pmb2_description/meshes/wheels/caster_2.stl"/>
-        </geometry>
-        <material name="DarkGrey"/>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -60,19 +37,12 @@
       </collision>
     </link>
 
-    <joint name="caster_${side}_1_joint" type="continuous">
+    <joint name="caster_${side}_joint" type="continuous">
       <parent link="${parent}_link"/>
-      <child link="caster_${side}_1_link"/>
-      <origin xyz="${offset_x + separation_x / 2} ${offset_y - separation_y / 2} ${offset_z}" rpy="0 0 0"/>
-      <axis xyz="0 0 1"/>
+      <child link="caster_${side}_link"/>
+      <origin xyz="${-separation_x / 2} ${-separation_y / 2 * reflect} ${offset_z}" rpy="${90.0 * deg_to_rad} 0 0"/>
+      <axis xyz="0 0 -1"/>
       <dynamics damping="0.005" friction="0.0"/>
-    </joint>
-
-    <joint name="caster_${side}_2_joint" type="continuous">
-      <parent link="caster_${side}_1_link"/>
-      <child link="caster_${side}_2_link"/>
-      <origin xyz="-0.016 0.0000 -0.040" rpy="${-90.0 * deg_to_rad} 0 0"/>
-      <axis xyz="0 0 1"/>
     </joint>
 
     <!-- Gazebo extensions -->
