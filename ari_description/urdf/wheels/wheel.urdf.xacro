@@ -14,7 +14,7 @@ Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041
   <xacro:include filename="$(find ari_description)/urdf/wheels/wheel.transmission.xacro"/>
   <xacro:include filename="$(find ari_description)/urdf/wheels/wheel.gazebo.xacro"/>
 
-  <xacro:macro name="wheel" params="side reflect radius width torque velocity parent">
+  <xacro:macro name="wheel" params="side reflect radius width torque velocity separation parent">
     <link name="wheel_${side}_link">
       <inertial>
         <origin xyz="-5.88442419331937E-06 -7.00561276577305E-05 ${-0.0022290297150058 * reflect}" rpy="0 0 0"/>
@@ -33,17 +33,25 @@ Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://ari_description/meshes/wheels/wheel_${side}.stl"/>
+          <cylinder radius="${radius}" length="${width}"/>
         </geometry>
       </collision>
-    </link>
+      <kinematic>0</kinematic>
+      <gravity>1</gravity>
+    </link>    
 
     <joint name="wheel_${side}_joint" type="continuous">
       <parent link="${parent}_link"/>
       <child link="wheel_${side}_link"/>
-      <origin xyz="0 ${-0.22 * reflect} 0" rpy="${90.0 * deg_to_rad} 0 0"/>
+      <origin xyz="0 ${-separation / 2 * reflect} 0" rpy="${90.0 * deg_to_rad} 0 0"/>
       <axis xyz="0 0 -1"/>
-      <!--limit effort="${torque}" velocity="${velocity / radius}"/-->
+      <limit effort="${torque}" velocity="${velocity / radius}"/>
+      <!--dynamics damping="100"/-->
+
+      <!--safety_controller k_position="0"
+        k_velocity="10"
+        soft_lower_limit="-0.005"
+        soft_upper_limit="0.005" /-->
     </joint>
 
     <!-- Transmission -->

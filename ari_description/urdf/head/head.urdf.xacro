@@ -13,6 +13,7 @@
   <!--File includes-->
   <xacro:include filename="$(find ari_description)/urdf/deg_to_rad.xacro" />
   <xacro:include filename="$(find tiago_description)/urdf/head/head.transmission.xacro" />
+  <!--xacro:include filename="$(find tiago_description_calibration)/urdf/calibration/calibration_constants.urdf.xacro" /-->
 
   <!--Constant parameters-->
   <xacro:property name="head_1_joint_offset" value="0.0" />

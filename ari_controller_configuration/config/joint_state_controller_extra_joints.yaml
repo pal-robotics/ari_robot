@@ -1,0 +1,6 @@
+extra_joints:
+    - name: 'caster_left_1_joint'
+    - name: 'caster_left_2_joint'
+    - name: 'caster_right_1_joint'
+    - name: 'caster_right_2_joint'
+

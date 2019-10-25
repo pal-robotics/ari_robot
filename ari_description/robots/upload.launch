@@ -2,7 +2,6 @@
 <launch>
   <arg name="multi" default=""/>
   <!--arg name="arm"  default="True"/-->
-  <!--arg name="laser_model"  default="sick-571"/-->
   <!--arg name="camera_model"  default="orbbec-astra"/-->
 
   <!-- Robot description -->
@@ -10,5 +9,5 @@
     command="rosrun xacro xacro --inorder
     '$(find ari_description)/robots/ari.urdf.xacro'
     $(arg multi)" />
-  <!--rosparam command="load" file="$(find ari_description)/config/collision/collision_parameters.yaml" /-->
+  <rosparam command="load" file="$(find ari_description)/config/collision/collision_parameters.yaml" />
 </launch>
