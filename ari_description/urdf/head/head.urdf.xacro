@@ -24,7 +24,7 @@
   <xacro:property name="head_eps"      value="0.07" />
   <xacro:property name="head_1_lower_limit" value="-75"/>
   <xacro:property name="head_1_upper_limit" value="75"/>
-  <xacro:property name="head_2_lower_limit" value="-20"/>
+  <xacro:property name="head_2_lower_limit" value="-15"/>
   <xacro:property name="head_2_upper_limit" value="45"/>
 
   <!--************************-->
@@ -60,7 +60,7 @@
       <child link="${name}_link"/>
       <origin xyz="-0.2255 0 1.1915"  rpy="0 0 0" />
       <axis xyz="0 0 1" />
-      <limit lower="${head_1_lower_limit * deg_to_rad}" upper="${head_1_upper_limit * deg_to_rad}" effort="5.197" velocity="${head_max_vel}" />
+      <limit lower="${head_1_lower_limit * deg_to_rad}" upper="${head_1_upper_limit * deg_to_rad}" effort="3.4" velocity="${head_max_vel}" />
       <dynamics damping="${head_damping}" friction="${head_friction}"/>
 
       <safety_controller k_position="20"
@@ -116,7 +116,7 @@
       <child link="${name}_link"/>
       <origin xyz="0.0425000000000001 0 0.093"  rpy="${90.0 * deg_to_rad} 0 0" />
       <axis xyz="0 0 -1" />
-      <limit lower="${head_2_lower_limit * deg_to_rad}" upper="${head_2_upper_limit * deg_to_rad}" effort="2.77" velocity="${head_max_vel}" />
+      <limit lower="${head_2_lower_limit * deg_to_rad}" upper="${head_2_upper_limit * deg_to_rad}" effort="3.26" velocity="${head_max_vel}" />
       <dynamics damping="${head_damping}" friction="${head_friction}"/>
 
       <safety_controller k_position="20"

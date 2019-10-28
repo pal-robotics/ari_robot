@@ -14,8 +14,6 @@
   <xacro:include filename="$(find ari_description)/urdf/deg_to_rad.xacro" />
   <xacro:include filename="$(find ari_description)/urdf/wheels/wheel.urdf.xacro"/>
   <xacro:include filename="$(find ari_description)/urdf/wheels/caster.urdf.xacro"/>
-  <!--xacro:include filename="$(find ari_description)/urdf/sensors/microphone.urdf.xacro"/-->
-  <!--xacro:include filename="$(find ari_description)/urdf/sensors/imu.urdf.xacro"/-->
 
   <!-- Wheel characteristics -->
   <xacro:property name="wheel_radius"     value="0.125"/>
@@ -28,7 +26,7 @@
   <xacro:property name="caster_radius"       value="0.045"/>
   <xacro:property name="caster_width"        value="0.055"/>
   <xacro:property name="caster_separation_x" value="0.91"/>
-  <xacro:property name="caster_separation_y" value="0.205"/>
+  <xacro:property name="caster_offset_y"     value="0.1025"/>
   <xacro:property name="caster_offset_z"     value="-0.08"/>
 
   <xacro:macro name="base" params="name">
@@ -87,9 +85,9 @@
   <xacro:wheel side="left"  reflect="-1.0" radius="${wheel_radius}" width="${wheel_width}" torque="${wheel_torque}" velocity="${wheel_velocity}" separation="${wheel_separation}" parent="${name}"/>
 
   <!-- Casters wheels -->
-  <xacro:caster side="right" reflect=" 1.0" radius="${caster_radius}" width="${caster_width}" separation_x="${caster_separation_x}" separation_y="${caster_separation_y}" 
+  <xacro:caster side="right" reflect=" 1.0" radius="${caster_radius}" width="${caster_width}" separation_x="${caster_separation_x}" offset_y="${caster_offset_y}" 
                 offset_z="${caster_offset_z}" parent="${name}"/>
-  <xacro:caster side="left"  reflect="-1.0" radius="${caster_radius}" width="${caster_width}" separation_x="${caster_separation_x}" separation_y="${caster_separation_y}" 
+  <xacro:caster side="left"  reflect="-1.0" radius="${caster_radius}" width="${caster_width}" separation_x="${caster_separation_x}" offset_y="${caster_offset_y}" 
                 offset_z="${caster_offset_z}" parent="${name}"/>
 
   </xacro:macro>

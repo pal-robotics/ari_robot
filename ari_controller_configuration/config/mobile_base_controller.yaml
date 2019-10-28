@@ -3,12 +3,8 @@ mobile_base_controller:
   left_wheel  : 'wheel_left_joint'
   right_wheel : 'wheel_right_joint'
   publish_rate: 50.0
-  pose_covariance_diagonal : [0.001, 0.001, 1.0e-3, 1.0e-3, 1.0e-3, 0.01]
-  twist_covariance_diagonal: [0.001, 0.001, 1.0e-3, 1.0e-3, 1.0e-3, 0.01]
-
-  enable_pose_covariance_update: true
-  error_constant_left : 0.001
-  error_constant_right: 0.001
+  pose_covariance_diagonal : [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+  twist_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
 
   # Velocity commands timeout [s]
   cmd_vel_timeout: 0.25
@@ -19,7 +15,7 @@ mobile_base_controller:
   # Preserve turning radius when limiting speed/acceleration/jerk
   preserve_turning_radius: true
 
-  # Publish limited velocity
+  # Publish actual velocity cmd
   publish_cmd: true
 
   # Publish wheel data
@@ -34,14 +30,10 @@ mobile_base_controller:
       min_velocity           : -0.2 # m/s
       has_acceleration_limits: true
       max_acceleration       :  1.0 # m/s^2
-      has_jerk_limits        : false
-      max_jerk               :  5.0 # m/s^3
   angular:
     z:
       has_velocity_limits    : true
       max_velocity           : !degrees 120.0
       has_acceleration_limits: true
       max_acceleration       : !degrees 120.0
-      has_jerk_limits        : false
-      max_jerk               : !degrees 600.0
 

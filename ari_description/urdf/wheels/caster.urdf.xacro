@@ -13,7 +13,7 @@
 
   <xacro:include filename="$(find ari_description)/urdf/wheels/caster.gazebo.xacro"/>
 
-  <xacro:macro name="caster" params="side reflect radius width separation_x separation_y offset_z parent">
+  <xacro:macro name="caster" params="side reflect radius width separation_x offset_y offset_z parent">
     <link name="caster_${side}_link">
       <inertial>
         <origin xyz="${1.4445E-06 * reflect} 0.016213 ${-0.00019766 * reflect}" rpy="0 0 0"/>
@@ -40,7 +40,7 @@
     <joint name="caster_${side}_joint" type="continuous">
       <parent link="${parent}_link"/>
       <child link="caster_${side}_link"/>
-      <origin xyz="${-separation_x / 2} ${-separation_y / 2 * reflect} ${offset_z}" rpy="${90.0 * deg_to_rad} 0 0"/>
+      <origin xyz="${-separation_x / 2} ${-offset_y * reflect} ${offset_z}" rpy="${90.0 * deg_to_rad} 0 0"/>
       <axis xyz="0 0 -1"/>
       <dynamics damping="0.005" friction="0.0"/>
     </joint>
