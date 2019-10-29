@@ -25,7 +25,7 @@
   <xacro:property name="head_1_lower_limit" value="-75"/>
   <xacro:property name="head_1_upper_limit" value="75"/>
   <xacro:property name="head_2_lower_limit" value="-15"/>
-  <xacro:property name="head_2_upper_limit" value="45"/>
+  <xacro:property name="head_2_upper_limit" value="35"/>
 
   <!--************************-->
   <!--     HEAD_1 (PAN)       -->
@@ -124,15 +124,6 @@
                          soft_lower_limit="${head_2_lower_limit * deg_to_rad + head_eps}"
                          soft_upper_limit="${head_2_upper_limit * deg_to_rad}" />
     </joint>
-
-    <!--gazebo reference="${name}_link">
-      <mu1>0.9</mu1>
-      <mu2>0.9</mu2>
-    </gazebo>
-
-    <gazebo reference="${name}_joint">
-       <implicitSpringDamper>1</implicitSpringDamper>
-    </gazebo-->
 
     <xacro:head_transmission name="${name}" reduction="1" offset_value="${head_2_joint_offset}"/>
 

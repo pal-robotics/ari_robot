@@ -14,7 +14,7 @@
   <xacro:include filename="$(find ari_description)/urdf/deg_to_rad.xacro" />
   <xacro:include filename="$(find realsense_gazebo_plugin)/urdf/d435.urdf.xacro" />
   <xacro:include filename="$(find realsense_gazebo_plugin)/urdf/t265.urdf.xacro" />
-  <!--xacro:include filename="$(find ari_description)/urdf/sensors/microphone.urdf.xacro"/-->
+  <xacro:include filename="$(find ari_description)/urdf/sensors/microphone.urdf.xacro"/>
   <!--xacro:include filename="$(find ari_description_calibration)/urdf/calibration/calibration_constants.urdf.xacro" /-->
 
   <!--Constant parameters-->
@@ -47,9 +47,9 @@
   </sensor_t265_gazebo>
 
   <!-- Microphones -->
-  <!--xacro:microphone name="${name}_mic_front" parent="${parent}">
-    <origin xyz="0.23182 0.03902 0.195" rpy="0 0 0"/>
-  </xacro:microphone-->
+  <xacro:microphone name="${name}_mic_front" parent="${parent}">
+    <origin xyz="-0.12173 -3.5497E-05 0.80332" rpy="${80 * deg_to_rad} 0 ${90 * deg_to_rad}"/>
+  </xacro:microphone>
 
  </xacro:macro>
 </robot>
