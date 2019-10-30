@@ -1,11 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-  <!--arg name="arm"  default="True"/-->
-  <!--arg name="camera_model"  default="orbbec-astra"/-->
-  <!-- Args are the ones that upload.launch requires-->
-  <include file="$(find ari_description)/robots/upload.launch">
-    <!--arg name="camera_model"  value="$(arg camera_model)"/-->
-  </include>
+  <include file="$(find ari_description)/robots/upload.launch" />
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" args="_use_gui:=True" />

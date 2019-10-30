@@ -1,8 +1,6 @@
 <?xml version="1.0"?>
 <launch>
   <arg name="multi" default=""/>
-  <!--arg name="arm"  default="True"/-->
-  <!--arg name="camera_model"  default="orbbec-astra"/-->
 
   <!-- Robot description -->
   <param name="robot_description"
