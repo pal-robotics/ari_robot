@@ -72,6 +72,7 @@
     <gazebo reference="${name}_link">
       <mu1>0.9</mu1>
       <mu2>0.9</mu2>
+      <material>Gazebo/White</material>
     </gazebo>
 
     <gazebo reference="${name}_joint">
@@ -125,6 +126,10 @@
                          soft_upper_limit="${head_2_upper_limit * deg_to_rad}" />
     </joint>
 
+    <gazebo reference="${name}_link">
+      <material>Gazebo/White</material>
+    </gazebo>
+    
     <xacro:head_transmission name="${name}" reduction="1" offset_value="${head_2_joint_offset}"/>
 
   </xacro:macro>

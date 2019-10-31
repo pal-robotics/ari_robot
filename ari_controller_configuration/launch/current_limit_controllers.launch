@@ -6,5 +6,7 @@
   <!-- Controllers that come up started -->
   <node name="current_limit_controllers_spawner"
         pkg="controller_manager" type="spawner" output="screen"
-        args="wheels_current_limit_controller" />
+        args="arm_left_current_limit_controller
+              arm_right_current_limit_controller
+              wheels_current_limit_controller" />
 </launch>

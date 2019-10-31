@@ -56,7 +56,7 @@
     </collision>
   </link>
   <gazebo reference="${name}_link">
-    <material>Gazebo/Grey</material>
+    <material>Gazebo/White</material>
   </gazebo>
 
   <!-- Base footprint -->

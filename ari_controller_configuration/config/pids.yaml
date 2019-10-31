@@ -3,6 +3,16 @@ gains:
   head_2_joint: {p: 100,  d: 0, i: 10, i_clamp: 1.5}
 #  xtion_frame_joint: {p: 0.5,  d: 0, i: 0, i_clamp: 1.5}
 
+  arm_left_1_joint: {p: 3000, d: 5, i: 1,   i_clamp: 3, torque_clamp: 60}
+  arm_left_2_joint: {p: 3000, d: 5, i: 1,   i_clamp: 3, torque_clamp: 50}
+  arm_left_3_joint: {p: 3000, d: 5, i: 1,   i_clamp: 3, torque_clamp: 50}
+  arm_left_4_joint: {p: 3000, d: 5, i: 1,   i_clamp: 3, torque_clamp: 50}
+
+  arm_right_1_joint: {p: 3000, d: 5, i: 1,   i_clamp: 3, torque_clamp: 60}
+  arm_right_2_joint: {p: 3000, d: 5, i: 1,   i_clamp: 3, torque_clamp: 50}
+  arm_right_3_joint: {p: 3000, d: 5, i: 1,   i_clamp: 3, torque_clamp: 50}
+  arm_right_4_joint: {p: 3000, d: 5, i: 1,   i_clamp: 3, torque_clamp: 50}
+
   FFJ4: &shadow_gains {p: 100,  d: 0,  i: 10}
   FFJ3: *shadow_gains
   FFJ2: *shadow_gains
@@ -24,4 +34,5 @@ velocity:
   gains:
      wheel_right_joint: {p: 30,  d: 0, i: 0, i_clamp: 1.}
      wheel_left_joint: {p: 30,  d: 0, i: 0, i_clamp: 1.0}
+
 

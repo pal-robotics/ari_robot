@@ -30,12 +30,12 @@
   <xacro:property name="arm_eps"            value="0.07" />
 
 
-  <xacro:macro name="ari_arm" params="name parent reflect *origin">
+  <xacro:macro name="ari_arm" params="name parent side reflect *origin">
 
     <!--************************-->
     <!--      ARM_BASE_LINK     -->
     <!--************************-->
-    <link name="${name}_base_link">
+    <link name="${name}_${side}_base_link">
       <inertial>
         <origin xyz="0.011543 -2.1422E-06 -0.010569" rpy="0.0 0.0 0.0"/>
         <mass value="0.4064"/>
@@ -46,57 +46,58 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/arm/arm_base.stl" scale="1 1 1"/>
+          <mesh filename="package://ari_description/meshes/arm/${name}_${side}_base.stl" scale="1 1 1"/>
         </geometry>
         <material name="Grey"/>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/arm/arm_base.stl" scale="1 1 1"/>
+          <mesh filename="package://ari_description/meshes/arm/${name}_${side}_base.stl" scale="1 1 1"/>
         </geometry>
       </collision>
     </link>
 
-    <joint name="${name}_base_joint" type="fixed">
+    <joint name="${name}_${side}_base_joint" type="fixed">
       <xacro:insert_block name="origin"/>
-      <child link="${name}_base_link" />
+      <child link="${name}_${side}_base_link" />
       <parent link="${parent}"/>
     </joint>      
 
     <!--************************-->
     <!--        SHOULDER        -->
     <!--************************-->
-    <link name="${name}_1_link">
+    <link name="${name}_${side}_1_link">
+      <xacro:property name="mass_1"       value="${0.7387 if side == 'left' else 0.7238}"/>
       <inertial>
-        <origin xyz="-0.012604 -0.00045914 0.082789" rpy="0.0 0.0 0.0"/>
-        <mass value="0.7387"/>
-        <inertia ixx="0.00089241" ixy="4.0951E-06" ixz="9.677E-05"
-                 iyy="0.00071285" iyz="-2.9372E-06"
+        <origin xyz="-0.012604 ${-0.00045914 * reflect} 0.082789" rpy="0.0 0.0 0.0"/>
+        <mass value="${mass_1}"/>
+        <inertia ixx="0.00089241" ixy="${4.0951E-06 * reflect}" ixz="9.677E-05"
+                 iyy="0.00071285" iyz="${-2.9372E-06 * reflect}"
                  izz="0.00057895"/>
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/arm/arm_1.stl" scale="1 1 1"/>
+          <mesh filename="package://ari_description/meshes/arm/${name}_${side}_1.stl" scale="1 1 1"/>
         </geometry>
         <material name="White"/>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/arm/arm_1.stl" scale="1 1 1"/>
+          <mesh filename="package://ari_description/meshes/arm/${name}_${side}_1.stl" scale="1 1 1"/>
         </geometry>
       </collision>
     </link>
 
-    <joint name="${name}_1_joint" type="revolute">
-      <parent link="${name}_base_link" />
-      <child link="${name}_1_link" />
+    <joint name="${name}_${side}_1_joint" type="revolute">
+      <parent link="${name}_${side}_base_link" />
+      <child link="${name}_${side}_1_link" />
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <axis xyz="0 0 -1" />
-      <xacro:property name="arm_1_upper_limit"       value="${90.0}"/>
-      <xacro:property name="arm_1_lower_limit"       value="${-67.5}"/>
+      <xacro:property name="arm_1_upper_limit"       value="${120.0}"/>
+      <xacro:property name="arm_1_lower_limit"       value="${-120.0}"/>
       <limit lower="${arm_1_lower_limit * deg_to_rad}" upper="${arm_1_upper_limit * deg_to_rad}" effort="${arm_1_max_effort}" velocity="${arm_1_max_vel}" />
       <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
 
@@ -106,158 +107,180 @@
                          soft_upper_limit="${arm_1_upper_limit * deg_to_rad - arm_eps}" />
     </joint>
 
-   <link name="${name}_2_link">
+   <link name="${name}_${side}_2_link">
+      <xacro:property name="origin_x_2_link"       value="${-0.016192 if side == 'left' else 0.0}"/>
+      <xacro:property name="origin_y_2_link"       value="${-0.044792 if side == 'left' else 0.001}"/>
+      <xacro:property name="origin_z_2_link"       value="${0.013781 if side == 'left' else 0.001}"/>
+      <xacro:property name="mass_2"                value="${0.59265 if side == 'left' else 0.55192}"/>
       <inertial>
-        <origin xyz="-0.016192 -0.044792 0.013781" rpy="0.0 0.0 0.0"/>
-        <mass value="0.59265"/>
-        <inertia ixx="0.00061602" ixy="-3.2017E-05" ixz="-3.4931E-05"
-                 iyy="0.00052901" iyz="-9.306E-05"
+        <origin xyz="${origin_x_2_link} ${origin_x_2_link} ${origin_x_2_link}" rpy="0.0 0.0 0.0"/>
+        <mass value="${mass_2}"/>
+        <inertia ixx="0.00061602" ixy="${-3.2017E-05 * reflect}" ixz="-3.4931E-05"
+                 iyy="0.00052901" iyz="${-9.306E-05 * reflect}"
                  izz="0.00078071"/>
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/arm/arm_2.stl" scale="1 1 1"/>
+          <mesh filename="package://ari_description/meshes/arm/${name}_${side}_2.stl" scale="1 1 1"/>
         </geometry>
         <material name="White" />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/arm/arm_2.stl" scale="1 1 1"/>
+          <mesh filename="package://ari_description/meshes/arm/${name}_${side}_2.stl" scale="1 1 1"/>
         </geometry>
       </collision>
     </link>
 
-    <joint name="${name}_2_joint" type="revolute">
-      <parent link="${name}_1_link" />
-      <child link="${name}_2_link" />
-      <origin xyz="-0.001 0 0.1145"
+    <joint name="${name}_${side}_2_joint" type="revolute">
+      <xacro:property name="origin_x_2_joint"       value="${-0.001 if side == 'left' else 0.0}"/>
+      <xacro:property name="origin_y_2_joint"       value="${0.0 if side == 'left' else 0.001}"/>
+      <parent link="${name}_${side}_1_link" />
+      <child link="${name}_${side}_2_link" />
+      <origin xyz="${origin_x_2_joint} ${origin_y_2_joint} 0.1145"
               rpy="0.0 ${90.0 * deg_to_rad} 0.0"/>
       <axis xyz="0 0 -1" />
-      <xacro:property name="arm_2_upper_limit"       value="${90.0}"/>
-      <xacro:property name="arm_2_lower_limit"       value="${-67.5}"/>
+      <xacro:property name="arm_2_upper_limit"       value="${155.0 if side == 'left' else 5.0}"/>
+      <xacro:property name="arm_2_lower_limit"       value="${-5.0 if side == 'left' else -155.0}"/>
       <limit lower="${arm_2_lower_limit * deg_to_rad}" upper="${arm_2_upper_limit * deg_to_rad}" effort="${arm_2_max_effort}" velocity="${arm_2_max_vel}" />
       <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
 
       <safety_controller k_position="20"
                          k_velocity="20"
                          soft_lower_limit="${arm_2_lower_limit * deg_to_rad  + arm_eps}"
-                         soft_upper_limit="${ arm_2_upper_limit * deg_to_rad - arm_eps}" />
+                         soft_upper_limit="${arm_2_upper_limit * deg_to_rad - arm_eps}" />
     </joint>
 
-    <link name="${name}_3_link">
+    <link name="${name}_${side}_3_link">
+      <xacro:property name="mass_3"       value="${0.4975 if side == 'left' else 0.4928}"/>
       <inertial>
-        <origin xyz="-0.0054056 -0.0083079 0.06942" rpy="0.0 0.0 0.0"/>
-        <mass value="0.4975"/>
-        <inertia ixx="0.0004369" ixy="6.5E-05" ixz="3.0918E-05"
-                 iyy="0.00044111" iyz="2.9279E-05"
+        <origin xyz="-0.0054056 ${-0.0083079 * reflect} 0.06942" rpy="0.0 0.0 0.0"/>
+        <mass value="${mass_3}"/>
+        <inertia ixx="0.0004369" ixy="${6.5E-05 * reflect}" ixz="3.0918E-05"
+                 iyy="0.00044111" iyz="${2.9279E-05 * reflect}"
                  izz="0.00035672"/>
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/arm/arm_3.stl" scale="1 1 1"/>
+          <mesh filename="package://ari_description/meshes/arm/${name}_${side}_3.stl" scale="1 1 1"/>
         </geometry>
         <material name="White" />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/arm/arm_3.stl" scale="1 1 1"/>
+          <mesh filename="package://ari_description/meshes/arm/${name}_${side}_3.stl" scale="1 1 1"/>
         </geometry>
       </collision>
     </link>
 
-    <joint name="${name}_3_joint" type="revolute">
-      <parent link="${name}_2_link" />
-      <child link="${name}_3_link" />
-      <origin xyz="-0.031119 -0.096819 0.001"
-              rpy="${-90.0 * deg_to_rad} ${-45.0 * deg_to_rad} ${165.0 * deg_to_rad}"/>
+    <joint name="${name}_${side}_3_joint" type="revolute">
+      <xacro:property name="origin_z_3_joint"       value="${0.001 if side == 'left' else 2.4832E-05}"/>
+      <parent link="${name}_${side}_2_link" />
+      <child link="${name}_${side}_3_link" />
+      <origin xyz="-0.031119 ${-0.096819 * reflect} ${origin_z_3_joint}"
+              rpy="${-90.0 * reflect * deg_to_rad} ${-45.0 * deg_to_rad} ${165.0 * reflect * deg_to_rad}"/>
       <axis xyz="0 0 -1" />
-      <xacro:property name="arm_3_lower_limit"       value="${-45}"/>
-      <xacro:property name="arm_3_upper_limit"       value="${225}"/>
+      <xacro:property name="arm_3_lower_limit"       value="${-120.0}"/>
+      <xacro:property name="arm_3_upper_limit"       value="${120.0}"/>
       <limit lower="${arm_3_lower_limit * deg_to_rad}" upper="${arm_3_upper_limit * deg_to_rad}" effort="${arm_3_max_effort}" velocity="${arm_3_max_vel}" />
       <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
 
       <safety_controller k_position="20"
                          k_velocity="20"
                          soft_lower_limit="${arm_3_lower_limit * deg_to_rad + arm_eps}"
-                         soft_upper_limit="${ arm_3_upper_limit * deg_to_rad - arm_eps}" />
+                         soft_upper_limit="${arm_3_upper_limit * deg_to_rad - arm_eps}" />
     </joint>
 
     <!--************************-->
     <!--        ELBOW           -->
     <!--************************-->
-    <link name="${name}_4_link">
+    <link name="${name}_${side}_4_link">
+      <xacro:property name="origin_x_4_link"       value="${-0.015303 if side == 'left' else -0.135225}"/>
+      <xacro:property name="origin_y_4_link"       value="${-0.130177 if side == 'left' else 0.003305}"/>
+      <xacro:property name="origin_z_4_link"       value="${0.016161 if side == 'left' else 0.015470}"/>
+      <xacro:property name="mass_4"                value="${0.41834 if side == 'left' else 0.39219}"/>
+      <xacro:property name="inertia_xx_4_link"     value="${0.003447 if side == 'left' else 0.000308}"/>
+      <xacro:property name="inertia_xy_4_link"     value="${-0.000504 if side == 'left' else -8.916478E-05}"/>
+      <xacro:property name="inertia_xz_4_link"     value="${-2.231142E-05 if side == 'left' else -0.000148}"/>
+      <xacro:property name="inertia_yy_4_link"     value="${0.000390 if side == 'left' else 0.003520}"/>
+      <xacro:property name="inertia_yz_4_link"     value="${-0.000146 if side == 'left' else -3.654845E-06}"/>
       <inertial>
-        <origin xyz="-0.0153034607108245 -0.130176820719522 0.0161605696773525" rpy="0.0 0.0 0.0"/>
-        <mass value="0.41834"/>
-        <inertia ixx="0.00344655149560509" ixy="-0.000503501497429476" ixz="-2.23114191727081E-05"
-                 iyy="0.000389911005447472" iyz="-0.000145772283477856"
-                 izz="0.00362809158166201"/>
+        <origin xyz="${origin_x_4_link} ${origin_y_4_link} ${origin_z_4_link}" rpy="0.0 0.0 0.0"/>
+        <mass value="${mass_4}"/>
+        <inertia ixx="${inertia_xx_4_link}" ixy="${inertia_xy_4_link}" ixz="${inertia_xz_4_link}"
+                 iyy="${inertia_yy_4_link}" iyz="${inertia_yz_4_link}"
+                 izz="0.003628"/>
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/arm/arm_4.stl" scale="1 1 1"/>
+          <mesh filename="package://ari_description/meshes/arm/${name}_${side}_4.stl" scale="1 1 1"/>
         </geometry>
         <material name="White" />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/arm/arm_4.stl" scale="1 1 1"/>
+          <mesh filename="package://ari_description/meshes/arm/${name}_${side}_4.stl" scale="1 1 1"/>
         </geometry>
       </collision>
     </link>
 
-    <joint name="${name}_4_joint" type="revolute">
-      <parent link="${name}_3_link" />
-      <child link="${name}_4_link" />
-      <origin xyz="-0.0041894 -0.0041894 0.1001"
-              rpy="${-90.0 * deg_to_rad} ${0.0 * deg_to_rad} ${-45.0 * deg_to_rad}"/>
+    <joint name="${name}_${side}_4_joint" type="revolute">
+      <xacro:property name="origin_r_4_joint"       value="${-90.0 if side == 'left' else 45.0}"/>
+      <xacro:property name="origin_p_4_joint"       value="${0.0 if side == 'left' else 90.0}"/>
+      <xacro:property name="origin_y_4_joint"       value="${-45.0 if side == 'left' else 0.0}"/>
+      <parent link="${name}_${side}_3_link" />
+      <child link="${name}_${side}_4_link" />
+      <origin xyz="-0.004190 ${-0.004190 * reflect} 0.1001"
+              rpy="${origin_r_4_joint * deg_to_rad} ${origin_p_4_joint * deg_to_rad} ${origin_y_4_joint * deg_to_rad}"/>
       <axis xyz="0 0 -1" />
-      <limit lower="${-22.5 * deg_to_rad}" upper="${135 * deg_to_rad}" effort="${arm_4_max_effort}" velocity="${arm_4_max_vel}" />
+      <xacro:property name="arm_4_upper_limit"       value="${135.0 if side == 'left' else 5.0}"/>
+      <xacro:property name="arm_4_lower_limit"       value="${-5.0 if side == 'left' else -135.0}"/>
+      <limit lower="${arm_4_lower_limit * deg_to_rad}" upper="${arm_4_upper_limit * deg_to_rad}" effort="${arm_4_max_effort}" velocity="${arm_4_max_vel}" />
       <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
 
       <safety_controller k_position="20"
                          k_velocity="20"
-                         soft_lower_limit="${ -22.5 * deg_to_rad + arm_eps}"
-                         soft_upper_limit="${ 135 * deg_to_rad - arm_eps}" />
+                         soft_lower_limit="${arm_4_lower_limit * deg_to_rad + arm_eps}"
+                         soft_upper_limit="${arm_4_upper_limit * deg_to_rad - arm_eps}" />
     </joint>
 
-   <gazebo reference="${name}_1_link">
+   <gazebo reference="${name}_${side}_1_link">
      <mu1>0.9</mu1>
      <mu2>0.9</mu2>
      <material>Gazebo/DarkGrey</material>
    </gazebo>
-   <gazebo reference="${name}_2_link">
+   <gazebo reference="${name}_${side}_2_link">
      <mu1>0.9</mu1>
      <mu2>0.9</mu2>
      <material>Gazebo/DarkGrey</material>
    </gazebo>
-   <gazebo reference="${name}_3_link">
+   <gazebo reference="${name}_${side}_3_link">
      <mu1>0.9</mu1>
      <mu2>0.9</mu2>
      <material>Gazebo/DarkGrey</material>
    </gazebo>
-   <gazebo reference="${name}_4_link">
+   <gazebo reference="${name}_${side}_4_link">
      <mu1>0.9</mu1>
      <mu2>0.9</mu2>
      <material>Gazebo/DarkGrey</material>
    </gazebo>
 
-   <gazebo reference="${name}_1_joint">
+   <gazebo reference="${name}_${side}_1_joint">
       <implicitSpringDamper>1</implicitSpringDamper>
    </gazebo>
-   <gazebo reference="${name}_2_joint">
+   <gazebo reference="${name}_${side}_2_joint">
       <implicitSpringDamper>1</implicitSpringDamper>
    </gazebo>
-   <gazebo reference="${name}_3_joint">
+   <gazebo reference="${name}_${side}_3_joint">
       <implicitSpringDamper>1</implicitSpringDamper>
    </gazebo>
-   <gazebo reference="${name}_4_joint">
+   <gazebo reference="${name}_${side}_4_joint">
       <implicitSpringDamper>1</implicitSpringDamper>
    </gazebo>
 
@@ -265,12 +288,12 @@
     <!--************************-->
     <!--        WRIST           -->
     <!--************************-->
-   <!--xacro:wrist name="${name}" parent="${name}_4_link" reflect="${reflect}" wrist_6_range="${wrist_6_range}"/-->
+   <!--xacro:wrist name="${name}" parent="${name}_${side}_4_link" side="${side}" reflect="${reflect}" wrist_6_range="${wrist_6_range}"/-->
 
     <!--***********************-->
     <!--        TOOL           -->
     <!--***********************-->
-    <!--link name="${name}_tool_link">
+    <!--link name="${name}_${side}_tool_link">
       <inertial>
         <mass value="0.1" />
         <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0" />
@@ -290,22 +313,22 @@
       </collision>
     </link>
 
-    <joint name="${name}_tool_joint" type="fixed">
-      <parent link="${name}_7_link" />
-      <child link="${name}_tool_link" />
+    <joint name="${name}_${side}_tool_joint" type="fixed">
+      <parent link="${name}_${side}_7_link" />
+      <child link="${name}_${side}_tool_link" />
       <origin xyz="0 0 ${reflect*0.046}" rpy="${90.0 * deg_to_rad} ${reflect * -90.0 * deg_to_rad} ${180 * deg_to_rad}" />
     </joint-->
 
 
     <!-- extensions -->
-    <!--xacro:arm_simple_transmission name="${name}" number="1" reduction="1.0" offset_value="${arm_1_joint_offset}"/>
-    <xacro:arm_simple_transmission name="${name}" number="2" reduction="1.0" offset_value="${arm_2_joint_offset}"/>
-    <xacro:arm_simple_transmission name="${name}" number="3" reduction="1.0" offset_value="${arm_3_joint_offset}"/>
-    <xacro:arm_simple_transmission name="${name}" number="4" reduction="1.0" offset_value="${arm_4_joint_offset}"/-->
-    <xacro:arm_simple_transmission name="${name}" number="1" reduction="1.0" offset_value="0.0"/>
-    <xacro:arm_simple_transmission name="${name}" number="2" reduction="1.0" offset_value="0.0"/>
-    <xacro:arm_simple_transmission name="${name}" number="3" reduction="1.0" offset_value="0.0"/>
-    <xacro:arm_simple_transmission name="${name}" number="4" reduction="1.0" offset_value="0.0"/>
+    <!--xacro:arm_simple_transmission name="${name}" side="${side}" number="1" reduction="1.0" offset_value="${arm_1_joint_offset}"/>
+    <xacro:arm_simple_transmission name="${name}" side="${side}" number="2" reduction="1.0" offset_value="${arm_2_joint_offset}"/>
+    <xacro:arm_simple_transmission name="${name}" side="${side}" number="3" reduction="1.0" offset_value="${arm_3_joint_offset}"/>
+    <xacro:arm_simple_transmission name="${name}" side="${side}" number="4" reduction="1.0" offset_value="${arm_4_joint_offset}"/-->
+    <xacro:arm_simple_transmission name="${name}" side="${side}" number="1" reduction="1.0" offset_value="0.0"/>
+    <xacro:arm_simple_transmission name="${name}" side="${side}" number="2" reduction="1.0" offset_value="0.0"/>
+    <xacro:arm_simple_transmission name="${name}" side="${side}" number="3" reduction="1.0" offset_value="0.0"/>
+    <xacro:arm_simple_transmission name="${name}" side="${side}" number="4" reduction="1.0" offset_value="0.0"/>
   </xacro:macro>
 
 </robot>
