@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.1 (2019-11-06)
+------------------
 * Added also the right arm and tuned the config files for the arms
 * Added the left arm
 * Added the head limit and the microphone urdf
