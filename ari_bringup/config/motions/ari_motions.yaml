@@ -1,0 +1,53 @@
+play_motion:
+  motions:
+    wave_left:
+      joints: [arm_left_1_joint, arm_left_2_joint, arm_left_3_joint, arm_left_4_joint, head_1_joint, head_2_joint]
+      points:
+        - time_from_start: 0
+          positions: [1.0137, 0.6725, 0.0581, 0.0915, 0.0001, -0.0002]
+        - time_from_start: 5
+          positions: [1.8165, 0.9117, 0.0736, 0.0895, 0.0002, -0.0011]
+        - time_from_start: 7
+          positions: [1.8199, 0.9116, -0.1127, 0.8128, 0.0002, -0.0009]
+        - time_from_start: 9
+          positions: [1.8208, 0.9116, -0.1136, 1.325, 0.0002, -0.0008]
+        - time_from_start: 11
+          positions: [1.8197, 0.9117, -0.1093, 0.5549, 0.0002, -0.0009]
+        - time_from_start: 13
+          positions: [1.8207, 0.9114, -0.1145, 1.5319, -0.0004, -0.0005]
+        - time_from_start: 15
+          positions: [1.8198, 0.9116, -0.1111, 0.7163, 0.0004, -0.001]
+        - time_from_start: 17
+          positions: [1.0137, 0.6725, 0.0581, 0.0915, 0.0001, -0.0002]
+    wave_right:
+      joints: [arm_right_1_joint, arm_right_2_joint, arm_right_3_joint, arm_right_4_joint]
+      points:
+        - time_from_start: 0
+          positions: [-0.6849, -0.0001, -0.0091, -0.001]
+        - time_from_start: 3
+          positions: [-1.2127, -0.5648, -0.0071, 0.0005]
+        - time_from_start: 6
+          positions: [-1.4331, -1.1769, 0.0041, -0.0016]
+        - time_from_start: 9
+          positions: [-1.4319, -1.176, -0.0023, -1.1089]
+        - time_from_start: 11
+          positions: [-1.4332, -1.1762, -0.0062, -1.9505]
+        - time_from_start: 13
+          positions: [-1.4321, -1.176, -0.0014, -0.8227]
+        - time_from_start: 15
+          positions: [-1.4321, -1.1761, -0.0031, -1.9445]
+        - time_from_start: 17
+          positions: [-1.4331, -1.1769, 0.0041, -0.0016]
+        - time_from_start: 20
+          positions: [-1.2127, -0.5648, -0.0071, 0.0005]
+        - time_from_start: 23
+          positions: [-0.6849, -0.0001, -0.0091, -0.001]
+    head_no:
+      joints: [head_1_joint, head_2_joint]
+      points:
+        - time_from_start: 0
+          positions: [-0.9433, 0.0024]
+        - time_from_start: 3
+          positions: [0.8445, 0.0049]
+        - time_from_start: 5
+          positions: [0.0537, -0.0045]

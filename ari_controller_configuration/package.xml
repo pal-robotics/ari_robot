@@ -20,6 +20,7 @@
   <!--exec_depend>imu_sensor_controller</exec_depend-->
   <exec_depend>joint_trajectory_controller</exec_depend>
   <exec_depend>diff_drive_controller</exec_depend>
+  <exec_depend>ari_moveit_config</exec_depend>
   <!--exec_depend>gravity_compensation_controller</exec_depend-->
   <!--exec_depend>pal_local_joint_control</exec_depend-->
 

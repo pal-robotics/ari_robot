@@ -3,5 +3,8 @@
     <include file="$(find ari_controller_configuration)/launch/joint_state_controller.launch"/>
     <include file="$(find ari_controller_configuration)/launch/default_controllers.launch"/>
 
+    <!-- Motion planning -->
+    <include file="$(find ari_moveit_config)/launch/move_group.launch"/>
+
 </launch>
 
