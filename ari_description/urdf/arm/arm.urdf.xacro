@@ -95,7 +95,7 @@
       <parent link="${name}_${side}_base_link" />
       <child link="${name}_${side}_1_link" />
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-      <axis xyz="0 0 -1" />
+      <axis xyz="0 0 ${-1*reflect}" />
       <xacro:property name="arm_1_upper_limit"       value="${120.0}"/>
       <xacro:property name="arm_1_lower_limit"       value="${-120.0}"/>
       <limit lower="${arm_1_lower_limit * deg_to_rad}" upper="${arm_1_upper_limit * deg_to_rad}" effort="${arm_1_max_effort}" velocity="${arm_1_max_vel}" />
@@ -141,9 +141,9 @@
       <child link="${name}_${side}_2_link" />
       <origin xyz="${origin_x_2_joint} ${origin_y_2_joint} 0.1145"
               rpy="0.0 ${90.0 * deg_to_rad} 0.0"/>
-      <axis xyz="0 0 -1" />
-      <xacro:property name="arm_2_upper_limit"       value="${155.0 if side == 'left' else 5.0}"/>
-      <xacro:property name="arm_2_lower_limit"       value="${-5.0 if side == 'left' else -155.0}"/>
+      <axis xyz="0 0 ${-1*reflect}" />
+      <xacro:property name="arm_2_upper_limit"       value="155.0"/>
+      <xacro:property name="arm_2_lower_limit"       value="-5.0"/>
       <limit lower="${arm_2_lower_limit * deg_to_rad}" upper="${arm_2_upper_limit * deg_to_rad}" effort="${arm_2_max_effort}" velocity="${arm_2_max_vel}" />
       <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
 
@@ -183,9 +183,9 @@
       <child link="${name}_${side}_3_link" />
       <origin xyz="-0.031119 ${-0.096819 * reflect} ${origin_z_3_joint}"
               rpy="${-90.0 * reflect * deg_to_rad} ${-45.0 * deg_to_rad} ${165.0 * reflect * deg_to_rad}"/>
-      <axis xyz="0 0 -1" />
-      <xacro:property name="arm_3_lower_limit"       value="${-120.0}"/>
-      <xacro:property name="arm_3_upper_limit"       value="${120.0}"/>
+      <axis xyz="0 0 ${-1*reflect}" />
+      <xacro:property name="arm_3_lower_limit"       value="-120.0"/>
+      <xacro:property name="arm_3_upper_limit"       value="120.0"/>
       <limit lower="${arm_3_lower_limit * deg_to_rad}" upper="${arm_3_upper_limit * deg_to_rad}" effort="${arm_3_max_effort}" velocity="${arm_3_max_vel}" />
       <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
 
@@ -238,9 +238,9 @@
       <child link="${name}_${side}_4_link" />
       <origin xyz="-0.004190 ${-0.004190 * reflect} 0.1001"
               rpy="${origin_r_4_joint * deg_to_rad} ${origin_p_4_joint * deg_to_rad} ${origin_y_4_joint * deg_to_rad}"/>
-      <axis xyz="0 0 -1" />
-      <xacro:property name="arm_4_upper_limit"       value="${135.0 if side == 'left' else 5.0}"/>
-      <xacro:property name="arm_4_lower_limit"       value="${-5.0 if side == 'left' else -135.0}"/>
+      <axis xyz="0 0 ${-1*reflect}" />
+      <xacro:property name="arm_4_upper_limit"       value="135.0"/>
+      <xacro:property name="arm_4_lower_limit"       value="-5.0"/>
       <limit lower="${arm_4_lower_limit * deg_to_rad}" upper="${arm_4_upper_limit * deg_to_rad}" effort="${arm_4_max_effort}" velocity="${arm_4_max_vel}" />
       <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
 
