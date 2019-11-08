@@ -2,6 +2,11 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'master' of gitlab:robots/ari_robot
+* Contributors: alessandrodifava
+
 0.0.1 (2019-11-06)
 ------------------
 * Added also the right arm and tuned the config files for the arms

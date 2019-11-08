@@ -2,6 +2,13 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Remove dynamixel node
+* Merge branch 'master' of gitlab:robots/ari_robot
+* Added ari description test
+* Contributors: Victor Lopez, alessandrodifava
+
 0.0.1 (2019-11-06)
 ------------------
 * Added also the right arm and tuned the config files for the arms
