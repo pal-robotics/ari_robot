@@ -2,8 +2,8 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.2 (2019-11-08)
+------------------
 * Merge branch 'master' of gitlab:robots/ari_robot
 * Contributors: alessandrodifava
 

@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.2 (2019-11-08)
+------------------
 * Remove dynamixel node
 * Merge branch 'master' of gitlab:robots/ari_robot
 * Added ari description test
