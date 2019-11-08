@@ -13,9 +13,6 @@
   <!-- ari_hardware parameters -->
   <rosparam command="load" file="$(find ari_bringup)/config/ari_hardware/ari_hardware_arm.yaml"/>
 
-  <!-- Node that forwards commands and feedback of dynamixel motors -->
-  <include file="$(find ari_bringup)/launch/dynamixel_node.launch"/>
-
   <!-- Bring up robot -->
   <include file="$(find ari_bringup)/launch/ari_bringup.launch" />
 
