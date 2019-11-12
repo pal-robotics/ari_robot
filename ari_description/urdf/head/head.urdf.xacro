@@ -13,7 +13,7 @@
   <!--File includes-->
   <xacro:include filename="$(find ari_description)/urdf/deg_to_rad.xacro" />
   <xacro:include filename="$(find ari_description)/urdf/head/head.transmission.xacro" />
-  <!--xacro:include filename="$(find ari_description_calibration)/urdf/calibration/calibration_constants.urdf.xacro" /-->
+  <xacro:include filename="$(find ari_description)/urdf/sensors/rpi_camera.gazebo.xacro" />
 
   <!--Constant parameters-->
   <xacro:property name="head_1_joint_offset" value="0.0" />
@@ -168,13 +168,16 @@
     <axis xyz="0 0 0" />
   </joint>
 
+  <!-- Gazebo plugin -->
+  <xacro:rpi_camera_gazebo name="${name}" topic="${name}"/>
+
   </xacro:macro>
 
 
   <xacro:macro name="head" params="name parent">
     <xacro:head_1 name="${name}_1" parent="${parent}" />
     <xacro:head_2 name="${name}_2" parent="${name}_1_link"/>
-    <xacro:head_camera name="${name}_camera" parent="${name}_2_link"/>
+    <xacro:head_camera name="${name}_front_camera" parent="${name}_2_link"/>
   </xacro:macro>
 
 </robot>
