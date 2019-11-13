@@ -12,8 +12,8 @@
 
   <!--File includes-->
   <xacro:include filename="$(find ari_description)/urdf/deg_to_rad.xacro" />
-  <xacro:include filename="$(find realsense_gazebo_plugin)/urdf/d435.urdf.xacro" />
-  <xacro:include filename="$(find realsense_gazebo_plugin)/urdf/t265.urdf.xacro" />
+  <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+  <xacro:include filename="$(find realsense2_description)/urdf/_t265.urdf.xacro" />
   <xacro:include filename="$(find ari_description)/urdf/sensors/microphone.urdf.xacro"/>
   <!--xacro:include filename="$(find ari_description_calibration)/urdf/calibration/calibration_constants.urdf.xacro" /-->
 
@@ -35,16 +35,16 @@
 
   <!-- Torso sensors -->
   <!-- Torso front camera -->
-  <sensor_d435_gazebo parent="${parent}" name="${name}_front_camera" topics_ns="${name}_front_camera">
+  <sensor_d435 parent="${parent}" name="${name}_front_camera" topics_ns="${name}_front_camera">
     <origin xyz="${torso_front_camera_position_x} ${torso_front_camera_position_y} ${torso_front_camera_position_z}" 
             rpy="${torso_front_camera_orientation_r} ${torso_front_camera_orientation_p} ${torso_front_camera_orientation_y}"/>
-  </sensor_d435_gazebo>
+  </sensor_d435>
 
   <!-- Torso back camera -->
-  <sensor_t265_gazebo parent="${parent}" name="${name}_back_camera" topics_ns="${name}_back_camera">
+  <sensor_t265 parent="${parent}" name="${name}_back_camera" topics_ns="${name}_back_camera">
     <origin xyz="${torso_back_camera_position_x} ${torso_back_camera_position_y} ${torso_back_camera_position_z}" 
             rpy="${torso_back_camera_orientation_r} ${torso_back_camera_orientation_p} ${torso_back_camera_orientation_y}"/>
-  </sensor_t265_gazebo>
+  </sensor_t265>
 
   <!-- Microphones -->
   <xacro:microphone name="${name}_mic_front" parent="${parent}">
