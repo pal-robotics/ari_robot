@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <!-- execute pre-recorded motions -->
+  <rosparam file="$(find ari_bringup)/config/motions/ari_motions.yaml" command="load" /> <!-- any end-effector motions -->
+
+  <node pkg="play_motion" type="play_motion" name="play_motion">
+    <rosparam file="$(find ari_bringup)/config/approach_planner/approach_planner_ari.yaml" command="load" />
+  </node>
+
+</launch>
