@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.3 (2019-11-14)
+------------------
 * Merge branch 'ari_moveit' into 'master'
   Ari moveit
   See merge request robots/ari_robot!1
