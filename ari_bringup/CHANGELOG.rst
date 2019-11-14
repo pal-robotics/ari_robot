@@ -2,6 +2,15 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'ari_moveit' into 'master'
+  Ari moveit
+  See merge request robots/ari_robot!1
+* Add motions
+* added play_motion launch and moveit_config dependency
+* Contributors: Jordan Palacios, Sai Kishor Kothakota, davidfernandez
+
 0.0.2 (2019-11-08)
 ------------------
 * Remove dynamixel node

@@ -2,6 +2,19 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'ari_moveit' into 'master'
+  Ari moveit
+  See merge request robots/ari_robot!1
+* Revert "fix Raspi camera frame orientation"
+  This reverts commit 1b4612c5b6826d16f8e8d936be78decd74e0ae8a.
+* fix Raspi camera frame orientation
+* Added the gazebo plugin for head_front_camera
+* Invert right arm axis of rotation signs
+* fix warnings with the meshes
+* Contributors: Jordan Palacios, Luca Marchionni, Sai Kishor Kothakota
+
 0.0.2 (2019-11-08)
 ------------------
 * Remove dynamixel node
