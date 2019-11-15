@@ -2,6 +2,9 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.0.3 (2019-11-14)
 ------------------
 * Merge branch 'ari_moveit' into 'master'

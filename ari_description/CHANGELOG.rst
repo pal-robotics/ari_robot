@@ -2,6 +2,18 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'rpi_plugin' into 'master'
+  Update Rpi camera plugin to use the parsed frame
+  See merge request robots/ari_robot!5
+* Update Rpi camera plugin to use the parsed frame
+* Merge branch 'head_optic_frame' into 'master'
+  added head_front_camera_optic_frame
+  See merge request robots/ari_robot!4
+* added head_front_camera_optic_frame
+* Contributors: Sai Kishor Kothakota, Victor Lopez
+
 0.0.3 (2019-11-14)
 ------------------
 * Merge branch 'ari_moveit' into 'master'
