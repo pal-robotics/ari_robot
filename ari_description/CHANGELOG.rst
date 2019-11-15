@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.4 (2019-11-15)
+------------------
 * Merge branch 'rpi_plugin' into 'master'
   Update Rpi camera plugin to use the parsed frame
   See merge request robots/ari_robot!5
