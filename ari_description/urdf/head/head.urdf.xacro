@@ -177,7 +177,7 @@
   <link name="${name}_optical_frame"/>
 
   <!-- Gazebo plugin -->
-  <xacro:rpi_camera_gazebo name="${name}" topic="${name}"/>
+  <xacro:rpi_camera_gazebo name="${name}" topic="${name}" frame="${name}_optical_frame"/>
 
   </xacro:macro>
 
