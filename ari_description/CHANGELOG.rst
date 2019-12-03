@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.5 (2019-12-03)
+------------------
 * Added realsense gazebo plugin dependency
 * Contributors: Jordan Palacios
 
