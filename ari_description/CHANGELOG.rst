@@ -2,6 +2,11 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Added realsense gazebo plugin dependency
+* Contributors: Jordan Palacios
+
 0.0.4 (2019-11-15)
 ------------------
 * Merge branch 'rpi_plugin' into 'master'
