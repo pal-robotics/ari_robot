@@ -23,5 +23,7 @@
   <exec_depend>libuvc_camera</exec_depend>
   <exec_depend>robot_pose</exec_depend>
   <exec_depend>twist_mux</exec_depend>
+  <exec_depend>zbar_ros</exec_depend>
+  <exec_depend>topic_tools</exec_depend>
 
 </package>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="detections_per_sec" default="1"/>
+    <arg name="image_topic" default="/head_front_camera/image"/>
+    <arg name="output_topic" default="/qr_reader/detections"/>
+
+    <node pkg="topic_tools" type="throttle" name="qr_reader_throttle_images" args="messages $(arg image_topic) $(arg detections_per_sec)"/>
+
+    <node pkg="zbar_ros" type="barcode_reader_node" name="qr_reader">
+        <remap from="barcode" to="$(arg output_topic)"/>
+        <remap from="image" to="$(arg image_topic)_throttle"/>
+    </node>
+</launch>
