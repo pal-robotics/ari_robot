@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.6 (2019-12-10)
+------------------
 * Merge branch 'realsense_description' into 'master'
   added URDF from realsense2_description and its dependency
   See merge request robots/ari_robot!3
