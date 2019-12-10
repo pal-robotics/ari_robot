@@ -2,6 +2,14 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'qr_detector' into 'master'
+  added qr detector application launch
+  See merge request robots/ari_robot!7
+* added qr detector application launch
+* Contributors: Sai Kishor Kothakota, Victor Lopez
+
 0.0.6 (2019-12-10)
 ------------------
 

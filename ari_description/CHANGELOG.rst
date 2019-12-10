@@ -2,6 +2,9 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.0.6 (2019-12-10)
 ------------------
 * Merge branch 'realsense_description' into 'master'
