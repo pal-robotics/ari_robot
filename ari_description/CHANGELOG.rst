@@ -2,6 +2,14 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'realsense_description' into 'master'
+  added URDF from realsense2_description and its dependency
+  See merge request robots/ari_robot!3
+* added URDF from realsense2_description and its dependency
+* Contributors: Sai Kishor Kothakota, Victor Lopez
+
 0.0.5 (2019-12-03)
 ------------------
 * Added realsense gazebo plugin dependency
