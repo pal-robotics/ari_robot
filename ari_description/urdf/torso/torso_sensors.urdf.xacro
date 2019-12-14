@@ -24,12 +24,12 @@
   <xacro:property name="torso_front_camera_orientation_r" value="0.0" />
   <xacro:property name="torso_front_camera_orientation_p" value="${42.5 * deg_to_rad}" />
   <xacro:property name="torso_front_camera_orientation_y" value="0.0" />
-  <xacro:property name="torso_back_camera_position_x" value="-0.3275" />
-  <xacro:property name="torso_back_camera_position_y" value="0.009" />
-  <xacro:property name="torso_back_camera_position_z" value="1.0337" />
-  <xacro:property name="torso_back_camera_orientation_r" value="${75 * deg_to_rad}" />
+  <xacro:property name="torso_back_camera_position_x" value="0.0" />
+  <xacro:property name="torso_back_camera_position_y" value="0.0" />
+  <xacro:property name="torso_back_camera_position_z" value="0.0" />
+  <xacro:property name="torso_back_camera_orientation_r" value="0.0" />
   <xacro:property name="torso_back_camera_orientation_p" value="0.0" />
-  <xacro:property name="torso_back_camera_orientation_y" value="${90 * deg_to_rad}" />
+  <xacro:property name="torso_back_camera_orientation_y" value="0.0" />
 
   <xacro:macro name="torso_sensors" params="name parent">
 
