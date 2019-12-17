@@ -2,6 +2,9 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.0.7 (2019-12-10)
 ------------------
 * Merge branch 'qr_detector' into 'master'

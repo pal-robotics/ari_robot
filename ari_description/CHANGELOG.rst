@@ -2,6 +2,14 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'ari_back_camera' into 'master'
+  Removed the torso back camera frames coordinates because it will be put in a...
+  See merge request robots/ari_robot!9
+* Removed the torso back camera frames coordinates because it will be put in a static transform in the torso_back_camera launch
+* Contributors: Victor Lopez, alessandrodifava
+
 0.0.7 (2019-12-10)
 ------------------
 
