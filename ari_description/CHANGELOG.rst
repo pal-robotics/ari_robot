@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.8 (2019-12-17)
+------------------
 * Merge branch 'ari_back_camera' into 'master'
   Removed the torso back camera frames coordinates because it will be put in a...
   See merge request robots/ari_robot!9
