@@ -12,7 +12,7 @@
 
   <!--File includes-->
   <xacro:include filename="$(find ari_description)/urdf/deg_to_rad.xacro" />
-  <!--xacro:include filename="$(find ari_description)/urdf/arm/wrist.urdf.xacro" /-->
+  <xacro:include filename="$(find ari_description)/urdf/arm/actuators.urdf.xacro" />
   <xacro:include filename="$(find ari_description)/urdf/arm/arm.transmission.xacro" />
   <!--xacro:include filename="$(find ari_description_calibration)/urdf/calibration/calibration_constants.urdf.xacro" /-->
 
@@ -235,6 +235,41 @@
                          soft_upper_limit="${135.0 * deg_to_rad - arm_eps}" />
     </joint>
     
+    <!-- Tool Link -->
+    <link name="${name}_${side}_tool_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <mass value="0.0001" />
+        <inertia ixx="0.00001" ixy="0.0" ixz="0.0"
+                 iyy="0.00001" iyz="0.0"
+                 izz="0.00001" />
+      </inertial>
+    </link>
+
+    <joint name="${name}_${side}_tool_joint" type="fixed">
+      <origin xyz="0 ${-0.35231*reflect} 0.0011086"
+              rpy="${-1.5708*reflect} -0.2618 ${1.5708*reflect}" />
+      <parent link="${name}_${side}_4_link" />
+      <child link="${name}_${side}_tool_link" />
+       <axis xyz="0 0 0" />
+    </joint>
+
+   <!--Actuator-->
+    <xacro:finger_actuator parent="${name}_${side}_tool_link" name="hand_${side}_fingers">
+      <origin xyz="0 0 0.0"
+      rpy="${1.5708+1.5708*reflect} 0.0 0.0" /> 
+    </xacro:finger_actuator>
+   
+    <link name="${name}_${side}_grasping_frame"/>
+
+    <joint name="${name}_${side}_grasping_fixed_joint" type="fixed">
+      <parent link="${name}_${side}_4_link" />/>
+      <child link="${name}_${side}_grasping_frame"/>
+      <axis xyz="0 0 1" />
+      <origin xyz="0 ${-0.35231*reflect} 0.0011086"
+              rpy="${-1.5708*reflect} -0.2618 ${1.5708*reflect}" />
+    </joint>
+
     <link
     name="hand_${side}_1_link">
     <inertial>
@@ -276,7 +311,7 @@
     </collision>
   </link>
   <joint
-    name="hand_${side}_1_joint"
+    name="hand_${side}_virtual_1_joint"
     type="revolute">
     <origin
       xyz="0 ${-0.35231*reflect} 0.0011086"
@@ -341,7 +376,7 @@
     </collision>
   </link>
   <joint
-    name="hand_${side}_2_joint"
+    name="hand_${side}_virtual_2_joint"
     type="revolute">
     <origin
       xyz="-0.037185 0.0001459 0"
@@ -410,11 +445,10 @@
    <gazebo reference="${name}_${side}_4_joint">
       <implicitSpringDamper>1</implicitSpringDamper>
    </gazebo>
-
-   <gazebo reference="hand_${side}_1_joint">
+   <gazebo reference="hand_${side}_virtual_1_joint">
       <implicitSpringDamper>1</implicitSpringDamper>
    </gazebo>
-   <gazebo reference="hand_${side}_2_joint">
+   <gazebo reference="hand_${side}_virtual_2_joint">
       <implicitSpringDamper>1</implicitSpringDamper>
    </gazebo>
 
@@ -422,8 +456,14 @@
     <xacro:arm_simple_transmission name="${name}" side="${side}" number="2" reduction="1.0" offset_value="0.0"/>
     <xacro:arm_simple_transmission name="${name}" side="${side}" number="3" reduction="1.0" offset_value="0.0"/>
     <xacro:arm_simple_transmission name="${name}" side="${side}" number="4" reduction="1.0" offset_value="0.0"/>
-    <xacro:arm_simple_transmission name="hand" side="${side}" number="1" reduction="1.0" offset_value="0.0"/>
-    <xacro:arm_simple_transmission name="hand" side="${side}" number="2" reduction="1.0" offset_value="0.0"/>
+    <xacro:finger_transmissions finger_name="hand_${side}"
+                                act_name="hand_${side}_fingers_motor"
+                                start="0.0"
+                                reduction="1.0"
+    />
+
+    <!-- gazebo plugin -->
+    <xacro:ari_hand_gazebo_simulation side="${name}"/>
   </xacro:macro>
 
 </robot>
