@@ -2,6 +2,14 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'restore-torso-back-camera-tf' into 'master'
+  Restore torso back camera transform
+  See merge request robots/ari_robot!10
+* Restore torso back camera transform
+* Contributors: Victor Lopez
+
 0.0.8 (2019-12-17)
 ------------------
 * Merge branch 'ari_back_camera' into 'master'
