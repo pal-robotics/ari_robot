@@ -2,6 +2,11 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Rename head front camera topic name
+* Contributors: Victor Lopez
+
 0.0.9 (2020-01-07)
 ------------------
 * Merge branch 'restore-torso-back-camera-tf' into 'master'
