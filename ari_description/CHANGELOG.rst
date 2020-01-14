@@ -2,6 +2,9 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.0.10 (2020-01-09)
 -------------------
 * Rename head front camera topic name
