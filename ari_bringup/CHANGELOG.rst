@@ -2,8 +2,8 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.11 (2020-01-14)
+-------------------
 * Fix head front camera topic name
 * Contributors: Victor Lopez
 
