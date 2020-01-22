@@ -2,6 +2,11 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add required dependency
+* Contributors: Victor Lopez
+
 0.0.11 (2020-01-14)
 -------------------
 
