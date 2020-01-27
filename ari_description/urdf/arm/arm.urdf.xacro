@@ -463,7 +463,7 @@
     />
 
     <!-- gazebo plugin -->
-    <xacro:ari_hand_gazebo_simulation side="${name}"/>
+    <xacro:ari_hand_gazebo_simulation side="${side}"/>
   </xacro:macro>
 
 </robot>
