@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.13 (2020-02-04)
+-------------------
 * Merge branch 'ari_gazebo_friction_fix' into 'master'
   Fixed the friction parameters for the wheels and the caster wheels for the...
   See merge request robots/ari_robot!14
