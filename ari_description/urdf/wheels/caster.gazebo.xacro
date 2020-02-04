@@ -13,7 +13,7 @@
 
   <xacro:macro name="caster_gazebo" params="side">
     <!-- Contact model for the caster wheel surface -->
-    <gazebo reference="caster_${side}_1_link">
+    <!--gazebo reference="caster_${side}_1_link">
       <kp>1000000.0</kp>
       <kd>1000.0</kd>
       <mu1>1.0</mu1>
@@ -23,13 +23,13 @@
       <minDepth>0.0</minDepth>
       <implicitSpringDamper>0</implicitSpringDamper>
       <material>Gazebo/DarkGrey</material>
-    </gazebo>
+    </gazebo-->
 
-    <gazebo reference="caster_${side}_2_link">
+    <gazebo reference="caster_${side}_link">
       <kp>1000000.0</kp>
       <kd>1000.0</kd>
-      <mu1>0.4</mu1>
-      <mu2>0.4</mu2>
+      <mu1>1.0</mu1>
+      <mu2>0.1</mu2>
       <fdir1>1 0 0</fdir1>
       <maxVel>1.0</maxVel>
       <minDepth>0.00</minDepth>
