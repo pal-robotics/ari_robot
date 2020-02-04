@@ -263,7 +263,7 @@
     <link name="${name}_${side}_grasping_frame"/>
 
     <joint name="${name}_${side}_grasping_fixed_joint" type="fixed">
-      <parent link="${name}_${side}_4_link" />/>
+      <parent link="${name}_${side}_4_link" />
       <child link="${name}_${side}_grasping_frame"/>
       <axis xyz="0 0 1" />
       <origin xyz="0 ${-0.35231*reflect} 0.0011086"
@@ -422,7 +422,7 @@
      <mu2>0.9</mu2>
      <material>Gazebo/DarkGrey</material>
    </gazebo>
-   <gazebo reference="$hand_${side}_1_link">
+   <gazebo reference="hand_${side}_1_link">
      <mu1>0.9</mu1>
      <mu2>0.9</mu2>
      <material>Gazebo/DarkGrey</material>
