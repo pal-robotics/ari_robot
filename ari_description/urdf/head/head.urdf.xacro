@@ -137,7 +137,7 @@
   <!--************************-->
   <!--      HEAD_CAMERA       -->
   <!--************************-->
-  <xacro:macro name="head_camera" params="name parent">
+  <xacro:macro name="head_front_camera" params="name parent">
   <link name="${name}_link">
     <inertial>
       <origin xyz="-0.00619317919404934 -4.45435622691566E-05 -8.22112600169511E-05" rpy="0 0 0"/>
@@ -185,7 +185,7 @@
   <xacro:macro name="head" params="name parent">
     <xacro:head_1 name="${name}_1" parent="${parent}" />
     <xacro:head_2 name="${name}_2" parent="${name}_1_link"/>
-    <xacro:head_camera name="${name}_front_camera" parent="${name}_2_link"/>
+    <xacro:head_front_camera name="${name}_front_camera" parent="${name}_2_link"/>
   </xacro:macro>
 
 </robot>
