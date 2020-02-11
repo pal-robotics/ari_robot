@@ -21,12 +21,6 @@
   <!-- Twist mux -->
   <include file="$(find ari_bringup)/launch/twist_mux.launch"/>
 
-  <!-- Speed limit -->
-  <!--include file="$(find speed_limit)/launch/speed_limit.launch">
-    <arg name="config"    value="$(find ari_bringup)/config/speed_limit.yaml"/>
-    <arg name="footprint" value="$(find ari_description)/urdf/base/footprint.yaml"/>
-  </include-->
-
   <!-- Joystick controller -->
   <include file="$(find ari_bringup)/launch/joystick_teleop.launch">
   </include>

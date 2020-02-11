@@ -14,9 +14,7 @@
   <exec_depend>ari_controller_configuration</exec_depend>
   <exec_depend>joy</exec_depend>
   <exec_depend>joy_teleop</exec_depend>
-  <!--exec_depend>dynamic_footprint</exec_depend-->
   <exec_depend>head_action</exec_depend>
-  <!--exec_depend>ari_moveit_config</exec_depend-->
   <exec_depend>openni2_launch</exec_depend>
   <exec_depend>speed_limit_node</exec_depend>
   <exec_depend>camera_calibration_files</exec_depend>
