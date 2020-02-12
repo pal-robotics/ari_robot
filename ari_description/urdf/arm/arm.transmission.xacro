@@ -25,32 +25,4 @@
     </transmission>
   </xacro:macro>
 
-  <xacro:macro name="finger_transmissions" params="finger_name act_name start reduction">
-
-    <!--First flexor-->
-    <transmission name="${finger_name}_virtual_1_trans">
-      <type>hey5_transmissions/Hey5Reducer</type>
-      <joint name="${finger_name}_virtual_1_joint">
-        <saturationLower>0.0</saturationLower>
-        <deadBandUpper>${start}</deadBandUpper>
-        <hardwareInterface>hardware_interface/JointStateInterface</hardwareInterface>
-      </joint>
-      <actuator name="${act_name}">
-        <mechanicalReduction>${reduction}</mechanicalReduction>
-      </actuator>
-    </transmission>
-
-    <!--Second flexor-->
-    <transmission name="${finger_name}_virtual_2_trans">
-      <type>hey5_transmissions/Hey5Reducer</type>
-      <joint name="${finger_name}_virtual_2_joint">
-        <saturationLower>0.0</saturationLower>
-        <deadBandUpper>${start}</deadBandUpper>
-        <hardwareInterface>hardware_interface/JointStateInterface</hardwareInterface>
-      </joint>
-      <actuator name="${act_name}">
-        <mechanicalReduction>${reduction}</mechanicalReduction>
-      </actuator>
-    </transmission>
-  </xacro:macro>
 </robot>
