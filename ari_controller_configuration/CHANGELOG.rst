@@ -2,8 +2,8 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.14 (2020-02-12)
+-------------------
 * Revert "Merge branch 'actuated_hand' into 'master'"
   This reverts commit 77bb9145c11c51669c2cfe5737fe9ab58d18a87f, reversing
   changes made to 2024a1af4ec1c5f3101956f4c0dbb370cfde1479.
