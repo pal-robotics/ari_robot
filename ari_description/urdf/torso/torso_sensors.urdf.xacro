@@ -15,7 +15,6 @@
   <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
   <xacro:include filename="$(find realsense2_description)/urdf/_t265.urdf.xacro" />
   <xacro:include filename="$(find ari_description)/urdf/sensors/microphone.urdf.xacro"/>
-  <!--xacro:include filename="$(find ari_description_calibration)/urdf/calibration/calibration_constants.urdf.xacro" /-->
 
   <!--Constant parameters-->
   <xacro:property name="torso_front_camera_position_x" value="-0.11249" />
