@@ -2,6 +2,36 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Revert "Merge branch 'actuated_hand' into 'master'"
+  This reverts commit 77bb9145c11c51669c2cfe5737fe9ab58d18a87f, reversing
+  changes made to 2024a1af4ec1c5f3101956f4c0dbb370cfde1479.
+* Merge branch 'correct-laser-frame' into 'ferrum-devel'
+  changed rgbd link to base urdf
+  See merge request robots/ari_robot!17
+* changed rgbd link to base urdf
+* Merge branch 'updated-ari-urdf' into 'master'
+  Updated URDF file to include rgbd_laser_link
+  See merge request robots/ari_robot!13
+* Add rgbd_laser_joint and rgbd_laser_link to ari.urdfx.xacrio
+* Merge branch 'actuated_hand' into 'master'
+  Actuated hand
+  See merge request robots/ari_robot!11
+* Fix color fingers in Gazebo visualization
+* Merge branch 'ari_gazebo_friction_fix' into 'master'
+  Tuned again the friction of the caster wheels
+  See merge request robots/ari_robot!16
+* Tuned again the friction of the caster wheels
+* Tuned the friction of the caster wheels
+* Merge branch 'ari_gazebo_friction_fix' into 'master'
+  Tuned the friction of the caster wheels
+  See merge request robots/ari_robot!15
+* fix parameter value
+* add hand joints and transmission for underactuation
+* Fixed left and right meshes with new fingers joints
+* Contributors: Europrojects, Luca Marchionni, Procópio Stein, YueErro, alessandrodifava
+
 0.0.13 (2020-02-04)
 -------------------
 * Merge branch 'ari_gazebo_friction_fix' into 'master'
