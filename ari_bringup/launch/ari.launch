@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
+  <arg name="ari_end_effector" default="ari_hand"/>
 
   <!-- Diff drive controller multipliers -->
   <rosparam command="load" file="$(find ari_controller_configuration)/config/mobile_base_controller_multipliers.yaml"/>
@@ -8,12 +9,16 @@
   <rosparam command="load" file="$(find ari_controller_configuration)/config/mobile_base_controller.yaml"/>
 
   <!-- Robot model -->
-  <include file="$(find ari_description)/robots/upload.launch" />
+  <include file="$(find ari_description)/robots/upload.launch">
+    <arg name="ari_end_effector" value="$(arg ari_end_effector)"/>
+  </include>
 
   <!-- ari_hardware parameters -->
   <rosparam command="load" file="$(find ari_bringup)/config/ari_hardware/ari_hardware_arm.yaml"/>
 
   <!-- Bring up robot -->
-  <include file="$(find ari_bringup)/launch/ari_bringup.launch" />
+  <include file="$(find ari_bringup)/launch/ari_bringup.launch">
+    <arg name="ari_end_effector" value="$(arg ari_end_effector)"/>
+  </include>
 
 </launch>

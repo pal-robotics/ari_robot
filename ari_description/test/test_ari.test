@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
 <launch>
   <arg name="multi" default=""/>
+  <arg name="ari_end_effector" default="ari_hand"/>
 
-  <!--arg name="test_suffix" value="$(arg multi)"/-->
+  <arg name="test_suffix" value="$(arg ari_end_effector)"/>
   <include file="$(find ari_description)/robots/upload.launch"/>
   <include file="$(find urdf_test)/launch/test_urdf.launch">
     <arg name="get_description" value="true"/>
-    <!--arg name="test_suffix" value="$(eval test_suffix.replace('-', '_'))"/-->
+    <arg name="test_suffix" value="$(eval test_suffix.replace('-', '_'))"/>
   </include>
 </launch>
 

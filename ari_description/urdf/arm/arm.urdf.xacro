@@ -29,7 +29,7 @@
   <xacro:property name="arm_eps"            value="0.07" />
 
 
-  <xacro:macro name="ari_arm" params="name parent side reflect *origin">
+  <xacro:macro name="ari_arm" params="name parent side reflect end_effector *origin">
 
     <!--************************-->
     <!--      ARM_BASE_LINK     -->
@@ -203,16 +203,47 @@
           izz="0.00422931703883722" />
       </inertial>
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <xacro:if value="${end_effector}">
+          <origin xyz="0 0 0" rpy="0 0 0" />
+        </xacro:if>
+        <xacro:unless value="${end_effector}">
+          <xacro:if value="${side == 'left'}">
+            <origin xyz="0 0 0" rpy="0 0 0" />
+          </xacro:if>
+          <xacro:if value="${side == 'right'}">
+            <origin xyz="0 0 0" rpy="0 0 ${-90 * deg_to_rad}" />
+          </xacro:if>
+        </xacro:unless>        
         <geometry>
-          <mesh filename="package://ari_description/meshes/arm/${name}_4.stl" scale="1 ${reflect} 1"/>
+          <xacro:if value="${end_effector}">
+            <mesh filename="package://ari_description/meshes/arm/${name}_4.stl" scale="1 ${reflect} 1"/>
+          </xacro:if>
+          <xacro:unless value="${end_effector}">
+            <mesh filename="package://ari_description/meshes/arm/${name}_${side}_4.stl" scale="1 1 1"/>
+          </xacro:unless>
         </geometry>
         <material name="White" />
       </visual>
       <collision>
+        <xacro:if value="${end_effector}">
+          <origin xyz="0 0 0" rpy="0 0 0" />
+        </xacro:if>
+        <xacro:unless value="${end_effector}">
+          <xacro:if value="${side == 'left'}">
+            <origin xyz="0 0 0" rpy="0 0 0" />
+          </xacro:if>
+          <xacro:if value="${side == 'right'}">
+            <origin xyz="0 0 0" rpy="0 0 ${-90 * deg_to_rad}" />
+          </xacro:if>
+        </xacro:unless>  
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/arm/${name}_4.stl" scale="1 ${reflect} 1"/>
+          <xacro:if value="${end_effector}">
+            <mesh filename="package://ari_description/meshes/arm/${name}_4.stl" scale="1 ${reflect} 1"/>
+          </xacro:if>
+          <xacro:unless value="${end_effector}">
+            <mesh filename="package://ari_description/meshes/arm/${name}_${side}_4.stl" scale="1 1 1"/>
+          </xacro:unless>
         </geometry>
       </collision>
     </link>
@@ -234,171 +265,173 @@
                          soft_upper_limit="${135.0 * deg_to_rad - arm_eps}" />
     </joint>
     
-    <!-- Tool Link -->
-    <link name="${name}_${side}_tool_link">
+    <xacro:if value="${end_effector}">
+      <!-- Tool Link -->
+      <link name="${name}_${side}_tool_link">
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <mass value="0.0001" />
+          <inertia ixx="0.00001" ixy="0.0" ixz="0.0"
+                   iyy="0.00001" iyz="0.0"
+                   izz="0.00001" />
+        </inertial>
+      </link>
+
+      <joint name="${name}_${side}_tool_joint" type="fixed">
+        <origin xyz="0 ${-0.35231*reflect} 0.0011086"
+                rpy="${-1.5708*reflect} -0.2618 ${1.5708*reflect}" />
+        <parent link="${name}_${side}_4_link" />
+        <child link="${name}_${side}_tool_link" />
+         <axis xyz="0 0 0" />
+      </joint>
+
+     <!--Actuator-->
+      <xacro:finger_actuator parent="${name}_${side}_tool_link" name="hand_${side}_fingers">
+        <origin xyz="0 0 0.0"
+        rpy="${1.5708+1.5708*reflect} 0.0 0.0" /> 
+      </xacro:finger_actuator>
+     
+      <link name="${name}_${side}_grasping_frame"/>
+
+      <joint name="${name}_${side}_grasping_fixed_joint" type="fixed">
+        <parent link="${name}_${side}_4_link" />
+        <child link="${name}_${side}_grasping_frame"/>
+        <axis xyz="0 0 1" />
+        <origin xyz="0 ${-0.35231*reflect} 0.0011086"
+                rpy="${-1.5708*reflect} -0.2618 ${1.5708*reflect}" />
+      </joint>
+
+      <link
+      name="hand_${side}_1_link">
       <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <mass value="0.0001" />
-        <inertia ixx="0.00001" ixy="0.0" ixz="0.0"
-                 iyy="0.00001" iyz="0.0"
-                 izz="0.00001" />
+        <origin
+          xyz="-0.0194858087119051 -0.00284946290069976 -0.000289044791174375"
+          rpy="0 0 0" />
+        <mass
+          value="0.0400715645648009" />
+        <inertia
+          ixx="1.56769636746935E-06"
+          ixy="2.22831013516217E-08"
+          ixz="7.74537720537552E-09"
+          iyy="4.6054803967178E-06"
+          iyz="2.08251121489226E-10"
+          izz="4.01623373583446E-06" />
       </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://ari_description/meshes/arm/hand_1.stl" scale="1 ${reflect} 1"/>
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://ari_description/meshes/arm/hand_1.stl" scale="1 ${reflect} 1"/>
+        </geometry>
+      </collision>
     </link>
-
-    <joint name="${name}_${side}_tool_joint" type="fixed">
-      <origin xyz="0 ${-0.35231*reflect} 0.0011086"
-              rpy="${-1.5708*reflect} -0.2618 ${1.5708*reflect}" />
-      <parent link="${name}_${side}_4_link" />
-      <child link="${name}_${side}_tool_link" />
-       <axis xyz="0 0 0" />
+    <joint
+      name="hand_${side}_virtual_1_joint"
+      type="revolute">
+      <origin
+        xyz="0 ${-0.35231*reflect} 0.0011086"
+        rpy="${-1.5708*reflect} -0.2618 ${1.5708*reflect}" />
+      <parent
+        link="${name}_${side}_4_link" />
+      <child
+        link="hand_${side}_1_link" />
+      <axis
+        xyz="0 0 ${-1*reflect}" />
+      <limit
+        lower="0"
+        upper="1.5708"
+        effort="1.0"
+        velocity="2.0" />
+  <!--
+      <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
+      <safety_controller k_position="20"
+                           k_velocity="20"
+                           soft_lower_limit="${0.0 + arm_eps}"
+                           soft_upper_limit="${1.5708 - arm_eps}" />
+  -->
     </joint>
-
-   <!--Actuator-->
-    <xacro:finger_actuator parent="${name}_${side}_tool_link" name="hand_${side}_fingers">
-      <origin xyz="0 0 0.0"
-      rpy="${1.5708+1.5708*reflect} 0.0 0.0" /> 
-    </xacro:finger_actuator>
-   
-    <link name="${name}_${side}_grasping_frame"/>
-
-    <joint name="${name}_${side}_grasping_fixed_joint" type="fixed">
-      <parent link="${name}_${side}_4_link" />
-      <child link="${name}_${side}_grasping_frame"/>
-      <axis xyz="0 0 1" />
-      <origin xyz="0 ${-0.35231*reflect} 0.0011086"
-              rpy="${-1.5708*reflect} -0.2618 ${1.5708*reflect}" />
-    </joint>
-
     <link
-    name="hand_${side}_1_link">
-    <inertial>
+      name="hand_${side}_2_link">
+      <inertial>
+        <origin
+          xyz="-0.0159508701186225 0.00214676466101674 0.000361575914240066"
+          rpy="0 0 0" />
+        <mass
+          value="0.0262043707272721" />
+        <inertia
+          ixx="9.15137557050205E-07"
+          ixy="5.3927377524493E-07"
+          ixz="-5.3325168061876E-09"
+          iyy="2.67374552400975E-06"
+          iyz="-6.4411286354103E-10"
+          izz="2.38630247657937E-06" />
+      </inertial>
+      <visual>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://ari_description/meshes/arm/hand_2.stl" scale="1 ${reflect} 1"/>
+        </geometry>
+        <material
+          name="">
+          <color
+            rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin
+          xyz="0 0 0"
+          rpy="0 0 0" />
+        <geometry>
+          <mesh
+            filename="package://ari_description/meshes/arm/hand_2.stl" scale="1 ${reflect} 1"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint
+      name="hand_${side}_virtual_2_joint"
+      type="revolute">
       <origin
-        xyz="-0.0194858087119051 -0.00284946290069976 -0.000289044791174375"
+        xyz="-0.037185 0.0001459 0"
         rpy="0 0 0" />
-      <mass
-        value="0.0400715645648009" />
-      <inertia
-        ixx="1.56769636746935E-06"
-        ixy="2.22831013516217E-08"
-        ixz="7.74537720537552E-09"
-        iyy="4.6054803967178E-06"
-        iyz="2.08251121489226E-10"
-        izz="4.01623373583446E-06" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://ari_description/meshes/arm/hand_1.stl" scale="1 ${reflect} 1"/>
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://ari_description/meshes/arm/hand_1.stl" scale="1 ${reflect} 1"/>
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="hand_${side}_virtual_1_joint"
-    type="revolute">
-    <origin
-      xyz="0 ${-0.35231*reflect} 0.0011086"
-      rpy="${-1.5708*reflect} -0.2618 ${1.5708*reflect}" />
-    <parent
-      link="${name}_${side}_4_link" />
-    <child
-      link="hand_${side}_1_link" />
-    <axis
-      xyz="0 0 ${-1*reflect}" />
-    <limit
-      lower="0"
-      upper="1.5708"
-      effort="1.0"
-      velocity="2.0" />
-<!--
-    <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
-    <safety_controller k_position="20"
-                         k_velocity="20"
-                         soft_lower_limit="${0.0 + arm_eps}"
-                         soft_upper_limit="${1.5708 - arm_eps}" />
--->
-  </joint>
-  <link
-    name="hand_${side}_2_link">
-    <inertial>
-      <origin
-        xyz="-0.0159508701186225 0.00214676466101674 0.000361575914240066"
-        rpy="0 0 0" />
-      <mass
-        value="0.0262043707272721" />
-      <inertia
-        ixx="9.15137557050205E-07"
-        ixy="5.3927377524493E-07"
-        ixz="-5.3325168061876E-09"
-        iyy="2.67374552400975E-06"
-        iyz="-6.4411286354103E-10"
-        izz="2.38630247657937E-06" />
-    </inertial>
-    <visual>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://ari_description/meshes/arm/hand_2.stl" scale="1 ${reflect} 1"/>
-      </geometry>
-      <material
-        name="">
-        <color
-          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin
-        xyz="0 0 0"
-        rpy="0 0 0" />
-      <geometry>
-        <mesh
-          filename="package://ari_description/meshes/arm/hand_2.stl" scale="1 ${reflect} 1"/>
-      </geometry>
-    </collision>
-  </link>
-  <joint
-    name="hand_${side}_virtual_2_joint"
-    type="revolute">
-    <origin
-      xyz="-0.037185 0.0001459 0"
-      rpy="0 0 0" />
-    <parent
-      link="hand_${side}_1_link" />
-    <child
-      link="hand_${side}_2_link" />
-    <axis
-      xyz="0 0 ${-1*reflect}" />
-    <limit
-      lower="0"
-      upper="1.5708"
-      effort="1.0"
-      velocity="2.0" />
-<!--
-    <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
-    <safety_controller k_position="20"
-                         k_velocity="20"
-                         soft_lower_limit="${0.0 + arm_eps}"
-                         soft_upper_limit="${1.5708 - arm_eps}" />
--->
-  </joint>
+      <parent
+        link="hand_${side}_1_link" />
+      <child
+        link="hand_${side}_2_link" />
+      <axis
+        xyz="0 0 ${-1*reflect}" />
+      <limit
+        lower="0"
+        upper="1.5708"
+        effort="1.0"
+        velocity="2.0" />
+  <!--
+      <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
+      <safety_controller k_position="20"
+                           k_velocity="20"
+                           soft_lower_limit="${0.0 + arm_eps}"
+                           soft_upper_limit="${1.5708 - arm_eps}" />
+  -->
+    </joint>
+  </xacro:if>
 
    
    <gazebo reference="${name}_${side}_1_link">
@@ -421,16 +454,18 @@
      <mu2>0.9</mu2>
      <material>Gazebo/DarkGrey</material>
    </gazebo>
-   <gazebo reference="hand_${side}_1_link">
-     <mu1>0.9</mu1>
-     <mu2>0.9</mu2>
-     <material>Gazebo/DarkGrey</material>
-   </gazebo>
-   <gazebo reference="hand_${side}_2_link">
-     <mu1>0.9</mu1>
-     <mu2>0.9</mu2>
-     <material>Gazebo/DarkGrey</material>
-   </gazebo>
+   <xacro:if value="${end_effector}">
+     <gazebo reference="hand_${side}_1_link">
+       <mu1>0.9</mu1>
+       <mu2>0.9</mu2>
+       <material>Gazebo/DarkGrey</material>
+     </gazebo>
+     <gazebo reference="hand_${side}_2_link">
+       <mu1>0.9</mu1>
+       <mu2>0.9</mu2>
+       <material>Gazebo/DarkGrey</material>
+     </gazebo>
+   </xacro:if>
 
    <gazebo reference="${name}_${side}_1_joint">
       <implicitSpringDamper>1</implicitSpringDamper>
@@ -444,25 +479,27 @@
    <gazebo reference="${name}_${side}_4_joint">
       <implicitSpringDamper>1</implicitSpringDamper>
    </gazebo>
-   <gazebo reference="hand_${side}_virtual_1_joint">
-      <implicitSpringDamper>1</implicitSpringDamper>
-   </gazebo>
-   <gazebo reference="hand_${side}_virtual_2_joint">
-      <implicitSpringDamper>1</implicitSpringDamper>
-   </gazebo>
+   <xacro:if value="${end_effector}">
+     <gazebo reference="hand_${side}_virtual_1_joint">
+        <implicitSpringDamper>1</implicitSpringDamper>
+     </gazebo>
+     <gazebo reference="hand_${side}_virtual_2_joint">
+        <implicitSpringDamper>1</implicitSpringDamper>
+     </gazebo>
+   </xacro:if>
 
     <xacro:arm_simple_transmission name="${name}" side="${side}" number="1" reduction="1.0" offset_value="0.0"/>
     <xacro:arm_simple_transmission name="${name}" side="${side}" number="2" reduction="1.0" offset_value="0.0"/>
     <xacro:arm_simple_transmission name="${name}" side="${side}" number="3" reduction="1.0" offset_value="0.0"/>
     <xacro:arm_simple_transmission name="${name}" side="${side}" number="4" reduction="1.0" offset_value="0.0"/>
-    <xacro:finger_transmissions finger_name="hand_${side}"
-                                act_name="hand_${side}_fingers_motor"
-                                start="0.0"
-                                reduction="1.0"
-    />
-
-    <!-- gazebo plugin -->
-    <xacro:ari_hand_gazebo_simulation side="${side}"/>
+    <xacro:if value="${end_effector}">
+      <xacro:finger_transmissions finger_name="hand_${side}"
+                                  act_name="hand_${side}_fingers_motor"
+                                  start="0.0"
+                                  reduction="1.0"/>
+      <!-- gazebo plugin -->
+      <xacro:ari_hand_gazebo_simulation side="${side}"/>
+    </xacro:if>
   </xacro:macro>
 
 </robot>

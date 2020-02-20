@@ -16,5 +16,7 @@ endforeach(dir)
 
 if(CATKIN_ENABLE_TESTING)
   find_package(rostest REQUIRED)
-  add_rostest(test/test_ari.test)
+  foreach(end_effector ari_hand False)
+  	add_rostest(test/test_ari.test ARGS ari_end_effector:=${end_effector})
+  endforeach(end_effector)
 endif()

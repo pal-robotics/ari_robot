@@ -1,11 +1,13 @@
 <?xml version="1.0"?>
 <launch>
   <arg name="multi" default=""/>
+  <arg name="ari_end_effector" default="ari_hand"/>
 
   <!-- Robot description -->
   <param name="robot_description"
     command="rosrun xacro xacro --inorder
     '$(find ari_description)/robots/ari.urdf.xacro'
+    ari_end_effector:=$(arg ari_end_effector)
     $(arg multi)" />
   <rosparam command="load" file="$(find ari_description)/config/collision/collision_parameters.yaml" />
 </launch>
