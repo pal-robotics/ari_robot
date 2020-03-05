@@ -355,7 +355,7 @@
         xyz="0 0 ${-1*reflect}" />
       <limit
         lower="0"
-        upper="1.5708"
+        upper="1.35"
         effort="1.0"
         velocity="2.0" />
   <!--
@@ -497,6 +497,7 @@
                                   act_name="hand_${side}_fingers_motor"
                                   start="0.0"
                                   reduction="1.0"/>
+      <!-- <xacro:arm_simple_transmission name="${name}" side="${side}" number="4" reduction="1.0" offset_value="0.0"/> -->
       <!-- gazebo plugin -->
       <xacro:ari_hand_gazebo_simulation side="${side}"/>
     </xacro:if>

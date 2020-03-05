@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-    <arg name="ari_end_effector" default="ari_hand"/>
+  <arg name="end_effector_right" default="ari-hand"/>
+  <arg name="end_effector_left" default="ari-hand"/>
 
     <include file="$(find ari_controller_configuration)/launch/joint_state_controller.launch"/>
     <include file="$(find ari_controller_configuration)/launch/default_controllers.launch"/>
 
-    <group if="$(eval arg('ari_end_effector') == 'ari_hand')">
-    	<rosparam command="load" file="$(find joint_state_controller)/hands-joint_trajectory_controllers.yaml" />
-    	<include file="$(find ari_controller_configuration)/launch/hand_controllers.launch"/>
+    <group if="$(eval arg('end_effector_right') == 'ari-hand')">
+    	<rosparam command="load" file="$(find ari_controller_configuration)/config/joint_trajectory/hand-right-joint_trajectory_controllers.yaml" />
+    	<node name="default_hand_right_controllers_spawner"
+	        pkg="controller_manager" type="spawner" output="screen"
+	        args="--timeout 120 hand_right_controller" />
+    </group>
+    <group if="$(eval arg('end_effector_left') == 'ari-hand')">
+    	<rosparam command="load" file="$(find ari_controller_configuration)/config/joint_trajectory/hand-left-joint_trajectory_controllers.yaml" />
+    	<node name="default_hand_left_controllers_spawner"
+	        pkg="controller_manager" type="spawner" output="screen"
+	        args="--timeout 120 hand_left_controller" />
     </group>
 
     <!-- Motion planning -->
