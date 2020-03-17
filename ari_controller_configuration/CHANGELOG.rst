@@ -2,8 +2,8 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.15 (2020-03-17)
+-------------------
 * added missing deps play_motion and actionlib
 * Merge branch 'cleaned-up-ari-robot' into 'ferrum-devel'
   Clean up ari robot package

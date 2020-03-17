@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.15 (2020-03-17)
+-------------------
 * move rgbd laser frame farther
 * Merge branch 'cleaned-up-ari-robot' into 'ferrum-devel'
   Clean up ari robot package
