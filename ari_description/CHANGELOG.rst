@@ -2,6 +2,15 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* move rgbd laser frame farther
+* Merge branch 'cleaned-up-ari-robot' into 'ferrum-devel'
+  Clean up ari robot package
+  See merge request robots/ari_robot!18
+* Clean up ari robot package
+* Contributors: Procópio Stein, alessandrodifava, saracooper
+
 0.0.14 (2020-02-12)
 -------------------
 * Revert "Merge branch 'actuated_hand' into 'master'"

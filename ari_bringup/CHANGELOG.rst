@@ -2,6 +2,14 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'cleaned-up-ari-robot' into 'ferrum-devel'
+  Clean up ari robot package
+  See merge request robots/ari_robot!18
+* Clean up ari robot package
+* Contributors: alessandrodifava, saracooper
+
 0.0.14 (2020-02-12)
 -------------------
 
