@@ -96,7 +96,7 @@
   <joint name="rgbd_laser_joint" type="fixed">
       <parent link="base_link"/>
       <child link="rgbd_laser_link"/>
-      <origin xyz="-1 0 0" rpy="0 0 0" />
+      <origin xyz="-1.1 0 0" rpy="0 0 0" />
   </joint>
   <link name="rgbd_laser_link">
       <inertial>
