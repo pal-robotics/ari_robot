@@ -2,6 +2,15 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'actuated_hand_fix' into 'ferrum-devel'
+  Actuated hand fix
+  See merge request robots/ari_robot!20
+* Separate both end effectors
+* Add parameter for end_effector
+* Contributors: davidfernandez
+
 0.0.15 (2020-03-17)
 -------------------
 * Merge branch 'cleaned-up-ari-robot' into 'ferrum-devel'

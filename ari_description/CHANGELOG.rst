@@ -2,6 +2,21 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'actuated_hand_fix' into 'ferrum-devel'
+  Actuated hand fix
+  See merge request robots/ari_robot!20
+* Fix dependencies
+* Fix test for hands
+* Separate both end effectors
+* Add parameter for end_effector
+* Fix color fingers in Gazebo visualization
+* fix parameter value
+* add hand joints and transmission for underactuation
+* Fixed left and right meshes with new fingers joints
+* Contributors: Luca Marchionni, YueErro, davidfernandez
+
 0.0.15 (2020-03-17)
 -------------------
 * move rgbd laser frame farther

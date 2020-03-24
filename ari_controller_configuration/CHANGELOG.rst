@@ -2,6 +2,16 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'actuated_hand_fix' into 'ferrum-devel'
+  Actuated hand fix
+  See merge request robots/ari_robot!20
+* Separate both end effectors
+* Add parameter for end_effector
+* add hand joints and transmission for underactuation
+* Contributors: Luca Marchionni, davidfernandez
+
 0.0.15 (2020-03-17)
 -------------------
 * added missing deps play_motion and actionlib
