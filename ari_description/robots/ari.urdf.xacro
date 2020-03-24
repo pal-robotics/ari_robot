@@ -10,10 +10,23 @@
 <robot  xmlns:xacro="http://ros.org/wiki/xacro"
         name="ari" >
 
+  <xacro:arg name="end_effector_right" default="ari-hand"/>
+  <xacro:arg name="end_effector_left" default="ari-hand"/>
+  <xacro:property name="end_effector_right" value="$(arg end_effector_right)" />
+  <xacro:property name="end_effector_left" value="$(arg end_effector_left)" />
+
   <xacro:arg name="multiple" default="false"/>
   <xacro:arg name="namespace" default=""/>
   <xacro:property name="is_multiple" value="$(arg multiple)" />
   <xacro:property name="nsp" value="$(arg namespace)" />
+
+  <xacro:if value="${end_effector_right not in ['ari-hand', 'false', False]}">
+    <xacro:wrong_end_effector/>
+  </xacro:if>
+  <xacro:if value="${end_effector_left not in ['ari-hand', 'false', False]}">
+    <xacro:wrong_end_effector/>
+  </xacro:if>
+
 
   <!-- The properties below are modified using empy http://www.alcyone.com/software/empy/
        from the create_robot.py tool. Handle them with care -->
@@ -42,10 +55,10 @@
   <xacro:torso_sensors name="torso" parent="base_link"/>
   <xacro:head name="head" parent="base_link"/>
 
-  <xacro:ari_arm name="arm" parent="base_link" side="left" reflect="1">
+  <xacro:ari_arm name="arm" parent="base_link" side="left" reflect="1" end_effector="${end_effector_left == 'ari-hand'}">
     <origin xyz="-0.219 0.097624 1.1111" rpy="${105.0 * deg_to_rad} ${0.0 * deg_to_rad} ${-180.0 * deg_to_rad}" />
   </xacro:ari_arm>
-  <xacro:ari_arm name="arm" parent="base_link" side="right" reflect="-1">
+  <xacro:ari_arm name="arm" parent="base_link" side="right" reflect="-1" end_effector="${end_effector_right == 'ari-hand'}">
     <origin xyz="-0.219 -0.097624 1.1111" rpy="${-105.0 * deg_to_rad} ${0.0 * deg_to_rad} ${180.0 * deg_to_rad}" />
   </xacro:ari_arm>
 
