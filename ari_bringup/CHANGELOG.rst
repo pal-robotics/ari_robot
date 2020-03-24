@@ -2,8 +2,8 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.16 (2020-03-24)
+-------------------
 * Merge branch 'actuated_hand_fix' into 'ferrum-devel'
   Actuated hand fix
   See merge request robots/ari_robot!20
