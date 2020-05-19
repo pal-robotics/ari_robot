@@ -2,6 +2,14 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'update-upstream' into 'ferrum-devel'
+  added new argument due to realsense update from upstream
+  See merge request robots/ari_robot!23
+* added new argument due to realsense update from upstream
+* Contributors: Procópio Stein, procopiostein
+
 0.0.16 (2020-03-24)
 -------------------
 * Merge branch 'actuated_hand_fix' into 'ferrum-devel'
