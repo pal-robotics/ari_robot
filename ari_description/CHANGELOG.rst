@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.17 (2020-05-19)
+-------------------
 * Merge branch 'update-upstream' into 'ferrum-devel'
   added new argument due to realsense update from upstream
   See merge request robots/ari_robot!23
