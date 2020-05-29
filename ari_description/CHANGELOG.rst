@@ -2,6 +2,16 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'revert-upstream-update' into 'ferrum-devel'
+  Revert "Merge branch 'update-upstream' into 'ferrum-devel'"
+  See merge request robots/ari_robot!24
+* Revert "Merge branch 'update-upstream' into 'ferrum-devel'"
+  This reverts commit 0f64cd8488e644d55e21542c365b7a8f4bf5593c, reversing
+  changes made to 4724b645f7866d510ed2a5d2face514229bfbc89.
+* Contributors: Procópio Stein, procopiostein
+
 0.0.17 (2020-05-19)
 -------------------
 * Merge branch 'update-upstream' into 'ferrum-devel'
