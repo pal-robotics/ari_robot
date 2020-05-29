@@ -34,7 +34,7 @@
 
   <!-- Torso sensors -->
   <!-- Torso front camera -->
-  <sensor_d435 parent="${parent}" name="${name}_front_camera" topics_ns="${name}_front_camera" use_nominal_extrinsics="true">
+  <sensor_d435 parent="${parent}" name="${name}_front_camera" topics_ns="${name}_front_camera">
     <origin xyz="${torso_front_camera_position_x} ${torso_front_camera_position_y} ${torso_front_camera_position_z}"
             rpy="${torso_front_camera_orientation_r} ${torso_front_camera_orientation_p} ${torso_front_camera_orientation_y}"/>
   </sensor_d435>
