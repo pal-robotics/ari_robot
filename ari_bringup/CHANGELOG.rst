@@ -2,8 +2,8 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.20 (2020-06-16)
+-------------------
 * Remap joystick diagnostics
   We don't want them on main topic since we don't use joystick
 * Contributors: Victor Lopez
