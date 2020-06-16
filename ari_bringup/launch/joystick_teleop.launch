@@ -10,6 +10,7 @@
 
   <node pkg="joy" type="joy_node" name="joystick">
     <param name="autorepeat_rate" value="10" />
+    <remap from="diagnostics" to="joystick_diagnostics"/>
   </node>
 
   <group ns="head_controller">
