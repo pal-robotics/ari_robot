@@ -2,6 +2,12 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Remap joystick diagnostics
+  We don't want them on main topic since we don't use joystick
+* Contributors: Victor Lopez
+
 0.0.19 (2020-06-16)
 -------------------
 * Do throttle inside qr detector
