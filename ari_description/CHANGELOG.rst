@@ -2,6 +2,9 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.0.18 (2020-05-29)
 -------------------
 * Merge branch 'revert-upstream-update' into 'ferrum-devel'

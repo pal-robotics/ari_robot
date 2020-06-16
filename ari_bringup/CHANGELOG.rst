@@ -2,6 +2,11 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Do throttle inside qr detector
+* Contributors: Victor Lopez
+
 0.0.18 (2020-05-29)
 -------------------
 
