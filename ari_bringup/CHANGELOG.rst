@@ -2,6 +2,11 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Integrate ari_wheel_controller_configuration
+* Contributors: Victor Lopez
+
 0.0.20 (2020-06-16)
 -------------------
 * Remap joystick diagnostics
