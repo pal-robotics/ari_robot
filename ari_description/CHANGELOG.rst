@@ -2,6 +2,9 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.0.21 (2020-07-10)
 -------------------
 

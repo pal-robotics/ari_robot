@@ -2,6 +2,11 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fix error using multiplier_dir variable
+* Contributors: Victor Lopez
+
 0.0.21 (2020-07-10)
 -------------------
 * Integrate ari_wheel_controller_configuration
