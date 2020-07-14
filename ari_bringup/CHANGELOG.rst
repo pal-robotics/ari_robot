@@ -2,6 +2,11 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Update ari rviz config
+* Contributors: Victor Lopez
+
 0.0.22 (2020-07-10)
 -------------------
 * Fix error using multiplier_dir variable
