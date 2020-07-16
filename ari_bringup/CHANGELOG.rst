@@ -2,6 +2,11 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fix load of mobile base controller
+* Contributors: Victor Lopez
+
 0.0.23 (2020-07-14)
 -------------------
 * Update ari rviz config
