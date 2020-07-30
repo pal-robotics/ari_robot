@@ -2,6 +2,11 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Reduce head_2 upper limit to avoid collisions at head_1 limits
+* Contributors: Victor Lopez
+
 0.0.24 (2020-07-16)
 -------------------
 
