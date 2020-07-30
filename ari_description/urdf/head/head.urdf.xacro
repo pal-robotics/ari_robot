@@ -25,7 +25,7 @@
   <xacro:property name="head_1_lower_limit" value="-75"/>
   <xacro:property name="head_1_upper_limit" value="75"/>
   <xacro:property name="head_2_lower_limit" value="-15"/>
-  <xacro:property name="head_2_upper_limit" value="35"/>
+  <xacro:property name="head_2_upper_limit" value="25"/>
 
   <!--************************-->
   <!--     HEAD_1 (PAN)       -->
