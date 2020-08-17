@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.27 (2020-08-17)
+-------------------
 * Fix typo
 * Contributors: Victor Lopez
 
