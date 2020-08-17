@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.26 (2020-08-17)
+-------------------
 * Add eps to head_2 upper limit
 * Contributors: Victor Lopez
 

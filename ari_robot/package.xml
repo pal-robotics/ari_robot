@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>ari_robot</name>
-  <version>0.0.25</version>
+  <version>0.0.26</version>
   <description>Description and controller configuration of ARI</description>
   <maintainer email="alessandro.difava@pal-robotics.com">Alessandro Di Fava</maintainer>
   <maintainer email="victor.lopez@pal-robotics.com">Victor Lopez</maintainer>
