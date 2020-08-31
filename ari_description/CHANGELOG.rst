@@ -2,6 +2,14 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'spring_cameras' into 'ferrum-devel'
+  Add SPRING cameras
+  See merge request robots/ari_robot!25
+* Add SPRING cameras
+* Contributors: davidfernandez, victor
+
 0.0.27 (2020-08-17)
 -------------------
 * Fix typo
