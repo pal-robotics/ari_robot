@@ -12,8 +12,10 @@
 
   <xacro:arg name="end_effector_right" default="ari-hand"/>
   <xacro:arg name="end_effector_left" default="ari-hand"/>
+  <xacro:arg name="spring_cameras" default="false"/>
   <xacro:property name="end_effector_right" value="$(arg end_effector_right)" />
   <xacro:property name="end_effector_left" value="$(arg end_effector_left)" />
+  <xacro:property name="spring_cameras" value="$(arg spring_cameras)" />
 
   <xacro:arg name="multiple" default="false"/>
   <xacro:arg name="namespace" default=""/>
@@ -25,6 +27,9 @@
   </xacro:if>
   <xacro:if value="${end_effector_left not in ['ari-hand', 'false', False]}">
     <xacro:wrong_end_effector/>
+  </xacro:if>
+  <xacro:if value="${spring_cameras not in ['true', True, 'false', False]}">
+    <xacro:wrong_spring_cameras/>
   </xacro:if>
 
 
