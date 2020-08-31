@@ -15,6 +15,7 @@
   <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
   <xacro:include filename="$(find realsense2_description)/urdf/_t265.urdf.xacro" />
   <xacro:include filename="$(find ari_description)/urdf/sensors/microphone.urdf.xacro"/>
+  <xacro:include filename="$(find ari_description)/urdf/sensors/imx179_camera.gazebo.xacro"/>
 
   <!--Constant parameters-->
   <xacro:property name="torso_front_camera_position_x" value="-0.11249" />
@@ -44,6 +45,65 @@
     <origin xyz="${torso_back_camera_position_x} ${torso_back_camera_position_y} ${torso_back_camera_position_z}"
             rpy="${torso_back_camera_orientation_r} ${torso_back_camera_orientation_p} ${torso_back_camera_orientation_y}"/>
   </sensor_t265>
+
+  <!-- Optional SPRING cameras -->
+  <xacro:if value="${spring_cameras}">
+    <!-- Front IMX179 Camera -->
+    <link name="${name}_front_imx_link">
+      <inertial>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        <mass value="0.00115745344894968"/>
+        <inertia ixx="6.76913771029748E-08" ixy="2.52492243040059E-13" ixz="-3.60412180500293E-11"
+                 iyy="2.88827920072855E-08" iyz="-1.65336506314803E-13"
+                 izz="3.97290092554434E-08"/>
+      </inertial>
+    </link>
+
+    <joint name="${name}_front_imx_joint" type="fixed">
+      <origin xyz="-0.1418 0.0 1.1956" rpy="0 ${-39 * deg_to_rad} 0"/>
+      <parent link="${parent}" />
+      <child link="${name}_front_imx_link" />
+      <axis xyz="0 0 0" />
+    </joint>
+
+    <joint name="${name}_front_imx_optical_joint" type="fixed">
+      <origin xyz="0.0 0.0 0.0" rpy="${-90 * deg_to_rad} 0 ${-90 * deg_to_rad}" />
+      <parent link="${name}_front_imx_link" />
+      <child link="${name}_front_imx_optical_frame" />
+      <axis xyz="0 0 0" />
+    </joint>
+    <link name="${name}_front_imx_optical_frame"/>
+
+    <xacro:imx179_camera_gazebo name="${name}_front_imx" topic="${name}_front_imx" frame="${name}_front_imx_optical_frame"/>
+
+    <!-- Back IMX179 Camera -->
+    <link name="${name}_back_imx_link">
+      <inertial>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        <mass value="0.00115745344894968"/>
+        <inertia ixx="6.76913771029748E-08" ixy="2.52492243040059E-13" ixz="-3.60412180500293E-11"
+                 iyy="2.88827920072855E-08" iyz="-1.65336506314803E-13"
+                 izz="3.97290092554434E-08"/>
+      </inertial>
+    </link>
+
+    <joint name="${name}_back_imx_joint" type="fixed">
+      <origin xyz="-0.3209 0.0 1.1634" rpy="0 ${-25 * deg_to_rad} ${-180 * deg_to_rad}" />
+      <parent link="${parent}" />
+      <child link="${name}_back_imx_link" />
+      <axis xyz="0 0 0" />
+    </joint>
+
+    <joint name="${name}_back_imx_optical_joint" type="fixed">
+      <origin xyz="0.0 0.0 0.0" rpy="${-90 * deg_to_rad} 0 ${-90 * deg_to_rad}" />
+      <parent link="${name}_back_imx_link" />
+      <child link="${name}_back_imx_optical_frame" />
+      <axis xyz="0 0 0" />
+    </joint>
+    <link name="${name}_back_imx_optical_frame"/>
+
+    <xacro:imx179_camera_gazebo name="${name}_back_imx" topic="${name}_back_imx" frame="${name}_back_imx_optical_frame"/>
+  </xacro:if>
 
   <!-- Microphones -->
   <xacro:microphone name="${name}_mic_front" parent="${parent}">
