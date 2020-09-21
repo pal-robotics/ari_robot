@@ -14,11 +14,11 @@
   <xacro:macro name="finger_actuator" params="name parent *origin">
     <xacro:actuator_impl parent="${parent}" name="${name}">
       <xacro:insert_block name="origin" />
-      <limit lower="${0 * deg_to_rad}" upper="${90 * deg_to_rad}" effort="4.0" velocity="2.5" /> <!-- TODO: Tune effort -->
+      <limit lower="${0 * deg_to_rad}" upper="${75 * deg_to_rad}" effort="4.0" velocity="2.5" /> <!-- TODO: Tune effort -->
       <safety_controller k_position="20"
                          k_velocity="20"
                          soft_lower_limit="${0.0 * deg_to_rad}"
-                         soft_upper_limit="${90.0 * deg_to_rad}" />
+                         soft_upper_limit="${75.0 * deg_to_rad}" />
     </xacro:actuator_impl>
   </xacro:macro>
   <!--
