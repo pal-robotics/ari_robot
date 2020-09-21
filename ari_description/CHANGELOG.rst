@@ -2,6 +2,14 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'hand_limits' into 'ferrum-devel'
+  reduce the hand limits from 90deg to 75deg
+  See merge request robots/ari_robot!26
+* reduce the hand limits from 90deg to 75deg
+* Contributors: saikishor, victor
+
 0.0.28 (2020-08-31)
 -------------------
 * Merge branch 'spring_cameras' into 'ferrum-devel'
