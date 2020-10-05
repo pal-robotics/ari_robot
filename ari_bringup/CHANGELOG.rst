@@ -2,6 +2,15 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'show_left_motion' into 'ferrum-devel'
+  tune arm_right_2_joint in show_left motion
+  See merge request robots/ari_robot!27
+* replicate show_left motion values on show_right motion
+* tune arm_right_2_joint in show_left motion
+* Contributors: YueErro, victor
+
 0.0.29 (2020-09-21)
 -------------------
 
