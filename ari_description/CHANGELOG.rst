@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.31 (2020-11-09)
+-------------------
 * Add Led frames
 * Merge branch 'collision-meshes' into 'ferrum-devel'
   Collision meshes
