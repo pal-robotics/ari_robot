@@ -176,6 +176,35 @@
   </joint>
   <link name="${name}_optical_frame"/>
 
+  <joint name="ear_led_left_link" type="fixed">
+    <origin xyz="0.021 0.095 0.192" rpy="-0.1 0 0.0" />
+    <child link="ear_led_left_frame" />
+    <parent link="head_1_link"/>
+  </joint>
+  <link name="ear_led_left_frame">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.001" /> <!-- matrix below must not be zero, or Gazebo won't load -->
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+               iyy="0.000001" iyz="0.0"
+               izz="0.0001" />
+    </inertial>
+  </link>
+  <joint name="ear_led_right_link" type="fixed">
+    <origin xyz="0.021 -0.095 0.192" rpy="-0.1 0.0 3.14" />
+    <child link="ear_led_right_frame" />
+    <parent link="head_1_link"/>
+  </joint>
+  <link name="ear_led_right_frame">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.001" /> <!-- matrix below must not be zero, or Gazebo won't load -->
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+               iyy="0.000001" iyz="0.0"
+               izz="0.0001" />
+    </inertial>
+  </link>
+
   <!-- Gazebo plugin -->
   <xacro:rpi_camera_gazebo name="${name}" topic="${name}" frame="${name}_optical_frame"/>
   </xacro:macro>
