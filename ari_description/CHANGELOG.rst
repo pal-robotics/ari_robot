@@ -2,6 +2,16 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add Led frames
+* Merge branch 'collision-meshes' into 'ferrum-devel'
+  Collision meshes
+  See merge request robots/ari_robot!28
+* Remove duplicated vertices
+* Add collision meshes
+* Contributors: Victor Lopez, victor
+
 0.0.30 (2020-10-05)
 -------------------
 

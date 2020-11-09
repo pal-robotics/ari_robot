@@ -2,6 +2,9 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.0.30 (2020-10-05)
 -------------------
 * Merge branch 'show_left_motion' into 'ferrum-devel'
