@@ -55,7 +55,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/arm/${name}_base.stl" scale="1 ${reflect} 1"/>
+          <mesh filename="package://ari_description/meshes/arm/${name}_base_collision.stl" scale="1 ${reflect} 1"/>
         </geometry>
       </collision>
     </link>
@@ -92,7 +92,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/arm/${name}_1.stl" scale="1 ${reflect} 1"/>
+          <mesh filename="package://ari_description/meshes/arm/${name}_1_collision.stl" scale="1 ${reflect} 1"/>
         </geometry>
       </collision>
     </link>
@@ -129,7 +129,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/arm/${name}_2.stl" scale="1 ${reflect} 1"/>
+          <mesh filename="package://ari_description/meshes/arm/${name}_2_collision.stl" scale="1 ${reflect} 1"/>
         </geometry>
       </collision>
     </link>
@@ -167,7 +167,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/arm/${name}_3.stl" scale="1 ${reflect} 1"/>
+          <mesh filename="package://ari_description/meshes/arm/${name}_3_collision.stl" scale="1 ${reflect} 1"/>
         </geometry>
       </collision>
     </link>
@@ -239,10 +239,10 @@
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <xacro:if value="${end_effector}">
-            <mesh filename="package://ari_description/meshes/arm/${name}_4.stl" scale="1 ${reflect} 1"/>
+            <mesh filename="package://ari_description/meshes/arm/${name}_4_collision.stl" scale="1 ${reflect} 1"/>
           </xacro:if>
           <xacro:unless value="${end_effector}">
-            <mesh filename="package://ari_description/meshes/arm/${name}_${side}_4.stl" scale="1 1 1"/>
+            <mesh filename="package://ari_description/meshes/arm/${name}_${side}_4_collision.stl" scale="1 1 1"/>
           </xacro:unless>
         </geometry>
       </collision>
@@ -337,7 +337,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://ari_description/meshes/arm/hand_1.stl" scale="1 ${reflect} 1"/>
+            filename="package://ari_description/meshes/arm/hand_1_collision.stl" scale="1 ${reflect} 1"/>
         </geometry>
       </collision>
     </link>
@@ -402,7 +402,7 @@
           rpy="0 0 0" />
         <geometry>
           <mesh
-            filename="package://ari_description/meshes/arm/hand_2.stl" scale="1 ${reflect} 1"/>
+            filename="package://ari_description/meshes/arm/hand_2_collision.stl" scale="1 ${reflect} 1"/>
         </geometry>
       </collision>
     </link>
