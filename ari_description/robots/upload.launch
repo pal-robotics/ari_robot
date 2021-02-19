@@ -12,6 +12,7 @@
     end_effector_right:=$(arg end_effector_right)
     end_effector_left:=$(arg end_effector_left)
     spring_cameras:=$(arg spring_cameras)
+    laser:=sick-571
     $(arg multi)" />
   <rosparam command="load" file="$(find ari_description)/config/collision/collision_parameters.yaml" />
 </launch>
