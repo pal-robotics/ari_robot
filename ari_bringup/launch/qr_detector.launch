@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
     <arg name="detections_per_sec" default="1"/>
-    <arg name="image_topic" default="/head_front_camera/image_raw"/>
+    <arg name="image_topic" default="/head_front_camera/color/image_raw"/>
     <arg name="output_topic" default="/qr_reader/detections"/>
 
     <node pkg="zbar_ros" type="barcode_reader_node" name="qr_reader">

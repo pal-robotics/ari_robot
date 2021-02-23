@@ -194,7 +194,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        head_front_camera_optical_frame:
+        head_front_camera_color_optical_frame:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -376,7 +376,7 @@ Visualization Manager:
       Displays:
         - Class: rviz/Image
           Enabled: true
-          Image Topic: /head_front_camera/image_raw
+          Image Topic: /head_front_camera/color/image_raw
           Max Value: 1
           Median window: 5
           Min Value: 0
