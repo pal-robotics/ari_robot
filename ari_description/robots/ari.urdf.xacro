@@ -42,16 +42,13 @@
 
   <!-- The following included files set up definitions of parts of the robot body -->
   <!-- Base -->
-  <xacro:include filename="$(find ari_description)/urdf/base/base_sensors.urdf.xacro" />
+  <xacro:include filename="$(find ari_description)/urdf/base/base.urdf.xacro" />
 
   <!-- The properties below are modified using empy http://www.alcyone.com/software/empy/
        from the create_robot.py tool. Handle them with care -->
   <xacro:property name="head_link_name"          value="head_2_link"/>
 
   <!-- The following included files set up definitions of parts of the robot base -->
-  <!-- Base -->
-   <xacro:base_sensors name="base" laser_model="$(arg laser_model)" sonars="true"/>
-
   <!-- Torso -->
   <xacro:include filename="$(find ari_description)/urdf/torso/torso_sensors.urdf.xacro" />
 
@@ -67,7 +64,7 @@
   <xacro:include filename="$(find ari_description)/urdf/materials.urdf.xacro" />
 
   <!-- Now we can start using the macros included above to define the actual robot -->
-  
+  <xacro:base name="base"/>
   <xacro:torso_sensors name="torso" parent="base_link"/>
   <xacro:head name="head" parent="base_link"/>
 
