@@ -32,15 +32,23 @@
     <xacro:wrong_spring_cameras/>
   </xacro:if>
 
+  <xacro:arg name="laser_model" default="sick-571"/> <!-- false, hokuyo, sick-551, sick-561, sick-571-->
+  <xacro:arg name="rgbd_sensors" default="false"/> <!-- false, true-->
+  <xacro:property name="laser_model" value="$(arg laser_model)" />
+  <xacro:property name="rgbd_sensors" value="$(arg rgbd_sensors)"/>
+  <xacro:if value="${laser_model not in ['false', False, 'sick-551', 'sick-561', 'sick-571', 'hokuyo']}">
+    <xacro:wrong_laser_model/>
+  </xacro:if>
+
+  <!-- The following included files set up definitions of parts of the robot body -->
+  <!-- Base -->
+  <xacro:include filename="$(find ari_description)/urdf/base/base.urdf.xacro" />
 
   <!-- The properties below are modified using empy http://www.alcyone.com/software/empy/
        from the create_robot.py tool. Handle them with care -->
   <xacro:property name="head_link_name"          value="head_2_link"/>
 
   <!-- The following included files set up definitions of parts of the robot base -->
-  <!-- Base -->
-  <xacro:include filename="$(find ari_description)/urdf/base/base.urdf.xacro" />
-
   <!-- Torso -->
   <xacro:include filename="$(find ari_description)/urdf/torso/torso_sensors.urdf.xacro" />
 

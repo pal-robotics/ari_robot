@@ -16,6 +16,8 @@
   <xacro:include filename="$(find realsense2_description)/urdf/_t265.urdf.xacro" />
   <xacro:include filename="$(find ari_description)/urdf/sensors/microphone.urdf.xacro"/>
   <xacro:include filename="$(find ari_description)/urdf/sensors/imx179_camera.gazebo.xacro"/>
+  <xacro:include filename="$(find ari_description)/urdf/sensors/sick_tim571_laser.urdf.xacro"/>
+
 
   <!--Constant parameters-->
   <xacro:property name="torso_front_camera_position_x" value="-0.11249" />
@@ -30,6 +32,12 @@
   <xacro:property name="torso_back_camera_orientation_r" value="0.0" />
   <xacro:property name="torso_back_camera_orientation_p" value="${15 * deg_to_rad}" />
   <xacro:property name="torso_back_camera_orientation_y" value="${180 * deg_to_rad}" />
+  
+  <!-- Laser characteristics -->
+  <xacro:property name="base_laser_x" value="-0.334"/>
+  <xacro:property name="base_laser_y" value="0.0"/>
+  <xacro:property name="base_laser_z" value="0.565"/>
+
 
   <xacro:macro name="torso_sensors" params="name parent">
 
@@ -110,5 +118,15 @@
     <origin xyz="-0.12173 -3.5497E-05 0.80332" rpy="${80 * deg_to_rad} 0 ${90 * deg_to_rad}"/>
   </xacro:microphone>
 
+  <xacro:if value="${laser_model == 'sick-571'}">
+    <!-- Laser -->
+    <!-- Theoretic FOV = 220 -->
+    <xacro:sick_tim571_laser name="${name}_laser" parent="${parent}" ros_topic="scan_raw" update_rate="10" min_angle="${-110 * deg_to_rad}" max_angle="${110 * deg_to_rad}" >
+      <origin xyz="${base_laser_x} ${base_laser_y} ${base_laser_z}" rpy="0 0 ${ 180 * deg_to_rad }" />
+    </xacro:sick_tim571_laser>
+  </xacro:if>
+
  </xacro:macro>
+ 
+ 
 </robot>
