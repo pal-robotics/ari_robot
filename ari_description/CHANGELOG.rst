@@ -2,6 +2,16 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'ari3-laser' into 'ferrum-devel'
+  Ari3 laser
+  See merge request robots/ari_robot!32
+* fixing stuff
+* Change to support sick-571 laser in ari3
+* Change to support sick-571 laser in ari3
+* Contributors: Federico Nardi, Software Engineer, federiconardi
+
 0.0.31 (2020-11-09)
 -------------------
 * Add Led frames
