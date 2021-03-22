@@ -203,10 +203,6 @@
   <xacro:rpi_camera_gazebo name="${name}" topic="${name}/color" frame="${name}_color_optical_frame"/>
   </xacro:macro>
 
-  <!-- Gazebo plugin -->
-  <xacro:rpi_camera_gazebo name="${name}" topic="${name}" frame="${name}_optical_frame"/>
-  </xacro:macro>
-
   <joint name="ear_led_left_link" type="fixed">
     <origin xyz="0.021 0.095 0.192" rpy="-0.1 0 0.0" />
     <child link="ear_led_left_frame" />
