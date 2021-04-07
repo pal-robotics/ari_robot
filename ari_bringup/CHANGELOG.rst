@@ -2,6 +2,14 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'head-realsense' into 'ferrum-devel'
+  Head realsense optional camera
+  See merge request robots/ari_robot!33
+* Modify URDF to include optional head realsense camera, location still to be defined
+* Contributors: Sara Cooper, davidfernandez
+
 0.0.32 (2021-03-16)
 -------------------
 
