@@ -2,8 +2,8 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.33 (2021-04-07)
+-------------------
 * Merge branch 'head-realsense' into 'ferrum-devel'
   Head realsense optional camera
   See merge request robots/ari_robot!33
