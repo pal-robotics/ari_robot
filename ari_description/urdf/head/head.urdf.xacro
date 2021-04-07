@@ -14,7 +14,7 @@
   <xacro:include filename="$(find ari_description)/urdf/deg_to_rad.xacro" />
   <xacro:include filename="$(find ari_description)/urdf/head/head.transmission.xacro" />
   <xacro:include filename="$(find ari_description)/urdf/sensors/rpi_camera.gazebo.xacro" />
-
+  <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
   <!--Constant parameters-->
   <xacro:property name="head_1_joint_offset" value="0.0" />
   <xacro:property name="head_2_joint_offset" value="0.0" />
@@ -26,6 +26,16 @@
   <xacro:property name="head_1_upper_limit" value="75"/>
   <xacro:property name="head_2_lower_limit" value="-15"/>
   <xacro:property name="head_2_upper_limit" value="25"/>
+
+  <!--Constant parameters-->
+  <xacro:property name="head_realsense_camera_position_x" value="0.05215" />
+  <xacro:property name="head_realsense_camera_position_y" value="0.1675" />
+  <xacro:property name="head_realsense_camera_position_z" value="0.0" />
+  <xacro:property name="head_realsense_camera_orientation_r" value="${-90 * deg_to_rad}" />
+  <xacro:property name="head_realsense_camera_orientation_p" value="0.0" />
+  <xacro:property name="head_realsense_camera_orientation_y" value="0.0" />
+
+
 
   <!--************************-->
   <!--     HEAD_1 (PAN)       -->
@@ -134,9 +144,22 @@
 
   </xacro:macro>
 
+
   <!--************************-->
   <!--      HEAD_CAMERA       -->
   <!--************************-->
+
+  <!-- Optional head realsense camera -->
+  
+  <xacro:macro name="head_rgbd" params="name parent">
+    <sensor_d435 parent="head_2_link" name="head_front_camera" topics_ns="head_front_camera">
+      <origin xyz="${head_realsense_camera_position_x} ${head_realsense_camera_position_y} ${head_realsense_camera_position_z}"
+            rpy="${head_realsense_camera_orientation_r} ${head_realsense_camera_orientation_p} ${head_realsense_camera_orientation_y}"/>
+    </sensor_d435>
+  </xacro:macro>
+
+
+  <!-- Head RGB camera -->
   <xacro:macro name="head_front_camera" params="name parent">
   <link name="${name}_link">
     <inertial>
@@ -168,13 +191,17 @@
     <axis xyz="0 0 0" />
   </joint>
 
-  <joint name="${name}_optical_joint" type="fixed">
+  <joint name="${name}_color_optical_joint" type="fixed">
     <origin xyz="0.0 0.0 0.0" rpy="${-90 * deg_to_rad} 0 ${-90 * deg_to_rad}" />
     <parent link="${name}_link" />
-    <child link="${name}_optical_frame" />
+    <child link="${name}_color_optical_frame" />
     <axis xyz="0 0 0" />
   </joint>
-  <link name="${name}_optical_frame"/>
+  <link name="${name}_color_optical_frame"/>
+
+  <!-- Gazebo plugin -->
+  <xacro:rpi_camera_gazebo name="${name}" topic="${name}/color" frame="${name}_color_optical_frame"/>
+  </xacro:macro>
 
   <joint name="ear_led_left_link" type="fixed">
     <origin xyz="0.021 0.095 0.192" rpy="-0.1 0 0.0" />
@@ -205,15 +232,17 @@
     </inertial>
   </link>
 
-  <!-- Gazebo plugin -->
-  <xacro:rpi_camera_gazebo name="${name}" topic="${name}" frame="${name}_optical_frame"/>
-  </xacro:macro>
-
 
   <xacro:macro name="head" params="name parent">
     <xacro:head_1 name="${name}_1" parent="${parent}" />
     <xacro:head_2 name="${name}_2" parent="${name}_1_link"/>
-    <xacro:head_front_camera name="${name}_front_camera" parent="${name}_2_link"/>
-  </xacro:macro>
+    <xacro:if value="${camera_model == 'head-rgb'}">
+      <xacro:head_front_camera name="${name}_front_camera" parent="${name}_2_link"/>
+    </xacro:if>
+    <xacro:if value="${camera_model == 'head-rgbd'}">
+      <xacro:head_rgbd name="${name}_rgbd" parent="${name}_2_link"/>
+    </xacro:if>
+ </xacro:macro>
 
 </robot>
+
