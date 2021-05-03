@@ -2,8 +2,8 @@
 <launch>
   <arg name="end_effector_right" default="ari-hand"/>
   <arg name="end_effector_left" default="ari-hand"/>
-
-
+  <arg name="camera_model" default="head-rgb"/>
+  <arg name="laser_model" default="No"/>
   <!-- Diff drive controller multipliers -->
   <arg name="calibrated_multipliers_dir"  value="$(optenv pal_wheel_calibration_calibration_path)"/>
   <arg name="multipliers_dir"  value="$(eval calibrated_multipliers_dir if (calibrated_multipliers_dir != '') else find('ari_controller_configuration') + '/config')"/>
@@ -16,6 +16,8 @@
   <include file="$(find ari_description)/robots/upload.launch">
     <arg name="end_effector_left" value="$(arg end_effector_left)"/>
     <arg name="end_effector_right" value="$(arg end_effector_right)"/>
+    <arg name="camera_model" value="$(arg camera_model)"/>
+    <arg name="laser_model" value="$(arg laser_model)"/>
   </include>
 
   <!-- ari_hardware parameters -->
