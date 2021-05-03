@@ -13,9 +13,12 @@
   <xacro:arg name="end_effector_right" default="ari-hand"/>
   <xacro:arg name="end_effector_left" default="ari-hand"/>
   <xacro:arg name="spring_cameras" default="false"/>
+  <xacro:arg name="camera_model" default="head-rgb"/>
   <xacro:property name="end_effector_right" value="$(arg end_effector_right)" />
   <xacro:property name="end_effector_left" value="$(arg end_effector_left)" />
   <xacro:property name="spring_cameras" value="$(arg spring_cameras)" />
+  <xacro:property name="camera_model" value="$(arg camera_model)"/>
+
 
   <xacro:arg name="multiple" default="false"/>
   <xacro:arg name="namespace" default=""/>
@@ -32,26 +35,23 @@
     <xacro:wrong_spring_cameras/>
   </xacro:if>
 
-  <xacro:arg name="laser_model" default="sick-571"/> <!-- false, hokuyo, sick-551, sick-561, sick-571-->
+  <xacro:arg name="laser_model" default="false"/> <!-- false, hokuyo, sick-551, sick-561, sick-571-->
   <xacro:arg name="rgbd_sensors" default="false"/> <!-- false, true-->
   <xacro:property name="laser_model" value="$(arg laser_model)" />
   <xacro:property name="rgbd_sensors" value="$(arg rgbd_sensors)"/>
-  <xacro:if value="${laser_model not in ['false', False, 'sick-551', 'sick-561', 'sick-571', 'hokuyo']}">
+  <xacro:if value="${laser_model not in ['No', 'false', False, 'sick-551', 'sick-561', 'sick-571', 'hokuyo']}">
     <xacro:wrong_laser_model/>
   </xacro:if>
-
-  <!-- The following included files set up definitions of parts of the robot body -->
-  <!-- Base -->
-  <xacro:include filename="$(find ari_description)/urdf/base/base_sensors.urdf.xacro" />
 
   <!-- The properties below are modified using empy http://www.alcyone.com/software/empy/
        from the create_robot.py tool. Handle them with care -->
   <xacro:property name="head_link_name"          value="head_2_link"/>
+  
+  <!-- The following included files set up definitions of parts of the robot body -->
+  <!-- Base -->
+  <xacro:include filename="$(find ari_description)/urdf/base/base.urdf.xacro" />
 
   <!-- The following included files set up definitions of parts of the robot base -->
-  <!-- Base -->
-   <xacro:base_sensors name="base" laser_model="$(arg laser_model)" sonars="true"/>
-
   <!-- Torso -->
   <xacro:include filename="$(find ari_description)/urdf/torso/torso_sensors.urdf.xacro" />
 
@@ -67,7 +67,7 @@
   <xacro:include filename="$(find ari_description)/urdf/materials.urdf.xacro" />
 
   <!-- Now we can start using the macros included above to define the actual robot -->
-  
+  <xacro:base name="base"/>
   <xacro:torso_sensors name="torso" parent="base_link"/>
   <xacro:head name="head" parent="base_link"/>
 
@@ -77,7 +77,9 @@
   <xacro:ari_arm name="arm" parent="base_link" side="right" reflect="-1" end_effector="${end_effector_right == 'ari-hand'}">
     <origin xyz="-0.219 -0.097624 1.1111" rpy="${-105.0 * deg_to_rad} ${0.0 * deg_to_rad} ${180.0 * deg_to_rad}" />
   </xacro:ari_arm>
-
 </robot>
+
+
+
 
 
