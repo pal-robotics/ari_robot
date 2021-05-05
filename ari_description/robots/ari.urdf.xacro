@@ -18,11 +18,6 @@
   <xacro:property name="end_effector_left" value="$(arg end_effector_left)" />
   <xacro:property name="spring_cameras" value="$(arg spring_cameras)" />
   <xacro:property name="camera_model" value="$(arg camera_model)"/>
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 64a56fdfdf150e556c8fe57daf73af1fe43ec9fe
   <xacro:arg name="multiple" default="false"/>
   <xacro:arg name="namespace" default=""/>
   <xacro:property name="is_multiple" value="$(arg multiple)" />
@@ -41,7 +36,7 @@
     <xacro:wrong_camera_model/>
   </xacro:if>
 
-  <xacro:arg name="laser_model" default="false"/> <!-- false, hokuyo, sick-551, sick-561, sick-571-->
+  <xacro:arg name="laser_model" default="No"/> <!-- false, hokuyo, sick-551, sick-561, sick-571-->
   <xacro:arg name="rgbd_sensors" default="false"/> <!-- false, true-->
   <xacro:property name="laser_model" value="$(arg laser_model)" />
   <xacro:property name="rgbd_sensors" value="$(arg rgbd_sensors)"/>
