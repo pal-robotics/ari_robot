@@ -4,13 +4,9 @@
   <arg name="end_effector_right" default="ari-hand"/>
   <arg name="end_effector_left" default="ari-hand"/>
   <arg name="spring_cameras" default="false"/>
-<<<<<<< HEAD
   <arg name="laser_model"  default="sick-571"/>
   <arg name="camera_model" default="head-rgb"/>
 
-=======
-  <arg name="camera_model" default="head-rgb"/>
->>>>>>> 64a56fdfdf150e556c8fe57daf73af1fe43ec9fe
   <!-- Robot description -->
   <param name="robot_description"
     command="rosrun xacro xacro --inorder
@@ -18,10 +14,7 @@
     end_effector_right:=$(arg end_effector_right)
     end_effector_left:=$(arg end_effector_left)
     spring_cameras:=$(arg spring_cameras)
-<<<<<<< HEAD
     laser_model:=$(arg laser_model)
-=======
->>>>>>> 64a56fdfdf150e556c8fe57daf73af1fe43ec9fe
     camera_model:=$(arg camera_model)
     $(arg multi)" />
   <rosparam command="load" file="$(find ari_description)/config/collision/collision_parameters.yaml" />
