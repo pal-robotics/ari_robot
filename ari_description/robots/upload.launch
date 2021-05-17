@@ -4,7 +4,7 @@
   <arg name="end_effector_right" default="ari-hand"/>
   <arg name="end_effector_left" default="ari-hand"/>
   <arg name="spring_cameras" default="false"/>
-  <arg name="laser_model"  default="sick-571"/>
+  <arg name="laser_model"  default="No"/>
   <arg name="camera_model" default="head-rgb"/>
 
   <!-- Robot description -->
