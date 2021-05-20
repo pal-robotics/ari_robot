@@ -2,6 +2,11 @@
 Changelog for package ari_robot
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Added laser_model dependencies
+* Contributors: sergiomoyano
+
 0.0.33 (2021-04-07)
 -------------------
 

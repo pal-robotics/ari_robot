@@ -2,6 +2,18 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'ari_laser_new' into 'ferrum-devel'
+  Added laser_model dependencies
+  See merge request robots/ari_robot!34
+* Update ari_description/robots/upload.launch
+* Update ari_description/robots/ari.urdf.xacro
+* Update ari_description/robots/upload.launch
+* Added laser_model dependencies
+* Added laser_model dependencies
+* Contributors: davidfernandez, sergiomoyano
+
 0.0.33 (2021-04-07)
 -------------------
 * Merge branch 'head-realsense' into 'ferrum-devel'

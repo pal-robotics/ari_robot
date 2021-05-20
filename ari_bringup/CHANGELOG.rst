@@ -2,6 +2,18 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'ari_laser_new' into 'ferrum-devel'
+  Added laser_model dependencies
+  See merge request robots/ari_robot!34
+* Remove config
+* Update ari_bringup/launch/ari.launch
+* Added laser_model dependencies
+* Added laser_model dependencies
+* Added laser_model dependencies
+* Contributors: davidfernandez, sergiomoyano
+
 0.0.33 (2021-04-07)
 -------------------
 * Merge branch 'head-realsense' into 'ferrum-devel'
