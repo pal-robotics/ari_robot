@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.34 (2021-05-20)
+-------------------
 * Merge branch 'ari_laser_new' into 'ferrum-devel'
   Added laser_model dependencies
   See merge request robots/ari_robot!34
