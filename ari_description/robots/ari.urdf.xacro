@@ -36,11 +36,11 @@
     <xacro:wrong_camera_model/>
   </xacro:if>
 
-  <xacro:arg name="laser_model" default="sick-571"/> <!-- false, hokuyo, sick-551, sick-561, sick-571-->
+  <xacro:arg name="laser_model" default="No"/> <!-- false, hokuyo, sick-551, sick-561, sick-571-->
   <xacro:arg name="rgbd_sensors" default="false"/> <!-- false, true-->
   <xacro:property name="laser_model" value="$(arg laser_model)" />
   <xacro:property name="rgbd_sensors" value="$(arg rgbd_sensors)"/>
-  <xacro:if value="${laser_model not in ['false', False, 'sick-551', 'sick-561', 'sick-571', 'hokuyo']}">
+  <xacro:if value="${laser_model not in ['No', 'false', False, 'sick-551', 'sick-561', 'sick-571', 'hokuyo']}">
     <xacro:wrong_laser_model/>
   </xacro:if>
 
@@ -79,5 +79,8 @@
     <origin xyz="-0.219 -0.097624 1.1111" rpy="${-105.0 * deg_to_rad} ${0.0 * deg_to_rad} ${180.0 * deg_to_rad}" />
   </xacro:ari_arm>
 </robot>
+
+
+
 
 
