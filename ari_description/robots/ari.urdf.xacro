@@ -36,7 +36,7 @@
     <xacro:wrong_camera_model/>
   </xacro:if>
 
-  <xacro:arg name="laser_model" default="No"/> <!-- false, hokuyo, sick-551, sick-561, sick-571-->
+  <xacro:arg name="laser_model" default="false"/> <!-- false, hokuyo, sick-551, sick-561, sick-571-->
   <xacro:arg name="rgbd_sensors" default="false"/> <!-- false, true-->
   <xacro:property name="laser_model" value="$(arg laser_model)" />
   <xacro:property name="rgbd_sensors" value="$(arg rgbd_sensors)"/>
