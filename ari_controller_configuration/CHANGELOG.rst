@@ -2,8 +2,8 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.35 (2021-07-28)
+-------------------
 * Merge branch 'fixing_laser_model' into 'ferrum-devel'
   fixing laser_model set default false
   See merge request robots/ari_robot!35
