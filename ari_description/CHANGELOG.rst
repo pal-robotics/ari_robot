@@ -2,6 +2,16 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'fixing_laser_model' into 'ferrum-devel'
+  fixing laser_model set default false
+  See merge request robots/ari_robot!35
+* Rename camera param and pass laser
+* fixing laser_model set default false
+* Update laser distances
+* Contributors: antoniobrandi, davidfernandez, saikishor, sergiomoyano
+
 0.0.34 (2021-05-20)
 -------------------
 * Merge branch 'ari_laser_new' into 'ferrum-devel'

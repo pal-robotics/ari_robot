@@ -2,6 +2,14 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'fixing_laser_model' into 'ferrum-devel'
+  fixing laser_model set default false
+  See merge request robots/ari_robot!35
+* Rename camera param and pass laser
+* Contributors: davidfernandez, saikishor
+
 0.0.34 (2021-05-20)
 -------------------
 * Added laser_model dependencies
