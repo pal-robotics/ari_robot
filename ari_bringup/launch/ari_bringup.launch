@@ -3,11 +3,13 @@
   <arg name="tf_prefix" default=""/>
   <arg name="end_effector_right" default="ari-hand"/>
   <arg name="end_effector_left" default="ari-hand"/>
+  <arg name="laser_model" default="false"/>
 
   <!-- Load default controllers -->
   <include file="$(find ari_controller_configuration)/launch/ari_controllers.launch">
     <arg name="end_effector_left" value="$(arg end_effector_left)"/>
     <arg name="end_effector_right" value="$(arg end_effector_right)"/>
+    <arg name="laser_model" value="$(arg laser_model)"/>
   </include>
 
   <!-- Robot state publisher -->

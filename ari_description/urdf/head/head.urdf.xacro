@@ -236,10 +236,10 @@
   <xacro:macro name="head" params="name parent">
     <xacro:head_1 name="${name}_1" parent="${parent}" />
     <xacro:head_2 name="${name}_2" parent="${name}_1_link"/>
-    <xacro:if value="${camera_model == 'head-rgb'}">
+    <xacro:if value="${camera_model_head == 'raspi'}">
       <xacro:head_front_camera name="${name}_front_camera" parent="${name}_2_link"/>
     </xacro:if>
-    <xacro:if value="${camera_model == 'head-rgbd'}">
+    <xacro:if value="${camera_model_head == 'D435i'}">
       <xacro:head_rgbd name="${name}_rgbd" parent="${name}_2_link"/>
     </xacro:if>
  </xacro:macro>
