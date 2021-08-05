@@ -2,6 +2,9 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.0.35 (2021-07-28)
 -------------------
 * Merge branch 'fixing_laser_model' into 'ferrum-devel'

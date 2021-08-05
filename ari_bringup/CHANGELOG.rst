@@ -2,6 +2,18 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'load_motions' into 'ferrum-devel'
+  Load motions created in .pal
+  See merge request robots/ari_robot!31
+* Load motions created in .pal
+* Merge branch 'remove_joystick' into 'ferrum-devel'
+  Do not autostart joystick
+  See merge request robots/ari_robot!36
+* Do not autostart joystick
+* Contributors: davidfernandez, saikishor
+
 0.0.35 (2021-07-28)
 -------------------
 * Merge branch 'fixing_laser_model' into 'ferrum-devel'
