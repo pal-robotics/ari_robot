@@ -28,8 +28,8 @@
   <!-- Twist mux -->
   <include file="$(find ari_bringup)/launch/twist_mux.launch"/>
 
-  <!-- Joystick controller -->
-  <include file="$(find ari_bringup)/launch/joystick_teleop.launch">
-  </include>
+  <!-- Joystick controller, disabled by default -->
+  <!--include file="$(find ari_bringup)/launch/joystick_teleop.launch">
+  </include-->
 
 </launch>
