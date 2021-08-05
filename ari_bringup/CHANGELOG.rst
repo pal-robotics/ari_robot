@@ -2,8 +2,8 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.36 (2021-08-05)
+-------------------
 * Merge branch 'load_motions' into 'ferrum-devel'
   Load motions created in .pal
   See merge request robots/ari_robot!31
