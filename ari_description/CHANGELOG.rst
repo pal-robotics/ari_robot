@@ -2,6 +2,17 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'laser_iso_fix' into 'ferrum-devel'
+  Added fixed frame to the urdf with the position of the docking interface for...
+  See merge request robots/ari_robot!37
+* URDF distance accuracy
+* Updated docking_link distance based on mechanical specifications
+* reduced a bit the docking frame in order to guarantee that the parking planner is alway able to park
+* Added fixed frame to the urdf with the position of the docking interface for the parking planner node
+* Contributors: antoniobrandi, saikishor
+
 0.0.36 (2021-08-05)
 -------------------
 
