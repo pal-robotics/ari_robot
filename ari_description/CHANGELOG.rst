@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.37 (2021-08-16)
+-------------------
 * Merge branch 'laser_iso_fix' into 'ferrum-devel'
   Added fixed frame to the urdf with the position of the docking interface for...
   See merge request robots/ari_robot!37
