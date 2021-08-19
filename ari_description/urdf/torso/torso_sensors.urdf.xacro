@@ -68,7 +68,7 @@
     </link>
 
     <joint name="front_fisheye_camera_joint" type="fixed">
-      <origin xyz="-0.1418 0.0 1.1956" rpy="0 ${-39 * deg_to_rad} 0"/>
+      <origin xyz="-0.1418 0.0 1.1956" rpy="0 ${-19 * deg_to_rad} 0"/>
       <parent link="${parent}" />
       <child link="front_fisheye_camera_link" />
       <axis xyz="0 0 0" />
