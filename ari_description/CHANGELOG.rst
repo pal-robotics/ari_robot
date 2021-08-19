@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.39 (2021-08-19)
+-------------------
 * Correct front fisheye pitch to new pose
 * Contributors: davidfernandez
 
