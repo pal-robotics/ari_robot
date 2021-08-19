@@ -3,7 +3,7 @@
   <!-- execute pre-recorded motions -->
   <rosparam file="$(find ari_bringup)/config/motions/ari_motions.yaml" command="load" /> <!-- any end-effector motions -->
 
-  <node pkg="ari_bringup" type="motion_loader.sh" name="motion_loader.sh"/>
+  <node pkg="ari_bringup" type="motion_loader.sh" name="motion_loader"/>
 
   <node pkg="play_motion" type="play_motion" name="play_motion">
     <rosparam file="$(find ari_bringup)/config/approach_planner/approach_planner_ari.yaml" command="load" />
