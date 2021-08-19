@@ -4,6 +4,8 @@
   <arg name="end_effector_left" default="ari-hand"/>
   <arg name="camera_model_head" default="raspi"/>
   <arg name="laser_model" default="false"/>
+  <arg name="front_fisheye_camera" default="false"/>
+  <arg name="back_fisheye_camera" default="false"/>
   <!-- Diff drive controller multipliers -->
   <arg name="calibrated_multipliers_dir"  value="$(optenv pal_wheel_calibration_calibration_path)"/>
   <arg name="multipliers_dir"  value="$(eval calibrated_multipliers_dir if (calibrated_multipliers_dir != '') else find('ari_controller_configuration') + '/config')"/>
@@ -18,6 +20,8 @@
     <arg name="end_effector_right" value="$(arg end_effector_right)"/>
     <arg name="camera_model_head" default="$(arg camera_model_head)"/>
     <arg name="laser_model" value="$(arg laser_model)"/>
+    <arg name="front_fisheye_camera" value="$(arg front_fisheye_camera)"/>
+    <arg name="back_fisheye_camera" value="$(arg back_fisheye_camera)"/>
   </include>
 
   <!-- ari_hardware parameters -->

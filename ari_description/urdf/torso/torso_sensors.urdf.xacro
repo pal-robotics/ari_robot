@@ -55,9 +55,9 @@
   </sensor_t265>
 
   <!-- Optional SPRING cameras -->
-  <xacro:if value="${spring_cameras}">
+  <xacro:if value="${front_fisheye_camera}">
     <!-- Front IMX179 Camera -->
-    <link name="${name}_front_imx_link">
+    <link name="front_fisheye_camera_link">
       <inertial>
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
         <mass value="0.00115745344894968"/>
@@ -67,25 +67,27 @@
       </inertial>
     </link>
 
-    <joint name="${name}_front_imx_joint" type="fixed">
+    <joint name="front_fisheye_camera_joint" type="fixed">
       <origin xyz="-0.1418 0.0 1.1956" rpy="0 ${-39 * deg_to_rad} 0"/>
       <parent link="${parent}" />
-      <child link="${name}_front_imx_link" />
+      <child link="front_fisheye_camera_link" />
       <axis xyz="0 0 0" />
     </joint>
 
-    <joint name="${name}_front_imx_optical_joint" type="fixed">
+    <joint name="front_fisheye_camera_optical_joint" type="fixed">
       <origin xyz="0.0 0.0 0.0" rpy="${-90 * deg_to_rad} 0 ${-90 * deg_to_rad}" />
-      <parent link="${name}_front_imx_link" />
-      <child link="${name}_front_imx_optical_frame" />
+      <parent link="front_fisheye_camera_link" />
+      <child link="front_fisheye_camera_optical_frame" />
       <axis xyz="0 0 0" />
     </joint>
-    <link name="${name}_front_imx_optical_frame"/>
+    <link name="front_fisheye_camera_optical_frame"/>
 
-    <xacro:imx179_camera_gazebo name="${name}_front_imx" topic="${name}_front_imx" frame="${name}_front_imx_optical_frame"/>
+    <xacro:imx179_camera_gazebo name="front_fisheye_camera" topic="front_fisheye_camera" frame="front_fisheye_camera_optical_frame"/>
+  </xacro:if>
 
+  <xacro:if value="${back_fisheye_camera}">
     <!-- Back IMX179 Camera -->
-    <link name="${name}_back_imx_link">
+    <link name="rear_fisheye_camera_link">
       <inertial>
         <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
         <mass value="0.00115745344894968"/>
@@ -95,22 +97,22 @@
       </inertial>
     </link>
 
-    <joint name="${name}_back_imx_joint" type="fixed">
+    <joint name="rear_fisheye_camera_joint" type="fixed">
       <origin xyz="-0.3209 0.0 1.1634" rpy="0 ${-25 * deg_to_rad} ${-180 * deg_to_rad}" />
       <parent link="${parent}" />
-      <child link="${name}_back_imx_link" />
+      <child link="rear_fisheye_camera_link" />
       <axis xyz="0 0 0" />
     </joint>
 
-    <joint name="${name}_back_imx_optical_joint" type="fixed">
+    <joint name="rear_fisheye_camera_optical_joint" type="fixed">
       <origin xyz="0.0 0.0 0.0" rpy="${-90 * deg_to_rad} 0 ${-90 * deg_to_rad}" />
-      <parent link="${name}_back_imx_link" />
-      <child link="${name}_back_imx_optical_frame" />
+      <parent link="rear_fisheye_camera_link" />
+      <child link="rear_fisheye_camera_optical_frame" />
       <axis xyz="0 0 0" />
     </joint>
-    <link name="${name}_back_imx_optical_frame"/>
+    <link name="rear_fisheye_camera_optical_frame"/>
 
-    <xacro:imx179_camera_gazebo name="${name}_back_imx" topic="${name}_back_imx" frame="${name}_back_imx_optical_frame"/>
+    <xacro:imx179_camera_gazebo name="rear_fisheye_camera" topic="rear_fisheye_camera" frame="rear_fisheye_camera_optical_frame"/>
   </xacro:if>
 
   <!-- Microphones -->
