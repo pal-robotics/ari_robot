@@ -2,6 +2,16 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'add-spring-cameras' into 'ferrum-devel'
+  Add spring cameras
+  See merge request robots/ari_robot!38
+* Fix Node name
+* Use separated fisheye params
+* receive spring cameras param
+* Contributors: Sara Cooper, davidfernandez, saikishor
+
 0.0.37 (2021-08-16)
 -------------------
 
