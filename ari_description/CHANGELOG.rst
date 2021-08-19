@@ -2,6 +2,11 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Correct front fisheye pitch to new pose
+* Contributors: davidfernandez
+
 0.0.38 (2021-08-19)
 -------------------
 * Merge branch 'add-spring-cameras' into 'ferrum-devel'
