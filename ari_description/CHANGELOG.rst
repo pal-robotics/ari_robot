@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.38 (2021-08-19)
+-------------------
 * Merge branch 'add-spring-cameras' into 'ferrum-devel'
   Add spring cameras
   See merge request robots/ari_robot!38
