@@ -12,11 +12,13 @@
 
   <xacro:arg name="end_effector_right" default="ari-hand"/>
   <xacro:arg name="end_effector_left" default="ari-hand"/>
-  <xacro:arg name="spring_cameras" default="false"/>
+  <xacro:arg name="front_fisheye_camera" default="false"/>
+  <xacro:arg name="back_fisheye_camera" default="false"/>
   <xacro:arg name="camera_model_head" default="raspi"/>
   <xacro:property name="end_effector_right" value="$(arg end_effector_right)" />
   <xacro:property name="end_effector_left" value="$(arg end_effector_left)" />
-  <xacro:property name="spring_cameras" value="$(arg spring_cameras)" />
+  <xacro:property name="front_fisheye_camera" value="$(arg front_fisheye_camera)" />
+  <xacro:property name="back_fisheye_camera" value="$(arg back_fisheye_camera)" />
   <xacro:property name="camera_model_head" value="$(arg camera_model_head)"/>
   <xacro:arg name="multiple" default="false"/>
   <xacro:arg name="namespace" default=""/>
@@ -29,8 +31,11 @@
   <xacro:if value="${end_effector_left not in ['ari-hand', 'false', False]}">
     <xacro:wrong_end_effector/>
   </xacro:if>
-  <xacro:if value="${spring_cameras not in ['true', True, 'false', False]}">
-    <xacro:wrong_spring_cameras/>
+  <xacro:if value="${front_fisheye_camera not in ['true', True, 'false', False]}">
+    <xacro:wrong_front_fisheye_camera/>
+  </xacro:if>
+  <xacro:if value="${back_fisheye_camera not in ['true', True, 'false', False]}">
+    <xacro:wrong_back_fisheye_camera/>
   </xacro:if>
   <xacro:if value="${camera_model_head not in ['raspi', 'D435i']}">
     <xacro:wrong_camera_model/>

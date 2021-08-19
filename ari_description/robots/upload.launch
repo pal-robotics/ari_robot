@@ -3,7 +3,8 @@
   <arg name="multi" default=""/>
   <arg name="end_effector_right" default="ari-hand"/>
   <arg name="end_effector_left" default="ari-hand"/>
-  <arg name="spring_cameras" default="false"/>
+  <arg name="front_fisheye_camera" default="false"/>
+  <arg name="back_fisheye_camera" default="false"/>
   <arg name="laser_model"  default="false"/>
   <arg name="camera_model_head" default="raspi"/>
 
@@ -13,9 +14,10 @@
     '$(find ari_description)/robots/ari.urdf.xacro'
     end_effector_right:=$(arg end_effector_right)
     end_effector_left:=$(arg end_effector_left)
-    spring_cameras:=$(arg spring_cameras)
     laser_model:=$(arg laser_model)
     camera_model_head:=$(arg camera_model_head)
+    front_fisheye_camera:=$(arg front_fisheye_camera)
+    back_fisheye_camera:=$(arg back_fisheye_camera)
     $(arg multi)" />
   <rosparam command="load" file="$(find ari_description)/config/collision/collision_parameters.yaml" />
 </launch>
