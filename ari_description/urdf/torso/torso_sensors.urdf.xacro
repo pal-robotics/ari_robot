@@ -32,7 +32,7 @@
   <xacro:property name="torso_back_camera_orientation_r" value="0.0" />
   <xacro:property name="torso_back_camera_orientation_p" value="${15 * deg_to_rad}" />
   <xacro:property name="torso_back_camera_orientation_y" value="${180 * deg_to_rad}" />
-  
+
   <!-- Laser characteristics -->
   <xacro:property name="base_laser_x" value="-0.34"/>
   <xacro:property name="base_laser_y" value="0.0"/>
@@ -43,7 +43,7 @@
 
   <!-- Torso sensors -->
   <!-- Torso front camera -->
-  <sensor_d435 parent="${parent}" name="${name}_front_camera" topics_ns="${name}_front_camera">
+  <sensor_d435 parent="${parent}" name="${name}_front_camera" topics_ns="${name}_front_camera" use_nominal_extrinsics="true">
     <origin xyz="${torso_front_camera_position_x} ${torso_front_camera_position_y} ${torso_front_camera_position_z}"
             rpy="${torso_front_camera_orientation_r} ${torso_front_camera_orientation_p} ${torso_front_camera_orientation_y}"/>
   </sensor_d435>
@@ -129,6 +129,6 @@
   </xacro:if>
 
  </xacro:macro>
- 
- 
+
+
 </robot>
