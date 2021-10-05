@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.40 (2021-10-05)
+-------------------
 * Proper handling of string parameters for fisheye camera
 * Contributors: Victor Lopez
 
