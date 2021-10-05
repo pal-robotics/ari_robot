@@ -31,10 +31,10 @@
   <xacro:if value="${end_effector_left not in ['ari-hand', 'false', False]}">
     <xacro:wrong_end_effector/>
   </xacro:if>
-  <xacro:if value="${front_fisheye_camera not in ['true', True, 'false', False, 'Jetson']}">
+  <xacro:if value="${front_fisheye_camera not in ['true', True, 'false', False, 'Jetson', 'PC']}">
     <xacro:wrong_front_fisheye_camera/>
   </xacro:if>
-  <xacro:if value="${back_fisheye_camera not in ['true', True, 'false', False, 'Jetson']}">
+  <xacro:if value="${back_fisheye_camera not in ['true', True, 'false', False, 'Jetson', 'PC']}">
     <xacro:wrong_back_fisheye_camera/>
   </xacro:if>
   <xacro:if value="${camera_model_head not in ['raspi', 'D435i']}">
