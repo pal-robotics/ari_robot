@@ -2,6 +2,14 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'fisheye_pc_connect_option' into 'ferrum-devel'
+  added the PC option to the valid fisheye connection check
+  See merge request robots/ari_robot!39
+* added the PC option to the valid fisheye connection check
+* Contributors: Sai Kishor Kothakota, victor
+
 0.0.40 (2021-10-05)
 -------------------
 * Proper handling of string parameters for fisheye camera
