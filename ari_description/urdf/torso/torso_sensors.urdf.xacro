@@ -55,7 +55,7 @@
   </sensor_t265>
 
   <!-- Optional SPRING cameras -->
-  <xacro:if value="${front_fisheye_camera}">
+  <xacro:if value="${has_front_fisheye_camera}">
     <!-- Front IMX179 Camera -->
     <link name="front_fisheye_camera_link">
       <inertial>
@@ -85,7 +85,7 @@
     <xacro:imx179_camera_gazebo name="front_fisheye_camera" topic="front_fisheye_camera" frame="front_fisheye_camera_optical_frame"/>
   </xacro:if>
 
-  <xacro:if value="${back_fisheye_camera}">
+  <xacro:if value="${has_back_fisheye_camera}">
     <!-- Back IMX179 Camera -->
     <link name="rear_fisheye_camera_link">
       <inertial>
