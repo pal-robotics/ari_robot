@@ -15,11 +15,13 @@
   <xacro:arg name="front_fisheye_camera" default="false"/>
   <xacro:arg name="back_fisheye_camera" default="false"/>
   <xacro:arg name="camera_model_head" default="raspi"/>
+  <xacro:arg name="has_thermal" default="false"/>
   <xacro:property name="end_effector_right" value="$(arg end_effector_right)" />
   <xacro:property name="end_effector_left" value="$(arg end_effector_left)" />
   <xacro:property name="front_fisheye_camera" value="$(arg front_fisheye_camera)" />
   <xacro:property name="back_fisheye_camera" value="$(arg back_fisheye_camera)" />
   <xacro:property name="camera_model_head" value="$(arg camera_model_head)"/>
+  <xacro:property name="has_thermal" value="$(arg has_thermal)"/>
   <xacro:arg name="multiple" default="false"/>
   <xacro:arg name="namespace" default=""/>
   <xacro:property name="is_multiple" value="$(arg multiple)" />
@@ -40,6 +42,10 @@
   <xacro:if value="${camera_model_head not in ['raspi', 'D435i']}">
     <xacro:wrong_camera_model/>
   </xacro:if>
+  <xacro:if value="${has_thermal not in ['true', True, 'false', False]}">
+    <xacro:wrong_thermal_camera/>
+  </xacro:if>
+
 
   <xacro:arg name="laser_model" default="false"/> <!-- false, hokuyo, sick-551, sick-561, sick-571-->
   <xacro:arg name="rgbd_sensors" default="false"/> <!-- false, true-->

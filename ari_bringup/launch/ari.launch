@@ -3,6 +3,7 @@
   <arg name="end_effector_right" default="ari-hand"/>
   <arg name="end_effector_left" default="ari-hand"/>
   <arg name="camera_model_head" default="raspi"/>
+  <arg name="has_thermal" default="false"/>
   <arg name="laser_model" default="false"/>
   <arg name="front_fisheye_camera" default="false"/>
   <arg name="back_fisheye_camera" default="false"/>
@@ -22,6 +23,7 @@
     <arg name="laser_model" value="$(arg laser_model)"/>
     <arg name="front_fisheye_camera" value="$(arg front_fisheye_camera)"/>
     <arg name="back_fisheye_camera" value="$(arg back_fisheye_camera)"/>
+    <arg name="has_thermal" value="$(arg has_thermal)"/>
   </include>
 
   <!-- ari_hardware parameters -->
