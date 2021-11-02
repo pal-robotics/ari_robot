@@ -2,8 +2,8 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.42 (2021-11-02)
+-------------------
 * Merge branch 'thermal-camera' into 'ferrum-devel'
   add has thermal parameter and tf link
   See merge request robots/ari_robot!40
