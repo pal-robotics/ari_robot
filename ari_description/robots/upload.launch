@@ -7,6 +7,7 @@
   <arg name="back_fisheye_camera" default="false"/>
   <arg name="laser_model"  default="false"/>
   <arg name="camera_model_head" default="raspi"/>
+  <arg name="has_thermal" default="false"/>
 
   <!-- Robot description -->
   <param name="robot_description"
@@ -18,6 +19,7 @@
     camera_model_head:=$(arg camera_model_head)
     front_fisheye_camera:=$(arg front_fisheye_camera)
     back_fisheye_camera:=$(arg back_fisheye_camera)
-    $(arg multi)" />
+    has_thermal:=$(arg has_thermal)
+    $(arg multi)"/>
   <rosparam command="load" file="$(find ari_description)/config/collision/collision_parameters.yaml" />
 </launch>
