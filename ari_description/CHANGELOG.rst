@@ -2,6 +2,14 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'thermal-camera' into 'ferrum-devel'
+  add has thermal parameter and tf link
+  See merge request robots/ari_robot!40
+* add has thermal parameter and tf link
+* Contributors: Sara Cooper, davidfernandez
+
 0.0.41 (2021-10-05)
 -------------------
 * Merge branch 'fisheye_pc_connect_option' into 'ferrum-devel'
