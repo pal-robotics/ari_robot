@@ -1,9 +1,13 @@
 <?xml version="1.0"?>
 <launch>
-  <include file="$(find ari_description)/robots/upload.launch" />
+  <arg name="version" default="v1"/>
+
+  <include file="$(find ari_description)/robots/upload.launch">
+    <arg name="version"  value="$(arg version)"/>
+  </include>
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" args="_use_gui:=True" />
 
-  <node name="rviz" pkg="rviz" type="rviz"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ari_description)/config/ari.rviz" />
 </launch>

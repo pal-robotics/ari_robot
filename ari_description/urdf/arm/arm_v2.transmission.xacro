@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!--
+
+  Copyright (c) 2019, PAL Robotics, S.L.
+  All rights reserved.
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="arm_simple_transmission" params="name side number reduction offset_value" >
+    <transmission name="${name}_${side}_${number}_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <actuator name="${name}_${side}_${number}_motor" >
+        <mechanicalReduction>${reduction}</mechanicalReduction>
+      </actuator>
+      <joint name="${name}_${side}_${number}_joint">
+        <offset>${offset_value}</offset>
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/JointStateInterface</hardwareInterface>
+      </joint>
+    </transmission>
+  </xacro:macro>
+
+  <xacro:macro name="finger_transmissions" params="finger_name act_name start reduction">
+
+    <!--First flexor-->
+    <transmission name="${finger_name}_virtual_1_trans">
+      <type>hey5_transmissions/Hey5Reducer</type>
+      <joint name="${finger_name}_virtual_1_joint">
+        <saturationLower>0.0</saturationLower>
+        <deadBandUpper>${start}</deadBandUpper>
+        <hardwareInterface>hardware_interface/JointStateInterface</hardwareInterface>
+      </joint>
+      <actuator name="${act_name}">
+        <mechanicalReduction>${reduction}</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <!--Second flexor-->
+    <transmission name="${finger_name}_virtual_2_trans">
+      <type>hey5_transmissions/Hey5Reducer</type>
+      <joint name="${finger_name}_virtual_2_joint">
+        <saturationLower>0.0</saturationLower>
+        <deadBandUpper>${start}</deadBandUpper>
+        <hardwareInterface>hardware_interface/JointStateInterface</hardwareInterface>
+      </joint>
+      <actuator name="${act_name}">
+        <mechanicalReduction>${reduction}</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>
+</robot>
