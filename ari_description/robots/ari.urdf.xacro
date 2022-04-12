@@ -84,6 +84,8 @@
       <xacro:include filename="$(find ari_description)/urdf/torso/torso_sensors_v2.urdf.xacro" /> <!-- Torso -->
       <xacro:include filename="$(find ari_description)/urdf/arm/arm_v2.urdf.xacro" />   <!-- Arms -->
       <xacro:include filename="$(find ari_description)/urdf/head/head_v2.urdf.xacro" /> <!-- head -->
+      <xacro:include filename="$(find ari_description)/urdf/arm/arm.urdf.xacro" />   <!-- Arms -->
+
   </xacro:if>
 
   <!-- Generic simulator_gazebo plugins -->
@@ -99,22 +101,22 @@
   <xacro:if value="${version == 'v1'}">
     
   <xacro:ari_arm name="arm" parent="base_link" side="left" reflect="1" end_effector="${end_effector_left == 'ari-hand'}">
-    <origin xyz="-0.219 0.097624 1.1111" rpy="${105.0 * deg_to_rad} ${0.0 * deg_to_rad} ${-180.0 * deg_to_rad}" />
+    <origin xyz="-0.219 0.097624 1.1111" rpy="${105.0 * deg_to_rad} ${0.0 * deg_to_rad} ${180* deg_to_rad}" />
   </xacro:ari_arm>
 
   <xacro:ari_arm name="arm" parent="base_link" side="right" reflect="-1" end_effector="${end_effector_right == 'ari-hand'}">
-    <origin xyz="-0.219 -0.097624 1.1111" rpy="${-105.0 * deg_to_rad} ${0.0 * deg_to_rad} ${180.0 * deg_to_rad}" />
+    <origin xyz="-0.219 -0.097624 1.1111" rpy="${-105.0 * deg_to_rad} ${0.0 * deg_to_rad} ${-180* deg_to_rad}" />
   </xacro:ari_arm>
   </xacro:if>
 
 
-  <xacro:if value="${version == 'v1'}">
+  <xacro:if value="${version == 'v2'}">
 
   <xacro:ari_arm_v2 name="arm_2" parent="base_link" side="left" reflect="1" end_effector="${end_effector_left == 'ari-hand'}">
-    <origin xyz="-0.22 0.08146 1.153" rpy="${-15* deg_to_rad} ${0 * deg_to_rad} ${0 * deg_to_rad}" />
+    <origin xyz="-0.22 0.08146 1.153" rpy="${0* deg_to_rad} ${0 * deg_to_rad} ${0 * deg_to_rad}" />
   </xacro:ari_arm_v2>
   <xacro:ari_arm_v2 name="arm_2" parent="base_link" side="right" reflect="-1" end_effector="${end_effector_right == 'ari-hand'}">
-    <origin xyz="-0.22 -0.08146 1.153" rpy="${105 * deg_to_rad} ${0 * deg_to_rad} ${0 * deg_to_rad}" />
+    <origin xyz="-0.22 -0.08146 1.153" rpy="${180* deg_to_rad} ${0* deg_to_rad} ${0 * deg_to_rad}" />
   </xacro:ari_arm_v2>
 
   </xacro:if>
