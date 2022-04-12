@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<!--
+  Copyright (c) 2022, PAL Robotics, S.L.
+  All rights reserved.
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="torso_rgbd" params="name *origin">
+
+<!-- rgbd_link-->
+ <link name="${name}_link">
+    <inertial>
+      <origin xyz="0.0013378 0.0011309 0.012505" rpy="0 0 0" />
+      <mass value="0.036388" />
+      <inertia ixx="2.2922E-05" ixy="9.4417E-08" ixz="-3.8804E-09"
+               iyy="2.2578E-06" iyz="-9.4603E-09" izz="2.1893E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ari_description/meshes/sensors/torso_v2_rgbd.stl" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ari_description/meshes/sensors/torso_v2_rgbd.stl" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="${name}_joint" type="fixed">
+    <xacro:insert_block name="origin"/>
+    <parent link="base_link" />
+    <child link="${name}_link" />
+  </joint>
+
+  </xacro:macro>
+</robot>
+

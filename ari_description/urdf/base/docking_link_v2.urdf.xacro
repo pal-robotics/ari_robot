@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<!--
+  Copyright (c) 2022, PAL Robotics, S.L.
+  All rights reserved.
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="docking_link" params="name *origin">
+
+
+  <!-- Docking Link -->
+  <link name="${name}_link">
+      <inertial>
+          <origin xyz="0.0098732 -2.4791E-05 4.6693E-05" rpy="0 0 0"/>
+          <mass value="0.050642" />
+          <inertia ixx="4.9615E-05" ixy="1.6201E-09" ixz="-1.7454E-08"
+                   iyy="2.2318E-05" iyz="1.0152E-09" izz="3.4652E-05" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ari_description/meshes/base/docking_joint_v2.stl" />
+        </geometry>
+        <material name="">
+          <color rgba="0.25098 0.25098 0.25098 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ari_description/meshes/base/docking_joint_v2.stl" />
+        </geometry>
+      </collision>      
+  </link>
+
+  <joint name="${name}_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="${name}_link"/>
+      <xacro:insert_block name="origin"/>
+  </joint>
+
+  </xacro:macro>
+</robot>
+

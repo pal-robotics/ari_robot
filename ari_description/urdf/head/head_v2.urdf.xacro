@@ -43,31 +43,23 @@
   <xacro:macro name="head_1" params="name parent">
     <link name="${name}_link">
     <inertial>
-      <origin
-        xyz="0.0108359726631008 0.000718390176517933 0.0855378659235452"
-        rpy="0 0 0" />
-      <mass
-        value="0.412082934872394" />
-      <inertia
-        ixx="0.000403841240088291"
-        ixy="-2.50683274214796E-07"
-        ixz="-1.29761673527528E-05"
-        iyy="0.000282783550645599"
-        iyz="-1.48768048583041E-09"
-        izz="0.000403570643105203" />
-    </inertial>
+      <origin xyz="0.0108359726631008 0.000718390176517933 0.0855378659235452" rpy="0 0 0"/>
+      <mass value="0.412082934872394" />
+      <inertia ixx="0.000403841240088291" ixy="-2.50683274214796E-07" ixz="-1.29761673527528E-05"
+               iyy="0.000282783550645599" iyz="-1.48768048583041E-09"
+               izz="0.000403570643105203" />
+      </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-        <mesh
-          filename="package://ari_head/meshes/head_1_link.STL" />
+          <mesh filename="package://ari_description/meshes/head/head_1_v2.stl" scale="1 1 1"/>
         </geometry>
         <material name="White" />
       </visual>
       <collision>
         <origin xyz="0.0 0 0" rpy="0 0 0.0" />
         <geometry>
-          <mesh filename="package://ari_head/meshes/head_1_link.STL" scale="1 1 1"/>
+          <mesh filename="package://ari_description/meshes/head/head_1_v2.stl" scale="1 1 1"/>
         </geometry>
         <material name="White" />
       </collision>
@@ -107,31 +99,24 @@
   <!--************************-->
   <xacro:macro name="head_2" params="name parent">
     <link name="${name}_link">
-    <inertial>
-      <origin
-        xyz="0.00794853114293399 0.10682927811673 -0.0216446425740413"
-        rpy="0 0 0" />
-      <mass
-        value="0.943484631730919" />
-      <inertia
-        ixx="0.00356848001507154"
-        ixy="0.000577244872529115"
-        ixz="2.42088792789485E-08"
-        iyy="0.00239180242384949"
-        iyz="-6.2275127757022E-07"
-        izz="0.00306783859370423" />
-    </inertial>
+      <inertial>
+        <origin xyz="0.00794853114293399 0.10682927811673 -0.0216446425740413" rpy="0 0 0"/>
+        <mass value="0.943484631730919"/>
+        <inertia ixx="0.00356848001507154" ixy="0.000577244872529115" ixz="2.42088792789485E-08"
+                 iyy="0.00239180242384949" iyz="-6.2275127757022E-07"
+                 izz="0.00306783859370423" />
+      </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_head/meshes/head_2_link.STL" scale="1 1 1"/>
+          <mesh filename="package://ari_description/meshes/head/head_2_v2.stl" scale="1 1 1"/>
         </geometry>
         <material name="White" />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_head/meshes/head_2_link.STL" scale="1 1 1"/>
+          <mesh filename="package://ari_description/meshes/head/head_2_v2.stl" scale="1 1 1"/>
         </geometry>
         <material name="White" />
       </collision>
@@ -140,9 +125,7 @@
     <joint name="${name}_joint" type="revolute">
       <parent link="${parent}"/>
       <child link="${name}_link"/>
-      <origin
-      xyz="0.0425 0.022 0.1011"
-      rpy="1.5708 0 -3.1416" />
+      <origin xyz="0.0425 0.022 0.1011" rpy="1.5708 0 -3.1416" />
       <axis xyz="0 0 -1" />
       <limit lower="-0.261" upper="0.436" effort="3.26" velocity="${head_max_vel}" />
       <dynamics damping="${head_damping}" friction="${head_friction}"/>
