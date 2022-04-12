@@ -176,7 +176,7 @@
       <child link="${name}_${side}_3_link" />
       <origin xyz="-0.023833 ${0.1003 * reflect} -0.008"
               rpy="${(90 - 5.00192155 * reflect) * deg_to_rad} ${90 * deg_to_rad} 0" />
-      <axis xyz="0 0 ${1*reflect}" />
+      <axis xyz="0 0 1" />
       <limit lower="-2.09" upper="2.09" effort="${arm_3_max_effort}" velocity="${arm_3_max_vel}" />
       <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
 
@@ -238,10 +238,10 @@
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <xacro:if value="${end_effector}">
-            <mesh filename="package://ari_left_arm/meshes/arm_left_4_link.STL" scale="1 ${reflect} 1"/>
+            <mesh filename="package://ari_left_arm/meshes/arm_left_4_link.STL" scale="${reflect} 1 1"/>
           </xacro:if>
           <xacro:unless value="${end_effector}">
-            <mesh filename="package://ari_left_arm/meshes/arm_left_4_link.STL" scale="1 ${reflect} 1"/>
+            <mesh filename="package://ari_left_arm/meshes/arm_left_4_link.STL" scale="${reflect} 1 1"/>
           </xacro:unless>
         </geometry>
       </collision>
