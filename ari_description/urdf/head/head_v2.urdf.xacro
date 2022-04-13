@@ -60,7 +60,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ari_description/meshes/head/head_base_v2.stl" scale="1 1 1"/>
+          <mesh filename="package://ari_description/meshes/head/head_base_v2.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <launch>
   <arg name="multi" default=""/>
-  <arg name="end_effector_right" default="ari-hand"/>
-  <arg name="end_effector_left" default="ari-hand"/>
+  <arg name="end_effector_right" default="$(eval {'v1': 'ari-hand', 'v2': 'false'}.get(arg('robot_model'), 'false'))"/>
+  <arg name="end_effector_left" default="$(eval {'v1': 'ari-hand', 'v2': 'false'}.get(arg('robot_model'), 'false'))"/>
   <arg name="robot_model" default="v1"/>
 
   <arg name="test_suffix" value="$(arg robot_model)-$(arg end_effector_right)-$(arg end_effector_left)"/>

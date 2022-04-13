@@ -18,15 +18,15 @@
 
 
   <!-- Wheel characteristics -->
-  <xacro:property name="wheel_radius"     value="0.125"/>
-  <xacro:property name="wheel_width"      value="0.075"/>
+  <xacro:property name="wheel_radius"     value="0.11"/>
+  <xacro:property name="wheel_width"      value="0.06"/>
   <xacro:property name="wheel_separation" value="0.4668"/>
   <xacro:property name="wheel_torque"     value="6.0"/>
   <xacro:property name="wheel_velocity"   value="1.0"/>
 
   <!-- Caster wheel characteristics -->
-  <xacro:property name="caster_radius"       value="0.045"/>
-  <xacro:property name="caster_width"        value="0.055"/>
+  <xacro:property name="caster_radius"       value="0.040"/>
+  <xacro:property name="caster_width"        value="0.045"/>
   <xacro:property name="caster_separation_x" value="0.91"/>
   <xacro:property name="caster_offset_y"     value="0.0875"/>
   <xacro:property name="caster_offset_z"     value="-0.0305"/>

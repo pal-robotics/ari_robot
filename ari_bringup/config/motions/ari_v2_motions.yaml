@@ -1,0 +1,207 @@
+play_motion:
+  motions:
+    start_ari:
+      joints: [arm_left_1_joint, arm_left_2_joint, arm_left_3_joint, arm_left_4_joint, arm_left_5_joint, arm_right_1_joint, arm_right_2_joint, arm_right_3_joint, arm_right_4_joint, arm_right_5_joint, head_1_joint, head_2_joint]
+      points:
+        - time_from_start: 0
+          positions: [0.2013, 0.2118, 0.01, 0.07, 0.0, 0.1989, 0.1999, 0.0302, 0.07, 0.0, 0.0001, -0.0003]
+        - time_from_start: 2
+          positions: [-0.2005, 0.07, 0.0385, 0.4014, 0.0, -0.2007, 0.07, 0.051, 0.402, 0.0, 0, -0.0078]
+      meta:
+        name: Start ARI
+        usage: Position
+        description: Default ARI position
+    bow:
+      joints: [arm_left_1_joint, arm_left_2_joint, arm_left_3_joint, arm_left_4_joint, arm_left_5_joint, arm_right_1_joint, arm_right_2_joint, arm_right_3_joint, arm_right_4_joint, arm_right_5_joint, head_1_joint, head_2_joint]
+      points:
+        - time_from_start: 0
+          positions: [-0.201, 0.07, 0.0372, 0.4028, 0.0, -0.2014, 0.07, 0.0462, 0.404, 0.0, 0, -0.0078]
+        - time_from_start: 2
+          positions: [-0.403, 0.07, 0.0365,  0.2869, 0.0, -0.4006, 0.07, 0.0496, 0.3064, 0.0, -0.0001, 0.2957]
+        - time_from_start: 2.5
+          positions: [-0.403, 0.07, 0.0365, 0.2869, 0.0, -0.4006, 0.07, 0.0496, 0.3064, 0.0, -0.0001, 0.2957]
+        - time_from_start: 3.5
+          positions: [-0.201, 0.07, 0.0372, 0.4028, 0.0, -0.2014, 0.07, 0.0462, 0.404, 0.0, 0, -0.0078]
+      meta:
+        name: Bow
+        usage: Entertainment
+        description: Bow the head
+    wave:
+      joints: [arm_left_1_joint, arm_left_2_joint, arm_left_3_joint, arm_left_4_joint, arm_left_5_joint, arm_right_1_joint, arm_right_2_joint, arm_right_3_joint, arm_right_4_joint, arm_right_5_joint]
+      points:
+        - time_from_start: 0
+          positions: [-0.2015, 0.07, 0.0362, 0.4042, 0.0, -0.2021, 0.07, 0.0419, 0.4059, 0.0]
+        - time_from_start: 2.5
+          positions: [-0.2007, 0.1675, 0.0383, 0.4018, 0.0, -0.2108, 1.6262, 1.8852, 0.4113, 0.0]
+        - time_from_start: 4
+          positions: [-0.2008, 0.1677, 0.0384, 0.4019, 0.0, -0.222, 1.6299, 1.9126, 1.8484, 0.0]
+        - time_from_start: 5
+          positions: [-0.2007, 0.1677, 0.0385, 0.4018, 0.0, -0.2216, 1.6296, 1.9161, 1.1482, 0.0]
+        - time_from_start: 6
+          positions: [-0.2014, 0.167, 0.0373, 0.4035, 0.0, -0.224, 1.6294, 1.9233, 1.8481, 0.0]
+        - time_from_start: 7.5
+          positions: [-0.2007, 0.1675, 0.0383, 0.4018, 0.0, -0.2108, 1.6262, 1.8852, 0.4113, 0.0]
+        - time_from_start: 10
+          positions: [-0.2015, 0.07, 0.0362, 0.4042, 0.0, -0.2021, 0.07, 0.0419, 0.4059, 0.0]
+      meta:
+        name: Wave
+        usage: Entertainment
+        description: Wave right hand
+    look_around:
+      joints: [head_1_joint, head_2_joint]
+      points:
+        - time_from_start: 0
+          positions: [-0.0002, -0.008]
+        - time_from_start: 2
+          positions: [-0.9417, 0.1285]
+        - time_from_start: 6
+          positions: [0.9417, 0.1285]
+        - time_from_start: 8
+          positions: [-0.0002, -0.008]
+      meta:
+        name: Look Around
+        usage: Entertainment
+        description: Look around itself
+    nod:
+      joints: [head_1_joint, head_2_joint]
+      points:
+        - time_from_start: 0
+          positions: [-0.0002, -0.007]
+        - time_from_start: 0.5
+          positions: [0, -0.1597]
+        - time_from_start: 1.2
+          positions: [-0.0001, 0.165]
+        - time_from_start: 2.2
+          positions: [-0.0002, -0.007]
+      meta:
+        name: Nod
+        usage: Entertainment
+        description: Nod head
+    show_left:
+      joints: [arm_left_1_joint, arm_left_2_joint, arm_left_3_joint, arm_left_4_joint, arm_left_5_joint, arm_right_1_joint, arm_right_2_joint, arm_right_3_joint, arm_right_4_joint, arm_right_5_joint, head_1_joint, head_2_joint]
+      points:
+        - time_from_start: 0
+          positions: [-0.202, 0.07, 0.0351, 0.4055, 0.0, -0.2009, 0.07, 0.0298, 0.4038, 0.0, -0.0003, -0.007]
+        - time_from_start: 2
+          positions: [0.3299, 0.1818, 1.0512, 0.3548, 0.0, -0.1985, 0.24, -0.5604, 0.3982, 0.0, 0.5204, 0.0895]
+        - time_from_start: 3.5
+          positions: [-0.202, 0.07, 0.0351, 0.4055, 0.0, -0.2009, 0.07, 0.0298, 0.4038, 0.0, -0.0003, -0.007]
+      meta:
+        name: Show Left
+        usage: Entertainment
+        description: Point to the left
+    show_right:
+      joints: [arm_left_1_joint, arm_left_2_joint, arm_left_3_joint, arm_left_4_joint, arm_left_5_joint, arm_right_1_joint, arm_right_2_joint, arm_right_3_joint, arm_right_4_joint, arm_right_5_joint, head_1_joint, head_2_joint]
+      points:
+        - time_from_start: 0
+          positions: [-0.2009, 0.07, 0.0298, 0.4038, 0.0, -0.202, 0.07, 0.0351, 0.4055, 0.0, -0.0003, -0.007]
+        - time_from_start: 2
+          positions: [-0.1985, 0.24, -0.5604, 0.3982, 0.0, 0.3299, 0.1818, 1.0512, 0.3548, 0.0, -0.5204, 0.0895]
+        - time_from_start: 3.5
+          positions: [-0.2009, 0.07, 0.0298, 0.4038, 0.0, -0.202, 0.07, 0.0351, 0.4055, 0.0, -0.0003, -0.007]
+      meta:
+        name: Show Right
+        usage: Entertainment
+        description: Point to the right
+    shake_right:
+      joints: [arm_left_1_joint, arm_left_2_joint, arm_left_3_joint, arm_left_4_joint, arm_left_5_joint, arm_right_1_joint, arm_right_2_joint, arm_right_3_joint, arm_right_4_joint, arm_right_5_joint]
+      points:
+        - time_from_start: 0
+          positions: [-0.201, 0.07, 0.0365, 0.4028, 0.0, -0.2014, 0.07, 0.0462, 0.404, 0.0]
+        - time_from_start: 2.5
+          positions: [-0.2016, 0.07, 0.0347, 0.4042, 0.0, -0.4934, 0.2399, 0.0899, 2.0817, 0.0]
+        - time_from_start: 2.7
+          positions: [-0.2016, 0.07, 0.0347, 0.4042, 0.0, -0.4934, 0.2399, 0.0899, 2.0817, 0.0]
+        - time_from_start: 3.7
+          positions: [-0.202, 0.07, 0.0332, 0.4055, 0.0, -0.4071, 0.2399, 0.09, 1.7316, 0.0]
+        - time_from_start: 4.7
+          positions: [-0.2016, 0.07, 0.0347, 0.4042, 0.0, -0.4934, 0.2399, 0.0899, 2.0817, 0.0]
+        - time_from_start: 5.7
+          positions: [-0.202, 0.07, 0.0332, 0.4055, 0.0, -0.4071, 0.2399, 0.09, 1.7316, 0.0]
+        - time_from_start: 5.8
+          positions: [-0.202, 0.07, 0.0332, 0.4055, 0.0, -0.4071, 0.2399, 0.09, 1.7316, 0.0]
+        - time_from_start: 7.8
+          positions: [-0.201, 0.07, 0.0365, 0.4028, 0.0, -0.2014, 0.07, 0.0462, 0.404, 0.0]
+      meta:
+        name: Shake Right
+        usage: Entertainment
+        description: Shake right hand
+    shake_left:
+      joints: [arm_left_1_joint, arm_left_2_joint, arm_left_3_joint, arm_left_4_joint, arm_left_5_joint, arm_right_1_joint, arm_right_2_joint, arm_right_3_joint, arm_right_4_joint, arm_right_5_joint]
+      points:
+        - time_from_start: 0
+          positions: [-0.2014, 0.07, 0.0462, 0.404, 0.0, -0.201, 0.07, 0.0365, 0.4028, 0.0]
+        - time_from_start: 2.5
+          positions: [-0.4934, 0.2399, 0.0899, 2.0817, 0.0, -0.2016, 0.07, 0.0347, 0.4042, 0.0]
+        - time_from_start: 2.7
+          positions: [-0.4934, 0.2399, 0.0899, 2.0817, 0.0, -0.2016, 0.07, 0.0347, 0.4042, 0.0]
+        - time_from_start: 3.7
+          positions: [-0.4071, 0.2399, 0.09, 1.7316, 0.0, -0.202, 0.07, 0.0332, 0.4055, 0.0]
+        - time_from_start: 4.7
+          positions: [-0.4934, 0.2399, 0.0899, 2.0817, 0.0, -0.2016, 0.07, 0.0347, 0.4042, 0.0]
+        - time_from_start: 5.7
+          positions: [-0.4071, 0.2399, 0.09, 1.7316, 0.0, -0.202, 0.07, 0.0332, 0.4055, 0.0]
+        - time_from_start: 5.8
+          positions: [-0.4071, 0.2399, 0.09, 1.7316, 0.0, -0.202, 0.07, 0.0332, 0.4055, 0.0]
+        - time_from_start: 7.8
+          positions: [-0.2014, 0.07, 0.0462, 0.404, 0.0, -0.201, 0.07, 0.0365, 0.4028, 0.0]
+      meta:
+        name: Shake Left
+        usage: Entertainment
+        description: Shake left hand
+##################### Alive motions #########################################################
+    alive_1:
+      joints: [arm_left_1_joint, arm_left_2_joint, arm_left_3_joint, arm_left_4_joint, arm_left_5_joint, arm_right_1_joint, arm_right_2_joint, arm_right_3_joint, arm_right_4_joint, arm_right_5_joint]
+      points:
+        - time_from_start: 0
+          positions: [-0.2811, 0.07, 0.1611, 0.493, 0.0, -0.199, 0.1299, -0.1354, 0.3981, 0.0]
+    alive_2:
+      joints: [arm_left_1_joint, arm_left_2_joint, arm_left_3_joint, arm_left_4_joint, arm_left_5_joint, arm_right_1_joint, arm_right_2_joint, arm_right_3_joint, arm_right_4_joint, arm_right_5_joint]
+      points:
+        - time_from_start: 0
+          positions: [0.0824, 0.07, 0.0314, 0.07, 0.0, -0.0777, 0.07, 0.0227, 0.2372, 0.0]
+    alive_3:
+      joints: [arm_left_1_joint, arm_left_2_joint, arm_left_3_joint, arm_left_4_joint, arm_left_5_joint, arm_right_1_joint, arm_right_2_joint, arm_right_3_joint, arm_right_4_joint, arm_right_5_joint, head_1_joint, head_2_joint]
+      points:
+        - time_from_start: 0
+          positions: [-0.2007, 0.07, 0.0238, 0.1727, 0.0, -0.1996, 0.07, 0.0347, 0.6265, 0.0, 0.2475, 0.0705]
+    alive_4:
+      joints: [arm_left_1_joint, arm_left_2_joint, arm_left_3_joint, arm_left_4_joint, arm_left_5_joint, arm_right_1_joint, arm_right_2_joint, arm_right_3_joint, arm_right_4_joint, arm_right_5_joint, head_1_joint, head_2_joint]
+      points:
+        - time_from_start: 0
+          positions: [-0.1996, 0.07, 0.0347, 0.6265, 0.0, -0.2007, 0.07, 0.0238, 0.1727, 0.0, -0.2475, 0.0705]
+    alive_5:
+      joints: [arm_left_1_joint, arm_left_2_joint, arm_left_3_joint, arm_left_4_joint, arm_left_5_joint, arm_right_1_joint, arm_right_2_joint, arm_right_3_joint, arm_right_4_joint, arm_right_5_joint]
+      points:
+        - time_from_start: 0
+          positions: [-0.201, 0.07, 0.0374, 0.4027, 0.0, -0.1999, 0.07, 0.0389, 0.3999, 0.0]
+        - time_from_start: 1
+          positions: [-0.0783, 0.1038, 0.3, 0.2358, 0.0, -0.0783, 0.1038, 0.3, 0.2358, 0.0]
+        - time_from_start: 2
+          positions: [-0.201, 0.07, 0.0374, 0.4027, 0.0, -0.1999, 0.07, 0.0389, 0.3999, 0.0]
+    alive_6:
+      joints: [arm_left_1_joint, arm_left_2_joint, arm_left_3_joint, arm_left_4_joint, arm_left_5_joint, arm_right_1_joint, arm_right_2_joint, arm_right_3_joint, arm_right_4_joint, arm_right_5_joint]
+      points:
+        - time_from_start: 0
+          positions: [-0.201, 0.07, 0.0374, 0.4027, 0.0, -0.1999, 0.07, 0.0388, 0.3999, 0.0]
+        - time_from_start: 0.75
+          positions: [-0.2015, 0.07, 0.0364, 0.4039, 0.0, 0.0841, 0.07, 0.011, 0.1665, 0.0]
+        - time_from_start: 1.5
+          positions: [0.0841, 0.07, 0.011, 0.1665, 0.0, -0.1999, 0.07, 0.0388, 0.3999, 0.0]
+        - time_from_start: 2.25
+          positions: [-0.2015, 0.07, 0.0364, 0.4039, 0.0, 0.0841, 0.07, 0.011, 0.1665, 0.0]
+        - time_from_start: 3
+          positions: [-0.201, 0.07, 0.0374, 0.4027, 0.0, -0.1999, 0.07, 0.0388, 0.3999, 0.0]
+    alive_7:
+      joints: [arm_right_2_joint, arm_right_3_joint, head_1_joint, head_2_joint]
+      points:
+        - time_from_start: 0.75
+          positions: [0.07, 0.0261, 0.2478, -0.0765]
+        - time_from_start: 2
+          positions: [0.07, 0.0261, -0.2138, -0.0796]
+        - time_from_start: 2.75
+          positions: [0.07, 0.0261, -0.0003, -0.0208]
+      meta:     
+        name: alive_7
+        usage: Entertainment
+        description: alive_7

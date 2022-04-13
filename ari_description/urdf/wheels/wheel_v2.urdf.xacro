@@ -11,8 +11,8 @@ Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find ari_description)/urdf/wheels/wheel_v2.transmission.xacro"/>
-  <xacro:include filename="$(find ari_description)/urdf/wheels/wheel_v2.gazebo.xacro"/>
+  <xacro:include filename="$(find ari_description)/urdf/wheels/wheel.transmission.xacro"/>
+  <xacro:include filename="$(find ari_description)/urdf/wheels/wheel.gazebo.xacro"/>
 
   <xacro:macro name="wheel" params="side reflect radius width torque velocity separation parent">
     <link name="wheel_${side}_link">
@@ -24,7 +24,7 @@ Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041
                izz="0.0052531" />
     </inertial>
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="${-90 * deg_to_rad}  0 0"/>
         <geometry>
           <mesh filename="package://ari_description/meshes/wheels/wheel_${side}_v2.stl"/>
         </geometry>
@@ -33,7 +33,7 @@ Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://ari_description/meshes/wheels/wheel_${side}_v2.stl"/>
+          <cylinder radius="${radius}" length="${width}"/>
         </geometry>
       </collision>
       <kinematic>0</kinematic>
@@ -43,7 +43,7 @@ Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041
     <joint name="wheel_${side}_joint" type="continuous">
       <parent link="${parent}_link"/>
       <child link="wheel_${side}_link"/>
-      <origin xyz="0 ${ -separation / 2 * reflect} 0" rpy="${0 * deg_to_rad} 0 0"/>
+      <origin xyz="0 ${ -separation / 2 * reflect} 0" rpy="${90 * deg_to_rad} 0 0"/>
       <axis xyz="0 0 -1"/>
       <limit effort="${torque}" velocity="${velocity / radius}"/>
     </joint>
