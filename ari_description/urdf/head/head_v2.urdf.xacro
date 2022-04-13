@@ -36,18 +36,55 @@
   <xacro:property name="head_realsense_camera_orientation_y" value="0.0" />
 
 
+  <!--************************-->
+  <!--     HEAD_BASE      -->
+  <!--************************-->
+  <xacro:macro name="head_base" params="name parent *origin">
+  <link name="${name}_link">
+    <inertial>
+      <origin xyz="-0.00406523261695301 -3.93936576016644E-07 -0.00318633301671067" rpy="0 0 0" />
+      <mass value="0.290303604157557" />
+      <inertia ixx="0.000162069220741414" ixy="3.38502459197505E-09" ixz="3.94315158828544E-07"
+               iyy="0.000224608966414537" iyz="-1.18032425456855E-09"
+               izz="0.000359230346366051" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+          <mesh filename="package://ari_description/meshes/head/head_base_v2.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://ari_description/meshes/head/head_base_v2.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="${name}_joint" type="fixed">
+    <xacro:insert_block name="origin"/>
+    <child link="${name}_link" />
+    <parent link="${parent}"/>
+  </joint>
+
+  </xacro:macro>
+
 
   <!--************************-->
   <!--     HEAD_1 (PAN)       -->
   <!--************************-->
   <xacro:macro name="head_1" params="name parent">
     <link name="${name}_link">
-    <inertial>
-      <origin xyz="0.0108359726631008 0.000718390176517933 0.0855378659235452" rpy="0 0 0"/>
-      <mass value="0.412082934872394" />
-      <inertia ixx="0.000403841240088291" ixy="-2.50683274214796E-07" ixz="-1.29761673527528E-05"
-               iyy="0.000282783550645599" iyz="-1.48768048583041E-09"
-               izz="0.000403570643105203" />
+      <inertial>
+        <origin xyz="0.0108359726631008 0.000718390176517933 0.0855378659235452" rpy="0 0 0"/>
+        <mass value="0.412082934872394" />
+        <inertia ixx="0.000403841240088291" ixy="-2.50683274214796E-07" ixz="-1.29761673527528E-05"
+                 iyy="0.000282783550645599" iyz="-1.48768048583041E-09"
+                 izz="0.000403570643105203" />
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -68,15 +105,15 @@
     <joint name="${name}_joint" type="revolute">
       <parent link="${parent}"/>
       <child link="${name}_link"/>
-      <origin xyz="-0.22 0 1.207"  rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <axis xyz="0 0 1" />
-      <limit lower="-1.3" upper="1.3" effort="3.4" velocity="${head_max_vel}" />
+      <limit lower="${-75 * deg_to_rad}" upper="${75 * deg_to_rad}" effort="3.4" velocity="${head_max_vel}" />
       <dynamics damping="${head_damping}" friction="${head_friction}"/>
 
       <safety_controller k_position="20"
                          k_velocity="20"
-                         soft_lower_limit="-1.3"
-                         soft_upper_limit="1.3" />
+                         soft_lower_limit="${-75 * deg_to_rad}"
+                         soft_upper_limit="${75 * deg_to_rad}" />
     </joint>
 
     <gazebo reference="${name}_link">
@@ -109,14 +146,14 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/head/head_2_v2.stl" scale="1 1 1"/>
+          <mesh filename="package://ari_description/meshes/head/head_2_v2.stl" scale="-1 1 -1"/>
         </geometry>
         <material name="White" />
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/head/head_2_v2.stl" scale="1 1 1"/>
+          <mesh filename="package://ari_description/meshes/head/head_2_v2.stl" scale="-1 1 -1"/>
         </geometry>
         <material name="White" />
       </collision>
@@ -125,7 +162,7 @@
     <joint name="${name}_joint" type="revolute">
       <parent link="${parent}"/>
       <child link="${name}_link"/>
-      <origin xyz="0.0425 0.022 0.1011" rpy="1.5708 0 -3.1416" />
+      <origin xyz="0.0425 0.022 0.1011" rpy="${90.0 * deg_to_rad} 0 ${0 * deg_to_rad}" />
       <axis xyz="0 0 -1" />
       <limit lower="-0.261" upper="0.436" effort="3.26" velocity="${head_max_vel}" />
       <dynamics damping="${head_damping}" friction="${head_friction}"/>
@@ -185,7 +222,7 @@
   </link>
 
   <joint name="${name}_joint" type="fixed">
-    <origin xyz="0.0633629998680001 0.181996035631448 0" rpy="${-90 * deg_to_rad} 0 0" />
+    <origin xyz="0.0633629998680001 0.181996035631448 0.022" rpy="${-90 * deg_to_rad} 0 0" />
     <parent link="${parent}" />
     <child link="${name}_link" />
     <axis xyz="0 0 0" />
@@ -251,7 +288,10 @@
 
 
   <xacro:macro name="head" params="name parent">
-    <xacro:head_1 name="${name}_1" parent="${parent}" />
+    <xacro:head_base name="${name}_base" parent="${parent}">
+      <origin xyz="-0.22 0.0 1.207" rpy="0 0 0" />
+    </xacro:head_base>
+    <xacro:head_1 name="${name}_1" parent="${name}_base_link" />
     <xacro:head_2 name="${name}_2" parent="${name}_1_link"/>
     <xacro:if value="${camera_model_head == 'raspi'}">
       <xacro:head_front_camera name="${name}_front_camera" parent="${name}_2_link"/>
