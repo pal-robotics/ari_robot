@@ -95,13 +95,12 @@
   <xacro:head name="head" parent="base_link"/>
 
   <xacro:if value="${version == 'v1'}">
-    
-  <xacro:ari_arm name="arm" parent="base_link" side="left" reflect="1" end_effector="${end_effector_left == 'ari-hand'}">
-    <origin xyz="-0.219 0.097624 1.1111" rpy="${105.0 * deg_to_rad} ${0.0 * deg_to_rad} ${180* deg_to_rad}" />
-  </xacro:ari_arm>
 
+  <xacro:ari_arm name="arm" parent="base_link" side="left" reflect="1" end_effector="${end_effector_left == 'ari-hand'}">
+    <origin xyz="-0.219 0.097624 1.1111" rpy="${105.0 * deg_to_rad} ${0.0 * deg_to_rad} ${-180.0 * deg_to_rad}" />
+  </xacro:ari_arm>
   <xacro:ari_arm name="arm" parent="base_link" side="right" reflect="-1" end_effector="${end_effector_right == 'ari-hand'}">
-    <origin xyz="-0.219 -0.097624 1.1111" rpy="${-105.0 * deg_to_rad} ${0.0 * deg_to_rad} ${-180* deg_to_rad}" />
+    <origin xyz="-0.219 -0.097624 1.1111" rpy="${-105.0 * deg_to_rad} ${0.0 * deg_to_rad} ${180.0 * deg_to_rad}" />
   </xacro:ari_arm>
   </xacro:if>
 
