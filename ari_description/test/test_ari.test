@@ -3,11 +3,13 @@
   <arg name="multi" default=""/>
   <arg name="end_effector_right" default="ari-hand"/>
   <arg name="end_effector_left" default="ari-hand"/>
+  <arg name="version" default="v1"/>
 
-  <arg name="test_suffix" value="$(arg end_effector_right)-$(arg end_effector_left)"/>
+  <arg name="test_suffix" value="${version}-$(arg end_effector_right)-$(arg end_effector_left)"/>
   <include file="$(find ari_description)/robots/upload.launch">
     <arg name="end_effector_right" value="$(arg end_effector_right)"/>
     <arg name="end_effector_left" value="$(arg end_effector_left)"/>
+    <arg name="version" default="v1"/>
   </include>
   <include file="$(find urdf_test)/launch/test_urdf.launch">
     <arg name="get_description" value="true"/>

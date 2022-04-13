@@ -15,8 +15,7 @@
   <xacro:include filename="$(find ari_description)/urdf/wheels/wheel_v2.urdf.xacro"/>
   <xacro:include filename="$(find ari_description)/urdf/wheels/caster_v2.urdf.xacro"/>
   <xacro:include filename="$(find ari_description)/urdf/base/docking_link_v2.urdf.xacro"/>
-  <xacro:include filename="$(find ari_description)/urdf/sensors/torso_v2_rgbd.urdf.xacro"/>
-  <xacro:include filename="$(find ari_description)/urdf/sensors/torso_v2_265.urdf.xacro"/>
+
 
   <!-- Wheel characteristics -->
   <xacro:property name="wheel_radius"     value="0.125"/>
