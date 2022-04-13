@@ -11,7 +11,7 @@
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <xacro:include filename="$(find ari_description)/urdf/wheels/caster_v2.gazebo.xacro"/>
+  <xacro:include filename="$(find ari_description)/urdf/wheels/caster.gazebo.xacro"/>
 
   <xacro:macro name="caster" params="side reflect radius width separation_x offset_y offset_z parent">
     <link name="caster_${side}_link">
@@ -32,7 +32,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <cylinder radius="${radius}" length="${width}"/>
+          <mesh filename="package://ari_description/meshes/wheels/caster_v2.stl" scale="1 ${reflect} 1"/>
         </geometry>
       </collision>
     </link>

@@ -26,14 +26,14 @@ Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-        <mesh filename="package://ari_description/meshes/wheels/wheel_${side}_v2.stl"/>
+          <mesh filename="package://ari_description/meshes/wheels/wheel_${side}_v2.stl"/>
         </geometry>
         <material name="White"/>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <cylinder radius="${radius}" length="${width}"/>
+          <mesh filename="package://ari_description/meshes/wheels/wheel_${side}_v2.stl"/>
         </geometry>
       </collision>
       <kinematic>0</kinematic>

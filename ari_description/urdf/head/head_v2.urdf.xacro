@@ -12,7 +12,7 @@
 
   <!--File includes-->
   <xacro:include filename="$(find ari_description)/urdf/deg_to_rad.xacro" />
-  <xacro:include filename="$(find ari_description)/urdf/head/head_v2.transmission.xacro" />
+  <xacro:include filename="$(find ari_description)/urdf/head/head.transmission.xacro" />
   <xacro:include filename="$(find ari_description)/urdf/sensors/rpi_camera.gazebo.xacro" />
   <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
   <!--Constant parameters-->

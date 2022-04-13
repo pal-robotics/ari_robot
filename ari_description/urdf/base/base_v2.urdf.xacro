@@ -103,7 +103,6 @@
 
   </xacro:macro>
 
-
   <!-- RGBD Laser Link -->
   <joint name="rgbd_laser_joint" type="fixed">
       <parent link="base_link"/>
@@ -117,6 +116,7 @@
           <inertia ixx="0.0001"  ixy="0"  ixz="0" iyy="0.0001" iyz="0" izz="0.0001" />
       </inertial>
   </link>
+
 
 
   <joint name="back_led_link" type="fixed">
@@ -138,12 +138,4 @@
     <origin xyz="-0.600830 0 0.039" rpy="0 0 0" />
   </xacro:docking_link>
 
-<!--   <xacro:torso_rgbd name="torso_rgbd">
-    <origin xyz="-0.13799 -0.00034911 1.0305" rpy="0 0.75049 0" />
-  </xacro:torso_rgbd>
-
-  <xacro:torso_265 name="torso_265">
-    <origin xyz="-0.31955 0.009 1.0599" rpy="0 0.2618 3.1416" />
-  </xacro:torso_265>
- -->
 </robot>
