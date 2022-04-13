@@ -8,13 +8,13 @@
   <arg name="laser_model"  default="false"/>
   <arg name="camera_model_head" default="raspi"/>
   <arg name="has_thermal" default="false"/>
-  <arg name="version" default="v1"/>
+  <arg name="robot_model" default="v1"/>
 
   <!-- Robot description -->
   <param name="robot_description"
     command="rosrun xacro xacro --inorder
     '$(find ari_description)/robots/ari.urdf.xacro'
-    version:=$(arg version)
+    robot_model:=$(arg robot_model)
     end_effector_right:=$(arg end_effector_right)
     end_effector_left:=$(arg end_effector_left)
     laser_model:=$(arg laser_model)

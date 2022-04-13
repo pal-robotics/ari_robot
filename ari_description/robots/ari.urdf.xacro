@@ -10,14 +10,14 @@
 <robot  xmlns:xacro="http://ros.org/wiki/xacro"
         name="ari" >
 
-  <xacro:arg name="version" default="v1"/>
+  <xacro:arg name="robot_model" default="v1"/>
   <xacro:arg name="end_effector_right" default="ari-hand"/>
   <xacro:arg name="end_effector_left" default="ari-hand"/>
   <xacro:arg name="front_fisheye_camera" default="false"/>
   <xacro:arg name="back_fisheye_camera" default="false"/>
   <xacro:arg name="camera_model_head" default="raspi"/>
   <xacro:arg name="has_thermal" default="false"/>
-  <xacro:property name="version" value="$(arg version)" />
+  <xacro:property name="robot_model" value="$(arg robot_model)" />
   <xacro:property name="end_effector_right" value="$(arg end_effector_right)" />
   <xacro:property name="end_effector_left" value="$(arg end_effector_left)" />
   <xacro:property name="front_fisheye_camera" value="$(arg front_fisheye_camera)" />
@@ -30,8 +30,8 @@
   <xacro:property name="nsp" value="$(arg namespace)" />
 
 
-  <xacro:if value="${version not in ['v1', 'v2']}">
-    <xacro:wrong_ari_version/>
+  <xacro:if value="${robot_model not in ['v1', 'v2']}">
+    <xacro:wrong_ari_robot_model/>
   </xacro:if>
 
   <xacro:if value="${end_effector_right not in ['ari-hand', 'false', False]}">
@@ -70,14 +70,14 @@
   
   <!-- The following included files set up definitions of parts of the robot body -->
 
-  <xacro:if value="${version == 'v1'}">
+  <xacro:if value="${robot_model == 'v1'}">
       <xacro:include filename="$(find ari_description)/urdf/base/base.urdf.xacro" />   <!-- Base -->
       <xacro:include filename="$(find ari_description)/urdf/torso/torso_sensors.urdf.xacro" /> <!-- Torso -->
       <xacro:include filename="$(find ari_description)/urdf/arm/arm.urdf.xacro" />   <!-- Arms -->
       <xacro:include filename="$(find ari_description)/urdf/head/head.urdf.xacro" /> <!-- head -->
   </xacro:if>
 
-  <xacro:if value="${version == 'v2'}">
+  <xacro:if value="${robot_model == 'v2'}">
       <xacro:include filename="$(find ari_description)/urdf/base/base_v2.urdf.xacro" />   <!-- Base -->
       <xacro:include filename="$(find ari_description)/urdf/torso/torso_sensors_v2.urdf.xacro" /> <!-- Torso -->
       <xacro:include filename="$(find ari_description)/urdf/arm/arm_v2.urdf.xacro" />   <!-- Arms -->
@@ -94,7 +94,7 @@
   <xacro:torso_sensors name="torso" parent="base_link"/>
   <xacro:head name="head" parent="base_link"/>
 
-  <xacro:if value="${version == 'v1'}">
+  <xacro:if value="${robot_model == 'v1'}">
 
   <xacro:ari_arm name="arm" parent="base_link" side="left" reflect="1" end_effector="${end_effector_left == 'ari-hand'}">
     <origin xyz="-0.219 0.097624 1.1111" rpy="${105.0 * deg_to_rad} ${0.0 * deg_to_rad} ${-180.0 * deg_to_rad}" />
@@ -105,7 +105,7 @@
   </xacro:if>
 
 
-  <xacro:if value="${version == 'v2'}">
+  <xacro:if value="${robot_model == 'v2'}">
 
   <xacro:ari_arm name="arm" parent="base_link" side="left" reflect="1" end_effector="${end_effector_left == 'ari-hand'}">
     <origin xyz="-0.22 0.08146 1.153" rpy="${0* deg_to_rad} ${0 * deg_to_rad} ${0 * deg_to_rad}" />

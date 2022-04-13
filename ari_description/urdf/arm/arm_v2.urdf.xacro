@@ -22,10 +22,13 @@
   <xacro:property name="arm_2_max_vel"      value="1.95" />
   <xacro:property name="arm_3_max_vel"      value="2.35" />
   <xacro:property name="arm_4_max_vel"      value="2.35" />
+  <xacro:property name="arm_5_max_vel"      value="2.35" />
   <xacro:property name="arm_1_max_effort"   value="10.0" />
   <xacro:property name="arm_2_max_effort"   value="10.0" />
   <xacro:property name="arm_3_max_effort"   value="5" />
   <xacro:property name="arm_4_max_effort"   value="5" />
+  <xacro:property name="arm_5_max_effort"   value="5" />
+
   <xacro:property name="arm_eps"            value="0.07" />
 
 
@@ -84,7 +87,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/arm/arm_1_v2.stl" scale=" ${reflect} 1 1"/>
+          <mesh filename="package://ari_description/meshes/arm/arm_1_v2.stl" scale="${reflect} 1 1"/>
         </geometry>
         <material name="White"/>
       </visual>
@@ -101,7 +104,7 @@
       <child link="${name}_${side}_1_link" />
       <origin xyz="0.0 0.0047319 -0.00041399" rpy="${(-90 - 5.0) * deg_to_rad} 0.0 0.0"/>
       <axis xyz="0 0 ${-1 * reflect}" />
-      <limit lower="${-120.0 * deg_to_rad}" upper="${120.0 * deg_to_rad}" effort="0" velocity="0" />
+      <limit lower="${-120.0 * deg_to_rad}" upper="${120.0 * deg_to_rad}" effort="${arm_1_max_effort}" velocity="${arm_1_max_vel}" />
       <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
 
       <safety_controller k_position="20"
@@ -263,7 +266,7 @@
       <xacro:property name="arm_5_upper_limit"       value="135.0"/>
       <xacro:property name="arm_5_lower_limit"       value="-5.0"/>
       <limit lower="${-120 * deg_to_rad}" upper="${120 * deg_to_rad}" 
-        effort="${arm_4_max_effort}" velocity="${arm_4_max_vel}" />
+        effort="${arm_5_max_effort}" velocity="${arm_5_max_vel}" />
       <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
       <safety_controller k_position="20"
                          k_velocity="20"
@@ -293,23 +296,11 @@
      <mu2>0.9</mu2>
      <material>Gazebo/DarkGrey</material>
    </gazebo>
-      <gazebo reference="${name}_${side}_5 _link">
+   <gazebo reference="${name}_${side}_5_link">
      <mu1>0.9</mu1>
      <mu2>0.9</mu2>
      <material>Gazebo/DarkGrey</material>
    </gazebo>
-   <xacro:if value="${end_effector}">
-     <gazebo reference="hand_${side}_1_link">
-       <mu1>0.9</mu1>
-       <mu2>0.9</mu2>
-       <material>Gazebo/DarkGrey</material>
-     </gazebo>
-     <gazebo reference="hand_${side}_2_link">
-       <mu1>0.9</mu1>
-       <mu2>0.9</mu2>
-       <material>Gazebo/DarkGrey</material>
-     </gazebo>
-   </xacro:if>
 
    <gazebo reference="${name}_${side}_1_joint">
       <implicitSpringDamper>1</implicitSpringDamper>
@@ -323,31 +314,16 @@
    <gazebo reference="${name}_${side}_4_joint">
       <implicitSpringDamper>1</implicitSpringDamper>
    </gazebo>
-      <gazebo reference="${name}_${side}_5_joint">
+   <gazebo reference="${name}_${side}_5_joint">
       <implicitSpringDamper>1</implicitSpringDamper>
    </gazebo>
-   <xacro:if value="${end_effector}">
-     <gazebo reference="hand_${side}_virtual_1_joint">
-        <implicitSpringDamper>1</implicitSpringDamper>
-     </gazebo>
-     <gazebo reference="hand_${side}_virtual_2_joint">
-        <implicitSpringDamper>1</implicitSpringDamper>
-     </gazebo>
-   </xacro:if>
 
     <xacro:arm_simple_transmission name="${name}" side="${side}" number="1" reduction="1.0" offset_value="0.0"/>
     <xacro:arm_simple_transmission name="${name}" side="${side}" number="2" reduction="1.0" offset_value="0.0"/>
     <xacro:arm_simple_transmission name="${name}" side="${side}" number="3" reduction="1.0" offset_value="0.0"/>
     <xacro:arm_simple_transmission name="${name}" side="${side}" number="4" reduction="1.0" offset_value="0.0"/>
-    <xacro:if value="${end_effector}">
-      <xacro:finger_transmissions finger_name="hand_${side}"
-                                  act_name="hand_${side}_fingers_motor"
-                                  start="0.0"
-                                  reduction="1.0"/>
-      <!-- <xacro:arm_simple_transmission name="${name}" side="${side}" number="4" reduction="1.0" offset_value="0.0"/> -->
-      <!-- gazebo plugin -->
-      <xacro:ari_hand_gazebo_simulation side="${side}"/>
-    </xacro:if>
+    <xacro:arm_simple_transmission name="${name}" side="${side}" number="5" reduction="1.0" offset_value="0.0"/>
+
   </xacro:macro>
 
 </robot>

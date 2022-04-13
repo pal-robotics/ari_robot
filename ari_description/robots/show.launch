@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name="version" default="v1"/>
+  <arg name="robot_model" default="v1"/>
 
   <include file="$(find ari_description)/robots/upload.launch">
-    <arg name="version"  value="$(arg version)"/>
+    <arg name="robot_model"  value="$(arg robot_model)"/>
   </include>
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
