@@ -201,7 +201,3 @@ play_motion:
           positions: [0.07, 0.0261, -0.2138, -0.0796]
         - time_from_start: 2.75
           positions: [0.07, 0.0261, -0.0003, -0.0208]
-      meta:     
-        name: alive_7
-        usage: Entertainment
-        description: alive_7
