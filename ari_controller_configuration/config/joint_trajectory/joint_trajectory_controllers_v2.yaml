@@ -20,7 +20,6 @@ arm_left_controller:
     - arm_left_3_joint
     - arm_left_4_joint
     - arm_left_5_joint
-
   constraints:
     goal_time: 0.6
     stopped_velocity_tolerance: 5.0
@@ -44,7 +43,6 @@ arm_right_controller:
     - arm_right_3_joint
     - arm_right_4_joint
     - arm_right_5_joint
-
   constraints:
     goal_time: 0.6
     stopped_velocity_tolerance: 5.0
