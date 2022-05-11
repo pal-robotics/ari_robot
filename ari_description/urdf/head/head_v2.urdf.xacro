@@ -48,7 +48,7 @@
                iyy="0.000224608966414537" iyz="-1.18032425456855E-09"
                izz="0.000359230346366051" />
     </inertial>
-    <visual>
+<!--     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
           <mesh filename="package://ari_description/meshes/head/head_base_v2.stl" scale="1 1 1"/>
@@ -62,7 +62,7 @@
       <geometry>
           <mesh filename="package://ari_description/meshes/head/head_base_v2.stl" scale="1 1 1"/>
       </geometry>
-    </collision>
+    </collision> -->
   </link>
 
   <joint name="${name}_joint" type="fixed">

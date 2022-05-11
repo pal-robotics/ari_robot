@@ -22,7 +22,7 @@
           <inertia ixx="4.9615E-05" ixy="1.6201E-09" ixz="-1.7454E-08"
                    iyy="2.2318E-05" iyz="1.0152E-09" izz="3.4652E-05" />
       </inertial>
-      <visual>
+<!--       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://ari_description/meshes/base/docking_joint_v2.stl" />
@@ -36,7 +36,7 @@
         <geometry>
           <mesh filename="package://ari_description/meshes/base/docking_joint_v2.stl" />
         </geometry>
-      </collision>      
+      </collision>       -->
   </link>
 
   <joint name="${name}_joint" type="fixed">
