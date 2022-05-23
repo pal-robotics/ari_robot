@@ -16,10 +16,10 @@
   <xacro:macro name="caster" params="side reflect radius width separation_x offset_y offset_z parent">
     <link name="caster_${side}_link">
       <inertial>
-        <origin xyz="${-0.016512 * reflect} 0.17601 ${-0.029897 * reflect}" rpy="0 0 0"/>
+        <origin xyz="-0.016512 0 -0.029897" rpy="0 0 0"/>
         <mass value="0.046595"/>
-        <inertia  ixx="7.5074E-06" ixy="${-5.6754E-07 * reflect}" ixz="-2.3436E-07"
-                  iyy="1.6751E-05" iyz="${-1.435E-08 * reflect}"
+        <inertia  ixx="7.5074E-06" ixy="-5.6754E-07" ixz="-2.3436E-07"
+                  iyy="1.6751E-05" iyz="1.435E-08"
                   izz="1.1856E-05"/>
       </inertial>
       <visual>
