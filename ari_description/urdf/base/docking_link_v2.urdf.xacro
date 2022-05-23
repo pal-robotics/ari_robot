@@ -11,6 +11,11 @@
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
 
+  <xacro:include filename="$(find ari_description)/urdf/deg_to_rad.xacro" />
+
+  <xacro:property name="docking_radius"     value="0.045"/>
+  <xacro:property name="docking_width"      value="0.01"/>
+
   <xacro:macro name="docking_link" params="name *origin">
 
 
@@ -22,7 +27,7 @@
           <inertia ixx="4.9615E-05" ixy="1.6201E-09" ixz="-1.7454E-08"
                    iyy="2.2318E-05" iyz="1.0152E-09" izz="3.4652E-05" />
       </inertial>
-<!--       <visual>
+      <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://ari_description/meshes/base/docking_joint_v2.stl" />
@@ -32,11 +37,11 @@
         </material>
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0 0 0" rpy="0 ${90 * deg_to_rad} 0"/>
         <geometry>
-          <mesh filename="package://ari_description/meshes/base/docking_joint_v2.stl" />
+          <cylinder radius="${docking_radius}" length="${docking_width}"/>
         </geometry>
-      </collision>       -->
+      </collision>    
   </link>
 
   <joint name="${name}_joint" type="fixed">
