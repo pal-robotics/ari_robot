@@ -28,14 +28,14 @@
   <xacro:property name="arm_3_max_effort"   value="5" />
   <xacro:property name="arm_4_max_effort"   value="5" />
   <xacro:property name="arm_5_max_effort"   value="5" />
-  <xacro:property name="arm_1_lower_limit"  value="${-115.0 * deg_to_rad}"/>
-  <xacro:property name="arm_1_upper_limit"  value="${115.0 * deg_to_rad}"/>
-  <xacro:property name="arm_2_lower_limit"  value="${5.0 * deg_to_rad}"/>
-  <xacro:property name="arm_2_upper_limit"  value="${95.0 * deg_to_rad}"/>
-  <xacro:property name="arm_3_lower_limit"  value="${-115.0 * deg_to_rad}"/>
-  <xacro:property name="arm_3_upper_limit"  value="${115.0 * deg_to_rad}"/>
-  <xacro:property name="arm_4_lower_limit"  value="${5.0 * deg_to_rad}"/>
-  <xacro:property name="arm_4_upper_limit"  value="${95.0 * deg_to_rad}"/>
+  <xacro:property name="arm_1_lower_limit"  value="${-120.0 * deg_to_rad}"/>
+  <xacro:property name="arm_1_upper_limit"  value="${120.0 * deg_to_rad}"/>
+  <xacro:property name="arm_2_lower_limit"  value="${1.0 * deg_to_rad}"/>
+  <xacro:property name="arm_2_upper_limit"  value="${100.0 * deg_to_rad}"/>
+  <xacro:property name="arm_3_lower_limit"  value="${-120.0 * deg_to_rad}"/>
+  <xacro:property name="arm_3_upper_limit"  value="${120.0 * deg_to_rad}"/>
+  <xacro:property name="arm_4_lower_limit"  value="${1.0 * deg_to_rad}"/>
+  <xacro:property name="arm_4_upper_limit"  value="${100.0 * deg_to_rad}"/>
   <xacro:property name="arm_5_lower_limit"  value="${-115.0 * deg_to_rad}"/>
   <xacro:property name="arm_5_upper_limit"  value="${115.0 * deg_to_rad}"/>
 
