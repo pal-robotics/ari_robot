@@ -18,7 +18,7 @@
 
 
   <!-- Wheel characteristics -->
-  <xacro:property name="wheel_radius"     value="0.11"/>
+  <xacro:property name="wheel_radius"     value="0.1"/>
   <xacro:property name="wheel_width"      value="0.06"/>
   <xacro:property name="wheel_separation" value="0.4668"/>
   <xacro:property name="wheel_torque"     value="6.0"/>
