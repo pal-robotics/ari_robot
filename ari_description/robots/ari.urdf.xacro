@@ -69,19 +69,17 @@
   <xacro:property name="head_link_name"          value="head_2_link"/>
   
   <!-- The following included files set up definitions of parts of the robot body -->
+  <xacro:include filename="$(find ari_description)/urdf/base/base.urdf.xacro" />   <!-- Base -->
+  <xacro:include filename="$(find ari_description)/urdf/head/head.urdf.xacro" /> <!-- head -->
+  <xacro:include filename="$(find ari_description)/urdf/torso/torso_sensors.urdf.xacro" /> <!-- Torso -->
+
 
   <xacro:if value="${robot_model == 'v1'}">
-      <xacro:include filename="$(find ari_description)/urdf/base/base.urdf.xacro" />   <!-- Base -->
-      <xacro:include filename="$(find ari_description)/urdf/torso/torso_sensors.urdf.xacro" /> <!-- Torso -->
       <xacro:include filename="$(find ari_description)/urdf/arm/arm.urdf.xacro" />   <!-- Arms -->
-      <xacro:include filename="$(find ari_description)/urdf/head/head.urdf.xacro" /> <!-- head -->
   </xacro:if>
 
   <xacro:if value="${robot_model == 'v2'}">
-      <xacro:include filename="$(find ari_description)/urdf/base/base_v2.urdf.xacro" />   <!-- Base -->
-      <xacro:include filename="$(find ari_description)/urdf/torso/torso_sensors_v2.urdf.xacro" /> <!-- Torso -->
       <xacro:include filename="$(find ari_description)/urdf/arm/arm_v2.urdf.xacro" />   <!-- Arms -->
-      <xacro:include filename="$(find ari_description)/urdf/head/head_v2.urdf.xacro" /> <!-- head -->
   </xacro:if>
 
   <!-- Generic simulator_gazebo plugins -->
@@ -90,9 +88,9 @@
   <xacro:include filename="$(find ari_description)/urdf/materials.urdf.xacro" />
 
   <!-- Now we can start using the macros included above to define the actual robot -->
-  <xacro:base name="base"/>
-  <xacro:torso_sensors name="torso" parent="base_link"/>
-  <xacro:head name="head" parent="base_link"/>
+  <xacro:base name="base" robot_model="${robot_model}"/>
+  <xacro:torso_sensors name="torso" parent="base_link" robot_model="${robot_model}"/>
+  <xacro:head name="head" parent="base_link" robot_model="${robot_model}"/>
 
   <xacro:if value="${robot_model == 'v1'}">
 
