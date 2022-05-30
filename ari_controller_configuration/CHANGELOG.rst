@@ -2,8 +2,8 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.43 (2022-05-30)
+-------------------
 * Merge branch 'ari-v2' into 'ferrum-devel'
   Ari v2
   See merge request robots/ari_robot!42
