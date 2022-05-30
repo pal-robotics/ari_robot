@@ -2,6 +2,37 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'ari-v2' into 'ferrum-devel'
+  Ari v2
+  See merge request robots/ari_robot!42
+* Combine base torso and head urdf files for v1 and v2
+* update joint limits
+* Update joint limits and wheel radius
+* Update inertia of caster v2 in urdf
+* Update collision geometry for docking link
+* Remove docking and head base stl to avoid collision errors
+* set correct joint limits
+* Add frame for hand
+* Update rviz and change arg order in test_ari.test
+* Update launch files and add meshes
+* update and delete xacro files
+* update head camera
+* replace version with robot_model
+* fix bug in test
+* fix bug in test
+* typo in test
+* add v2 to ari-description tests
+* update stl and urdf for sensor and wheels
+* Set joint rotation direction correctly for both arms
+* Mirror arms succeeded
+* Left arm_v2 correct
+* new_arm direct copy of left-arm.urdf
+* reflect arm_base_link in z-axis
+* include urdf for ari_v2
+* Contributors: David ter Kuile, davidfernandez
+
 0.0.42 (2021-11-02)
 -------------------
 * Merge branch 'thermal-camera' into 'ferrum-devel'

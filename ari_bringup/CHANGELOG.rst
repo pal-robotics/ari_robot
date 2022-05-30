@@ -2,6 +2,17 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'ari-v2' into 'ferrum-devel'
+  Ari v2
+  See merge request robots/ari_robot!42
+* update joint limits
+* update motions for new joint limits of ari-v2
+* Update rviz and change arg order in test_ari.test
+* Update launch files and add meshes
+* Contributors: David ter Kuile, davidfernandez
+
 0.0.42 (2021-11-02)
 -------------------
 * Merge branch 'thermal-camera' into 'ferrum-devel'
