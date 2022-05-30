@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
+  <arg name="robot_model" default="v1"/>
   <!-- Current limit controllers -->
-  <rosparam command="load" file="$(find ari_controller_configuration)/config/current_limit_controllers.yaml" />
+  <rosparam command="load" file="$(find ari_controller_configuration)/config/current_limit_controllers_$(arg robot_model).yaml" />
 
   <!-- Controllers that come up started -->
   <node name="current_limit_controllers_spawner"

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
+  <arg name="robot_model" default="v1"/>
   <!-- execute pre-recorded motions -->
-  <rosparam file="$(find ari_bringup)/config/motions/ari_motions.yaml" command="load" /> <!-- any end-effector motions -->
+  <rosparam file="$(find ari_bringup)/config/motions/ari_$(arg robot_model)_motions.yaml" command="load" /> <!-- any end-effector motions -->
 
   <node pkg="ari_bringup" type="motion_loader.sh" name="motion_loader"/>
 

@@ -40,7 +40,7 @@
   <!--************************-->
   <!--     HEAD_1 (PAN)       -->
   <!--************************-->
-  <xacro:macro name="head_1" params="name parent">
+  <xacro:macro name="head_1" params="name parent robot_model">
     <link name="${name}_link">
       <inertial>
         <origin xyz="0.011917 0.00089501 0.08" rpy="0 0 0"/>
@@ -52,14 +52,24 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://ari_description/meshes/head/head_1.stl" scale="1 1 1"/>
+          <xacro:if value="${robot_model == 'v1'}">
+            <mesh filename="package://ari_description/meshes/head/head_1.stl" scale="1 1 1"/>
+          </xacro:if>
+          <xacro:if value="${robot_model == 'v2'}">
+            <mesh filename="package://ari_description/meshes/head/head_1_v2.stl" scale="1 1 1"/>
+          </xacro:if>
         </geometry>
         <material name="White" />
       </visual>
       <collision>
         <origin xyz="0.0 0 0" rpy="0 0 0.0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/head/head_1_collision.stl" scale="1 1 1"/>
+          <xacro:if value="${robot_model == 'v1'}">
+            <mesh filename="package://ari_description/meshes/head/head_1_collision.stl" scale="1 1 1"/>
+          </xacro:if>
+          <xacro:if value="${robot_model == 'v2'}">
+            <mesh filename="package://ari_description/meshes/head/head_1_v2.stl" scale="1 1 1"/>
+          </xacro:if>
         </geometry>
         <material name="White" />
       </collision>
@@ -68,7 +78,12 @@
     <joint name="${name}_joint" type="revolute">
       <parent link="${parent}"/>
       <child link="${name}_link"/>
-      <origin xyz="-0.2255 0 1.1915"  rpy="0 0 0" />
+      <xacro:if value="${robot_model == 'v1'}">
+        <origin xyz="-0.2255 0 1.1915"  rpy="0 0 0" />
+      </xacro:if>
+      <xacro:if value="${robot_model == 'v2'}">
+        <origin xyz="-0.22 0.0 1.207"  rpy="0 0 0" />
+      </xacro:if>
       <axis xyz="0 0 1" />
       <limit lower="${head_1_lower_limit * deg_to_rad}" upper="${head_1_upper_limit * deg_to_rad}" effort="3.4" velocity="${head_max_vel}" />
       <dynamics damping="${head_damping}" friction="${head_friction}"/>
@@ -97,7 +112,7 @@
   <!--************************-->
   <!--      HEAD_2 (TILT)     -->
   <!--************************-->
-  <xacro:macro name="head_2" params="name parent">
+  <xacro:macro name="head_2" params="name parent robot_model">
     <link name="${name}_link">
       <inertial>
         <origin xyz="-0.00696564558843529 0.101996367574138 -0.0008447177604265" rpy="0 0 0"/>
@@ -125,7 +140,12 @@
     <joint name="${name}_joint" type="revolute">
       <parent link="${parent}"/>
       <child link="${name}_link"/>
-      <origin xyz="0.0425000000000001 0 0.093"  rpy="${90.0 * deg_to_rad} 0 0" />
+      <xacro:if value="${robot_model == 'v1'}">
+        <origin xyz="0.0425000000000001 0 0.093"  rpy="${90.0 * deg_to_rad} 0 0" />
+      </xacro:if>
+      <xacro:if value="${robot_model == 'v2'}">
+        <origin xyz="0.0425 0.0 0.1011"  rpy="${90.0 * deg_to_rad} 0 0" />
+      </xacro:if>
       <axis xyz="0 0 -1" />
       <limit lower="${head_2_lower_limit * deg_to_rad}" upper="${head_2_upper_limit * deg_to_rad}" effort="3.26" velocity="${head_max_vel}" />
       <dynamics damping="${head_damping}" friction="${head_friction}"/>
@@ -250,9 +270,9 @@
   </link>
 
 
-  <xacro:macro name="head" params="name parent">
-    <xacro:head_1 name="${name}_1" parent="${parent}" />
-    <xacro:head_2 name="${name}_2" parent="${name}_1_link"/>
+  <xacro:macro name="head" params="name parent robot_model">
+    <xacro:head_1 name="${name}_1" parent="${parent}" robot_model="${robot_model}" />
+    <xacro:head_2 name="${name}_2" parent="${name}_1_link" robot_model="${robot_model}"/>
     <xacro:if value="${camera_model_head == 'raspi'}">
       <xacro:head_front_camera name="${name}_front_camera" parent="${name}_2_link"/>
     </xacro:if>

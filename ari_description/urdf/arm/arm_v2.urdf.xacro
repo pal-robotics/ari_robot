@@ -1,0 +1,354 @@
+<?xml version="1.0"?>
+<!--
+
+  Copyright (c) 2019, PAL Robotics, S.L.
+  All rights reserved.
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!--File includes-->
+  <xacro:include filename="$(find ari_description)/urdf/deg_to_rad.xacro" />
+  <xacro:include filename="$(find ari_description)/urdf/arm/actuators.urdf.xacro" />
+  <xacro:include filename="$(find ari_description)/urdf/arm/arm.transmission.xacro" />
+
+  <!--Constant parameters-->
+  <xacro:property name="arm_friction"       value="1.0" />
+  <xacro:property name="arm_damping"        value="1.0" />
+  <xacro:property name="arm_1_max_vel"      value="1.95" />
+  <xacro:property name="arm_2_max_vel"      value="1.95" />
+  <xacro:property name="arm_3_max_vel"      value="2.35" />
+  <xacro:property name="arm_4_max_vel"      value="2.35" />
+  <xacro:property name="arm_5_max_vel"      value="2.35" />
+  <xacro:property name="arm_1_max_effort"   value="10.0" />
+  <xacro:property name="arm_2_max_effort"   value="10.0" />
+  <xacro:property name="arm_3_max_effort"   value="5" />
+  <xacro:property name="arm_4_max_effort"   value="5" />
+  <xacro:property name="arm_5_max_effort"   value="5" />
+  <xacro:property name="arm_1_lower_limit"  value="${-120.0 * deg_to_rad}"/>
+  <xacro:property name="arm_1_upper_limit"  value="${120.0 * deg_to_rad}"/>
+  <xacro:property name="arm_2_lower_limit"  value="${1.0 * deg_to_rad}"/>
+  <xacro:property name="arm_2_upper_limit"  value="${100.0 * deg_to_rad}"/>
+  <xacro:property name="arm_3_lower_limit"  value="${-120.0 * deg_to_rad}"/>
+  <xacro:property name="arm_3_upper_limit"  value="${120.0 * deg_to_rad}"/>
+  <xacro:property name="arm_4_lower_limit"  value="${1.0 * deg_to_rad}"/>
+  <xacro:property name="arm_4_upper_limit"  value="${100.0 * deg_to_rad}"/>
+  <xacro:property name="arm_5_lower_limit"  value="${-115.0 * deg_to_rad}"/>
+  <xacro:property name="arm_5_upper_limit"  value="${115.0 * deg_to_rad}"/>
+
+
+  <xacro:property name="arm_eps"            value="0.07" />
+
+
+
+  <xacro:macro name="ari_arm" params="name parent side reflect end_effector *origin">
+
+    <!--************************-->
+    <!--      ARM_BASE_LINK     -->
+    <!--************************-->
+    <link name="${name}_${side}_base_link">
+      <inertial>
+        <origin xyz="0.00705797129984277 -0.0045072380254732 0.000352877816427871" rpy="0 0 0" />
+        <mass value="0.481395506498302" />
+        <inertia
+          ixx="0.00022416049267238" ixy="-4.61763481387137E-07" ixz="3.15922577645587E-08"
+          iyy="0.000454778831736013" iyz="-1.22837579712493E-05"
+          izz="0.000315397102146471" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ari_description/meshes/arm/arm_base_v2.stl" scale="${reflect} 1 1"/>
+        </geometry>
+        <material name="">
+          <color rgba="0.250980392156863 0.250980392156863 0.250980392156863 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ari_description/meshes/arm/arm_base_v2.stl" scale="${reflect} 1 1"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_${side}_base_joint" type="fixed">
+      <xacro:insert_block name="origin"/>
+      <child link="${name}_${side}_base_link" />
+      <parent link="${parent}"/>
+    </joint>      
+
+    <!--************************-->
+    <!--        SHOULDER        -->
+    <!--************************-->
+    <link name="${name}_${side}_1_link">
+      <inertial>
+        <origin xyz="-0.00734678702660377 ${-2.69505911157866E-06 * reflect} 0.0810729999795757" rpy="0.0 0.0 0.0"/>
+        <mass value="0.626384555512818" />
+        <inertia
+          ixx="0.000821053471340784"
+          ixy="${1.33625825269483E-09 * reflect}"
+          ixz="5.75448054528536E-05"
+          iyy="0.000645070570600376"
+          iyz="${1.29840357496973E-08 * reflect}"
+          izz="0.00042489826130461" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ari_description/meshes/arm/arm_1_v2.stl" scale="${reflect} 1 1"/>
+        </geometry>
+        <material name="White"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ari_description/meshes/arm/arm_1_v2.stl" scale="${reflect} 1 1"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_${side}_1_joint" type="revolute">
+      <parent link="${name}_${side}_base_link" />
+      <child link="${name}_${side}_1_link" />
+      <origin xyz="0.0 0.0047319 -0.00041399" rpy="${(-90 - 5.0) * deg_to_rad} 0.0 0.0"/>
+      <axis xyz="0 0 ${-1 * reflect}" />
+
+      <limit lower="${arm_1_lower_limit}" upper="${arm_1_upper_limit}"  effort="${arm_1_max_effort}" velocity="${arm_1_max_vel}" />
+      <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
+
+      <safety_controller k_position="20"
+                         k_velocity="20"
+                         soft_lower_limit="${arm_1_lower_limit + arm_eps}"
+                         soft_upper_limit="${arm_1_upper_limit - arm_eps}" />
+    </joint>
+
+   <link name="${name}_${side}_2_link">
+      <inertial>
+        <origin xyz="-0.0161127523661181 0.0616543232748495 0.00107974895632202" rpy="0 0 0" />
+        <mass value="0.596237000710046" />
+        <inertia ixx="0.000605516102063168" ixy="6.92656946627981E-05" ixz="-3.00910746627475E-05"
+                 iyy="0.00052936125812993" iyz="8.82594522397616E-05"
+                 izz="0.00076716727169814" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ari_description/meshes/arm/arm_2_v2.stl" scale="1 1 ${reflect}" />
+        </geometry>
+        <material name="White" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ari_description/meshes/arm/arm_2_v2.stl" scale="1 1 ${reflect}" />
+
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_${side}_2_joint" type="revolute">
+      <parent link="${name}_${side}_1_link" />
+      <child link="${name}_${side}_2_link" />
+      <origin xyz="${0.008 * reflect} 0 0.1022"
+              rpy="0 ${1.5708 * 1} 0" />
+      <axis xyz="0 0 1" />
+      <limit lower="${arm_2_lower_limit}" upper="${arm_2_upper_limit}" effort="${arm_2_max_effort}" velocity="${arm_2_max_vel}" />
+      <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
+
+      <safety_controller k_position="20"
+                         k_velocity="20"
+                         soft_lower_limit="${arm_2_lower_limit  + arm_eps}"
+                         soft_upper_limit="${arm_2_upper_limit - arm_eps}" />
+    </joint>
+
+    <link name="${name}_${side}_3_link">
+      <inertial>
+        <origin xyz="0.00261891635576198 0.00556893374970152 -0.0736249834385048" rpy="0 0 0" />
+        <mass value="0.466609845797877" />
+        <inertia ixx="0.000392473879065454" ixy="-2.37021311492145E-06" ixz="-2.32964689257321E-06"
+                 iyy="0.000496851819658831" iyz="3.53479285950679E-05"
+                 izz="0.000300396202339632" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ari_description/meshes/arm/arm_3_v2.stl" scale="${reflect} 1 1"/>
+        </geometry>
+        <material name="White" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ari_description/meshes/arm/arm_3_v2.stl" scale="${reflect} 1 1"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_${side}_3_joint" type="revolute">
+      <parent link="${name}_${side}_2_link" />
+      <child link="${name}_${side}_3_link" />
+      <origin xyz="${-0.023833 * 1} ${0.1003 * 1} ${-0.008 * reflect}"
+              rpy="${(90 - 5.0) * deg_to_rad} ${90 * deg_to_rad} 0" />
+      <axis xyz="0 0 ${reflect}" />
+      <limit lower="${arm_3_lower_limit }" upper="${arm_3_upper_limit }" effort="${arm_3_max_effort}" velocity="${arm_3_max_vel}" />
+      <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
+
+      <safety_controller k_position="20"
+                         k_velocity="20"
+                         soft_lower_limit="${arm_3_lower_limit  + arm_eps}"
+                         soft_upper_limit="${arm_3_upper_limit - arm_eps}" />
+    </joint>
+
+    <!--************************-->
+    <!--        ELBOW           -->
+    <!--************************-->
+    <link name="${name}_${side}_4_link">
+      <inertial>
+        <origin xyz="-0.0608591897788406 -0.00187833296903389 0.00810641294898702" rpy="0 0 0" />
+        <mass value="0.46859967403181" />
+        <inertia
+          ixx="0.000324797037287554"
+          ixy="4.43054498245902E-06"
+          ixz="-8.74108555513621E-05"
+          iyy="0.000476423112694781"
+          iyz="3.90099985090552E-06"
+          izz="0.000496361891301139" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />       
+        <geometry>
+          <mesh filename="package://ari_description/meshes/arm/arm_4_v2.stl" scale="1 ${reflect} 1"/>
+        </geometry>
+        <material name="White" />
+      </visual>
+      <collision> 
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ari_description/meshes/arm/arm_4_v2.stl" scale="1 ${reflect} 1"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="${name}_${side}_4_joint" type="revolute">
+      <parent link="${name}_${side}_3_link" />
+      <child link="${name}_${side}_4_link" />
+      <origin xyz="0 0.00049107 -0.1001"
+              rpy="${90 * deg_to_rad} ${-90 * deg_to_rad} 0" />
+      <axis xyz="0 0 ${-1 * reflect}" />
+      <limit lower="${arm_4_lower_limit}" upper="${arm_4_upper_limit}" effort="${arm_4_max_effort}" velocity="${arm_4_max_vel}" />
+      <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
+
+      <safety_controller k_position="20"
+                         k_velocity="20"
+                         soft_lower_limit="${arm_4_lower_limit  + arm_eps}"
+                         soft_upper_limit="${arm_4_upper_limit - arm_eps}" />
+    </joint>
+    
+    <link name="${name}_${side}_5_link">
+        <inertial>
+          <origin xyz="-0.00291138214248795 0.00734841390123893 -0.143226648424061"  rpy="0 0 0" />
+          <mass value="0.350866984764556" />
+          <inertia ixx="0.00107915836241808" ixy="9.10002640587304E-06" ixz="-6.79108896259101E-05"
+                   iyy="0.00113810193294057" iyz="2.83986806757018E-06"
+                   izz="0.000200374211782208" />
+        </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ari_description/meshes/arm/arm_5_v2.stl" scale="${reflect} 1 1"/>
+        </geometry>
+        <material name="White" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ari_description/meshes/arm/arm_5_v2.stl" scale="${reflect} 1 1"/>
+        </geometry>
+      </collision>
+    </link>
+    <joint name="${name}_${side}_5_joint" type="revolute">
+      <origin xyz="-0.106 0 0.0010076" rpy="${-90 * deg_to_rad} 0 ${-90 * deg_to_rad}" />
+      <parent link="${name}_${side}_4_link" />
+      <child link="${name}_${side}_5_link" />
+      <axis xyz="0 0 ${reflect}" />
+      <limit lower="${arm_5_lower_limit}" upper="${arm_5_upper_limit}" 
+        effort="${arm_5_max_effort}" velocity="${arm_5_max_vel}" />
+      <dynamics friction="${arm_friction}" damping="${arm_damping}"/>
+      <safety_controller k_position="20"
+                         k_velocity="20"
+                         soft_lower_limit="${arm_5_lower_limit  + arm_eps}"
+                         soft_upper_limit="${arm_5_upper_limit - arm_eps}" />
+    </joint>
+
+
+  <!-- hand Link -->
+  <joint name="${name}_${side}_hand_joint" type="fixed">
+      <parent link="${name}_${side}_5_link"/>
+      <child link="${name}_${side}_hand_link"/>
+      <origin xyz="0.0 0.01262 -0.24674" rpy="0 0 0" />
+  </joint>
+  <link name="${name}_${side}_hand_link">
+      <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+          <mass value="0.0001" />
+          <inertia ixx="0.0001"  ixy="0"  ixz="0" iyy="0.0001" iyz="0" izz="0.0001" />
+      </inertial>
+  </link>
+
+
+   
+   <gazebo reference="${name}_${side}_1_link">
+     <mu1>0.9</mu1>
+     <mu2>0.9</mu2>
+     <material>Gazebo/DarkGrey</material>
+   </gazebo>
+   <gazebo reference="${name}_${side}_2_link">
+     <mu1>0.9</mu1>
+     <mu2>0.9</mu2>
+     <material>Gazebo/DarkGrey</material>
+   </gazebo>
+   <gazebo reference="${name}_${side}_3_link">
+     <mu1>0.9</mu1>
+     <mu2>0.9</mu2>
+     <material>Gazebo/DarkGrey</material>
+   </gazebo>
+   <gazebo reference="${name}_${side}_4_link">
+     <mu1>0.9</mu1>
+     <mu2>0.9</mu2>
+     <material>Gazebo/DarkGrey</material>
+   </gazebo>
+   <gazebo reference="${name}_${side}_5_link">
+     <mu1>0.9</mu1>
+     <mu2>0.9</mu2>
+     <material>Gazebo/DarkGrey</material>
+   </gazebo>
+
+   <gazebo reference="${name}_${side}_1_joint">
+      <implicitSpringDamper>1</implicitSpringDamper>
+   </gazebo>
+   <gazebo reference="${name}_${side}_2_joint">
+      <implicitSpringDamper>1</implicitSpringDamper>
+   </gazebo>
+   <gazebo reference="${name}_${side}_3_joint">
+      <implicitSpringDamper>1</implicitSpringDamper>
+   </gazebo>
+   <gazebo reference="${name}_${side}_4_joint">
+      <implicitSpringDamper>1</implicitSpringDamper>
+   </gazebo>
+   <gazebo reference="${name}_${side}_5_joint">
+      <implicitSpringDamper>1</implicitSpringDamper>
+   </gazebo>
+
+    <xacro:arm_simple_transmission name="${name}" side="${side}" number="1" reduction="1.0" offset_value="0.0"/>
+    <xacro:arm_simple_transmission name="${name}" side="${side}" number="2" reduction="1.0" offset_value="0.0"/>
+    <xacro:arm_simple_transmission name="${name}" side="${side}" number="3" reduction="1.0" offset_value="0.0"/>
+    <xacro:arm_simple_transmission name="${name}" side="${side}" number="4" reduction="1.0" offset_value="0.0"/>
+    <xacro:arm_simple_transmission name="${name}" side="${side}" number="5" reduction="1.0" offset_value="0.0"/>
+
+  </xacro:macro>
+
+</robot>

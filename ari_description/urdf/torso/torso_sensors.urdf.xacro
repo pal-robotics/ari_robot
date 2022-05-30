@@ -19,19 +19,6 @@
   <xacro:include filename="$(find ari_description)/urdf/sensors/sick_tim571_laser.urdf.xacro"/>
 
 
-  <!--Constant parameters-->
-  <xacro:property name="torso_front_camera_position_x" value="-0.11249" />
-  <xacro:property name="torso_front_camera_position_y" value="0.0" />
-  <xacro:property name="torso_front_camera_position_z" value="0.97052" />
-  <xacro:property name="torso_front_camera_orientation_r" value="0.0" />
-  <xacro:property name="torso_front_camera_orientation_p" value="${42.5 * deg_to_rad}" />
-  <xacro:property name="torso_front_camera_orientation_y" value="0.0" />
-  <xacro:property name="torso_back_camera_position_x" value="-0.3275" />
-  <xacro:property name="torso_back_camera_position_y" value="0.009" />
-  <xacro:property name="torso_back_camera_position_z" value="1.0337" />
-  <xacro:property name="torso_back_camera_orientation_r" value="0.0" />
-  <xacro:property name="torso_back_camera_orientation_p" value="${15 * deg_to_rad}" />
-  <xacro:property name="torso_back_camera_orientation_y" value="${180 * deg_to_rad}" />
   
   <!-- Laser characteristics -->
   <xacro:property name="base_laser_x" value="-0.34"/>
@@ -39,7 +26,42 @@
   <xacro:property name="base_laser_z" value="0.564"/>
 
 
-  <xacro:macro name="torso_sensors" params="name parent">
+  <xacro:macro name="torso_sensors" params="name parent robot_model">
+
+    <xacro:if value="${robot_model == 'v1'}">
+
+      <!--Constant parameters-->
+      <xacro:property name="torso_front_camera_position_x" value="-0.11249" />
+      <xacro:property name="torso_front_camera_position_y" value="0.0" />
+      <xacro:property name="torso_front_camera_position_z" value="0.97052" />
+      <xacro:property name="torso_front_camera_orientation_r" value="0.0" />
+      <xacro:property name="torso_front_camera_orientation_p" value="${42.5 * deg_to_rad}" />
+      <xacro:property name="torso_front_camera_orientation_y" value="0.0" />
+      <xacro:property name="torso_back_camera_position_x" value="-0.3275" />
+      <xacro:property name="torso_back_camera_position_y" value="0.009" />
+      <xacro:property name="torso_back_camera_position_z" value="1.0337" />
+      <xacro:property name="torso_back_camera_orientation_r" value="0.0" />
+      <xacro:property name="torso_back_camera_orientation_p" value="${15 * deg_to_rad}" />
+      <xacro:property name="torso_back_camera_orientation_y" value="${180 * deg_to_rad}" />
+    </xacro:if>
+
+
+    <xacro:if value="${robot_model == 'v2'}">
+
+      <!--Constant parameters-->
+      <xacro:property name="torso_front_camera_position_x" value="-0.13799" />
+      <xacro:property name="torso_front_camera_position_y" value="-0.00034911" />
+      <xacro:property name="torso_front_camera_position_z" value="1.0305" />
+      <xacro:property name="torso_front_camera_orientation_r" value="0.0" />
+      <xacro:property name="torso_front_camera_orientation_p" value="${43 * deg_to_rad}" />
+      <xacro:property name="torso_front_camera_orientation_y" value="0.0" />
+      <xacro:property name="torso_back_camera_position_x" value="-0.31955" />
+      <xacro:property name="torso_back_camera_position_y" value="0.009" />
+      <xacro:property name="torso_back_camera_position_z" value="1.0599" />
+      <xacro:property name="torso_back_camera_orientation_r" value="0.0" />
+      <xacro:property name="torso_back_camera_orientation_p" value="${15 * deg_to_rad}" />
+      <xacro:property name="torso_back_camera_orientation_y" value="${180 * deg_to_rad}" />
+    </xacro:if>
 
   <!-- Torso sensors -->
   <!-- Torso front camera -->

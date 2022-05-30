@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <launch>
   <arg name="multi" default=""/>
-  <arg name="end_effector_right" default="ari-hand"/>
-  <arg name="end_effector_left" default="ari-hand"/>
+  <arg name="robot_model" default="v1"/>
+  <arg name="end_effector_right" default="$(eval {'v1': 'ari-hand', 'v2': 'false'}.get(arg('robot_model'), 'false'))"/>
+  <arg name="end_effector_left" default="$(eval {'v1': 'ari-hand', 'v2': 'false'}.get(arg('robot_model'), 'false'))"/>
   <arg name="front_fisheye_camera" default="false"/>
   <arg name="back_fisheye_camera" default="false"/>
   <arg name="laser_model"  default="false"/>
@@ -13,6 +14,7 @@
   <param name="robot_description"
     command="rosrun xacro xacro --inorder
     '$(find ari_description)/robots/ari.urdf.xacro'
+    robot_model:=$(arg robot_model)
     end_effector_right:=$(arg end_effector_right)
     end_effector_left:=$(arg end_effector_left)
     laser_model:=$(arg laser_model)
