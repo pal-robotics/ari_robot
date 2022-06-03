@@ -269,6 +269,36 @@
     </inertial>
   </link>
 
+   <!-- EYE FRAMES -->
+
+  <link name="sellion_link"/>
+
+  <joint name="sellion_joint" type="fixed">
+    <origin xyz="0.04 0.09205 0" rpy="0 0 0"/>
+    <child link="sellion_link" />
+    <parent link="head_2_link"/>
+  </joint>
+
+  <link name="right_eye_link"/>
+
+  <joint name="right_eye_joint" type="fixed">
+    <origin xyz="0.0 0 0.0344 " rpy="0 0 0"/>
+    <child link="right_eye_link" />
+    <parent link="sellion_link"/>
+  </joint>
+
+  <link name="left_eye_link"/>
+
+  <joint name="left_eye_joint" type="fixed">
+    <origin xyz="0 0 -0.0344 " rpy="0 0 0"/>
+    <child link="left_eye_link" />
+    <parent link="sellion_link"/>
+  </joint>
+
+
+
+
+
 
   <xacro:macro name="head" params="name parent robot_model">
     <xacro:head_1 name="${name}_1" parent="${parent}" robot_model="${robot_model}" />
