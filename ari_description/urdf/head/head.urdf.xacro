@@ -269,6 +269,36 @@
     </inertial>
   </link>
 
+   <!-- EYE FRAMES -->
+  <!-- Eyes are located 3cm behind the screen-->
+  <link name="sellion_link"/>
+
+  <joint name="sellion_joint" type="fixed">
+    <origin xyz="0.04 0.09205 0" rpy="${-90 * deg_to_rad} 0 0"/>
+    <child link="sellion_link" />
+    <parent link="head_2_link"/>
+  </joint>
+
+  <link name="eye_right_link"/>
+
+  <joint name="eye_right_joint" type="fixed">
+    <origin xyz="0.0 0.0344 0" rpy="0 0 0"/>
+    <child link="eye_right_link" />
+    <parent link="sellion_link"/>
+  </joint>
+
+  <link name="eye_left_link"/>
+
+  <joint name="eye_left_joint" type="fixed">
+    <origin xyz="0 -0.0344 0" rpy="0 0 0"/>
+    <child link="eye_left_link" />
+    <parent link="sellion_link"/>
+  </joint>
+
+
+
+
+
 
   <xacro:macro name="head" params="name parent robot_model">
     <xacro:head_1 name="${name}_1" parent="${parent}" robot_model="${robot_model}" />
