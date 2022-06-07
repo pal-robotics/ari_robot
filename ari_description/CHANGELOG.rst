@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.44 (2022-06-07)
+-------------------
 * Merge branch 'eye-frames' into 'ferrum-devel'
   added frames for eyes of ari
   See merge request robots/ari_robot!43
