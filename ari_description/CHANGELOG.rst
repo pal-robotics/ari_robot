@@ -2,6 +2,15 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'eye-frames' into 'ferrum-devel'
+  added frames for eyes of ari
+  See merge request robots/ari_robot!43
+* Change link names and z-axis pointing up now
+* added frames for eyes of ari
+* Contributors: David ter Kuile, davidfernandez
+
 0.0.43 (2022-05-30)
 -------------------
 * Merge branch 'ari-v2' into 'ferrum-devel'
