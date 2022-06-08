@@ -2,8 +2,8 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.45 (2022-06-08)
+-------------------
 * Merge branch 'update-shake-left-motion' into 'ferrum-devel'
   update shake-left
   See merge request robots/ari_robot!45
