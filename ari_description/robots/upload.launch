@@ -23,5 +23,5 @@
     back_fisheye_camera:=$(arg back_fisheye_camera)
     has_thermal:=$(arg has_thermal)
     $(arg multi)"/>
-  <rosparam command="load" file="$(find ari_description)/config/collision/collision_parameters.yaml" />
+  <rosparam command="load" file="$(find ari_description)/config/collision/collision_parameters_$(arg robot_model).yaml" />
 </launch>
