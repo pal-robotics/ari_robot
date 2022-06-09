@@ -16,15 +16,16 @@
     <gazebo reference="wheel_${side}_link">
       <kp>1000000.0</kp>
       <kd>1000.0</kd>
-      <mu1>1.0</mu1>
-      <mu2>0.1</mu2> <!-- Frictionless wheels 0.0-->
-      <fdir1>1 0 0</fdir1>
+      <mu1>1000000000.0</mu1>
+      <mu2>1000000000.0</mu2> <!-- Frictionless wheels 0.0-->
+      <!--<fdir1>1 0 0</fdir1>-->
       <maxVel>1.0</maxVel>
-      <minDepth>0.00</minDepth>
-      <implicitSpringDamper>1</implicitSpringDamper>
+      <minDepth>0.002</minDepth>
       <material>Gazebo/DarkGrey</material>
+    </gazebo>    
+    <gazebo reference="wheel_${side}_joint">
+      <implicitSpringDamper>1</implicitSpringDamper>
     </gazebo>
   </xacro:macro>
 
 </robot>
-
