@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.46 (2022-06-09)
+-------------------
 * Merge branch 'ari-v2' into 'ferrum-devel'
   Ari v2
   See merge request robots/ari_robot!46
