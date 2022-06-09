@@ -2,6 +2,16 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'ari-v2' into 'ferrum-devel'
+  Ari v2
+  See merge request robots/ari_robot!46
+* Update collision_parameters with new caster link
+* Fix ari base simulation wheels/caster
+* Fix CoM for arm_right_1_link
+* Contributors: David ter Kuile, Luca Marchionni, davidfernandez
+
 0.0.45 (2022-06-08)
 -------------------
 

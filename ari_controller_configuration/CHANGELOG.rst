@@ -2,6 +2,14 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'ari-v2' into 'ferrum-devel'
+  Ari v2
+  See merge request robots/ari_robot!46
+* Fix ari base simulation wheels/caster
+* Contributors: Luca Marchionni, davidfernandez
+
 0.0.45 (2022-06-08)
 -------------------
 
