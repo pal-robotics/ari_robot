@@ -9,7 +9,7 @@
   <arg name="laser_model"  default="false"/>
   <arg name="camera_model_head" default="raspi"/>
   <arg name="has_thermal" default="false"/>
-  <arg name="use_nominal_extrinsics" default="false"/>
+  <arg name="simulation" default="false"/>
 
   <!-- Robot description -->
   <param name="robot_description"
@@ -23,7 +23,7 @@
     front_fisheye_camera:=$(arg front_fisheye_camera)
     back_fisheye_camera:=$(arg back_fisheye_camera)
     has_thermal:=$(arg has_thermal)
-    use_nominal_extrinsics:=$(arg use_nominal_extrinsics)
+    simulation:=$(arg simulation)
     $(arg multi)"/>
   <rosparam command="load" file="$(find ari_description)/config/collision/collision_parameters_$(arg robot_model).yaml" />
 </launch>

@@ -17,7 +17,7 @@
   <xacro:arg name="back_fisheye_camera" default="false"/>
   <xacro:arg name="camera_model_head" default="raspi"/>
   <xacro:arg name="has_thermal" default="false"/>
-  <xacro:arg name="use_nominal_extrinsics" default="false" />
+  <xacro:arg name="simulation" default="false" />
   <xacro:property name="robot_model" value="$(arg robot_model)" />
   <xacro:property name="end_effector_right" value="$(arg end_effector_right)" />
   <xacro:property name="end_effector_left" value="$(arg end_effector_left)" />
@@ -29,7 +29,7 @@
   <xacro:arg name="namespace" default=""/>
   <xacro:property name="is_multiple" value="$(arg multiple)" />
   <xacro:property name="nsp" value="$(arg namespace)" />
-  <xacro:property name="use_nominal_extrinsics" value="$(arg use_nominal_extrinsics)"/>
+  <xacro:property name="use_nominal_extrinsics" value="$(arg simulation)"/>
 
   <xacro:if value="${robot_model not in ['v1', 'v2']}">
     <xacro:wrong_ari_robot_model/>
