@@ -2,6 +2,15 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'extrinsics-fix-in-public-sim' into 'ferrum-devel'
+  set nominal extrinsics as param
+  See merge request robots/ari_robot!48
+* change parameter name
+* set nominal extrinsics as param
+* Contributors: saikishor, saracooper
+
 0.0.46 (2022-06-09)
 -------------------
 * Merge branch 'ari-v2' into 'ferrum-devel'
