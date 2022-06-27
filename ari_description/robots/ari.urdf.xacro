@@ -17,6 +17,7 @@
   <xacro:arg name="back_fisheye_camera" default="false"/>
   <xacro:arg name="camera_model_head" default="raspi"/>
   <xacro:arg name="has_thermal" default="false"/>
+  <xacro:arg name="simulation" default="false" />
   <xacro:property name="robot_model" value="$(arg robot_model)" />
   <xacro:property name="end_effector_right" value="$(arg end_effector_right)" />
   <xacro:property name="end_effector_left" value="$(arg end_effector_left)" />
@@ -28,7 +29,7 @@
   <xacro:arg name="namespace" default=""/>
   <xacro:property name="is_multiple" value="$(arg multiple)" />
   <xacro:property name="nsp" value="$(arg namespace)" />
-
+  <xacro:property name="use_nominal_extrinsics" value="$(arg simulation)"/>
 
   <xacro:if value="${robot_model not in ['v1', 'v2']}">
     <xacro:wrong_ari_robot_model/>
@@ -67,7 +68,6 @@
   <!-- The properties below are modified using empy http://www.alcyone.com/software/empy/
        from the create_robot.py tool. Handle them with care -->
   <xacro:property name="head_link_name"          value="head_2_link"/>
-  
   <!-- The following included files set up definitions of parts of the robot body -->
   <xacro:include filename="$(find ari_description)/urdf/base/base.urdf.xacro" />   <!-- Base -->
   <xacro:include filename="$(find ari_description)/urdf/head/head.urdf.xacro" /> <!-- head -->
@@ -89,7 +89,7 @@
 
   <!-- Now we can start using the macros included above to define the actual robot -->
   <xacro:base name="base" robot_model="${robot_model}"/>
-  <xacro:torso_sensors name="torso" parent="base_link" robot_model="${robot_model}"/>
+  <xacro:torso_sensors name="torso" parent="base_link" robot_model="${robot_model}" use_nominal_extrinsics="${use_nominal_extrinsics}" />
   <xacro:head name="head" parent="base_link" robot_model="${robot_model}"/>
 
   <xacro:if value="${robot_model == 'v1'}">

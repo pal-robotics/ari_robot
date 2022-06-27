@@ -26,7 +26,7 @@
   <xacro:property name="base_laser_z" value="0.564"/>
 
 
-  <xacro:macro name="torso_sensors" params="name parent robot_model">
+  <xacro:macro name="torso_sensors" params="name parent robot_model use_nominal_extrinsics">
 
     <xacro:if value="${robot_model == 'v1'}">
 
@@ -65,7 +65,7 @@
 
   <!-- Torso sensors -->
   <!-- Torso front camera -->
-  <sensor_d435 parent="${parent}" name="${name}_front_camera" topics_ns="${name}_front_camera">
+  <sensor_d435 parent="${parent}" name="${name}_front_camera" topics_ns="${name}_front_camera" use_nominal_extrinsics="${use_nominal_extrinsics}">
     <origin xyz="${torso_front_camera_position_x} ${torso_front_camera_position_y} ${torso_front_camera_position_z}"
             rpy="${torso_front_camera_orientation_r} ${torso_front_camera_orientation_p} ${torso_front_camera_orientation_y}"/>
   </sensor_d435>
