@@ -2,6 +2,9 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.0.47 (2022-06-27)
 -------------------
 * Merge branch 'extrinsics-fix-in-public-sim' into 'ferrum-devel'

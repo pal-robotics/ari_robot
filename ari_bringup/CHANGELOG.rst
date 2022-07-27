@@ -2,6 +2,14 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'approach_planner_v2' into 'ferrum-devel'
+  Modify the approach_planner config for ARI v2
+  See merge request robots/ari_robot!49
+* Modify the approach_planner config for ARI v2
+* Contributors: davidfernandez, saikishor
+
 0.0.47 (2022-06-27)
 -------------------
 
