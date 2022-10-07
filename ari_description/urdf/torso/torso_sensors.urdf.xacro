@@ -150,6 +150,14 @@
     </xacro:sick_tim571_laser>
   </xacro:if>
 
+  <xacro:if value="${laser_model == 'ydlidar-tg30'}">
+    <!-- Laser -->
+    <!-- Theoretic FOV = 220 -->
+    <xacro:sick_tim571_laser name="${name}_laser" parent="${parent}" ros_topic="scan_raw" update_rate="10" min_angle="${-180 * deg_to_rad}" max_angle="${180 * deg_to_rad}" >
+      <origin xyz="${base_laser_x} ${base_laser_y} ${base_laser_z}" rpy="0 0 ${ 180 * deg_to_rad }" />
+    </xacro:sick_tim571_laser>
+  </xacro:if>
+
  </xacro:macro>
  
  
