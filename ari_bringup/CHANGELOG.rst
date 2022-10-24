@@ -2,6 +2,14 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'feat/robust-odometry-integration' into 'ferrum-devel'
+  disabled odom tf publication
+  See merge request robots/ari_robot!55
+* disabled odom tf publication
+* Contributors: josegarcia
+
 0.0.48 (2022-07-27)
 -------------------
 * Merge branch 'approach_planner_v2' into 'ferrum-devel'
