@@ -61,7 +61,7 @@
   <xacro:property name="rgbd_sensors" value="$(arg rgbd_sensors)"/>
   <xacro:property name="has_front_fisheye_camera"           value="${front_fisheye_camera in ['Jetson', True, 'true', 'PC']}"/> 
   <xacro:property name="has_back_fisheye_camera"           value="${back_fisheye_camera in ['Jetson', True, 'true', 'PC']}"/> 
-  <xacro:if value="${laser_model not in ['No', 'false', False, 'sick-551', 'sick-561', 'sick-571', 'hokuyo', 'ydlidar-tg30']}">
+  <xacro:if value="${laser_model not in ['No', 'false', False, 'sick-551', 'sick-561', 'sick-571', 'hokuyo', 'ydlidar-tg30', 'ydlidar-tg15']}">
     <xacro:wrong_laser_model/>
   </xacro:if>
 
