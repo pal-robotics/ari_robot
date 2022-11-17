@@ -2,6 +2,15 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'feat/ydlidar' into 'ferrum-devel'
+  added support to ydlidar
+  See merge request robots/ari_robot!54
+* added support to ydlidar 15 and 30
+* added support to ydlidar
+* Contributors: antoniobrandi
+
 0.0.49 (2022-10-24)
 -------------------
 

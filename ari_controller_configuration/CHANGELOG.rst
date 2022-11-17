@@ -2,6 +2,9 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.0.49 (2022-10-24)
 -------------------
 * Merge branch 'feat/robust-odometry-integration' into 'ferrum-devel'
