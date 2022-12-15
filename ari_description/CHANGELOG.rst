@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.51 (2022-12-15)
+-------------------
 * Merge branch 'new-lidar-frame' into 'ferrum-devel'
   Update lidar frame in case of ari-v2
   See merge request robots/ari_robot!58
