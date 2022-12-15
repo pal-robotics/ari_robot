@@ -2,6 +2,14 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'fix/enable_odom' into 'ferrum-devel'
+  Added a good configuration for enable_odom_tf
+  See merge request robots/ari_robot!57
+* Added a good configuration for enable_odom_tf
+* Contributors: sergiomoyano
+
 0.0.50 (2022-11-17)
 -------------------
 
