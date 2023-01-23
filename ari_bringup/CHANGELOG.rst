@@ -2,6 +2,14 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'robot-state-publisher' into 'ferrum-devel'
+  rename node to robot-state-publisher
+  See merge request robots/ari_robot!59
+* rename node to robot-state-publisher
+* Contributors: David ter Kuile, Jordan Palacios
+
 0.0.51 (2022-12-15)
 -------------------
 * Merge branch 'fix/enable_odom' into 'ferrum-devel'
