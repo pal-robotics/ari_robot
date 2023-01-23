@@ -2,8 +2,8 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.52 (2023-01-23)
+-------------------
 * Merge branch 'robot-state-publisher' into 'ferrum-devel'
   rename node to robot-state-publisher
   See merge request robots/ari_robot!59
