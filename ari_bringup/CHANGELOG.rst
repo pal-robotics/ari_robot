@@ -2,6 +2,14 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'update-joystick' into 'ferrum-devel'
+  Update joystick device name
+  See merge request robots/ari_robot!62
+* Update joystick device name
+* Contributors: David ter Kuile, Sai Kishor Kothakota
+
 0.0.53 (2023-04-18)
 -------------------
 * Merge branch 'motions_2' into 'ferrum-devel'
