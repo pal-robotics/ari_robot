@@ -2,8 +2,8 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.53 (2023-04-18)
+-------------------
 * Merge branch 'motions_2' into 'ferrum-devel'
   Add fly motion in ari_v2_motion.yaml
   See merge request robots/ari_robot!61
