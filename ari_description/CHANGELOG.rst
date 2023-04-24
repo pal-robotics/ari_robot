@@ -2,6 +2,15 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'fix/ydlidar-yaw' into 'ferrum-devel'
+  Correct yaw for ydlidar
+  See merge request robots/ari_robot!60
+* Fix min_angle and max_angle ydlidar
+* Correct yaw for ydlidar
+* Contributors: sergiomoyano
+
 0.0.54 (2023-04-18)
 -------------------
 
