@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.55 (2023-04-24)
+-------------------
 * Merge branch 'fix/ydlidar-yaw' into 'ferrum-devel'
   Correct yaw for ydlidar
   See merge request robots/ari_robot!60
