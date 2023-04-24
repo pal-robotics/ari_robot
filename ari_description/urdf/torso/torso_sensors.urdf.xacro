@@ -158,7 +158,7 @@
   <xacro:if value="${laser_model == 'ydlidar-tg30'}">
     <!-- Laser -->
     <!-- Theoretic FOV = 360 -->
-    <xacro:ydlidar_tg30_laser name="${name}_laser" parent="${parent}" ros_topic="scan_raw" update_rate="10" min_angle="${-180 * deg_to_rad}" max_angle="${180 * deg_to_rad}" >
+    <xacro:ydlidar_tg30_laser name="${name}_laser" parent="${parent}" ros_topic="scan_raw" update_rate="10" min_angle="${-70 * deg_to_rad}" max_angle="${110 * deg_to_rad}" >
       <origin xyz="${base_laser_x} ${base_laser_y} ${base_laser_z}" rpy="0 0 ${ 200 * deg_to_rad }" />
     </xacro:ydlidar_tg30_laser>
   </xacro:if>
@@ -166,12 +166,11 @@
   <xacro:if value="${laser_model == 'ydlidar-tg15'}">
     <!-- Laser -->
     <!-- Theoretic FOV = 360 -->
-    <xacro:ydlidar_tg15_laser name="${name}_laser" parent="${parent}" ros_topic="scan_raw" update_rate="10" min_angle="${-180 * deg_to_rad}" max_angle="${180 * deg_to_rad}" >
+    <xacro:ydlidar_tg15_laser name="${name}_laser" parent="${parent}" ros_topic="scan_raw" update_rate="10" min_angle="${-70 * deg_to_rad}" max_angle="${110 * deg_to_rad}" >
       <origin xyz="${base_laser_x} ${base_laser_y} ${base_laser_z}" rpy="0 0 ${ 200 * deg_to_rad }" />
     </xacro:ydlidar_tg15_laser>
   </xacro:if>
 
- </xacro:macro>
- 
- 
+</xacro:macro>
+  
 </robot>
