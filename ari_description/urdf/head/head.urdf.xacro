@@ -172,10 +172,10 @@
   <!-- Optional head realsense camera -->
   
   <xacro:macro name="head_rgbd" params="name parent">
-    <sensor_d435 parent="head_2_link" name="head_front_camera" topics_ns="head_front_camera">
+    <xacro:sensor_d435 parent="head_2_link" name="head_front_camera" topics_ns="head_front_camera">
       <origin xyz="${head_realsense_camera_position_x} ${head_realsense_camera_position_y} ${head_realsense_camera_position_z}"
             rpy="${head_realsense_camera_orientation_r} ${head_realsense_camera_orientation_p} ${head_realsense_camera_orientation_y}"/>
-    </sensor_d435>
+    </xacro:sensor_d435>
   </xacro:macro>
 
 

@@ -70,16 +70,16 @@
 
   <!-- Torso sensors -->
   <!-- Torso front camera -->
-  <sensor_d435 parent="${parent}" name="${name}_front_camera" topics_ns="${name}_front_camera" use_nominal_extrinsics="${use_nominal_extrinsics}">
+  <xacro:sensor_d435 parent="${parent}" name="${name}_front_camera" topics_ns="${name}_front_camera" use_nominal_extrinsics="${use_nominal_extrinsics}">
     <origin xyz="${torso_front_camera_position_x} ${torso_front_camera_position_y} ${torso_front_camera_position_z}"
             rpy="${torso_front_camera_orientation_r} ${torso_front_camera_orientation_p} ${torso_front_camera_orientation_y}"/>
-  </sensor_d435>
+  </xacro:sensor_d435>
 
   <!-- Torso back camera -->
-  <sensor_t265 parent="${parent}" name="${name}_back_camera" topics_ns="${name}_back_camera">
+  <xacro:sensor_t265 parent="${parent}" name="${name}_back_camera" topics_ns="${name}_back_camera">
     <origin xyz="${torso_back_camera_position_x} ${torso_back_camera_position_y} ${torso_back_camera_position_z}"
             rpy="${torso_back_camera_orientation_r} ${torso_back_camera_orientation_p} ${torso_back_camera_orientation_y}"/>
-  </sensor_t265>
+  </xacro:sensor_t265>
 
   <!-- Optional SPRING cameras -->
   <xacro:if value="${has_front_fisheye_camera}">
