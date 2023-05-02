@@ -2,6 +2,14 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'bugfix/noetic-compatibility' into 'ferrum-devel'
+  fix: xacro noetic compatibility for d435/t265
+  See merge request robots/ari_robot!63
+* fix: xacro noetic compatibility for d435/t265
+* Contributors: josecarlos, josegarcia
+
 0.0.55 (2023-04-24)
 -------------------
 * Merge branch 'fix/ydlidar-yaw' into 'ferrum-devel'
