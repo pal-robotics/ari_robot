@@ -219,35 +219,3 @@ play_motion:
         usage: ""
         description: ""
 
-    right_left:
-      joints: [head_2_joint, head_1_joint]
-      points:
-        - time_from_start: 0
-          positions: [0.051748, 0.58752]
-        - time_from_start: 1
-          positions: [0.051748, -1.1873]
-        - time_from_start: 2
-          positions: [0.053282, 0.57064]
-        - time_from_start: 3
-          positions: [0.053282, -1.1689]
-      meta:
-        name: Right-Left
-        usage: Entertainment
-        description: The head is moving right and left
-
-    up_down:
-      joints: [head_2_joint, head_1_joint]
-      points:
-        - time_from_start: 0
-          positions: [-0.19062, 0.0030685]
-        - time_from_start: 1
-          positions: [0.25577, -0.062893]
-        - time_from_start: 2
-          positions: [-0.19522, -0.0030674]
-        - time_from_start: 3
-          positions: [0.2619, -0.056757]
-      meta:
-        name: Up-Down
-        usage: Entertainment
-        description: The head is moving up and down
-
