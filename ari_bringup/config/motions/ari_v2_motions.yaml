@@ -215,7 +215,7 @@ play_motion:
         - time_from_start: 3.5
           positions: [-0.023069, 0.082896, 0.041922, 0.28352, -1.3024, -0.025395, 0.1251, 0.029476, 0.27479, -1.7071]
       meta:
-        name: flying (Copy)
+        name: flying
         usage: ""
         description: ""
 
