@@ -226,6 +226,6 @@ play_motion:
                 positions: [-0.19641, 0.095168, 0.038854, 0.39397, -0.0016249, -0.1972, 0.10209, 0.038679, 0.3883, -0.0043945]
       meta:
         name: flying
-        usage: ""
-        description: ""
+        usage: Entertainment
+        description: Arms moving front and back
 
