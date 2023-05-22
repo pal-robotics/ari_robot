@@ -2,6 +2,9 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.0.56 (2023-05-02)
 -------------------
 * Merge branch 'bugfix/noetic-compatibility' into 'ferrum-devel'

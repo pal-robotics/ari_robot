@@ -2,6 +2,18 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'motions' into 'ferrum-devel'
+  Flying, up-down and right-left new motions
+  See merge request robots/ari_robot!64
+* isage and description added
+* flying motion updated
+* flying change name
+* changes in motions by default
+* flying, up-down and right-left new motions
+* Contributors: Aina, davidfernandez
+
 0.0.56 (2023-05-02)
 -------------------
 
