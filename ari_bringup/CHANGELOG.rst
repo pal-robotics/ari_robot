@@ -2,6 +2,14 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'motions' into 'ferrum-devel'
+  Update ari_bringup/config/motions/ari_v2_motions.yaml
+  See merge request robots/ari_robot!65
+* Update ari_bringup/config/motions/ari_v2_motions.yaml
+* Contributors: Aina Irisarri, davidfernandez
+
 0.0.57 (2023-05-22)
 -------------------
 * Merge branch 'motions' into 'ferrum-devel'
