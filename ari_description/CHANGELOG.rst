@@ -2,6 +2,14 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'fix/ydlidar-simulation-params' into 'ferrum-devel'
+  fix ydlidar simulation min and max angle
+  See merge request robots/ari_robot!68
+* fix ydlidar simulation min and max angle
+* Contributors: andreacapodacqua, sergiomoyano
+
 0.0.59 (2023-06-21)
 -------------------
 

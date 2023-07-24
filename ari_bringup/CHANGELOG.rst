@@ -2,6 +2,9 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.0.59 (2023-06-21)
 -------------------
 * Merge branch 'motions' into 'ferrum-devel'
