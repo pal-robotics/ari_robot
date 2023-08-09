@@ -2,6 +2,15 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'feat/ydlidar-ari-v1' into 'ferrum-devel'
+  Feat/ydlidar ari v1
+  See merge request robots/ari_robot!69
+* fix use sick position only with sick
+* modified position ari v1 ydlidar
+* Contributors: andreacapodacqua, josegarcia
+
 0.0.60 (2023-07-24)
 -------------------
 * Merge branch 'fix/ydlidar-simulation-params' into 'ferrum-devel'
