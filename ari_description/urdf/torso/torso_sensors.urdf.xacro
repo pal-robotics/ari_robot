@@ -21,7 +21,7 @@
   <xacro:include filename="$(find ari_description)/urdf/sensors/ydlidar_tg15_laser.urdf.xacro"/>
   
 
-  <xacro:macro name="torso_sensors" params="name parent robot_model use_nominal_extrinsics">
+  <xacro:macro name="torso_sensors" params="name parent robot_model use_nominal_extrinsics laser_model">
 
     <xacro:if value="${robot_model == 'v1'}">
 
@@ -38,11 +38,20 @@
       <xacro:property name="torso_back_camera_orientation_r" value="0.0" />
       <xacro:property name="torso_back_camera_orientation_p" value="${15 * deg_to_rad}" />
       <xacro:property name="torso_back_camera_orientation_y" value="${180 * deg_to_rad}" />
+ 
+      <!-- Laser characteristics -->
+      <xacro:if value="${laser_model == 'sick-571'}">
+        <xacro:property name="base_laser_x" value="-0.34"/>
+        <xacro:property name="base_laser_y" value="0.0"/>
+        <xacro:property name="base_laser_z" value="0.564"/>
+      </xacro:if>
 
-        <!-- Laser characteristics -->
-      <xacro:property name="base_laser_x" value="-0.34"/>
-      <xacro:property name="base_laser_y" value="0.0"/>
-      <xacro:property name="base_laser_z" value="0.564"/>
+      <xacro:if value="${laser_model in ['ydlidar-tg30', 'ydlidar-tg15']}">
+        <xacro:property name="base_laser_x" value="-0.39777"/>
+        <xacro:property name="base_laser_y" value="0.0"/>
+        <xacro:property name="base_laser_z" value="0.26848"/>
+      </xacro:if>
+
     </xacro:if>
 
 

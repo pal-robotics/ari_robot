@@ -89,7 +89,7 @@
 
   <!-- Now we can start using the macros included above to define the actual robot -->
   <xacro:base name="base" robot_model="${robot_model}"/>
-  <xacro:torso_sensors name="torso" parent="base_link" robot_model="${robot_model}" use_nominal_extrinsics="${use_nominal_extrinsics}" />
+  <xacro:torso_sensors name="torso" parent="base_link" robot_model="${robot_model}" use_nominal_extrinsics="${use_nominal_extrinsics}" laser_model="${laser_model}" />
   <xacro:head name="head" parent="base_link" robot_model="${robot_model}"/>
 
   <xacro:if value="${robot_model == 'v1'}">
