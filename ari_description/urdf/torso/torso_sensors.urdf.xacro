@@ -40,10 +40,11 @@
       <xacro:property name="torso_back_camera_orientation_y" value="${180 * deg_to_rad}" />
  
       <!-- Laser characteristics -->
-
-      <xacro:property name="base_laser_x" value="-0.34"/>
-      <xacro:property name="base_laser_y" value="0.0"/>
-      <xacro:property name="base_laser_z" value="0.564"/>
+      <xacro:if value="${laser_model == 'sick-571'}">
+        <xacro:property name="base_laser_x" value="-0.34"/>
+        <xacro:property name="base_laser_y" value="0.0"/>
+        <xacro:property name="base_laser_z" value="0.564"/>
+      </xacro:if>
 
       <xacro:if value="${laser_model in ['ydlidar-tg30', 'ydlidar-tg15']}">
         <xacro:property name="base_laser_x" value="-0.39777"/>
