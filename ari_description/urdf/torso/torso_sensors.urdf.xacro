@@ -18,7 +18,7 @@
 -->
   <xacro:include filename="$(find ari_description)/urdf/sensors/microphone.urdf.xacro"/>
   <xacro:include filename="$(find ari_description)/urdf/sensors/imx179_camera.gazebo.xacro"/>
-  <xacro:include filename="$(find ari_description)/urdf/sensors/sick_tim571_laser.urdf.xacro"/>
+  <xacro:include filename="$(find pmb2_description)/urdf/sensors/sick_tim571_laser.urdf.xacro"/>
   <xacro:include filename="$(find ari_description)/urdf/sensors/ydlidar_tg30_laser.urdf.xacro"/>
   <xacro:include filename="$(find ari_description)/urdf/sensors/ydlidar_tg15_laser.urdf.xacro"/>
   
