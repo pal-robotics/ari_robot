@@ -1,4 +1,0 @@
-extra_joints:
-    - name: 'caster_left_joint'
-    - name: 'caster_right_joint'
-
