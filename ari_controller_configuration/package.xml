@@ -8,6 +8,8 @@
 
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
 
+  <build_depend condition="$PAL_DISTRO >= alum">pal_module_cmake</build_depend>
+
 <!-- TODO ROS2
     <exec_depend>current_limit_controller</exec_depend>
 -->
