@@ -12,7 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import os
+
 from launch import LaunchDescription
+from ament_index_python.packages import get_package_share_directory
 from launch_pal.include_utils import include_launch_py_description
 from launch_ros.actions import Node
 
@@ -32,7 +35,12 @@ def generate_launch_description():
         package='rviz2',
         executable='rviz2',
         name='rviz2',
-        #       arguments=['-d', rviz_config_file],
+        arguments=['-d',
+                   os.path.join(
+                       get_package_share_directory("ari_description"),
+                       "config",
+                       "ari.rviz",
+                   )],
         output='screen')
 
     ld = LaunchDescription()
