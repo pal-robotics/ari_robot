@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<!--
+  Copyright (c) 2019, PAL Robotics, S.L.
+  All rights reserved.
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="ros2_control_wheel" params="side">
+    <joint name="wheel_${side}_joint">
+      <command_interface name="velocity">
+        <param name="min">-1</param>
+        <param name="max">1</param>
+      </command_interface>
+      <state_interface name="position" />
+    </joint>
+
+    <xacro:include filename="$(find ari_description)/ros2_control/transmissions.urdf.xacro" />
+    <xacro:ari_simple_transmission name="wheel_${side}" />
+
+  </xacro:macro>
+
+</robot>

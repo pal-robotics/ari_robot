@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!-- 
+  Copyright (c) 2023 PAL Robotics S.L. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ -->
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="ari" >
+
+  <xacro:macro name="ari_ros2_control" params="use_sim:=^|true">
+
+    <xacro:arg name="robot_model" default="v2" />
+    <xacro:arg name="description_calibration_dir" default="$(find ari_description)/urdf/calibration" />
+
+    <xacro:property name="is_v2" value="${robot_model == 'v2'}" />
+
+
+
+
+
+    <!-- calibration offsets -->
+    <xacro:include filename="$(arg description_calibration_dir)/calibration_constants.urdf.xacro" />
+
+    <ros2_control name="ros2_control_ari_system" type="system">
+      <hardware>
+        <xacro:if value="$(arg use_sim)">
+          <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+        </xacro:if>
+        <xacro:unless value="$(arg use_sim)">
+          <plugin>robot_control/RobotControl</plugin>
+        </xacro:unless>
+
+      </hardware>
+
+      <!-- wheels -->
+      <xacro:include filename="$(find ari_description)/urdf/wheels/wheel.ros2_control.xacro" />
+      <xacro:ros2_control_wheel side="right" />
+      <xacro:ros2_control_wheel side="left" />
+
+      <!-- IMU -->
+      <!-- TODO ROS2
+        -> include IMU configuration; was not in ROS1 (?). Check if actually needed.
+      -->
+      <xacro:include filename="$(find ari_description)/urdf/sensors/sensors.ros2_control.xacro"/>
+      <xacro:if value="$(arg use_sim)">
+        <xacro:ros2_control_imu name="base_imu_sensor"/>
+      </xacro:if>
+
+      <!-- head -->
+      <xacro:include filename="$(find ari_description)/urdf/head/head.ros2_control.xacro" />
+      <xacro:ros2_control_head name="head_1" reduction="1.0" offset="${head_1_joint_offset}" />
+      <xacro:ros2_control_head name="head_2" reduction="1.0" offset="${head_2_joint_offset}" />
+
+
+      <!-- arms -->
+      <xacro:include filename="$(find ari_description)/urdf/arm/arm.ros2_control.xacro" />
+      <xacro:ros2_control_arm side="left" />
+      <xacro:ros2_control_arm side="right" />
+    </ros2_control>
+  </xacro:macro>
+</robot>
