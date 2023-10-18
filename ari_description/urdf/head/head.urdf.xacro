@@ -123,7 +123,12 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/head/head_2.stl" scale="1 1 1"/>
+          <xacro:if value="${robot_model == 'v1'}">
+            <mesh filename="package://ari_description/meshes/head/head_2.stl" scale="1 1 1"/>
+          </xacro:if>
+          <xacro:if value="${robot_model == 'v2'}">
+            <mesh filename="package://ari_description/meshes/head/head_2.dae" scale="1 1 1"/>
+          </xacro:if>
         </geometry>
         <material name="White" />
       </visual>
