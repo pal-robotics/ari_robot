@@ -2,14 +2,12 @@
 <launch>
   <arg name="multi" default=""/>
   <arg name="robot_model" default="v1"/>
-  <arg name="end_effector_right" default="$(eval {'v1': 'ari-hand', 'v2': 'false'}.get(arg('robot_model'), 'false'))"/>
-  <arg name="end_effector_left" default="$(eval {'v1': 'ari-hand', 'v2': 'false'}.get(arg('robot_model'), 'false'))"/>
+  <arg name="end_effector" default="$(eval {'v1': 'ari-hand', 'v2': 'no-hand'}.get(arg('robot_model'), 'false'))"/>
 
 
-  <arg name="test_suffix" value="$(arg robot_model)-$(arg end_effector_right)-$(arg end_effector_left)"/>
+  <arg name="test_suffix" value="$(arg robot_model)-$(arg end_effector)"/>
   <include file="$(find ari_description)/robots/upload.launch">
-    <arg name="end_effector_right" value="$(arg end_effector_right)"/>
-    <arg name="end_effector_left" value="$(arg end_effector_left)"/>
+    <arg name="end_effector" value="$(arg end_effector)"/>
     <arg name="robot_model" default="$(arg robot_model)"/>
   </include>
   <include file="$(find urdf_test)/launch/test_urdf.launch">

@@ -19,14 +19,12 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 
   foreach(robot_model v1 v2)
-      foreach(end_effector_left ari-hand no-hand)
-          foreach(end_effector_right ari-hand no-hand)
-              add_launch_test(
-                test/test_description.launch.py
-                TARGET "ari_description_${end_effector_right}_${end_effector_left}_${robot_model}"
-                ARGS "end_effector_right:=${end_effector_right}" "end_effector_left:=${end_effector_left}" "robot_model:=${robot_model}"
-              )
-        endforeach()
+      foreach(end_effector ari-hand no-hand)
+            add_launch_test(
+            test/test_description.launch.py
+            TARGET "ari_description_${end_effector}_${robot_model}"
+            ARGS "end_effector:=${end_effector}" "robot_model:=${robot_model}"
+            )
     endforeach()
   endforeach()
 endif()

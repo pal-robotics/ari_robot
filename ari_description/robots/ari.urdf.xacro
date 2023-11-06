@@ -19,8 +19,7 @@
         name="ari" >
 
   <xacro:arg name="robot_model" default="v2"/>
-  <xacro:arg name="end_effector_right" default="no-hand"/>
-  <xacro:arg name="end_effector_left" default="no-hand"/>
+  <xacro:arg name="end_effector" default="no-hand"/>
   <xacro:arg name="front_fisheye_camera" default="false"/>
   <xacro:arg name="back_fisheye_camera" default="false"/>
   <xacro:arg name="laser_model" default="ydlidar-tg15"/> <!-- false, hokuyo, sick-551, sick-561, sick-571, ydlidar-tg30, ydlidar-tg15 -->
@@ -33,8 +32,7 @@
   <xacro:arg name="use_sim" default="true"/>
 
   <xacro:property name="robot_model" value="$(arg robot_model)" />
-  <xacro:property name="end_effector_right" value="$(arg end_effector_right)" />
-  <xacro:property name="end_effector_left" value="$(arg end_effector_left)" />
+  <xacro:property name="end_effector" value="$(arg end_effector)" />
   <xacro:property name="front_fisheye_camera" value="$(arg front_fisheye_camera)" />
   <xacro:property name="back_fisheye_camera" value="$(arg back_fisheye_camera)" />
   <xacro:property name="laser_model" value="$(arg laser_model)" />
@@ -49,11 +47,7 @@
     <xacro:wrong_ari_robot_model/>
   </xacro:if>
 
-  <xacro:if value="${end_effector_right not in ['ari-hand', 'no-hand', 'false', False]}">
-    <xacro:wrong_end_effector/>
-  </xacro:if>
-  
-  <xacro:if value="${end_effector_left not in ['ari-hand', 'no-hand', 'false', False]}">
+  <xacro:if value="${end_effector not in ['ari-hand', 'no-hand', 'false', False]}">
     <xacro:wrong_end_effector/>
   </xacro:if>
 
@@ -119,10 +113,10 @@
   <xacro:head name="head" parent="base_link" robot_model="${robot_model}"/>
 
   <xacro:if value="${robot_model == 'v1'}">
-    <xacro:ari_arm name="arm" parent="base_link" side="left" reflect="1" end_effector="${end_effector_left == 'ari-hand'}">
+    <xacro:ari_arm name="arm" parent="base_link" side="left" reflect="1" end_effector="${end_effector == 'ari-hand'}">
       <origin xyz="-0.219 0.097624 1.1111" rpy="${105.0 * deg_to_rad} ${0.0 * deg_to_rad} ${-180.0 * deg_to_rad}" />
     </xacro:ari_arm>
-    <xacro:ari_arm name="arm" parent="base_link" side="right" reflect="-1" end_effector="${end_effector_right == 'ari-hand'}">
+    <xacro:ari_arm name="arm" parent="base_link" side="right" reflect="-1" end_effector="${end_effector == 'ari-hand'}">
       <origin xyz="-0.219 -0.097624 1.1111" rpy="${-105.0 * deg_to_rad} ${0.0 * deg_to_rad} ${180.0 * deg_to_rad}" />
     </xacro:ari_arm>
   </xacro:if>
