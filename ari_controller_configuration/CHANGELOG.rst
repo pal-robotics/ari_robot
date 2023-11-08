@@ -2,8 +2,8 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+0.0.62 (2023-11-08)
+-------------------
 * Merge branch 'smooth_position_control' into 'ferrum-devel'
   Smooth position control
   See merge request robots/ari_robot!71
