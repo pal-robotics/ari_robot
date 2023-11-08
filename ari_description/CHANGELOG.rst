@@ -2,6 +2,9 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 0.0.61 (2023-08-09)
 -------------------
 * Merge branch 'feat/ydlidar-ari-v1' into 'ferrum-devel'
