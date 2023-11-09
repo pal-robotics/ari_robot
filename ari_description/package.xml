@@ -28,6 +28,7 @@
   <test_depend>launch_testing_ament_cmake</test_depend>
   <test_depend>urdf_test</test_depend>
   <test_depend>robot_state_publisher</test_depend>
+  <test_depend>pmb2_description</test_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
