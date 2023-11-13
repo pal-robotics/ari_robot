@@ -2,8 +2,8 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.0.1 (2023-11-13)
+------------------
 * Merge branch 'ros2-port' into 'humble-devel'
   Port ARI base packages to ROS2
   See merge request robots/ari_robot!70
