@@ -1,89 +1,109 @@
 <?xml version="1.0"?>
-<!--
-  Copyright (c) 2019, PAL Robotics, S.L.
-  All rights reserved.
+<!-- 
+  Copyright (c) 2023 PAL Robotics S.L. All rights reserved.
 
-  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
-  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
-  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
--->
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ -->
+
 <robot  xmlns:xacro="http://ros.org/wiki/xacro"
         name="ari" >
 
-  <xacro:arg name="robot_model" default="v1"/>
-  <xacro:arg name="end_effector_right" default="ari-hand"/>
-  <xacro:arg name="end_effector_left" default="ari-hand"/>
+  <xacro:arg name="robot_model" default="v2"/>
+  <xacro:arg name="end_effector" default="no-hand"/>
   <xacro:arg name="front_fisheye_camera" default="false"/>
   <xacro:arg name="back_fisheye_camera" default="false"/>
+  <xacro:arg name="laser_model" default="ydlidar-tg15"/> <!-- false, hokuyo, sick-551, sick-561, sick-571, ydlidar-tg30, ydlidar-tg15 -->
   <xacro:arg name="camera_model_head" default="raspi"/>
+  <xacro:arg name="rgbd_sensors" default="false"/> <!-- false, true-->
   <xacro:arg name="has_thermal" default="false"/>
-  <xacro:arg name="simulation" default="false" />
-  <xacro:property name="robot_model" value="$(arg robot_model)" />
-  <xacro:property name="end_effector_right" value="$(arg end_effector_right)" />
-  <xacro:property name="end_effector_left" value="$(arg end_effector_left)" />
-  <xacro:property name="front_fisheye_camera" value="$(arg front_fisheye_camera)" />
-  <xacro:property name="back_fisheye_camera" value="$(arg back_fisheye_camera)" />
-  <xacro:property name="camera_model_head" value="$(arg camera_model_head)"/>
-  <xacro:property name="has_thermal" value="$(arg has_thermal)"/>
+  <xacro:arg name="description_calibration_dir" default="$(find ari_description)/urdf/calibration"/>
   <xacro:arg name="multiple" default="false"/>
   <xacro:arg name="namespace" default=""/>
+  <xacro:arg name="use_sim" default="false"/>
+
+  <xacro:property name="robot_model" value="$(arg robot_model)" />
+  <xacro:property name="end_effector" value="$(arg end_effector)" />
+  <xacro:property name="front_fisheye_camera" value="$(arg front_fisheye_camera)" />
+  <xacro:property name="back_fisheye_camera" value="$(arg back_fisheye_camera)" />
+  <xacro:property name="laser_model" value="$(arg laser_model)" />
+  <xacro:property name="camera_model_head" value="$(arg camera_model_head)"/>
+  <xacro:property name="rgbd_sensors" value="$(arg rgbd_sensors)"/>
+  <xacro:property name="has_thermal" value="$(arg has_thermal)"/>
   <xacro:property name="is_multiple" value="$(arg multiple)" />
   <xacro:property name="nsp" value="$(arg namespace)" />
-  <xacro:property name="use_nominal_extrinsics" value="$(arg simulation)"/>
+  <xacro:property name="use_nominal_extrinsics" value="$(arg use_sim)"/>
 
   <xacro:if value="${robot_model not in ['v1', 'v2']}">
     <xacro:wrong_ari_robot_model/>
   </xacro:if>
 
-  <xacro:if value="${end_effector_right not in ['ari-hand', 'false', False]}">
+  <xacro:if value="${end_effector not in ['ari-hand', 'no-hand', 'false', False]}">
     <xacro:wrong_end_effector/>
   </xacro:if>
-  <xacro:if value="${end_effector_left not in ['ari-hand', 'false', False]}">
-    <xacro:wrong_end_effector/>
-  </xacro:if>
+
   <xacro:if value="${front_fisheye_camera not in ['true', True, 'false', False, 'Jetson', 'PC']}">
     <xacro:wrong_front_fisheye_camera/>
   </xacro:if>
+  <xacro:property name="has_front_fisheye_camera"           value="${front_fisheye_camera in ['Jetson', True, 'true', 'PC']}"/> 
+
   <xacro:if value="${back_fisheye_camera not in ['true', True, 'false', False, 'Jetson', 'PC']}">
     <xacro:wrong_back_fisheye_camera/>
   </xacro:if>
-  <xacro:if value="${camera_model_head not in ['raspi', 'D435i']}">
-    <xacro:wrong_camera_model/>
-  </xacro:if>
-  <xacro:if value="${has_thermal not in ['true', True, 'false', False]}">
-    <xacro:wrong_thermal_camera/>
-  </xacro:if>
-
-
-  <xacro:arg name="laser_model" default="false"/> <!-- false, hokuyo, sick-551, sick-561, sick-571-->
-  <xacro:arg name="rgbd_sensors" default="false"/> <!-- false, true-->
-  <xacro:property name="laser_model" value="$(arg laser_model)" />
-  <xacro:property name="rgbd_sensors" value="$(arg rgbd_sensors)"/>
-  <xacro:property name="has_front_fisheye_camera"           value="${front_fisheye_camera in ['Jetson', True, 'true', 'PC']}"/> 
   <xacro:property name="has_back_fisheye_camera"           value="${back_fisheye_camera in ['Jetson', True, 'true', 'PC']}"/> 
+
   <xacro:if value="${laser_model not in ['No', 'false', False, 'sick-551', 'sick-561', 'sick-571', 'hokuyo', 'ydlidar-tg30', 'ydlidar-tg15']}">
     <xacro:wrong_laser_model/>
+  </xacro:if>
+ 
+  <xacro:if value="${camera_model_head not in ['raspi', 'realsense-d435']}">
+    <xacro:wrong_camera_model/>
+  </xacro:if>
+  
+  <xacro:if value="${has_thermal not in ['true', True, 'false', False]}">
+    <xacro:wrong_thermal_camera/>
   </xacro:if>
 
   <!-- The properties below are modified using empy http://www.alcyone.com/software/empy/
        from the create_robot.py tool. Handle them with care -->
   <xacro:property name="head_link_name"          value="head_2_link"/>
+
   <!-- The following included files set up definitions of parts of the robot body -->
-  <xacro:include filename="$(find ari_description)/urdf/base/base.urdf.xacro" />   <!-- Base -->
-  <xacro:include filename="$(find ari_description)/urdf/head/head.urdf.xacro" /> <!-- head -->
-  <xacro:include filename="$(find ari_description)/urdf/torso/torso_sensors.urdf.xacro" /> <!-- Torso -->
 
+  <!-- Base -->
+  <xacro:include filename="$(find ari_description)/urdf/base/base.urdf.xacro" />
 
+  <!-- Torso -->
+  <xacro:include filename="$(find ari_description)/urdf/torso/torso_sensors.urdf.xacro" />
+
+  <!-- Head -->
+  <xacro:include filename="$(find ari_description)/urdf/head/head.urdf.xacro" />
+
+  <!-- Arms -->
   <xacro:if value="${robot_model == 'v1'}">
       <xacro:include filename="$(find ari_description)/urdf/arm/arm.urdf.xacro" />   <!-- Arms -->
   </xacro:if>
-
   <xacro:if value="${robot_model == 'v2'}">
       <xacro:include filename="$(find ari_description)/urdf/arm/arm_v2.urdf.xacro" />   <!-- Arms -->
   </xacro:if>
 
   <!-- Generic simulator_gazebo plugins -->
   <xacro:include filename="$(find ari_description)/gazebo/gazebo.urdf.xacro" />
+
+  <!-- ros2_control -->
+  <xacro:include filename="$(find ari_description)/ros2_control/ros2_control.urdf.xacro" />
+  <xacro:ari_ros2_control
+    use_sim="$(arg use_sim)" />
+
   <!-- Materials for visualization -->
   <xacro:include filename="$(find ari_description)/urdf/materials.urdf.xacro" />
 
@@ -93,25 +113,21 @@
   <xacro:head name="head" parent="base_link" robot_model="${robot_model}"/>
 
   <xacro:if value="${robot_model == 'v1'}">
-
-  <xacro:ari_arm name="arm" parent="base_link" side="left" reflect="1" end_effector="${end_effector_left == 'ari-hand'}">
-    <origin xyz="-0.219 0.097624 1.1111" rpy="${105.0 * deg_to_rad} ${0.0 * deg_to_rad} ${-180.0 * deg_to_rad}" />
-  </xacro:ari_arm>
-  <xacro:ari_arm name="arm" parent="base_link" side="right" reflect="-1" end_effector="${end_effector_right == 'ari-hand'}">
-    <origin xyz="-0.219 -0.097624 1.1111" rpy="${-105.0 * deg_to_rad} ${0.0 * deg_to_rad} ${180.0 * deg_to_rad}" />
-  </xacro:ari_arm>
+    <xacro:ari_arm name="arm" parent="base_link" side="left" reflect="1" end_effector="${end_effector == 'ari-hand'}">
+      <origin xyz="-0.219 0.097624 1.1111" rpy="${105.0 * deg_to_rad} ${0.0 * deg_to_rad} ${-180.0 * deg_to_rad}" />
+    </xacro:ari_arm>
+    <xacro:ari_arm name="arm" parent="base_link" side="right" reflect="-1" end_effector="${end_effector == 'ari-hand'}">
+      <origin xyz="-0.219 -0.097624 1.1111" rpy="${-105.0 * deg_to_rad} ${0.0 * deg_to_rad} ${180.0 * deg_to_rad}" />
+    </xacro:ari_arm>
   </xacro:if>
 
-
   <xacro:if value="${robot_model == 'v2'}">
-
-  <xacro:ari_arm name="arm" parent="base_link" side="left" reflect="1" end_effector="false">
-    <origin xyz="-0.22 0.08146 1.153" rpy="${0* deg_to_rad} ${0 * deg_to_rad} ${0 * deg_to_rad}" />
-  </xacro:ari_arm>
-  <xacro:ari_arm name="arm" parent="base_link" side="right" reflect="-1" end_effector="false">
-    <origin xyz="-0.22 -0.08146 1.153" rpy="${0 * deg_to_rad} ${0* deg_to_rad} ${180 * deg_to_rad}" />
-  </xacro:ari_arm>
-
+    <xacro:ari_arm name="arm" parent="base_link" side="left" reflect="1" end_effector="false">
+      <origin xyz="-0.22 0.08146 1.153" rpy="${0* deg_to_rad} ${0 * deg_to_rad} ${0 * deg_to_rad}" />
+    </xacro:ari_arm>
+    <xacro:ari_arm name="arm" parent="base_link" side="right" reflect="-1" end_effector="false">
+      <origin xyz="-0.22 -0.08146 1.153" rpy="${0 * deg_to_rad} ${0* deg_to_rad} ${180 * deg_to_rad}" />
+    </xacro:ari_arm>
   </xacro:if>
 
 

@@ -13,7 +13,6 @@
   <!--File includes-->
   <xacro:include filename="$(find ari_description)/urdf/deg_to_rad.xacro" />
   <xacro:include filename="$(find ari_description)/urdf/arm/actuators.urdf.xacro" />
-  <xacro:include filename="$(find ari_description)/urdf/arm/arm.transmission.xacro" />
 
   <!--Constant parameters-->
   <xacro:property name="arm_friction"       value="1.0" />
@@ -488,19 +487,15 @@
      </gazebo>
    </xacro:if>
 
-    <xacro:arm_simple_transmission name="${name}" side="${side}" number="1" reduction="1.0" offset_value="0.0"/>
-    <xacro:arm_simple_transmission name="${name}" side="${side}" number="2" reduction="1.0" offset_value="0.0"/>
-    <xacro:arm_simple_transmission name="${name}" side="${side}" number="3" reduction="1.0" offset_value="0.0"/>
-    <xacro:arm_simple_transmission name="${name}" side="${side}" number="4" reduction="1.0" offset_value="0.0"/>
+   <!-- TODO ROS2 - support finger control on ARIv1
     <xacro:if value="${end_effector}">
       <xacro:finger_transmissions finger_name="hand_${side}"
                                   act_name="hand_${side}_fingers_motor"
                                   start="0.0"
                                   reduction="1.0"/>
-      <!-- <xacro:arm_simple_transmission name="${name}" side="${side}" number="4" reduction="1.0" offset_value="0.0"/> -->
-      <!-- gazebo plugin -->
       <xacro:ari_hand_gazebo_simulation side="${side}"/>
     </xacro:if>
+    -->
   </xacro:macro>
 
 </robot>

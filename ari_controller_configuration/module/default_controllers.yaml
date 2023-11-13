@@ -1,0 +1,5 @@
+default_controllers:
+  launch: "ari_controller_configuration default_controllers.launch.py
+           robot_name:=@robot_type@
+           robot_model:=@robot_model@
+           end_effector:=@end_effector@

@@ -1,26 +1,35 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.8)
 project(ari_description)
 
-find_package(catkin REQUIRED)
+find_package(ament_cmake_auto REQUIRED)
+ament_auto_find_build_dependencies()
 
-catkin_package()
-
-foreach(dir config gazebo meshes robots urdf)
-    install(DIRECTORY ${dir}/
-        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/${dir})
-endforeach(dir)
+if(pal_module_cmake_FOUND)
+  pal_register_modules(
+    module/robot_state_publisher.yaml
+  )
+endif()
 
 #############
 ## Testing ##
 #############
 
-if(CATKIN_ENABLE_TESTING)
-  find_package(rostest REQUIRED)
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  ament_lint_auto_find_test_dependencies()
+
   foreach(robot_model v1 v2)
-    foreach(end_effector_left ari-hand False)
-      	foreach(end_effector_right ari-hand False)
-      		add_rostest(test/test_ari.test ARGS end_effector_right:=${end_effector_right} end_effector_left:=${end_effector_left} robot_model:=${robot_model})
-      	endforeach(end_effector_right)		
-    endforeach(end_effector_left)
-  endforeach(version)
+      foreach(end_effector ari-hand no-hand)
+            add_launch_test(
+            test/test_description.launch.py
+            TARGET "ari_description_${end_effector}_${robot_model}"
+            ARGS "end_effector:=${end_effector}" "robot_model:=${robot_model}"
+            )
+    endforeach()
+  endforeach()
 endif()
+
+# Install Python modules
+ament_python_install_package(${PROJECT_NAME})
+
+ament_auto_package(INSTALL_TO_SHARE config gazebo launch meshes robots ros2_control urdf)

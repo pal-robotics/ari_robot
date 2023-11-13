@@ -13,7 +13,6 @@
   <!--File includes-->
   <xacro:include filename="$(find ari_description)/urdf/deg_to_rad.xacro" />
   <xacro:include filename="$(find ari_description)/urdf/arm/actuators.urdf.xacro" />
-  <xacro:include filename="$(find ari_description)/urdf/arm/arm.transmission.xacro" />
 
   <!--Constant parameters-->
   <xacro:property name="arm_friction"       value="1.0" />
@@ -342,12 +341,6 @@
    <gazebo reference="${name}_${side}_5_joint">
       <implicitSpringDamper>1</implicitSpringDamper>
    </gazebo>
-
-    <xacro:arm_simple_transmission name="${name}" side="${side}" number="1" reduction="1.0" offset_value="0.0"/>
-    <xacro:arm_simple_transmission name="${name}" side="${side}" number="2" reduction="1.0" offset_value="0.0"/>
-    <xacro:arm_simple_transmission name="${name}" side="${side}" number="3" reduction="1.0" offset_value="0.0"/>
-    <xacro:arm_simple_transmission name="${name}" side="${side}" number="4" reduction="1.0" offset_value="0.0"/>
-    <xacro:arm_simple_transmission name="${name}" side="${side}" number="5" reduction="1.0" offset_value="0.0"/>
 
   </xacro:macro>
 

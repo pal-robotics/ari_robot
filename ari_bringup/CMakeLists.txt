@@ -1,11 +1,25 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.8)
 project(ari_bringup)
-find_package(catkin REQUIRED)
-catkin_package()
 
-foreach(dir config launch bin)
-    install(DIRECTORY ${dir}/
-        DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/${dir}
-	USE_SOURCE_PERMISSIONS
-    )
-endforeach(dir)
+find_package(ament_cmake_auto REQUIRED)
+ament_auto_find_build_dependencies()
+
+if(pal_module_cmake_FOUND)
+  pal_register_modules(
+    module/joystick.yaml
+    module/play_motion2.yaml
+    module/twist_mux.yaml
+  )
+endif()
+
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  ament_lint_auto_find_test_dependencies()
+endif()
+
+#install(PROGRAMS scripts/regen_em_file.py
+#  DESTINATION lib/${PROJECT_NAME}
+#)
+
+ament_auto_package(INSTALL_TO_SHARE config launch)
+

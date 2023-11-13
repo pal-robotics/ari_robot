@@ -12,9 +12,11 @@
 
   <!--File includes-->
   <xacro:include filename="$(find ari_description)/urdf/deg_to_rad.xacro" />
-  <xacro:include filename="$(find ari_description)/urdf/head/head.transmission.xacro" />
   <xacro:include filename="$(find ari_description)/urdf/sensors/rpi_camera.gazebo.xacro" />
-  <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+<!-- TODO ROS2: disabled until realsense camera available
+    <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+-->
+
   <!--Constant parameters-->
   <xacro:property name="head_1_joint_offset" value="0.0" />
   <xacro:property name="head_2_joint_offset" value="0.0" />
@@ -104,9 +106,6 @@
        <implicitSpringDamper>1</implicitSpringDamper>
     </gazebo>
 
-    <!-- extensions -->
-    <xacro:head_transmission name="${name}" reduction="1" offset_value="${head_1_joint_offset}"/>
-
   </xacro:macro>
 
   <!--************************-->
@@ -124,7 +123,12 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://ari_description/meshes/head/head_2.stl" scale="1 1 1"/>
+          <xacro:if value="${robot_model == 'v1'}">
+            <mesh filename="package://ari_description/meshes/head/head_2.stl" scale="1 1 1"/>
+          </xacro:if>
+          <xacro:if value="${robot_model == 'v2'}">
+            <mesh filename="package://ari_description/meshes/head/head_2.dae" scale="1 1 1"/>
+          </xacro:if>
         </geometry>
         <material name="White" />
       </visual>
@@ -159,8 +163,6 @@
     <gazebo reference="${name}_link">
       <material>Gazebo/White</material>
     </gazebo>
-
-    <xacro:head_transmission name="${name}" reduction="1" offset_value="${head_2_joint_offset}"/>
 
   </xacro:macro>
 

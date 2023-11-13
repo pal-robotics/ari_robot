@@ -72,7 +72,7 @@
           <mesh filename="package://ari_description/meshes/base/base.stl" />
         </xacro:if>
         <xacro:if value="${robot_model == 'v2'}">
-          <mesh filename="package://ari_description/meshes/base/base_v2.stl" />
+          <mesh filename="package://ari_description/meshes/base/base_v2.dae" />
         </xacro:if>
       </geometry>
       <material name="Grey" />
