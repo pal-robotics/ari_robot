@@ -2,6 +2,26 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'ros2-port' into 'humble-devel'
+  Port ARI base packages to ROS2
+  See merge request robots/ari_robot!70
+* use_sim_time=False by default
+* pmb2_description is am exec_dependency
+* Add missing test dependency pmb2_description
+* remove differential transmission
+* merge end_effector_left and end_effector_right
+  As, on ARI, both hands are identifical
+* [ari_description] update default rviz config for rviz2
+  + launch rviz with appropriate config in show.launch.py
+* added colorized meshes for ARIv2
+  ARIv2 only, as ARIv1 mesh does not lend itself well to colors
+* port ari_bringup to ROS2
+* port ydlidar TG15 and TG30 to ROS2 sim; remove others ones (available with PMB2)
+* port ari_description to ROS2
+* Contributors: Jordan Palacios, Noel Jimenez, Séverin Lemaignan
+
 0.0.61 (2023-08-09)
 -------------------
 * Merge branch 'feat/ydlidar-ari-v1' into 'ferrum-devel'

@@ -2,6 +2,16 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'ros2-port' into 'humble-devel'
+  Port ARI base packages to ROS2
+  See merge request robots/ari_robot!70
+* [ari_description] update default rviz config for rviz2
+  + launch rviz with appropriate config in show.launch.py
+* port ari_bringup to ROS2
+* Contributors: Jordan Palacios, Séverin Lemaignan
+
 0.0.61 (2023-08-09)
 -------------------
 

@@ -2,6 +2,14 @@
 Changelog for package ari_robot
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'ros2-port' into 'humble-devel'
+  Port ARI base packages to ROS2
+  See merge request robots/ari_robot!70
+* port ari_robot metapackage to ROS2
+* Contributors: Jordan Palacios, Séverin Lemaignan
+
 0.0.61 (2023-08-09)
 -------------------
 
