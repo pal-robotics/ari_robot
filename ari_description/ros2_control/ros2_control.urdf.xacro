@@ -17,7 +17,7 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro"
        name="ari" >
 
-  <xacro:macro name="ari_ros2_control" params="use_sim:=^|true">
+  <xacro:macro name="ari_ros2_control" params="use_sim:=^|false">
 
     <xacro:arg name="robot_model" default="v2" />
     <xacro:arg name="description_calibration_dir" default="$(find ari_description)/urdf/calibration" />
