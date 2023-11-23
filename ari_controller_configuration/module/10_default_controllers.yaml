@@ -3,3 +3,4 @@ default_controllers:
            robot_name:=@robot_type@
            robot_model:=@robot_model@
            end_effector:=@end_effector@
+  finishes: True
