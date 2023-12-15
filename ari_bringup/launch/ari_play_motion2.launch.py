@@ -39,14 +39,14 @@ def launch_setup(context, *args, **kwargs):
 
     motions_file = f"ari{get_ari_hw_suffix(robot_model=robot_model)}_motions.yaml"
 
-    play_motion2_config = os.path.join(
+    motions_file_path = os.path.join(
         get_package_share_directory("ari_bringup"), "config", "motions", motions_file
     )
 
     play_motion2 = include_launch_py_description(
         "play_motion2",
         ["launch", "play_motion2.launch.py"],
-        launch_arguments={"play_motion2_config": play_motion2_config}.items(),
+        launch_arguments={"motions_file": motions_file_path}.items(),
     )
 
     return [play_motion2]
