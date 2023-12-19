@@ -1,14 +1,16 @@
-disable_motion_planning: false
-approach_planner:
-  planning_groups: # Sorted by order of preference
-    - both_arms
-    - arm_left
-    - arm_right
-  exclude_from_planning_joints:
-    - head_1_joint
-    - head_2_joint
-    - hand_left_fingers_joint
-    - hand_right_fingers_joint
-  joint_tolerance: 0.01
-  skip_planning_approach_vel: 0.5
-  skip_planning_approach_min_dur: 0.5
+simple_approach_planner:
+  ros__parameters:
+    disable_motion_planning: false
+    approach_planner:
+      planning_groups: # Sorted by order of preference
+        - both_arms
+        - arm_left
+        - arm_right
+      exclude_from_planning_joints:
+        - head_1_joint
+        - head_2_joint
+        - hand_left_fingers_joint
+        - hand_right_fingers_joint
+      joint_tolerance: 0.01
+      approach_vel: 0.5
+      approach_min_dur: 0.5
