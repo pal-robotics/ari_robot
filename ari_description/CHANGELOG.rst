@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.0.2 (2023-12-20)
+------------------
 * Merge branch 'rename_modules' into 'humble-devel'
   Rename description and controller modules
   See merge request robots/ari_robot!72

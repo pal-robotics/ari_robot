@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package  format="3">
   <name>ari_controller_configuration</name>
-  <version>2.0.1</version>
+  <version>2.0.2</version>
   <description>Configuration and launch files of ARI's controllers</description>
   <maintainer email="severin.lemaigan@pal-robotics.com">Séverin Lemaignan</maintainer>
   <license>Apache License 2.0</license>
