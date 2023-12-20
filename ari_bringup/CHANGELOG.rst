@@ -2,6 +2,18 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'feat/use_approach_planner_cfg' into 'humble-devel'
+  Update and use approach_planner config for play_motion2
+  See merge request robots/ari_robot!75
+* Update and use approach_planner config for play_motion2
+* Merge branch 'fix/update_motions_argument' into 'humble-devel'
+  Update motions file argument
+  See merge request robots/ari_robot!74
+* Update motions file argument
+* Contributors: Jordan Palacios, Noel Jimenez
+
 2.0.1 (2023-11-13)
 ------------------
 * Merge branch 'ros2-port' into 'humble-devel'

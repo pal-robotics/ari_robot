@@ -2,6 +2,18 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'fix/module' into 'humble-devel'
+  Set 'finishes: True' for default_controllers module
+  See merge request robots/ari_robot!73
+* Set 'finishes: True' for default_controllers module
+* Merge branch 'rename_modules' into 'humble-devel'
+  Rename description and controller modules
+  See merge request robots/ari_robot!72
+* Rename description and controller modules
+* Contributors: Noel Jimenez, Séverin Lemaignan
+
 2.0.1 (2023-11-13)
 ------------------
 * Merge branch 'ros2-port' into 'humble-devel'

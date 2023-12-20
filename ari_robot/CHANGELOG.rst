@@ -2,6 +2,9 @@
 Changelog for package ari_robot
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 2.0.1 (2023-11-13)
 ------------------
 * Merge branch 'ros2-port' into 'humble-devel'
