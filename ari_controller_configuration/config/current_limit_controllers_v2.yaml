@@ -1,5 +1,4 @@
 arm_left_current_limit_controller:
-  type: "pal_ros_controllers/CurrentLimitController"
   actuators:
     - arm_left_1_motor
     - arm_left_2_motor
@@ -8,7 +7,6 @@ arm_left_current_limit_controller:
     - arm_left_5_motor
 
 arm_right_current_limit_controller:
-  type: "pal_ros_controllers/CurrentLimitController"
   actuators:
     - arm_right_1_motor
     - arm_right_2_motor
@@ -17,7 +15,6 @@ arm_right_current_limit_controller:
     - arm_right_5_motor
 
 wheels_current_limit_controller:
-  type: "pal_ros_controllers/CurrentLimitController"
   actuators:
     - wheel_left_motor
     - wheel_right_motor

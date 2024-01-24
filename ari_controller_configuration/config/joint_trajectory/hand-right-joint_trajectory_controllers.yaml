@@ -1,5 +1,4 @@
 hand_right_controller:
-  type: "position_controllers/JointTrajectoryController"
   joints:
     - hand_right_fingers_joint
   constraints:
