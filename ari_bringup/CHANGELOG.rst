@@ -2,6 +2,9 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 2.0.2 (2023-12-20)
 ------------------
 * Merge branch 'feat/use_approach_planner_cfg' into 'humble-devel'

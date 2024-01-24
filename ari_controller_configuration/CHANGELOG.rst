@@ -2,6 +2,11 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Remove unused type parameter from controllers configuration
+* Contributors: Séverin Lemaignan
+
 2.0.2 (2023-12-20)
 ------------------
 * Merge branch 'fix/module' into 'humble-devel'
