@@ -37,11 +37,11 @@ def launch_setup(context, *args, **kwargs):
 
     robot_model = read_launch_argument("robot_model", context)
 
-    approach_planner_file = \
-        f"approach_planner_ari{get_ari_hw_suffix(robot_model=robot_model)}.yaml"
-    approach_planner_file_path = os.path.join(
+    motion_planner_file = \
+        f"motion_planner_ari{get_ari_hw_suffix(robot_model=robot_model)}.yaml"
+    motion_planner_file_path = os.path.join(
         get_package_share_directory("ari_bringup"),
-        "config", "approach_planner", approach_planner_file
+        "config", "motion_planner", motion_planner_file
     )
 
     motions_file = f"ari{get_ari_hw_suffix(robot_model=robot_model)}_motions.yaml"
@@ -54,7 +54,7 @@ def launch_setup(context, *args, **kwargs):
         ["launch", "play_motion2.launch.py"],
         launch_arguments={
             "motions_file": motions_file_path,
-            "motion_planner_config": approach_planner_file_path
+            "motion_planner_config": motion_planner_file_path
         }.items(),
     )
 
