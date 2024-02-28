@@ -2,6 +2,9 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 2.0.3 (2024-01-24)
 ------------------
 * Remove unused type parameter from controllers configuration

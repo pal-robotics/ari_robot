@@ -2,6 +2,18 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'fix/rename_approach_planner' into 'humble-devel'
+  Rename approach_planner config to motion_planner
+  See merge request robots/ari_robot!78
+* Rename approach_planner config to motion_planner
+* Merge branch 'fix/update_approach_planner_config' into 'humble-devel'
+  Update approach_planner configuration
+  See merge request robots/ari_robot!77
+* Update approach_planner configuration
+* Contributors: Jordan Palacios, Noel Jimenez
+
 2.0.3 (2024-01-24)
 ------------------
 
