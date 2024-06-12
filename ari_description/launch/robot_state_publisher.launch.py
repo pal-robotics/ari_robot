@@ -20,6 +20,7 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, OpaqueFunction
 from launch.substitutions import LaunchConfiguration
+from launch_ros.parameter_descriptions import ParameterValue
 
 from launch_pal.arg_utils import read_launch_argument
 from launch_pal.robot_utils import (
@@ -52,8 +53,7 @@ def declare_args(context, *args, **kwargs):
 
 def launch_setup(context, *args, **kwargs):
 
-    robot_description = {
-        "robot_description": load_xacro(
+    robot_description_content = load_xacro(
             Path(
                 os.path.join(
                     get_package_share_directory("ari_description"),
@@ -69,14 +69,14 @@ def launch_setup(context, *args, **kwargs):
                 "use_sim": read_launch_argument("use_sim_time", context),
             },
         )
-    }
+    robot_description = ParameterValue(robot_description_content, value_type=None)
 
     rsp = Node(
         package="robot_state_publisher",
         executable="robot_state_publisher",
         output="both",
-        parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')},
-                    robot_description],
+        parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time'),
+                     'robot_description': robot_description}],
     )
 
     return [rsp]
