@@ -2,6 +2,14 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'feat/ros2controlcli_dependency' into 'humble-devel'
+  Add ros2controlcli dependency
+  See merge request robots/ari_robot!79
+* Add ros2controlcli dependency
+* Contributors: Jordan Palacios, Noel Jimenez
+
 2.0.5 (2024-03-04)
 ------------------
 

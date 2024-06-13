@@ -2,6 +2,15 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Merge branch 'fix/robot_state_publisher' into 'humble-devel'
+  fix robot state publisher launch file
+  See merge request robots/ari_robot!80
+* specify robot description as string
+* fix robot state publisher launch file
+* Contributors: Aina, davidterkuile
+
 2.0.5 (2024-03-04)
 ------------------
 
