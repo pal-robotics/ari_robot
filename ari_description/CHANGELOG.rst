@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.0.6 (2024-06-13)
+------------------
 * Merge branch 'fix/robot_state_publisher' into 'humble-devel'
   fix robot state publisher launch file
   See merge request robots/ari_robot!80
