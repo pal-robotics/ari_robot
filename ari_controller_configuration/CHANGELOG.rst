@@ -2,8 +2,8 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.0.7 (2024-07-09)
+------------------
 * Add warning for pal_module_cmake not found
 * Remove unused dependency
 * Contributors: Noel Jimenez

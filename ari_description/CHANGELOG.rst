@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.0.7 (2024-07-09)
+------------------
 * Add warning for pal_module_cmake not found
 * Contributors: Noel Jimenez
 
