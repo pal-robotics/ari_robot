@@ -2,6 +2,11 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add warning for pal_module_cmake not found
+* Contributors: Noel Jimenez
+
 2.0.6 (2024-06-13)
 ------------------
 * Merge branch 'fix/robot_state_publisher' into 'humble-devel'

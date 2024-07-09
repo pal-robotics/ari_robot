@@ -2,6 +2,12 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add warning for pal_module_cmake not found
+* Remove unused dependency
+* Contributors: Noel Jimenez
+
 2.0.6 (2024-06-13)
 ------------------
 * Merge branch 'feat/ros2controlcli_dependency' into 'humble-devel'
