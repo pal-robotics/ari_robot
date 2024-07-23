@@ -11,7 +11,7 @@
   <build_depend condition="$PAL_DISTRO >= alum">pal_module_cmake</build_depend>
 
   <exec_depend>geometry_msgs</exec_depend>
-  <exec_depend>joy</exec_depend>
+  <exec_depend>joy_linux</exec_depend>
   <exec_depend>joy_teleop</exec_depend>
   <exec_depend>launch_pal</exec_depend>
   <exec_depend>play_motion2</exec_depend>
