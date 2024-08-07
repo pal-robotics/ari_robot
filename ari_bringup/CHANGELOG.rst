@@ -2,8 +2,8 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.1.0 (2024-08-07)
+------------------
 * Add the fix Joy_linux node and default device
 * Contributors: thomas.peyrucain
 
