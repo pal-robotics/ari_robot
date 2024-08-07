@@ -37,6 +37,5 @@ def generate_launch_description():
 
     return generate_load_controller_launch_description(
         controller_name="mobile_base_controller",
-        controller_type="diff_drive_controller/DiffDriveController",
         controller_params_file=params_file,
     )
