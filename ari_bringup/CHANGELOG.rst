@@ -2,6 +2,11 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add the fix Joy_linux node and default device
+* Contributors: thomas.peyrucain
+
 2.0.7 (2024-07-09)
 ------------------
 * Add warning for pal_module_cmake not found
