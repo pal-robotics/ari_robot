@@ -1,4 +1,4 @@
-collision_model_parameters:
+/collision_model_parameters:
   padding: 0.01
   links_with_padding: []
   blacklist:
