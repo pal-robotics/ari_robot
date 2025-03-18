@@ -2,6 +2,12 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* fix invalid module YAML
+* Set update_rate for joint_state_broadcaster
+* Contributors: Noel Jimenez, Séverin Lemaignan
+
 2.1.0 (2024-08-07)
 ------------------
 * Use controller_type from the controllers config
