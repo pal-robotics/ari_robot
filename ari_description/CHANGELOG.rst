@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.1.1 (2025-03-18)
+------------------
 * fix invalid module YAML
 * Add slash to node names on parameter files
 * Contributors: Noel Jimenez, Séverin Lemaignan
