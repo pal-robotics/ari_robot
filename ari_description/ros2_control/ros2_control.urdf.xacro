@@ -24,10 +24,6 @@
 
     <xacro:property name="is_v2" value="${robot_model == 'v2'}" />
 
-
-
-
-
     <!-- calibration offsets -->
     <xacro:include filename="$(arg description_calibration_dir)/calibration_constants.urdf.xacro" />
 
@@ -46,15 +42,6 @@
       <xacro:include filename="$(find ari_description)/urdf/wheels/wheel.ros2_control.xacro" />
       <xacro:ros2_control_wheel side="right" />
       <xacro:ros2_control_wheel side="left" />
-
-      <!-- IMU -->
-      <!-- TODO ROS2
-        -> include IMU configuration; was not in ROS1 (?). Check if actually needed.
-      -->
-      <xacro:include filename="$(find ari_description)/urdf/sensors/sensors.ros2_control.xacro"/>
-      <xacro:if value="$(arg use_sim)">
-        <xacro:ros2_control_imu name="base_imu_sensor"/>
-      </xacro:if>
 
       <!-- head -->
       <xacro:include filename="$(find ari_description)/urdf/head/head.ros2_control.xacro" />
