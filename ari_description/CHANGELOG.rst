@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.1.2 (2025-05-13)
+------------------
 * Remove unused ros2_control imu
 * Contributors: Noel Jimenez
 
