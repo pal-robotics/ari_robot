@@ -2,6 +2,11 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Remove unused ros2_control imu
+* Contributors: Noel Jimenez
+
 2.1.1 (2025-03-18)
 ------------------
 * fix invalid module YAML
