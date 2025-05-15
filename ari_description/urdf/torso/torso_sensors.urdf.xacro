@@ -16,11 +16,11 @@
   <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
   <xacro:include filename="$(find realsense2_description)/urdf/_t265.urdf.xacro" />
 -->
-  <xacro:include filename="$(find ari_description)/urdf/sensors/microphone.urdf.xacro"/>
-  <xacro:include filename="$(find ari_description)/urdf/sensors/imx179_camera.gazebo.xacro"/>
-  <xacro:include filename="$(find pmb2_description)/urdf/sensors/sick_tim571_laser.urdf.xacro"/>
-  <xacro:include filename="$(find ari_description)/urdf/sensors/ydlidar_tg30_laser.urdf.xacro"/>
-  <xacro:include filename="$(find ari_description)/urdf/sensors/ydlidar_tg15_laser.urdf.xacro"/>
+  <xacro:include filename="$(find pal_urdf_utils)/urdf/sensors/microphone.urdf.xacro"/>
+  <xacro:include filename="$(find pal_urdf_utils)/urdf/sensors/ari/imx179_camera.gazebo.xacro"/>
+  <xacro:include filename="$(find pal_urdf_utils)/urdf/sensors/bases/sick_tim571_laser.urdf.xacro"/>
+  <xacro:include filename="$(find pal_urdf_utils)/urdf/sensors/ari/ydlidar_tg30_laser.urdf.xacro"/>
+  <xacro:include filename="$(find pal_urdf_utils)/urdf/sensors/ari/ydlidar_tg15_laser.urdf.xacro"/>
   
 
   <xacro:macro name="torso_sensors" params="name parent robot_model use_nominal_extrinsics laser_model">

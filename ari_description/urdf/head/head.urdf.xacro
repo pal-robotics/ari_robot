@@ -12,7 +12,7 @@
 
   <!--File includes-->
   <xacro:include filename="$(find ari_description)/urdf/deg_to_rad.xacro" />
-  <xacro:include filename="$(find ari_description)/urdf/sensors/rpi_camera.gazebo.xacro" />
+  <xacro:include filename="$(find pal_urdf_utils)/urdf/sensors/ari/rpi_camera.gazebo.xacro" />
 <!-- TODO ROS2; disabled until realsense camera available
     <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
 -->
@@ -194,14 +194,14 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
-        <mesh filename="package://ari_description/meshes/sensors/${name}.stl" scale="1 1 1"/>
+        <mesh filename="$(find pal_urdf_utils)/meshes/sensors/ari/${name}.stl" scale="1 1 1"/>
       </geometry>
       <material name="DarkGrey"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0" />
       <geometry>
-        <mesh filename="package://ari_description/meshes/sensors/${name}.stl" scale="1 1 1"/>
+        <mesh filename="$(find pal_urdf_utils)/meshes/sensors/ari/${name}.stl" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
