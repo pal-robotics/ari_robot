@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.1.3 (2025-05-16)
+------------------
 * System is now dynamixel and add 200 rw rate
 * Splitting ros2 control simulation and system
 * Contributors: Jordan Palacios
