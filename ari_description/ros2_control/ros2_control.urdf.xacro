@@ -54,9 +54,10 @@
     <!-- Hardware -->
     <xacro:unless value="$(arg use_sim)">
       <!-- Dynamixels system -->
-      <ros2_control name="ros2_control_ari_system" type="system">
+      <ros2_control name="ros2_control_ari_system_dynamixel" type="system" rw_rate="200">
         <hardware>
           <plugin>robot_control/RobotControl</plugin>
+          <param name="group">dynamixel</param>
         </hardware>
 
         <!-- arms -->
