@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!-- 
+<!--
   Copyright (c) 2023 PAL Robotics S.L. All rights reserved.
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,32 +27,49 @@
     <!-- calibration offsets -->
     <xacro:include filename="$(arg description_calibration_dir)/calibration_constants.urdf.xacro" />
 
-    <ros2_control name="ros2_control_ari_system" type="system">
-      <hardware>
-        <xacro:if value="$(arg use_sim)">
-          <plugin>gazebo_ros2_control/GazeboSystem</plugin>
-        </xacro:if>
-        <xacro:unless value="$(arg use_sim)">
+    <!-- Simulation -->
+    <xacro:if value="$(arg use_sim)">
+      <ros2_control name="ros2_control_gazebo_system" type="system">
+          <hardware>
+            <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+          </hardware>
+
+        <!-- wheels -->
+        <xacro:include filename="$(find ari_description)/urdf/wheels/wheel.ros2_control.xacro" />
+        <xacro:ros2_control_wheel side="right" />
+        <xacro:ros2_control_wheel side="left" />
+
+        <!-- head -->
+        <xacro:include filename="$(find ari_description)/urdf/head/head.ros2_control.xacro" />
+        <xacro:ros2_control_head name="head_1" reduction="1.0" offset="${head_1_joint_offset}" />
+        <xacro:ros2_control_head name="head_2" reduction="1.0" offset="${head_2_joint_offset}" />
+
+        <!-- arms -->
+        <xacro:include filename="$(find ari_description)/urdf/arm/arm.ros2_control.xacro" />
+        <xacro:ros2_control_arm side="left" />
+        <xacro:ros2_control_arm side="right" />
+      </ros2_control>
+    </xacro:if>
+
+    <!-- Hardware -->
+    <xacro:unless value="$(arg use_sim)">
+      <!-- Dynamixels system -->
+      <ros2_control name="ros2_control_ari_system_dynamixel" type="system" rw_rate="200">
+        <hardware>
           <plugin>robot_control/RobotControl</plugin>
-        </xacro:unless>
+          <param name="group">dynamixel</param>
+        </hardware>
 
-      </hardware>
+        <!-- arms -->
+        <xacro:include filename="$(find ari_description)/urdf/arm/arm.ros2_control.xacro" />
+        <xacro:ros2_control_arm side="left" />
+        <xacro:ros2_control_arm side="right" />
 
-      <!-- wheels -->
-      <xacro:include filename="$(find ari_description)/urdf/wheels/wheel.ros2_control.xacro" />
-      <xacro:ros2_control_wheel side="right" />
-      <xacro:ros2_control_wheel side="left" />
-
-      <!-- head -->
-      <xacro:include filename="$(find ari_description)/urdf/head/head.ros2_control.xacro" />
-      <xacro:ros2_control_head name="head_1" reduction="1.0" offset="${head_1_joint_offset}" />
-      <xacro:ros2_control_head name="head_2" reduction="1.0" offset="${head_2_joint_offset}" />
-
-
-      <!-- arms -->
-      <xacro:include filename="$(find ari_description)/urdf/arm/arm.ros2_control.xacro" />
-      <xacro:ros2_control_arm side="left" />
-      <xacro:ros2_control_arm side="right" />
-    </ros2_control>
+        <!-- head -->
+        <xacro:include filename="$(find ari_description)/urdf/head/head.ros2_control.xacro" />
+        <xacro:ros2_control_head name="head_1" reduction="1.0" offset="${head_1_joint_offset}" />
+        <xacro:ros2_control_head name="head_2" reduction="1.0" offset="${head_2_joint_offset}" />
+      </ros2_control>
+    </xacro:unless>
   </xacro:macro>
 </robot>
