@@ -70,6 +70,19 @@
         <xacro:ros2_control_head name="head_1" reduction="1.0" offset="${head_1_joint_offset}" />
         <xacro:ros2_control_head name="head_2" reduction="1.0" offset="${head_2_joint_offset}" />
       </ros2_control>
+
+      <!-- PapstK4 system -->
+      <ros2_control name="ros2_control_ari_system_papstk4" type="system" rw_rate="50">
+        <hardware>
+          <plugin>robot_control/RobotControl</plugin>
+          <param name="group">papstk4</param>
+        </hardware>
+
+        <!-- wheels -->
+        <xacro:include filename="$(find ari_description)/urdf/wheels/wheel.ros2_control.xacro" />
+        <xacro:ros2_control_wheel side="right" />
+        <xacro:ros2_control_wheel side="left" />
+      </ros2_control>
     </xacro:unless>
   </xacro:macro>
 </robot>
