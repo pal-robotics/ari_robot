@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.1.4 (2025-06-04)
+------------------
 * Adding system for separate papstk4 wheels control
 * Contributors: Jordan Palacios
 
