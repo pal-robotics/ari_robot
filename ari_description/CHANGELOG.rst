@@ -2,6 +2,11 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Adding system for separate papstk4 wheels control
+* Contributors: Jordan Palacios
+
 2.1.3 (2025-05-16)
 ------------------
 * System is now dynamixel and add 200 rw rate
