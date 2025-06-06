@@ -2,6 +2,14 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add urdf_utils dependency
+* Change path related to restructure path for pal_urdf_utils
+* Delete sensors files
+* Change path for hokuyo and lidar sensors
+* Contributors: Aina
+
 2.1.4 (2025-06-04)
 ------------------
 * Adding system for separate papstk4 wheels control
