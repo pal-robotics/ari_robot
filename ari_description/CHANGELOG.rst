@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.1.5 (2025-06-06)
+------------------
 * Add urdf_utils dependency
 * Change path related to restructure path for pal_urdf_utils
 * Delete sensors files
