@@ -65,7 +65,7 @@
     <xacro:wrong_laser_model/>
   </xacro:if>
  
-  <xacro:if value="${camera_model_head not in ['raspi', 'realsense-d435']}">
+  <xacro:if value="${camera_model_head not in ['raspi', 'realsense-d435', 'realsense-d435i']}">
     <xacro:wrong_camera_model/>
   </xacro:if>
   

@@ -12,10 +12,9 @@
 
   <!--File includes-->
   <xacro:include filename="$(find ari_description)/urdf/deg_to_rad.xacro" />
-<!-- TODO ROS2; disabled until realsense camera available
   <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
-  <xacro:include filename="$(find realsense2_description)/urdf/_t265.urdf.xacro" />
--->
+  <xacro:include filename="$(find realsense2_description_deprecated)/urdf/_t265.urdf.xacro" />
+
   <xacro:include filename="$(find pal_urdf_utils)/urdf/interaction_sensors/microphone.urdf.xacro"/>
   <xacro:include filename="$(find pal_urdf_utils)/urdf/camera/imx179_camera.gazebo.xacro"/>
   <xacro:include filename="$(find pal_urdf_utils)/urdf/laser/sick_tim571_laser.urdf.xacro"/>
@@ -56,9 +55,7 @@
 
     </xacro:if>
 
-
     <xacro:if value="${robot_model == 'v2'}">
-
       <!--Constant parameters-->
       <xacro:property name="torso_front_camera_position_x" value="-0.13799" />
       <xacro:property name="torso_front_camera_position_y" value="-0.00034911" />
@@ -72,7 +69,6 @@
       <xacro:property name="torso_back_camera_orientation_r" value="0.0" />
       <xacro:property name="torso_back_camera_orientation_p" value="${15 * deg_to_rad}" />
       <xacro:property name="torso_back_camera_orientation_y" value="${180 * deg_to_rad}" />
-
         <!-- Laser characteristics -->
       <xacro:property name="base_laser_x" value="-0.39777"/>
       <xacro:property name="base_laser_y" value="0.0"/>
@@ -81,20 +77,17 @@
 
   <!-- Torso sensors -->
   <!-- Torso front camera -->
-<!-- TODO ROS2; disabled until realsense camera available
   <xacro:sensor_d435 parent="${parent}" name="${name}_front_camera" topics_ns="${name}_front_camera" use_nominal_extrinsics="${use_nominal_extrinsics}">
     <origin xyz="${torso_front_camera_position_x} ${torso_front_camera_position_y} ${torso_front_camera_position_z}"
             rpy="${torso_front_camera_orientation_r} ${torso_front_camera_orientation_p} ${torso_front_camera_orientation_y}"/>
-  </xacro:sensor_d435>
--->
+  </xacro:sensor_d435>  
 
   <!-- Torso back camera -->
-<!-- TODO ROS2; disabled until realsense camera available
   <xacro:sensor_t265 parent="${parent}" name="${name}_back_camera" topics_ns="${name}_back_camera">
     <origin xyz="${torso_back_camera_position_x} ${torso_back_camera_position_y} ${torso_back_camera_position_z}"
             rpy="${torso_back_camera_orientation_r} ${torso_back_camera_orientation_p} ${torso_back_camera_orientation_y}"/>
-  </xacro:sensor_t265>
--->
+  </xacro:sensor_t265> 
+
 
   <!-- Optional SPRING cameras -->
   <xacro:if value="${has_front_fisheye_camera}">
