@@ -2,6 +2,11 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add launch arguments ARI
+* Contributors: David ter Kuile
+
 2.1.5 (2025-06-06)
 ------------------
 * Add urdf_utils dependency
