@@ -1,0 +1,24 @@
+robot_model:
+  description: 'Robot model'
+  choices: ['v1', 'v2']
+  default_value: 'v1'
+laser_model:
+  description: 'Laser model'
+  choices: ['no-laser', 'sick-571', 'tg15', 'tg30']
+  default_value: 'sick-571'
+end_effector:
+  description: 'End effector model'
+  choices: ['no-end-effector', 'ari-hand']
+  default_value: 'ari-hand'
+camera_model_head:
+  description: 'Head camera model'
+  choices: ['raspi', 'realsense-d435i']
+  default_value: 'raspi'
+camera_model_front:
+  description: 'Front camera model'
+  choices: ['no-camera', 'realsense-d435i']
+  default_value: 'no-camera'
+camera_model_back:
+  description: 'Back camera model'
+  choices: ['no-camera', 'realsense-t265']
+  default_value: 'no-camera'
