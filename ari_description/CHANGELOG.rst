@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.1.6 (2025-06-11)
+------------------
 * Add launch arguments ARI
 * Contributors: David ter Kuile
 
