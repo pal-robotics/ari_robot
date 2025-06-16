@@ -5,20 +5,20 @@ robot_model:
 laser_model:
   description: 'Laser model'
   choices: ['no-laser', 'sick-571', 'ydlidar-tg15', 'ydlidar-tg30']
-  default_value: 'sick-571'
+  default_value: 'ydlidar-tg15'
 end_effector:
   description: 'End effector model'
   choices: ['no-end-effector', 'ari-hand']
   default_value: 'ari-hand'
-camera_model_head:
+head_camera_model:
   description: 'Head camera model'
   choices: ['raspi', 'realsense-d435i', 'realsense-d435']
   default_value: 'raspi'
-camera_model_front:
+torso_front_camera_model:
   description: 'Front camera model'
   choices: ['no-camera', 'realsense-d435i', 'realsense-d435']
   default_value: 'realsense-d435'
-camera_model_back:
+torso_back_camera_model:
   description: 'Back camera model'
   choices: ['no-camera', 'realsense-t265']
   default_value: 'realsense-t265'
