@@ -2,6 +2,11 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Change path for camera meshes
+* Contributors: Aina
+
 2.1.6 (2025-06-11)
 ------------------
 * Add launch arguments ARI
