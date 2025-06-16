@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.1.7 (2025-06-16)
+------------------
 * Change path for camera meshes
 * Contributors: Aina
 
