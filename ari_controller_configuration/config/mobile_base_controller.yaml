@@ -35,7 +35,7 @@ mobile_base_controller:
   
     # TODO: commented out while porting to ROS2 -> check if needs to be uncommented
     # # odom tf will be published by direct laser odometry
-    # enable_odom_tf: false
+    enable_odom_tf: false
 
     # Publish actual velocity cmd
     publish_cmd: true
