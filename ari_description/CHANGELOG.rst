@@ -2,6 +2,11 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* uniform namespace arg
+* Contributors: antoniobrandi
+
 2.1.7 (2025-06-16)
 ------------------
 * Change path for camera meshes
