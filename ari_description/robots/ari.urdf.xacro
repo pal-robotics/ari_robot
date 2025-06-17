@@ -40,7 +40,7 @@
   <xacro:property name="rgbd_sensors" value="$(arg rgbd_sensors)"/>
   <xacro:property name="has_thermal" value="$(arg has_thermal)"/>
   <xacro:property name="is_multiple" value="$(arg multiple)" />
-  <xacro:property name="nsp" value="$(arg namespace)" />
+  <xacro:property name="namespace" value="$(arg namespace)" />
   <xacro:property name="use_nominal_extrinsics" value="$(arg use_sim)"/>
 
   <xacro:if value="${robot_model not in ['v1', 'v2']}">
