@@ -2,6 +2,11 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* fix
+* Contributors: andreacapodacqua
+
 2.3.0 (2025-06-18)
 ------------------
 

@@ -2,6 +2,14 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* removed useless link
+* changed name of cameras
+* renamed camera. publish_odom_tf to false, changed nav topic to twist_mux
+* fix sensors
+* Contributors: andreacapodacqua
+
 2.3.0 (2025-06-18)
 ------------------
 
