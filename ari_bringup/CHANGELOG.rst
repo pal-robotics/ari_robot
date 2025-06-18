@@ -2,6 +2,11 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Adapt to changes in play_motion2
+* Contributors: davidfernandez
+
 2.2.0 (2025-06-17)
 ------------------
 
