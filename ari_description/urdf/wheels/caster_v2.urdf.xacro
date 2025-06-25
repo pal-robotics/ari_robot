@@ -29,6 +29,12 @@
         </geometry>
         <material name="Grey"/>
       </visual>
+      <collision>
+        <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+        <geometry>
+           <sphere radius="${radius}" />
+         </geometry>
+       </collision>
     </link>
     <link name="caster_${side}_2_link">
       <inertial>
@@ -65,4 +71,3 @@
 
   </xacro:macro>
 </robot>
-
