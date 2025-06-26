@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.3.2 (2025-06-26)
+------------------
 * Fix meshes paths
 * fix default ARI configuration
 * Contributors: Aina, Séverin Lemaignan
