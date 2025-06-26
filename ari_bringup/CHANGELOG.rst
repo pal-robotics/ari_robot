@@ -2,6 +2,11 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* fix default ARI configuration
+* Contributors: Séverin Lemaignan
+
 2.3.1 (2025-06-18)
 ------------------
 * fix
