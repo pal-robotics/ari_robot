@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.3.3 (2025-06-26)
+------------------
 * fix warning collision
 * Contributors: andreacapodacqua
 
