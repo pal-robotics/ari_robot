@@ -2,6 +2,11 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* fix warning collision
+* Contributors: andreacapodacqua
+
 2.3.2 (2025-06-26)
 ------------------
 * Fix meshes paths
