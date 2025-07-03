@@ -12,30 +12,44 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
-
+from dataclasses import dataclass
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
-from launch.actions import OpaqueFunction
-
-from launch_pal.arg_utils import read_launch_argument
-from launch_pal.include_utils import include_launch_py_description
-from launch_pal.robot_utils import get_robot_model, get_robot_name
-
+from launch_pal.arg_utils import LaunchArgumentsBase
+from launch.substitutions import PathJoinSubstitution, LaunchConfiguration
+from ari_description.launch_arguments import AriArgs
+from launch.actions import DeclareLaunchArgument, SetLaunchConfiguration, OpaqueFunction
 from ari_description.ari_launch_utils import get_ari_hw_suffix
+from launch_pal.include_utils import include_scoped_launch_py_description
+from launch_pal.arg_utils import read_launch_argument
+from launch_pal.robot_arguments import CommonArgs
+from launch_pal.param_utils import merge_param_files
 
 
-def declare_args(context, *args, **kwargs):
+@dataclass(frozen=True)
+class LaunchArguments(LaunchArgumentsBase):
 
-    robot_name = read_launch_argument("robot_name", context)
+    robot_model: DeclareLaunchArgument = AriArgs.robot_model
+    arm_type: DeclareLaunchArgument = AriArgs.arm_type
 
-    return [get_robot_model(robot_name)]
 
+def generate_launch_description():
 
-def launch_setup(context, *args, **kwargs):
+    # Create the launch description and populate
+    ld = LaunchDescription()
+    launch_arguments = LaunchArguments()
 
-    robot_model = read_launch_argument("robot_model", context)
+    launch_arguments.add_to_launch_description(ld)
+
+    declare_actions(ld, launch_arguments)
+
+    return ld
+
+def declare_actions(
+    launch_description: LaunchDescription, launch_args: LaunchArguments
+):
+    launch_description.add_action(OpaqueFunction(function=create_play_motion_params))
 
     motion_planner_file = \
         f"motion_planner_ari{get_ari_hw_suffix(robot_model=robot_model)}.yaml"
@@ -49,28 +63,59 @@ def launch_setup(context, *args, **kwargs):
         get_package_share_directory("ari_bringup"), "config", "motions", motions_file
     )
 
-    play_motion2 = include_launch_py_description(
-        "play_motion2",
-        ["launch", "play_motion2.launch.py"],
+
+    play_motion2 = include_scoped_launch_py_description(
+        pkg_name="play_motion2",
+        paths=["launch", "play_motion2.launch.py"],
         launch_arguments={
             "motions_file": motions_file_path,
             "motion_planner_config": motion_planner_file_path
         }.items(),
     )
 
-    return [play_motion2]
+    launch_description.add_action(play_motion2)
+
+    return
 
 
-def generate_launch_description():
+def create_play_motion_params(context):
 
-    ld = LaunchDescription()
+    pkg_name = "ari_bringup"
+    pkg_share_dir = get_package_share_directory(pkg_name)
+    robot_model = read_launch_argument("robot_model", context)
 
-    # Declare arguments
-    # we use OpaqueFunction so the callbacks have access to the context
-    ld.add_action(get_robot_name("ari"))
-    ld.add_action(OpaqueFunction(function=declare_args))
+    hw_suffix = get_ari_hw_suffix(robot_model=robot_model)   
 
-    # Launch play_motion2 with the proper config
-    ld.add_action(OpaqueFunction(function=launch_setup))
+    head_motions = PathJoinSubstitution(
+        [pkg_share_dir, "config", "motions", "ari_motions_head.yaml"]
+    )
 
-    return ld
+    if arm != 'no-arm':
+
+        general_yaml = PathJoinSubstitution(
+            [pkg_share_dir, "config", "motions", "ari_motions_general.yaml"]
+        )
+        if end_effector == 'no-end-effector':
+            merged_yaml = general_yaml
+        else:
+            motions_yaml = PathJoinSubstitution(
+                [pkg_share_dir, "config", "motions", f"ari_motions{hw_suffix}.yaml"]
+            )
+            merged_yaml = merge_param_files([motions_yaml.perform(context),
+                                             general_yaml.perform(context),
+                                             head_motions.perform(context)])
+    else:
+        merged_yaml = PathJoinSubstitution(
+            [pkg_share_dir, "config", "motions", f"ari_motions{hw_suffix}.yaml"]
+        )
+
+    motion_planner_file = f"motion_planner{hw_suffix}.yaml"
+    motion_planner_config = PathJoinSubstitution(
+        [pkg_share_dir, "config", "motion_planner", motion_planner_file]
+    )
+
+    return [
+        SetLaunchConfiguration("motions_file", merged_yaml),
+        SetLaunchConfiguration("motion_planner_config", motion_planner_config),
+    ]
+
