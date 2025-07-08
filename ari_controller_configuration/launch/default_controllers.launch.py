@@ -17,10 +17,11 @@ from dataclasses import dataclass
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import GroupAction, OpaqueFunction
+
 from controller_manager.launch_utils import generate_load_controller_launch_description
 from launch.actions import DeclareLaunchArgument
-from launch_pal.arg_utils import read_launch_argument
-from launch_pal.include_utils import include_launch_py_description, include_scoped_launch_py_description
+from launch_pal.arg_utils import read_launch_argument, LaunchArgumentsBase
+from launch_pal.include_utils import include_launch_py_description
 from launch.substitutions import PythonExpression, LaunchConfiguration
 from launch_pal.robot_arguments import CommonArgs
 from ari_description.launch_arguments import AriArgs
@@ -34,10 +35,11 @@ from launch.conditions import (
     UnlessCondition
 )
 
+from ari_description.ari_launch_utils import get_ari_hw_suffix
+
 @dataclass(frozen=True)
 class LaunchArguments(LaunchArgumentsBase):
 
-    arm_type: DeclareLaunchArgument = AriArgs.arm_type
     robot_model: DeclareLaunchArgument = AriArgs.robot_model
     is_public_sim: DeclareLaunchArgument = CommonArgs.is_public_sim
     namespace: DeclareLaunchArgument = CommonArgs.namespace
@@ -53,7 +55,10 @@ def generate_launch_description():
 
     declare_actions(ld, launch_arguments)
 
+
+
     return ld
+
 
 def declare_actions(
     launch_description: LaunchDescription, launch_args: LaunchArguments
@@ -66,13 +71,18 @@ def declare_actions(
         ##OpaqueFunction(function=launch_mobile_base_controller))
 
     # Joint state broadcast
+    joint_state_broadcaster_file = (
+        f"joint_state_broadcaster{get_ari_hw_suffix(robot_model='v2')}.yaml"
+    )
+
     joint_state_broadcaster = GroupAction(
         [
             generate_load_controller_launch_description(
                 controller_name="joint_state_broadcaster",
                 controller_params_file=os.path.join(
                     get_package_share_directory("ari_controller_configuration"),
-                    "config", f"joint_state_broadcaster{get_ari_hw_suffix(robot_model=robot_model)}.yaml"
+                    "config", 
+                    joint_state_broadcaster_file,
                 ),
             )
         ],
@@ -104,7 +114,7 @@ def declare_actions(
 
         ],
         forwarding=False,
-        condition=LaunchConfigurationNotEquals("arm_type", "no-arm"),
+        #condition=LaunchConfigurationNotEquals("arm_type", "no-arm"),
     )
 
     launch_description.add_action(arm_controller)
@@ -120,7 +130,7 @@ def declare_actions(
 
         ],
         forwarding=False,
-        condition=LaunchConfigurationNotEquals("arm_type", "no-arm"),
+        #condition=LaunchConfigurationNotEquals("arm_type", "no-arm"),
     )
 
     launch_description.add_action(arm_controller)
@@ -128,7 +138,6 @@ def declare_actions(
     # Base controller
     base_controller = GroupAction(
         [
-            PushRosNamespace(LaunchConfiguration('namespace')),
             generate_load_controller_launch_description(
                 controller_name='mobile_base_controller',
                 controller_params_file=LaunchConfiguration("base_config_file")
@@ -137,46 +146,42 @@ def declare_actions(
     )
     launch_description.add_action(base_controller)
 
-    # Configure LA dependant controllers
-    launch_description.add_action(OpaqueFunction(
-        function=configure_end_effector))
-
     return
 
-def set_base_config_file(context):
+# def set_base_config_file(context):
 
-    is_public_sim = read_launch_argument("is_public_sim", context)
-    pkg_share_folder = get_package_share_directory('ari_controller_configuration')
+#     is_public_sim = read_launch_argument("is_public_sim", context)
+#     pkg_share_folder = get_package_share_directory('ari_controller_configuration')
 
-    controller_file = 'mobile_base_controller.yaml'
+#     controller_file = 'mobile_base_controller.yaml'
 
-    if is_public_sim in ['true', 'True']:
-        controller_file = 'mobile_base_controller_public_sim.yaml'
+#     if is_public_sim in ['true', 'True']:
+#         controller_file = 'mobile_base_controller_public_sim.yaml'
 
-    base_config_file = os.path.join(pkg_share_folder, 'config', controller_file)
+#     base_config_file = os.path.join(pkg_share_folder, 'config', controller_file)
 
-    return [SetLaunchConfiguration("base_config_file", base_config_file)]
+#     return [SetLaunchConfiguration("base_config_file", base_config_file)]
 
 
 
-def launch_mobile_base_controller(context, *args, **kwargs):
+# def launch_mobile_base_controller(context, *args, **kwargs):
 
-    default_config = os.path.join(
-        get_package_share_directory("ari_controller_configuration"),
-        "config",
-        "mobile_base_controller.yaml",
-    )
+#     default_config = os.path.join(
+#         get_package_share_directory("ari_controller_configuration"),
+#         "config",
+#         "mobile_base_controller.yaml",
+#     )
 
-    calibration_config = "/etc/calibration/master_calibration.yaml"
+#     calibration_config = "/etc/calibration/master_calibration.yaml"
 
-    if os.path.exists(calibration_config):
-        params_file = merge_param_files([default_config, calibration_config])
-    else:
-        params_file = default_config
+#     if os.path.exists(calibration_config):
+#         params_file = merge_param_files([default_config, calibration_config])
+#     else:
+#         params_file = default_config
 
-    return generate_load_controller_launch_description(
-        controller_name="mobile_base_controller",
-        controller_params_file=params_file,
-    )
+#     return generate_load_controller_launch_description(
+#         controller_name="mobile_base_controller",
+#         controller_params_file=params_file,
+#     )
 
 

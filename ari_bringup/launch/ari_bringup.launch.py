@@ -17,6 +17,7 @@ from launch_pal.include_utils import include_launch_py_description
 
 from launch_pal.include_utils import include_scoped_launch_py_description
 from launch_pal.arg_utils import LaunchArgumentsBase
+from launch.actions import DeclareLaunchArgument
 from launch_pal.robot_arguments import CommonArgs
 from ari_description.launch_arguments import AriArgs
 
@@ -25,10 +26,17 @@ from dataclasses import dataclass
 @dataclass(frozen=True)
 class LaunchArguments(LaunchArgumentsBase):
 
-    arm_type: DeclareLaunchArgument = AriArgs.arm_type
     robot_model: DeclareLaunchArgument = AriArgs.robot_model
+    laser_model: DeclareLaunchArgument = AriArgs.laser_model
+    end_effector: DeclareLaunchArgument = AriArgs.end_effector
+    head_camera_model: DeclareLaunchArgument = AriArgs.head_camera_model
+    torso_front_camera_model: DeclareLaunchArgument = AriArgs.torso_front_camera_model
+    torso_back_camera_model: DeclareLaunchArgument = AriArgs.torso_back_camera_model
+    
 
-
+    use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
+    is_public_sim: DeclareLaunchArgument = CommonArgs.is_public_sim
+    namespace: DeclareLaunchArgument = CommonArgs.namespace
 
 def generate_launch_description():
     # Create the launch description
@@ -50,11 +58,9 @@ def declare_actions(
         pkg_name="ari_controller_configuration", paths=[
         "launch", "default_controllers.launch.py"],
         launch_arguments={
-            "arm_type": launch_args.arm_type,
             "robot_model": launch_args.robot_model,
         },
     )
-
 
     launch_description.add_action(default_controllers)
 
@@ -73,10 +79,10 @@ def declare_actions(
         paths=["launch", "twist_mux.launch.py"],
         launch_arguments={
             "cmd_vel_out": "mobile_base_controller/cmd_vel_unstamped",
-            "config_locks": config_locks_file,
-            "config_topics": config_topics_file,
-            "config_joy": joystick_file,
-        }.items(),
+            # "config_locks": config_locks_file,
+            # "config_topics": config_topics_file,
+            # "config_joy": joystick_file,
+        },
 
     )
 
@@ -86,7 +92,6 @@ def declare_actions(
         pkg_name="ari_description",
         paths=["launch", "robot_state_publisher.launch.py"],
         launch_arguments={
-            "arm_type": launch_args.arm_type,
             "robot_model": launch_args.robot_model,
         },
     )

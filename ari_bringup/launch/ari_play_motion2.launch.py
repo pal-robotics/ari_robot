@@ -31,7 +31,7 @@ from launch_pal.param_utils import merge_param_files
 class LaunchArguments(LaunchArgumentsBase):
 
     robot_model: DeclareLaunchArgument = AriArgs.robot_model
-    arm_type: DeclareLaunchArgument = AriArgs.arm_type
+    #arm_type: DeclareLaunchArgument = AriArgs.arm_type
 
 
 def generate_launch_description():

@@ -23,7 +23,7 @@
   <xacro:arg name="front_fisheye_camera" default="false"/>
   <xacro:arg name="back_fisheye_camera" default="false"/>
   <xacro:arg name="laser_model" default="ydlidar-tg15"/> <!-- false, hokuyo, sick-551, sick-561, sick-571, ydlidar-tg30, ydlidar-tg15 -->
-  <xacro:arg name="camera_model_head" default="raspi"/>
+  <xacro:arg name="head_camera_model" default="raspi"/>
   <xacro:arg name="rgbd_sensors" default="false"/> <!-- false, true-->
   <xacro:arg name="has_thermal" default="false"/>
   <xacro:arg name="description_calibration_dir" default="$(find ari_description)/urdf/calibration"/>
@@ -36,7 +36,7 @@
   <xacro:property name="front_fisheye_camera" value="$(arg front_fisheye_camera)" />
   <xacro:property name="back_fisheye_camera" value="$(arg back_fisheye_camera)" />
   <xacro:property name="laser_model" value="$(arg laser_model)" />
-  <xacro:property name="camera_model_head" value="$(arg camera_model_head)"/>
+  <xacro:property name="head_camera_model" value="$(arg head_camera_model)"/>
   <xacro:property name="rgbd_sensors" value="$(arg rgbd_sensors)"/>
   <xacro:property name="has_thermal" value="$(arg has_thermal)"/>
   <xacro:property name="is_multiple" value="$(arg multiple)" />
@@ -65,7 +65,7 @@
     <xacro:wrong_laser_model/>
   </xacro:if>
  
-  <xacro:if value="${camera_model_head not in ['raspi', 'realsense-d435', 'realsense-d435i']}">
+  <xacro:if value="${head_camera_model not in ['raspi', 'realsense-d435', 'realsense-d435i']}">
     <xacro:wrong_camera_model/>
   </xacro:if>
   
