@@ -18,6 +18,8 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_pal.include_utils import include_launch_py_description
 
+from launch_ros.actions import Node
+
 
 def generate_launch_description():
     pkg = get_package_share_directory("ari_bringup")
@@ -39,6 +41,18 @@ def generate_launch_description():
         }.items(),
     )
 
+    twist_mux_analyzer = Node(
+        package='diagnostic_aggregator',
+        executable='add_analyzer',
+        namespace='twist_mux',
+        output='screen',
+        emulate_tty=True,
+        parameters=[
+            os.path.join(pkg, 'config', 'twist_mux', 'twist_mux_analyzers.yaml')
+        ],
+    )
+
     ld = LaunchDescription()
     ld.add_action(twist_mux)
+    ld.add_action(twist_mux_analyzer)
     return ld
