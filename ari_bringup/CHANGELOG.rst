@@ -2,8 +2,8 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.4.0 (2025-07-08)
+------------------
 * Add diagnostic analyzers
 * Contributors: Noel Jimenez
 
