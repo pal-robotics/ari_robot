@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
 from launch import LaunchDescription
-from launch_pal.include_utils import include_launch_py_description
+from launch.actions import DeclareLaunchArgument
 
 from launch_pal.include_utils import include_scoped_launch_py_description
 from launch_pal.arg_utils import LaunchArgumentsBase
-from launch.actions import DeclareLaunchArgument
 from launch_pal.robot_arguments import CommonArgs
 from ari_description.launch_arguments import AriArgs
 
@@ -54,7 +54,7 @@ def declare_actions(
     launch_description: LaunchDescription, launch_args: LaunchArguments
 ):
 
-    default_controllers = include_launch_py_description(
+    default_controllers = include_scoped_launch_py_description(
         pkg_name="ari_controller_configuration", paths=[
         "launch", "default_controllers.launch.py"],
         launch_arguments={
@@ -64,15 +64,15 @@ def declare_actions(
 
     launch_description.add_action(default_controllers)
 
-    play_motion2 = include_scoped_launch_py_description(
-        pkg_name="ari_bringup",
-        paths=["launch", "ari_play_motion2.launch.py"],
-        launch_arguments={
-            "robot_model": launch_args.robot_model,
-        },
-    )
+    # play_motion2 = include_scoped_launch_py_description(
+    #     pkg_name="ari_bringup",
+    #     paths=["launch", "ari_play_motion2.launch.py"],
+    #     launch_arguments={
+    #         "robot_model": launch_args.robot_model,
+    #     },
+    # )
 
-    launch_description.add_action(play_motion2)
+    # launch_description.add_action(play_motion2)
 
     twist_mux = include_scoped_launch_py_description(
         pkg_name="ari_bringup",

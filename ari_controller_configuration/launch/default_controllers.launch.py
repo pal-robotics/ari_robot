@@ -25,10 +25,7 @@ from launch_pal.include_utils import include_launch_py_description
 from launch.substitutions import PythonExpression, LaunchConfiguration
 from launch_pal.robot_arguments import CommonArgs
 from ari_description.launch_arguments import AriArgs
-from launch_pal.robot_utils import (
-    get_robot_model,
-    get_robot_name,
-)
+
 from launch.conditions import (
     LaunchConfigurationNotEquals,
     IfCondition,
@@ -55,8 +52,6 @@ def generate_launch_description():
 
     declare_actions(ld, launch_arguments)
 
-
-
     return ld
 
 
@@ -67,13 +62,10 @@ def declare_actions(
     pkg_share_folder = get_package_share_directory(
         "ari_controller_configuration")
 
-    ##launch_description.add_action(
-        ##OpaqueFunction(function=launch_mobile_base_controller))
+    # launch_description.add_action(
+    #     OpaqueFunction(function=launch_mobile_base_controller))
 
     # Joint state broadcast
-    joint_state_broadcaster_file = (
-        f"joint_state_broadcaster{get_ari_hw_suffix(robot_model='v2')}.yaml"
-    )
 
     joint_state_broadcaster = GroupAction(
         [
@@ -82,7 +74,7 @@ def declare_actions(
                 controller_params_file=os.path.join(
                     get_package_share_directory("ari_controller_configuration"),
                     "config", 
-                    joint_state_broadcaster_file,
+                    f"joint_state_broadcaster{get_ari_hw_suffix(robot_model='v2')}.yaml",
                 ),
             )
         ],
@@ -136,11 +128,14 @@ def declare_actions(
     launch_description.add_action(arm_controller)
 
     # Base controller
+    controller_file = os.path.join('mobile_base_controller.yaml')
+    base_config_file = os.path.join(pkg_share_folder, 'config', controller_file)
+
     base_controller = GroupAction(
         [
             generate_load_controller_launch_description(
                 controller_name='mobile_base_controller',
-                controller_params_file=LaunchConfiguration("base_config_file")
+                controller_params_file=LaunchConfiguration(base_config_file)
             )
         ],
     )

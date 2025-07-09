@@ -14,11 +14,12 @@
 
 import os
 from pathlib import Path
+import tempfile
 
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, OpaqueFunction
+from launch.actions import DeclareLaunchArgument, OpaqueFunction, SetLaunchConfiguration
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
@@ -30,15 +31,6 @@ from dataclasses import dataclass
 from ari_description.launch_arguments import AriArgs
 from launch_pal.robot_arguments import CommonArgs
 from launch_pal import calibration_utils
-
-from launch_pal.robot_utils import (
-    get_robot_model,
-    get_camera_model,
-    get_end_effector,
-    get_laser_model,
-    get_robot_name,
-)
-from launch_param_builder import load_xacro
 
 
 @dataclass(frozen=True)

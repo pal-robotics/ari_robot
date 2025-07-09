@@ -19,11 +19,11 @@
         name="ari" >
 
   <xacro:arg name="robot_model" default="v2"/>
-  <xacro:arg name="end_effector" default="no-hand"/>
+  <xacro:arg name="end_effector" default="no-end-effector"/>
   <xacro:arg name="front_fisheye_camera" default="false"/>
   <xacro:arg name="back_fisheye_camera" default="false"/>
   <xacro:arg name="laser_model" default="ydlidar-tg15"/> <!-- false, hokuyo, sick-551, sick-561, sick-571, ydlidar-tg30, ydlidar-tg15 -->
-  <xacro:arg name="head_camera_model" default="raspi"/>
+  <xacro:arg name="head_camera_model" default="realsense-d435i"/>
   <xacro:arg name="rgbd_sensors" default="false"/> <!-- false, true-->
   <xacro:arg name="has_thermal" default="false"/>
   <xacro:arg name="description_calibration_dir" default="$(find ari_description)/urdf/calibration"/>
@@ -47,7 +47,7 @@
     <xacro:wrong_ari_robot_model/>
   </xacro:if>
 
-  <xacro:if value="${end_effector not in ['ari-hand', 'no-hand', 'false', False]}">
+  <xacro:if value="${end_effector not in ['no-end-effector', 'ari-hand']}">
     <xacro:wrong_end_effector/>
   </xacro:if>
 
@@ -61,11 +61,11 @@
   </xacro:if>
   <xacro:property name="has_back_fisheye_camera"           value="${back_fisheye_camera in ['Jetson', True, 'true', 'PC']}"/> 
 
-  <xacro:if value="${laser_model not in ['No', 'false', False, 'sick-551', 'sick-561', 'sick-571', 'hokuyo', 'ydlidar-tg30', 'ydlidar-tg15']}">
+  <xacro:if value="${laser_model not in ['no-laser', 'sick-551', 'sick-561', 'sick-571', 'hokuyo', 'ydlidar-tg15', 'ydlidar-tg30']}">
     <xacro:wrong_laser_model/>
   </xacro:if>
  
-  <xacro:if value="${head_camera_model not in ['raspi', 'realsense-d435', 'realsense-d435i']}">
+  <xacro:if value="${head_camera_model not in ['raspi', 'realsense-d435i', 'realsense-d435']}">
     <xacro:wrong_camera_model/>
   </xacro:if>
   
