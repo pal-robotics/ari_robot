@@ -23,6 +23,7 @@ from ari_description.launch_arguments import AriArgs
 
 from dataclasses import dataclass
 
+
 @dataclass(frozen=True)
 class LaunchArguments(LaunchArgumentsBase):
 
@@ -32,7 +33,7 @@ class LaunchArguments(LaunchArgumentsBase):
     head_camera_model: DeclareLaunchArgument = AriArgs.head_camera_model
     torso_front_camera_model: DeclareLaunchArgument = AriArgs.torso_front_camera_model
     torso_back_camera_model: DeclareLaunchArgument = AriArgs.torso_back_camera_model
-    
+
     use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
     is_public_sim: DeclareLaunchArgument = CommonArgs.is_public_sim
     namespace: DeclareLaunchArgument = CommonArgs.namespace
@@ -50,18 +51,19 @@ def generate_launch_description():
 
     return ld
 
+
 def declare_actions(
     launch_description: LaunchDescription, launch_args: LaunchArguments
 ):
 
     default_controllers = include_scoped_launch_py_description(
         pkg_name="ari_controller_configuration", paths=[
-        "launch", "default_controllers.launch.py"],
+            "launch", "default_controllers.launch.py"],
         launch_arguments={
             "robot_model": launch_args.robot_model,
             "is_public_sim": launch_args.is_public_sim,
             "use_sim_time": launch_args.use_sim_time,
-            
+
         },
     )
 
@@ -98,7 +100,7 @@ def declare_actions(
             "head_camera_model": launch_args.head_camera_model,
             "torso_front_camera_model": launch_args.torso_front_camera_model,
             "torso_back_camera_model": launch_args.torso_back_camera_model,
-            "use_sim_time": launch_args.use_sim_time, 
+            "use_sim_time": launch_args.use_sim_time,
             "is_public_sim": launch_args.is_public_sim,
             "namespace": launch_args.namespace,
         },
@@ -107,4 +109,3 @@ def declare_actions(
     launch_description.add_action(robot_state_publisher)
 
     return
-
