@@ -26,12 +26,6 @@ from launch.substitutions import PythonExpression, LaunchConfiguration
 from launch_pal.robot_arguments import CommonArgs
 from ari_description.launch_arguments import AriArgs
 
-from launch.conditions import (
-    LaunchConfigurationNotEquals,
-    IfCondition,
-    UnlessCondition
-)
-
 from ari_description.ari_launch_utils import get_ari_hw_suffix
 
 @dataclass(frozen=True)
@@ -39,7 +33,7 @@ class LaunchArguments(LaunchArgumentsBase):
 
     robot_model: DeclareLaunchArgument = AriArgs.robot_model
     is_public_sim: DeclareLaunchArgument = CommonArgs.is_public_sim
-
+    use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
 
 def generate_launch_description():
 
@@ -85,8 +79,7 @@ def declare_actions(
             generate_load_controller_launch_description(
                 controller_name="head_controller",
                 controller_params_file=os.path.join(
-                get_package_share_directory('ari_controller_configuration'),
-                'config', 'head_controller.yaml'))
+                    pkg_share_folder,'config', 'head_controller.yaml'))
         ],
         forwarding=False,
     )
@@ -99,35 +92,31 @@ def declare_actions(
             generate_load_controller_launch_description(
                 controller_name='arm_left_controller',
                 controller_params_file=os.path.join(
-                    get_package_share_directory('ari_controller_configuration'),
-                    'config', 'arm_left_controller.yaml'))
+                    pkg_share_folder,'config', 'arm_left_controller.yaml'))
 
         ],
         forwarding=False,
-        #condition=LaunchConfigurationNotEquals("arm_type", "no-arm"),
     )
 
     launch_description.add_action(arm_controller)
 
     # Arm right controller
-    # arm_controller = GroupAction(
-    #     [
-    #         generate_load_controller_launch_description(
-    #             controller_name='arm_right_controller',
-    #             controller_params_file=os.path.join(
-    #             get_package_share_directory('ari_controller_configuration'),
-    #             'config', 'arm_right_controller.yaml'))
+    arm_controller = GroupAction(
+        [
+            generate_load_controller_launch_description(
+                controller_name='arm_right_controller',
+                controller_params_file=os.path.join(
+                    pkg_share_folder,'config', 'arm_right_controller.yaml'))
 
-    #     ],
-    #     forwarding=False,
-    #     #condition=LaunchConfigurationNotEquals("arm_type", "no-arm"),
-    # )
+        ],
+        forwarding=False,
+    )
 
-    # launch_description.add_action(arm_controller)
+    launch_description.add_action(arm_controller)
 
     # Base controller
     default_config = os.path.join(
-        get_package_share_directory("ari_controller_configuration"),
+        pkg_share_folder,
         "config",
         "mobile_base_controller.yaml",
     )

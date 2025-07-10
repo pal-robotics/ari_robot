@@ -35,6 +35,7 @@ class LaunchArguments(LaunchArgumentsBase):
     
     use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
     is_public_sim: DeclareLaunchArgument = CommonArgs.is_public_sim
+    namespace: DeclareLaunchArgument = CommonArgs.namespace
 
 
 def generate_launch_description():
@@ -58,38 +59,48 @@ def declare_actions(
         "launch", "default_controllers.launch.py"],
         launch_arguments={
             "robot_model": launch_args.robot_model,
+            "is_public_sim": launch_args.is_public_sim,
             "use_sim_time": launch_args.use_sim_time,
+            
         },
     )
 
     launch_description.add_action(default_controllers)
 
-    play_motion2 = include_scoped_launch_py_description(
-        pkg_name="ari_bringup",
-        paths=["launch", "ari_play_motion2.launch.py"],
-        launch_arguments={
-            "robot_model": launch_args.robot_model,
-        },
-    )
+    # play_motion2 = include_scoped_launch_py_description(
+    #     pkg_name="ari_bringup",
+    #     paths=["launch", "ari_play_motion2.launch.py"],
+    #     launch_arguments={
+    #         "robot_model": launch_args.robot_model,
+    #     },
+    # )
 
-    launch_description.add_action(play_motion2)
+    # launch_description.add_action(play_motion2)
 
-    twist_mux = include_scoped_launch_py_description(
-        pkg_name="ari_bringup",
-        paths=["launch", "twist_mux.launch.py"],
-        launch_arguments={
-            "use_sim_time": launch_args.use_sim_time,
-        },
-    )
+    # twist_mux = include_scoped_launch_py_description(
+    #     pkg_name="ari_bringup",
+    #     paths=["launch", "twist_mux.launch.py"],
+    #     launch_arguments={
+    #         "robot_model": launch_args.robot_model,
+    #         "use_sim_time": launch_args.use_sim_time,
+    #     },
+    # )
 
-    launch_description.add_action(twist_mux)
+    # launch_description.add_action(twist_mux)
 
     robot_state_publisher = include_scoped_launch_py_description(
         pkg_name="ari_description",
         paths=["launch", "robot_state_publisher.launch.py"],
         launch_arguments={
             "robot_model": launch_args.robot_model,
-            "use_sim_time": launch_args.use_sim_time,
+            "laser_model": launch_args.laser_model,
+            "end_effector": launch_args.end_effector,
+            "head_camera_model": launch_args.head_camera_model,
+            "torso_front_camera_model": launch_args.torso_front_camera_model,
+            "torso_back_camera_model": launch_args.torso_back_camera_model,
+            "use_sim_time": launch_args.use_sim_time, 
+            "is_public_sim": launch_args.is_public_sim,
+            "namespace": launch_args.namespace,
         },
     )
 
