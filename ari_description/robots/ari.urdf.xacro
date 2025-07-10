@@ -29,7 +29,7 @@
   <xacro:arg name="description_calibration_dir" default="$(find ari_description)/urdf/calibration"/>
   <xacro:arg name="multiple" default="false"/>
   <xacro:arg name="namespace" default=""/>
-  <xacro:arg name="use_sim" default="false"/>
+  <xacro:arg name="use_sim_time" default="false"/>
 
   <xacro:property name="robot_model" value="$(arg robot_model)" />
   <xacro:property name="end_effector" value="$(arg end_effector)" />
@@ -41,7 +41,7 @@
   <xacro:property name="has_thermal" value="$(arg has_thermal)"/>
   <xacro:property name="is_multiple" value="$(arg multiple)" />
   <xacro:property name="namespace" value="$(arg namespace)" />
-  <xacro:property name="use_nominal_extrinsics" value="$(arg use_sim)"/>
+  <xacro:property name="use_nominal_extrinsics" value="$(arg use_sim_time)"/>
 
   <xacro:if value="${robot_model not in ['v1', 'v2']}">
     <xacro:wrong_ari_robot_model/>
@@ -102,7 +102,7 @@
   <!-- ros2_control -->
   <xacro:include filename="$(find ari_description)/ros2_control/ros2_control.urdf.xacro" />
   <xacro:ari_ros2_control
-    use_sim="$(arg use_sim)" />
+    use_sim_time="$(arg use_sim_time)" />
 
   <!-- Materials for visualization -->
   <xacro:include filename="$(find ari_description)/urdf/materials.urdf.xacro" />

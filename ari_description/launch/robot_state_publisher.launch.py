@@ -42,8 +42,6 @@ class LaunchArguments(LaunchArgumentsBase):
     head_camera_model: DeclareLaunchArgument = AriArgs.head_camera_model
     torso_front_camera_model: DeclareLaunchArgument = AriArgs.torso_front_camera_model
     torso_back_camera_model: DeclareLaunchArgument = AriArgs.torso_back_camera_model
-    
-
     use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
     is_public_sim: DeclareLaunchArgument = CommonArgs.is_public_sim
     namespace: DeclareLaunchArgument = CommonArgs.namespace
@@ -76,6 +74,7 @@ def declare_actions(
         output="both",
         parameters=[
             {
+                'use_sim_time': LaunchConfiguration('use_sim_time'),
                 "robot_description": ParameterValue(
                     LaunchConfiguration("robot_description"), value_type=str
                 ),
@@ -105,7 +104,6 @@ def create_robot_description_param(context, *args, **kwargs):
         "head_camera_model": read_launch_argument("head_camera_model", context),
         "torso_front_camera_model": read_launch_argument("torso_front_camera_model", context),
         "torso_back_camera_model": read_launch_argument("torso_back_camera_model", context),
-       
         "use_sim_time": read_launch_argument("use_sim_time", context),
         "is_public_sim": read_launch_argument("is_public_sim", context),
         "namespace": read_launch_argument("namespace", context),

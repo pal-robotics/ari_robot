@@ -50,22 +50,14 @@ def generate_launch_description():
 def declare_actions(
     launch_description: LaunchDescription, launch_args: LaunchArguments
 ):
-    # launch_description.add_action(OpaqueFunction(function=create_play_motion_params))
+    launch_description.add_action(OpaqueFunction(function=create_play_motion_params))
 
     play_motion2 = include_scoped_launch_py_description(
         pkg_name="play_motion2",
         paths=["launch", "play_motion2.launch.py"],
         launch_arguments={
-            "robot_model": launch_args.robot_model,
-            "motions_file": os.path.join(
-            get_package_share_directory("ari_bringup"), "config", "motions",
-            f"ari{get_ari_hw_suffix(robot_model)}_motions.yaml"),
-
-            "motion_planner_config": os.path.join(
-                get_package_share_directory("ari_bringup"),
-                "config", "motion_planner", 
-                f"motion_planner_ari{get_ari_hw_suffix(robot_model)}.yaml"
-            )
+            "motions_file": LaunchConfiguration("motions_file"),
+            "motion_planner_config": LaunchConfiguration("motion_planner_config"),
         },
     )
 
@@ -74,32 +66,29 @@ def declare_actions(
     return
 
 
-# def create_play_motion_params(context):
+def create_play_motion_params(context):
 
-#     pkg_name = "ari_bringup"  
-#     pkg_share_dir = get_package_share_directory(pkg_name)
-#     robot_model = read_launch_argument("robot_model", context)
-#     end_effector = read_launch_argument("end_effector", context)
+    pkg_name = "ari_bringup"  
+    pkg_share_dir = get_package_share_directory(pkg_name)
+    robot_model = read_launch_argument("robot_model", context)
 
-#     hw_suffix = get_ari_hw_suffix(robot_model=robot_model)   
 
-#     if end_effector == 'no-end-effector':
-#             merged_yaml = general_yaml
-#     else:
-#         motions_yaml = PathJoinSubstitution(
-#             [pkg_share_dir, "config", "motions", f"ari_motions{hw_suffix}.yaml"]
-#         )
-#         merged_yaml = merge_param_files([motions_yaml.perform(context),
-#                                         general_yaml.perform(context),
-#                                         head_motions.perform(context)])
+    hw_suffix = get_ari_hw_suffix(robot_model=robot_model)  
 
-#     motion_planner_file = f"motion_planner{hw_suffix}.yaml"
-#     motion_planner_config = PathJoinSubstitution(
-#         [pkg_share_dir, "config", "motion_planner", motion_planner_file]
-#     )
+    motion_planner_file = f"motion_planner_ari{hw_suffix}.yaml"
+    
+    motion_planner_file_path = os.path.join(
+        get_package_share_directory("ari_bringup"),
+        "config", "motion_planner", motion_planner_file
+    )
 
-#     return [
-#         SetLaunchConfiguration("motions_file", merged_yaml),
-#         SetLaunchConfiguration("motion_planner_config", motion_planner_config),
-#     ]
+    motions_file = f"ari{hw_suffix}_motions.yaml"
+    motions_file_path = os.path.join(
+        get_package_share_directory("ari_bringup"), "config", "motions", motions_file
+    )
+
+    return [
+        SetLaunchConfiguration("motions_file", motions_file_path),
+        SetLaunchConfiguration("motion_planner_config", motion_planner_file_path),
+    ]
 

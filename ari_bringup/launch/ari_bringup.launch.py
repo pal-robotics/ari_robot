@@ -33,10 +33,9 @@ class LaunchArguments(LaunchArgumentsBase):
     torso_front_camera_model: DeclareLaunchArgument = AriArgs.torso_front_camera_model
     torso_back_camera_model: DeclareLaunchArgument = AriArgs.torso_back_camera_model
     
-
     use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
     is_public_sim: DeclareLaunchArgument = CommonArgs.is_public_sim
-    namespace: DeclareLaunchArgument = CommonArgs.namespace
+
 
 def generate_launch_description():
     # Create the launch description
@@ -59,31 +58,28 @@ def declare_actions(
         "launch", "default_controllers.launch.py"],
         launch_arguments={
             "robot_model": launch_args.robot_model,
+            "use_sim_time": launch_args.use_sim_time,
         },
     )
 
     launch_description.add_action(default_controllers)
 
-    # play_motion2 = include_scoped_launch_py_description(
-    #     pkg_name="ari_bringup",
-    #     paths=["launch", "ari_play_motion2.launch.py"],
-    #     launch_arguments={
-    #         "robot_model": launch_args.robot_model,
-    #     },
-    # )
+    play_motion2 = include_scoped_launch_py_description(
+        pkg_name="ari_bringup",
+        paths=["launch", "ari_play_motion2.launch.py"],
+        launch_arguments={
+            "robot_model": launch_args.robot_model,
+        },
+    )
 
-    # launch_description.add_action(play_motion2)
+    launch_description.add_action(play_motion2)
 
     twist_mux = include_scoped_launch_py_description(
         pkg_name="ari_bringup",
         paths=["launch", "twist_mux.launch.py"],
         launch_arguments={
-            "cmd_vel_out": "mobile_base_controller/cmd_vel_unstamped",
-            # "config_locks": config_locks_file,
-            # "config_topics": config_topics_file,
-            # "config_joy": joystick_file,
+            "use_sim_time": launch_args.use_sim_time,
         },
-
     )
 
     launch_description.add_action(twist_mux)
@@ -93,6 +89,7 @@ def declare_actions(
         paths=["launch", "robot_state_publisher.launch.py"],
         launch_arguments={
             "robot_model": launch_args.robot_model,
+            "use_sim_time": launch_args.use_sim_time,
         },
     )
 
