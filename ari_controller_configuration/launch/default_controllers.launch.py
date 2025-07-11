@@ -21,12 +21,13 @@ from launch.actions import GroupAction, OpaqueFunction
 from controller_manager.launch_utils import generate_load_controller_launch_description
 from launch.actions import DeclareLaunchArgument, SetLaunchConfiguration
 from launch_pal.arg_utils import read_launch_argument, LaunchArgumentsBase
-from launch_pal.include_utils import include_launch_py_description
-from launch.substitutions import PythonExpression, LaunchConfiguration
+from launch.substitutions import LaunchConfiguration
 from launch_pal.robot_arguments import CommonArgs
 from ari_description.launch_arguments import AriArgs
 
 from ari_description.ari_launch_utils import get_ari_hw_suffix
+from launch_pal.param_utils import merge_param_files
+
 
 @dataclass(frozen=True)
 class LaunchArguments(LaunchArgumentsBase):
@@ -34,6 +35,7 @@ class LaunchArguments(LaunchArgumentsBase):
     robot_model: DeclareLaunchArgument = AriArgs.robot_model
     is_public_sim: DeclareLaunchArgument = CommonArgs.is_public_sim
     use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
+
 
 def generate_launch_description():
 
@@ -61,7 +63,6 @@ def declare_actions(
     launch_description.add_action(OpaqueFunction(
         function=set_joint_state_broadcaster))
 
-
     # Joint state broadcast
     joint_state_broadcaster = GroupAction(
         [
@@ -79,7 +80,7 @@ def declare_actions(
             generate_load_controller_launch_description(
                 controller_name="head_controller",
                 controller_params_file=os.path.join(
-                    pkg_share_folder,'config', 'head_controller.yaml'))
+                    pkg_share_folder, 'config', 'head_controller.yaml'))
         ],
         forwarding=False,
     )
@@ -92,7 +93,7 @@ def declare_actions(
             generate_load_controller_launch_description(
                 controller_name='arm_left_controller',
                 controller_params_file=os.path.join(
-                    pkg_share_folder,'config', 'arm_left_controller.yaml'))
+                    pkg_share_folder, 'config', 'arm_left_controller.yaml'))
 
         ],
         forwarding=False,
@@ -106,7 +107,7 @@ def declare_actions(
             generate_load_controller_launch_description(
                 controller_name='arm_right_controller',
                 controller_params_file=os.path.join(
-                    pkg_share_folder,'config', 'arm_right_controller.yaml'))
+                    pkg_share_folder, 'config', 'arm_right_controller.yaml'))
 
         ],
         forwarding=False,
@@ -140,6 +141,7 @@ def declare_actions(
 
     return
 
+
 def set_base_config_file(context):
 
     is_public_sim = read_launch_argument("is_public_sim", context)
@@ -154,12 +156,9 @@ def set_base_config_file(context):
 
     return [SetLaunchConfiguration("base_config_file", base_config_file)]
 
-    
 
 def set_joint_state_broadcaster(context):
 
-    pkg_name = "ari_controller_configuration"  
-    pkg_share_dir = get_package_share_directory(pkg_name)
     robot_model = read_launch_argument("robot_model", context)
 
     joint_state_broadcaster_file = (
@@ -171,7 +170,4 @@ def set_joint_state_broadcaster(context):
         "config", joint_state_broadcaster_file
     )
 
-    return  [SetLaunchConfiguration("joint_state_file", joint_state_broadcaster_path)]
-
-
-
+    return [SetLaunchConfiguration("joint_state_file", joint_state_broadcaster_path)]

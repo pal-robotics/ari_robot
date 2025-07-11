@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import os
-
 from dataclasses import dataclass
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
@@ -35,7 +33,7 @@ class LaunchArguments(LaunchArgumentsBase):
     head_camera_model: DeclareLaunchArgument = AriArgs.head_camera_model
     torso_front_camera_model: DeclareLaunchArgument = AriArgs.torso_front_camera_model
     torso_back_camera_model: DeclareLaunchArgument = AriArgs.torso_back_camera_model
-    
+
     use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
     is_public_sim: DeclareLaunchArgument = CommonArgs.is_public_sim
     namespace: DeclareLaunchArgument = CommonArgs.namespace

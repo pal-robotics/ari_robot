@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 
@@ -69,26 +68,26 @@ def declare_actions(
 
     launch_description.add_action(default_controllers)
 
-    # play_motion2 = include_scoped_launch_py_description(
-    #     pkg_name="ari_bringup",
-    #     paths=["launch", "ari_play_motion2.launch.py"],
-    #     launch_arguments={
-    #         "robot_model": launch_args.robot_model,
-    #     },
-    # )
+    play_motion2 = include_scoped_launch_py_description(
+        pkg_name="ari_bringup",
+        paths=["launch", "ari_play_motion2.launch.py"],
+        launch_arguments={
+            "robot_model": launch_args.robot_model,
+        },
+    )
 
-    # launch_description.add_action(play_motion2)
+    launch_description.add_action(play_motion2)
 
-    # twist_mux = include_scoped_launch_py_description(
-    #     pkg_name="ari_bringup",
-    #     paths=["launch", "twist_mux.launch.py"],
-    #     launch_arguments={
-    #         "robot_model": launch_args.robot_model,
-    #         "use_sim_time": launch_args.use_sim_time,
-    #     },
-    # )
+    twist_mux = include_scoped_launch_py_description(
+        pkg_name="ari_bringup",
+        paths=["launch", "twist_mux.launch.py"],
+        launch_arguments={
+            "robot_model": launch_args.robot_model,
+            "use_sim_time": launch_args.use_sim_time,
+        },
+    )
 
-    # launch_description.add_action(twist_mux)
+    launch_description.add_action(twist_mux)
 
     robot_state_publisher = include_scoped_launch_py_description(
         pkg_name="ari_description",

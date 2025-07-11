@@ -18,14 +18,12 @@ from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
 from launch_pal.arg_utils import LaunchArgumentsBase
-from launch.substitutions import PathJoinSubstitution, LaunchConfiguration
+from launch.substitutions import LaunchConfiguration
 from ari_description.launch_arguments import AriArgs
 from launch.actions import DeclareLaunchArgument, SetLaunchConfiguration, OpaqueFunction
 from ari_description.ari_launch_utils import get_ari_hw_suffix
 from launch_pal.include_utils import include_scoped_launch_py_description
 from launch_pal.arg_utils import read_launch_argument
-from launch_pal.robot_arguments import CommonArgs
-from launch_pal.param_utils import merge_param_files
 
 
 @dataclass(frozen=True)
@@ -45,6 +43,7 @@ def generate_launch_description():
     declare_actions(ld, launch_arguments)
 
     return ld
+
 
 def declare_actions(
     launch_description: LaunchDescription, launch_args: LaunchArguments
@@ -67,15 +66,12 @@ def declare_actions(
 
 def create_play_motion_params(context):
 
-    pkg_name = "ari_bringup"  
-    pkg_share_dir = get_package_share_directory(pkg_name)
     robot_model = read_launch_argument("robot_model", context)
 
-
-    hw_suffix = get_ari_hw_suffix(robot_model=robot_model)  
+    hw_suffix = get_ari_hw_suffix(robot_model=robot_model)
 
     motion_planner_file = f"motion_planner_ari{hw_suffix}.yaml"
-    
+
     motion_planner_file_path = os.path.join(
         get_package_share_directory("ari_bringup"),
         "config", "motion_planner", motion_planner_file
@@ -90,4 +86,3 @@ def create_play_motion_params(context):
         SetLaunchConfiguration("motions_file", motions_file_path),
         SetLaunchConfiguration("motion_planner_config", motion_planner_file_path),
     ]
-
