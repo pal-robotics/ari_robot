@@ -7,8 +7,8 @@ mobile_base_controller:
     #wheels_per_side: 1
 
     # In ROS1 these physical properties were parsed from the URDF
-    wheel_radius: 0.0985
-    wheel_separation: 0.4044
+    wheel_radius: 0.1
+    wheel_separation: 0.4668
 
     wheel_separation_multiplier: 1.0
     left_wheel_radius_multiplier: 1.0
