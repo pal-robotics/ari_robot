@@ -30,11 +30,11 @@
     <!-- Simulation -->
     <xacro:if value="$(arg use_sim_time)">
       <!-- Init the ROS 2 control gazebo interface -->
-      <!-- <gazebo>
+      <gazebo>
         <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
           <parameters>$(find ari_description)/ros2_control/gazebo_controller_manager_cfg.yaml</parameters>
         </plugin>
-      </gazebo> -->
+      </gazebo>
 
       <ros2_control name="ros2_control_gazebo_system" type="system">
         <hardware>

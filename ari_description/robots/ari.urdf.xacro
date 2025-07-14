@@ -97,7 +97,7 @@
   </xacro:if>
 
   <!-- Generic simulator_gazebo plugins -->
-  <xacro:include filename="$(find ari_description)/gazebo/gazebo.urdf.xacro" />
+  <!-- <xacro:include filename="$(find ari_description)/gazebo/gazebo.urdf.xacro" /> -->
 
   <!-- ros2_control -->
   <xacro:include filename="$(find ari_description)/ros2_control/ros2_control.urdf.xacro" />
