@@ -14,12 +14,11 @@
 
 import os
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, OpaqueFunction, SetLaunchConfiguration
-from ament_index_python.packages import get_package_share_directory
 from launch_pal.include_utils import include_scoped_launch_py_description
+from ament_index_python.packages import get_package_share_directory
+from launch.actions import DeclareLaunchArgument, SetLaunchConfiguration
 from launch_pal.arg_utils import LaunchArgumentsBase
 from launch_pal.robot_arguments import CommonArgs
-from ari_description.launch_arguments import AriArgs
 from dataclasses import dataclass
 from launch_ros.actions import Node
 
@@ -27,7 +26,6 @@ from launch_ros.actions import Node
 @dataclass(frozen=True)
 class LaunchArguments(LaunchArgumentsBase):
 
-    robot_model: DeclareLaunchArgument = AriArgs.robot_model
     use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
 
 
@@ -48,9 +46,6 @@ def generate_launch_description():
 def declare_actions(
     launch_description: LaunchDescription, launch_args: LaunchArguments
 ):
-    # Create the extra configs from the base_type LA
-    launch_description.add_action(OpaqueFunction(function=create_joystick_file_config))
-
     pkg_dir = get_package_share_directory("ari_bringup")
 
     config_locks_file = os.path.join(
