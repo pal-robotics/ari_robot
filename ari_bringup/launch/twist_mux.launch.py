@@ -16,7 +16,7 @@ import os
 from launch import LaunchDescription
 from launch_pal.include_utils import include_scoped_launch_py_description
 from ament_index_python.packages import get_package_share_directory
-from launch.actions import DeclareLaunchArgument, SetLaunchConfiguration
+from launch.actions import DeclareLaunchArgument
 from launch_pal.arg_utils import LaunchArgumentsBase
 from launch_pal.robot_arguments import CommonArgs
 from dataclasses import dataclass
@@ -54,8 +54,9 @@ def declare_actions(
     config_topics_file = os.path.join(
         pkg_dir, "config", "twist_mux", "twist_mux_topics.yaml"
     )
-
-    joystick_file = os.path.join(pkg_dir, "config", "joy_teleop", "joy_config.yaml")
+    joystick_file = os.path.join(
+        pkg_dir, "config", "twist_mux", "joystick.yaml"
+    )
 
     twist_mux = include_scoped_launch_py_description(
         'twist_mux', ['launch', 'twist_mux_launch.py'],
@@ -83,14 +84,3 @@ def declare_actions(
     launch_description.add_action(twist_mux_analyzer)
 
     return
-
-
-def create_joystick_file_config(context, *args, **kwargs):
-
-    pkg_dir = get_package_share_directory("ari_bringup")
-
-    joystick_file = os.path.join(
-        pkg_dir, "config", "joy_teleop", "joy_config.yaml"
-    )
-
-    return [SetLaunchConfiguration("config_joy", joystick_file)]
