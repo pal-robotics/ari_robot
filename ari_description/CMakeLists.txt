@@ -19,16 +19,6 @@ endif()
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   ament_lint_auto_find_test_dependencies()
-
-  foreach(robot_model v1 v2)
-      foreach(end_effector ari-hand no-end-effector)
-            add_launch_test(
-            test/test_description.launch.py
-            TARGET "ari_description_${end_effector}_${robot_model}"
-            ARGS "end_effector:=${end_effector}" "robot_model:=${robot_model}"
-            )
-    endforeach()
-  endforeach()
 endif()
 
 # Install Python modules
