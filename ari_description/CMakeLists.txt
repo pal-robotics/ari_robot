@@ -19,10 +19,8 @@ endif()
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   ament_lint_auto_find_test_dependencies()
-  
-  add_launch_test(
-    test/test_description.launch.py
-    )
+  ament_add_pytest_test(test_xacro test/test_xacro.py TIMEOUT 1000)
+  add_launch_test(test/test_description.launch.py)
 
 endif()
 
