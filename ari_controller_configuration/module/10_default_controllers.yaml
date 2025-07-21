@@ -1,4 +1,4 @@
 default_controllers:
   launch: "ari_controller_configuration default_controllers.launch.py
-           robot_model:=@robot_model@
+           robot_model:=@robot_model@"
   finishes: True

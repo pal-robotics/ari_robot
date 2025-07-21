@@ -66,7 +66,7 @@
   </xacro:if>
  
   <xacro:if value="${head_camera_model not in ['raspi', 'realsense-d435i', 'realsense-d435']}">
-    <xacro:wrong_camera_model/>
+    <xacro:wrong_head_camera_model/>
   </xacro:if>
   
   <xacro:if value="${has_thermal not in ['true', True, 'false', False]}">

@@ -13,7 +13,7 @@
 # limitations under the License.
 
 
-def get_ari_hw_suffix(robot_model="v2", camera_model=None):
+def get_ari_hw_suffix(robot_model="v2", head_camera_model=None):
     """
     Generate a substitution that creates a text suffix combining the specified ARI arguments.
 
@@ -23,7 +23,7 @@ def get_ari_hw_suffix(robot_model="v2", camera_model=None):
     would be 'pal-gripper_schunk-ft'
     """
     suffixes = [robot_model]
-    if camera_model:
-        suffixes.append(camera_model)
+    if head_camera_model:
+        suffixes.append(head_camera_model)
 
     return "_" + "_".join(suffixes)
