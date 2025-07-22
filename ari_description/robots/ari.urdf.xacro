@@ -20,6 +20,8 @@
 
   <xacro:arg name="robot_model" default="v2"/>
   <xacro:arg name="end_effector" default="no-end-effector"/>
+  <xacro:arg name="torso_front_camera_model" default="realsense-d435"/>
+  <xacro:arg name="torso_back_camera_model" default="realsense-t265"/>
   <xacro:arg name="front_fisheye_camera" default="false"/>
   <xacro:arg name="back_fisheye_camera" default="false"/>
   <xacro:arg name="laser_model" default="ydlidar-tg15"/> <!-- false, hokuyo, sick-551, sick-561, sick-571, ydlidar-tg30, ydlidar-tg15 -->
@@ -33,6 +35,8 @@
 
   <xacro:property name="robot_model" value="$(arg robot_model)" />
   <xacro:property name="end_effector" value="$(arg end_effector)" />
+  <xacro:property name="torso_front_camera_model" value="$(arg torso_front_camera_model)" />
+  <xacro:property name="torso_back_camera_model" value="$(arg torso_back_camera_model)" />
   <xacro:property name="front_fisheye_camera" value="$(arg front_fisheye_camera)" />
   <xacro:property name="back_fisheye_camera" value="$(arg back_fisheye_camera)" />
   <xacro:property name="laser_model" value="$(arg laser_model)" />
@@ -49,6 +53,14 @@
 
   <xacro:if value="${end_effector not in ['no-end-effector', 'ari-hand']}">
     <xacro:wrong_end_effector/>
+  </xacro:if>
+
+  <xacro:if value="${torso_front_camera_model not in ['no-camera', 'realsense-d435i', 'realsense-d435']}">
+    <xacro:wrong_torso_front_camera_model/>
+  </xacro:if>
+
+  <xacro:if value="${torso_back_camera_model not in ['no-camera', 'realsense-t265']}">
+    <xacro:wrong_torso_back_camera_model/>
   </xacro:if>
 
   <xacro:if value="${front_fisheye_camera not in ['true', True, 'false', False, 'Jetson', 'PC']}">

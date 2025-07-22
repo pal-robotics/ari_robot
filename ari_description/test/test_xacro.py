@@ -25,12 +25,10 @@ xacro_file_path = Path(
     'ari.urdf.xacro',
 )
 
-ee_laser = (
+ee_robot = (
     AriArgs.end_effector,
-    AriArgs.laser_model
+    AriArgs.robot_model
 )
 
-test_xacro_robot_model = define_xacro_test(xacro_file_path, ee_laser)
-test_xacro_laser_model = define_xacro_test(xacro_file_path, AriArgs.robot_model, AriArgs.end_effector)
-test_xacro_end_effector = define_xacro_test(xacro_file_path, AriArgs.head_camera_model, AriArgs.robot_model)
-test_xacro_head_camera_model = define_xacro_test(xacro_file_path, AriArgs.laser_model, AriArgs.end_effector)
+test_xacro_laser_model = define_xacro_test(xacro_file_path, ee_robot)
+test_xacro_cam = define_xacro_test(xacro_file_path, AriArgs.laser_model, AriArgs.robot_model)
