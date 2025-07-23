@@ -19,6 +19,7 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, SetLaunchConfiguration, OpaqueFunction
 from launch_ros.actions import Node
 from launch_pal.arg_utils import LaunchArgumentsBase
+from launch.substitutions import LaunchConfiguration
 
 from dataclasses import dataclass
 
@@ -50,17 +51,9 @@ def generate_launch_description():
 def declare_actions(
     launch_description: LaunchDescription, launch_args: LaunchArguments
 ):
-    launch_description.add_action(OpaqueFunction(function=create_joy_teleop_filename))
-
-    declare_cmd_vel = DeclareLaunchArgument(
-        "cmd_vel",
-        default_value="input_joy/cmd_vel",
-        description="Joystick cmd_vel topic",
-    )
-
-    launch_description.add_action(declare_cmd_vel)
-
+    
     pkg_dir = get_package_share_directory("ari_bringup")
+    pkg_path = os.path.join(pkg_dir, "config", "joy_teleop", "joy_teleop.yaml")
 
     joy_node = Node(
         package="joy_linux",
@@ -94,20 +87,13 @@ def declare_actions(
 
     launch_description.add_action(head_incrementer_server)
 
-    return
-
-
-def create_joy_teleop_filename(context):
-
-    pkg_dir = get_package_share_directory("ari_bringup")
-
-    joy_teleop_file = f'{"joy_teleop.yaml"}'
-
-    joy_teleop_path = os.path.join(
-        pkg_dir,
-        "config",
-        "joy_teleop",
-        joy_teleop_file,
+    joy_teleop_node = Node(
+       package='joy_teleop',
+       executable='joy_teleop',
+       parameters=[pkg_path],
+       remappings=[('cmd_vel', LaunchConfiguration('cmd_vel'))],
     )
 
-    return [SetLaunchConfiguration("teleop_config", joy_teleop_path)]
+    launch_description.add_action(joy_teleop_node)
+
+    return
