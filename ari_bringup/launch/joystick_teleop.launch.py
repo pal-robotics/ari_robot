@@ -16,7 +16,7 @@ import os
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, SetLaunchConfiguration, OpaqueFunction
+from launch.actions import DeclareLaunchArgument
 from launch_ros.actions import Node
 from launch_pal.arg_utils import LaunchArgumentsBase
 from launch.substitutions import LaunchConfiguration
@@ -51,7 +51,7 @@ def generate_launch_description():
 def declare_actions(
     launch_description: LaunchDescription, launch_args: LaunchArguments
 ):
-    
+
     pkg_dir = get_package_share_directory("ari_bringup")
     pkg_path = os.path.join(pkg_dir, "config", "joy_teleop", "joy_teleop.yaml")
 
