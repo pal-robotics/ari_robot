@@ -13,46 +13,74 @@
 # limitations under the License.
 
 import os
-
-from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch_pal.include_utils import include_launch_py_description
-
+from launch_pal.include_utils import include_scoped_launch_py_description
+from ament_index_python.packages import get_package_share_directory
+from launch.actions import DeclareLaunchArgument
+from launch_pal.arg_utils import LaunchArgumentsBase
+from launch_pal.robot_arguments import CommonArgs
+from dataclasses import dataclass
 from launch_ros.actions import Node
 
 
+@dataclass(frozen=True)
+class LaunchArguments(LaunchArgumentsBase):
+
+    use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
+
+
 def generate_launch_description():
-    pkg = get_package_share_directory("ari_bringup")
 
-    config_locks_file = os.path.join(pkg, "config", "twist_mux", "twist_mux_locks.yaml")
+    # Create the launch description
+    ld = LaunchDescription()
+
+    launch_arguments = LaunchArguments()
+
+    launch_arguments.add_to_launch_description(ld)
+
+    declare_actions(ld, launch_arguments)
+
+    return ld
+
+
+def declare_actions(
+    launch_description: LaunchDescription, launch_args: LaunchArguments
+):
+    pkg_dir = get_package_share_directory("ari_bringup")
+
+    config_locks_file = os.path.join(
+        pkg_dir, "config", "twist_mux", "twist_mux_locks.yaml"
+    )
     config_topics_file = os.path.join(
-        pkg, "config", "twist_mux", "twist_mux_topics.yaml"
+        pkg_dir, "config", "twist_mux", "twist_mux_topics.yaml"
     )
-    joystick_file = os.path.join(pkg, "config", "twist_mux", "joystick.yaml")
+    joystick_file = os.path.join(
+        pkg_dir, "config", "twist_mux", "joystick.yaml"
+    )
 
-    twist_mux = include_launch_py_description(
-        "twist_mux",
-        ["launch", "twist_mux_launch.py"],
+    twist_mux = include_scoped_launch_py_description(
+        'twist_mux', ['launch', 'twist_mux_launch.py'],
         launch_arguments={
-            "cmd_vel_out": "mobile_base_controller/cmd_vel_unstamped",
-            "config_locks": config_locks_file,
-            "config_topics": config_topics_file,
+            'cmd_vel_out': 'mobile_base_controller/cmd_vel_unstamped',
+            'config_locks': config_locks_file,
+            'config_topics': config_topics_file,
             "config_joy": joystick_file,
-        }.items(),
+            'use_sim_time': launch_args.use_sim_time,
+        }
     )
+
+    launch_description.add_action(twist_mux)
 
     twist_mux_analyzer = Node(
         package='diagnostic_aggregator',
         executable='add_analyzer',
-        namespace='twist_mux',
         output='screen',
         emulate_tty=True,
         parameters=[
-            os.path.join(pkg, 'config', 'twist_mux', 'twist_mux_analyzers.yaml')
+            os.path.join(pkg_dir, 'config', 'twist_mux', 'twist_mux_analyzers.yaml')
         ],
     )
 
-    ld = LaunchDescription()
-    ld.add_action(twist_mux)
-    ld.add_action(twist_mux_analyzer)
-    return ld
+    launch_description.add_action(twist_mux_analyzer)
+
+    return

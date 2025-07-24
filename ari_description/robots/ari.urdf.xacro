@@ -19,36 +19,48 @@
         name="ari" >
 
   <xacro:arg name="robot_model" default="v2"/>
-  <xacro:arg name="end_effector" default="no-hand"/>
+  <xacro:arg name="end_effector" default="no-end-effector"/>
+  <xacro:arg name="torso_front_camera_model" default="realsense-d435"/>
+  <xacro:arg name="torso_back_camera_model" default="realsense-t265"/>
   <xacro:arg name="front_fisheye_camera" default="false"/>
   <xacro:arg name="back_fisheye_camera" default="false"/>
   <xacro:arg name="laser_model" default="ydlidar-tg15"/> <!-- false, hokuyo, sick-551, sick-561, sick-571, ydlidar-tg30, ydlidar-tg15 -->
-  <xacro:arg name="camera_model_head" default="raspi"/>
+  <xacro:arg name="head_camera_model" default="realsense-d435i"/>
   <xacro:arg name="rgbd_sensors" default="false"/> <!-- false, true-->
   <xacro:arg name="has_thermal" default="false"/>
   <xacro:arg name="description_calibration_dir" default="$(find ari_description)/urdf/calibration"/>
   <xacro:arg name="multiple" default="false"/>
   <xacro:arg name="namespace" default=""/>
-  <xacro:arg name="use_sim" default="false"/>
+  <xacro:arg name="use_sim_time" default="false"/>
 
   <xacro:property name="robot_model" value="$(arg robot_model)" />
   <xacro:property name="end_effector" value="$(arg end_effector)" />
+  <xacro:property name="torso_front_camera_model" value="$(arg torso_front_camera_model)" />
+  <xacro:property name="torso_back_camera_model" value="$(arg torso_back_camera_model)" />
   <xacro:property name="front_fisheye_camera" value="$(arg front_fisheye_camera)" />
   <xacro:property name="back_fisheye_camera" value="$(arg back_fisheye_camera)" />
   <xacro:property name="laser_model" value="$(arg laser_model)" />
-  <xacro:property name="camera_model_head" value="$(arg camera_model_head)"/>
+  <xacro:property name="head_camera_model" value="$(arg head_camera_model)"/>
   <xacro:property name="rgbd_sensors" value="$(arg rgbd_sensors)"/>
   <xacro:property name="has_thermal" value="$(arg has_thermal)"/>
   <xacro:property name="is_multiple" value="$(arg multiple)" />
   <xacro:property name="namespace" value="$(arg namespace)" />
-  <xacro:property name="use_nominal_extrinsics" value="$(arg use_sim)"/>
+  <xacro:property name="use_nominal_extrinsics" value="$(arg use_sim_time)"/>
 
   <xacro:if value="${robot_model not in ['v1', 'v2']}">
     <xacro:wrong_ari_robot_model/>
   </xacro:if>
 
-  <xacro:if value="${end_effector not in ['ari-hand', 'no-hand', 'false', False]}">
+  <xacro:if value="${end_effector not in ['no-end-effector', 'ari-hand']}">
     <xacro:wrong_end_effector/>
+  </xacro:if>
+
+  <xacro:if value="${torso_front_camera_model not in ['no-camera', 'realsense-d435i', 'realsense-d435']}">
+    <xacro:wrong_torso_front_camera_model/>
+  </xacro:if>
+
+  <xacro:if value="${torso_back_camera_model not in ['no-camera', 'realsense-t265']}">
+    <xacro:wrong_torso_back_camera_model/>
   </xacro:if>
 
   <xacro:if value="${front_fisheye_camera not in ['true', True, 'false', False, 'Jetson', 'PC']}">
@@ -61,12 +73,12 @@
   </xacro:if>
   <xacro:property name="has_back_fisheye_camera"           value="${back_fisheye_camera in ['Jetson', True, 'true', 'PC']}"/> 
 
-  <xacro:if value="${laser_model not in ['No', 'false', False, 'sick-551', 'sick-561', 'sick-571', 'hokuyo', 'ydlidar-tg30', 'ydlidar-tg15']}">
+  <xacro:if value="${laser_model not in ['no-laser', 'sick-551', 'sick-561', 'sick-571', 'hokuyo', 'ydlidar-tg15', 'ydlidar-tg30']}">
     <xacro:wrong_laser_model/>
   </xacro:if>
  
-  <xacro:if value="${camera_model_head not in ['raspi', 'realsense-d435', 'realsense-d435i']}">
-    <xacro:wrong_camera_model/>
+  <xacro:if value="${head_camera_model not in ['raspi', 'realsense-d435i', 'realsense-d435']}">
+    <xacro:wrong_head_camera_model/>
   </xacro:if>
   
   <xacro:if value="${has_thermal not in ['true', True, 'false', False]}">
@@ -96,16 +108,13 @@
       <xacro:include filename="$(find ari_description)/urdf/arm/arm_v2.urdf.xacro" />   <!-- Arms -->
   </xacro:if>
 
-  <!-- Generic simulator_gazebo plugins -->
-  <xacro:include filename="$(find ari_description)/gazebo/gazebo.urdf.xacro" />
-
   <!-- ros2_control -->
   <xacro:include filename="$(find ari_description)/ros2_control/ros2_control.urdf.xacro" />
   <xacro:ari_ros2_control
-    use_sim="$(arg use_sim)" />
+    use_sim_time="$(arg use_sim_time)" />
 
   <!-- Materials for visualization -->
-  <xacro:include filename="$(find ari_description)/urdf/materials.urdf.xacro" />
+  <xacro:include filename="$(find pal_urdf_utils)/urdf/materials.urdf.xacro" />
 
   <!-- Now we can start using the macros included above to define the actual robot -->
   <xacro:base name="base" robot_model="${robot_model}"/>

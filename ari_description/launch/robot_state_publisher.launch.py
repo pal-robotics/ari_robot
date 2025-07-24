@@ -14,84 +14,113 @@
 
 import os
 from pathlib import Path
+import tempfile
 
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, OpaqueFunction
+from launch.actions import DeclareLaunchArgument, OpaqueFunction, SetLaunchConfiguration
 from launch.substitutions import LaunchConfiguration
+from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
+from launch_param_builder import load_xacro
 
 from launch_pal.arg_utils import read_launch_argument
-from launch_pal.robot_utils import (
-    get_robot_model,
-    get_camera_model,
-    get_end_effector,
-    get_laser_model,
-    get_robot_name,
-)
-from launch_param_builder import load_xacro
-from launch_ros.actions import Node
+from launch_pal.arg_utils import LaunchArgumentsBase
+from dataclasses import dataclass
+from ari_description.launch_arguments import AriArgs
+from launch_pal.robot_arguments import CommonArgs
+from launch_pal import calibration_utils
 
 
-def declare_args(context, *args, **kwargs):
+@dataclass(frozen=True)
+class LaunchArguments(LaunchArgumentsBase):
 
-    sim_time_arg = DeclareLaunchArgument(
-        "use_sim_time", default_value="false", description="Use simulation time"
-    )
+    robot_model: DeclareLaunchArgument = AriArgs.robot_model
+    laser_model: DeclareLaunchArgument = AriArgs.laser_model
+    end_effector: DeclareLaunchArgument = AriArgs.end_effector
+    head_camera_model: DeclareLaunchArgument = AriArgs.head_camera_model
+    torso_front_camera_model: DeclareLaunchArgument = AriArgs.torso_front_camera_model
+    torso_back_camera_model: DeclareLaunchArgument = AriArgs.torso_back_camera_model
 
-    robot_name = read_launch_argument("robot_name", context)
-
-    return [
-        get_robot_model(robot_name),
-        get_camera_model(robot_name),
-        get_end_effector(robot_name),
-        get_laser_model(robot_name),
-        sim_time_arg,
-    ]
-
-
-def launch_setup(context, *args, **kwargs):
-
-    robot_description_content = load_xacro(
-            Path(
-                os.path.join(
-                    get_package_share_directory("ari_description"),
-                    "robots",
-                    "ari.urdf.xacro",
-                )
-            ),
-            {
-                "robot_model": read_launch_argument("robot_model", context),
-                "camera_model": read_launch_argument("camera_model", context),
-                "end_effector": read_launch_argument("end_effector", context),
-                "laser_model": read_launch_argument("laser_model", context),
-                "use_sim": read_launch_argument("use_sim_time", context),
-            },
-        )
-    robot_description = ParameterValue(robot_description_content, value_type=str)
-
-    rsp = Node(
-        package="robot_state_publisher",
-        executable="robot_state_publisher",
-        output="both",
-        parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time'),
-                     'robot_description': robot_description}],
-    )
-
-    return [rsp]
+    use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
+    is_public_sim: DeclareLaunchArgument = CommonArgs.is_public_sim
+    namespace: DeclareLaunchArgument = CommonArgs.namespace
 
 
 def generate_launch_description():
 
+    # Create the launch description and populate
     ld = LaunchDescription()
+    launch_arguments = LaunchArguments()
 
-    # Declare arguments
-    # we use OpaqueFunction so the callbacks have access to the context
-    ld.add_action(get_robot_name("ari"))
-    ld.add_action(OpaqueFunction(function=declare_args))
+    launch_arguments.add_to_launch_description(ld)
 
-    # Execute robot_state_publisher node
-    ld.add_action(OpaqueFunction(function=launch_setup))
+    declare_actions(ld, launch_arguments)
 
     return ld
+
+
+def declare_actions(
+    launch_description: LaunchDescription, launch_args: LaunchArguments
+):
+    launch_description.add_action(
+        OpaqueFunction(function=create_robot_description_param)
+    )
+
+    # Using ParameterValue is needed so ROS knows the parameter type
+    # Otherwise https://github.com/ros2/launch_ros/issues/136
+    rsp = Node(
+        package="robot_state_publisher",
+        executable="robot_state_publisher",
+        output="both",
+        parameters=[
+            {
+                'use_sim_time': LaunchConfiguration('use_sim_time'),
+                "robot_description": ParameterValue(
+                    LaunchConfiguration("robot_description"), value_type=str
+                ),
+            }
+        ],
+    )
+
+    launch_description.add_action(rsp)
+
+    return
+
+
+def create_robot_description_param(context, *args, **kwargs):
+
+    xacro_file_path = Path(
+        os.path.join(
+            get_package_share_directory("ari_description"),
+            "robots",
+            "ari.urdf.xacro",
+        )
+    )
+
+    xacro_input_args = {
+        "robot_model": read_launch_argument("robot_model", context),
+        "laser_model": read_launch_argument("laser_model", context),
+        "end_effector": read_launch_argument("end_effector", context),
+        "head_camera_model": read_launch_argument("head_camera_model", context),
+        "torso_front_camera_model": read_launch_argument("torso_front_camera_model", context),
+        "torso_back_camera_model": read_launch_argument("torso_back_camera_model", context),
+        "use_sim_time": read_launch_argument("use_sim_time", context),
+        "is_public_sim": read_launch_argument("is_public_sim", context),
+        "namespace": read_launch_argument("namespace", context),
+    }
+
+    calibration_dir = tempfile.TemporaryDirectory()
+    calibration_dir_path = Path(calibration_dir.name)
+
+    input_dir = Path(get_package_share_directory(
+        "ari_description")) / "urdf" / "calibration"
+
+    calibration_xacro_args = calibration_utils.apply_urdf_calibration(
+        input_dir, calibration_dir_path)
+
+    xacro_input_args.update(calibration_xacro_args)
+    robot_description = load_xacro(xacro_file_path, xacro_input_args)
+
+    return [SetLaunchConfiguration("robot_description", robot_description)]

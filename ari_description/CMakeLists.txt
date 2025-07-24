@@ -19,19 +19,12 @@ endif()
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   ament_lint_auto_find_test_dependencies()
+  ament_add_pytest_test(test_xacro test/test_xacro.py TIMEOUT 1000)
+  add_launch_test(test/test_description.launch.py)
 
-  foreach(robot_model v1 v2)
-      foreach(end_effector ari-hand no-hand)
-            add_launch_test(
-            test/test_description.launch.py
-            TARGET "ari_description_${end_effector}_${robot_model}"
-            ARGS "end_effector:=${end_effector}" "robot_model:=${robot_model}"
-            )
-    endforeach()
-  endforeach()
 endif()
 
 # Install Python modules
 ament_python_install_package(${PROJECT_NAME})
 
-ament_auto_package(INSTALL_TO_SHARE config gazebo launch meshes robots ros2_control urdf)
+ament_auto_package(INSTALL_TO_SHARE config launch meshes robots ros2_control urdf)

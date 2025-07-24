@@ -3,5 +3,6 @@ robot_state_publisher:
            robot_name:=@robot_type@
            robot_model:=@robot_model@
            end_effector:=@end_effector@
-           camera_model:=@camera_model@"
-
+           head_camera_model:=@head_camera_model@
+           torso_front_camera_model:=@torso_front_camera_model@
+           torso_back_camera_model:=@torso_back_camera_model@"

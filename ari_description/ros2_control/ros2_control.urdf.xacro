@@ -17,7 +17,7 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro"
        name="ari" >
 
-  <xacro:macro name="ari_ros2_control" params="use_sim:=^|false">
+  <xacro:macro name="ari_ros2_control" params="use_sim_time:=^|false">
 
     <xacro:arg name="robot_model" default="v2" />
     <xacro:arg name="description_calibration_dir" default="$(find ari_description)/urdf/calibration" />
@@ -28,11 +28,18 @@
     <xacro:include filename="$(arg description_calibration_dir)/calibration_constants.urdf.xacro" />
 
     <!-- Simulation -->
-    <xacro:if value="$(arg use_sim)">
+    <xacro:if value="$(arg use_sim_time)">
+      <!-- Init the ROS 2 control gazebo interface -->
+      <gazebo>
+        <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+          <parameters>$(find ari_description)/ros2_control/gazebo_controller_manager_cfg.yaml</parameters>
+        </plugin>
+      </gazebo>
+
       <ros2_control name="ros2_control_gazebo_system" type="system">
-          <hardware>
-            <plugin>gazebo_ros2_control/GazeboSystem</plugin>
-          </hardware>
+        <hardware>
+          <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+        </hardware>
 
         <!-- wheels -->
         <xacro:include filename="$(find ari_description)/urdf/wheels/wheel.ros2_control.xacro" />
@@ -52,7 +59,7 @@
     </xacro:if>
 
     <!-- Hardware -->
-    <xacro:unless value="$(arg use_sim)">
+    <xacro:unless value="$(arg use_sim_time)">
       <!-- Dynamixels system -->
       <ros2_control name="ros2_control_ari_system_dynamixel" type="system" rw_rate="200">
         <hardware>

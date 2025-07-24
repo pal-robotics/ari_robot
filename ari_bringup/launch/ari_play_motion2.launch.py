@@ -13,64 +13,76 @@
 # limitations under the License.
 
 import os
-
+from dataclasses import dataclass
 from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
-from launch.actions import OpaqueFunction
-
-from launch_pal.arg_utils import read_launch_argument
-from launch_pal.include_utils import include_launch_py_description
-from launch_pal.robot_utils import get_robot_model, get_robot_name
-
+from launch_pal.arg_utils import LaunchArgumentsBase
+from launch.substitutions import LaunchConfiguration
+from ari_description.launch_arguments import AriArgs
+from launch.actions import DeclareLaunchArgument, SetLaunchConfiguration, OpaqueFunction
 from ari_description.ari_launch_utils import get_ari_hw_suffix
+from launch_pal.include_utils import include_scoped_launch_py_description
+from launch_pal.arg_utils import read_launch_argument
 
 
-def declare_args(context, *args, **kwargs):
+@dataclass(frozen=True)
+class LaunchArguments(LaunchArgumentsBase):
 
-    robot_name = read_launch_argument("robot_name", context)
-
-    return [get_robot_model(robot_name)]
+    robot_model: DeclareLaunchArgument = AriArgs.robot_model
 
 
-def launch_setup(context, *args, **kwargs):
+def generate_launch_description():
+
+    # Create the launch description and populate
+    ld = LaunchDescription()
+    launch_arguments = LaunchArguments()
+
+    launch_arguments.add_to_launch_description(ld)
+
+    declare_actions(ld, launch_arguments)
+
+    return ld
+
+
+def declare_actions(
+    launch_description: LaunchDescription, launch_args: LaunchArguments
+):
+    launch_description.add_action(OpaqueFunction(function=create_play_motion_params))
+
+    play_motion2 = include_scoped_launch_py_description(
+        pkg_name="play_motion2",
+        paths=["launch", "play_motion2.launch.py"],
+        launch_arguments={
+            "motions_file": LaunchConfiguration("motions_file"),
+            "motion_planner_config": LaunchConfiguration("motion_planner_config"),
+        },
+    )
+
+    launch_description.add_action(play_motion2)
+
+    return
+
+
+def create_play_motion_params(context):
 
     robot_model = read_launch_argument("robot_model", context)
 
-    motion_planner_file = \
-        f"motion_planner_ari{get_ari_hw_suffix(robot_model=robot_model)}.yaml"
+    hw_suffix = get_ari_hw_suffix(robot_model=robot_model)
+
+    motion_planner_file = f"motion_planner_ari{hw_suffix}.yaml"
+
     motion_planner_file_path = os.path.join(
         get_package_share_directory("ari_bringup"),
         "config", "motion_planner", motion_planner_file
     )
 
-    motions_file = f"ari{get_ari_hw_suffix(robot_model=robot_model)}_motions.yaml"
+    motions_file = f"ari{hw_suffix}_motions.yaml"
     motions_file_path = os.path.join(
         get_package_share_directory("ari_bringup"), "config", "motions", motions_file
     )
 
-    play_motion2 = include_launch_py_description(
-        "play_motion2",
-        ["launch", "play_motion2.launch.py"],
-        launch_arguments={
-            "motions_file": motions_file_path,
-            "motion_planner_config": motion_planner_file_path
-        }.items(),
-    )
-
-    return [play_motion2]
-
-
-def generate_launch_description():
-
-    ld = LaunchDescription()
-
-    # Declare arguments
-    # we use OpaqueFunction so the callbacks have access to the context
-    ld.add_action(get_robot_name("ari"))
-    ld.add_action(OpaqueFunction(function=declare_args))
-
-    # Launch play_motion2 with the proper config
-    ld.add_action(OpaqueFunction(function=launch_setup))
-
-    return ld
+    return [
+        SetLaunchConfiguration("motions_file", motions_file_path),
+        SetLaunchConfiguration("motion_planner_config", motion_planner_file_path),
+    ]

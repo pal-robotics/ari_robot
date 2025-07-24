@@ -13,38 +13,98 @@
 # limitations under the License.
 
 from launch import LaunchDescription
-from launch_pal.include_utils import include_launch_py_description
+from launch.actions import DeclareLaunchArgument
+
+from launch_pal.include_utils import include_scoped_launch_py_description
+from launch_pal.arg_utils import LaunchArgumentsBase
+from launch_pal.robot_arguments import CommonArgs
+from ari_description.launch_arguments import AriArgs
+
+from dataclasses import dataclass
+
+
+@dataclass(frozen=True)
+class LaunchArguments(LaunchArgumentsBase):
+
+    robot_model: DeclareLaunchArgument = AriArgs.robot_model
+    laser_model: DeclareLaunchArgument = AriArgs.laser_model
+    end_effector: DeclareLaunchArgument = AriArgs.end_effector
+    head_camera_model: DeclareLaunchArgument = AriArgs.head_camera_model
+    torso_front_camera_model: DeclareLaunchArgument = AriArgs.torso_front_camera_model
+    torso_back_camera_model: DeclareLaunchArgument = AriArgs.torso_back_camera_model
+
+    use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
+    is_public_sim: DeclareLaunchArgument = CommonArgs.is_public_sim
+    namespace: DeclareLaunchArgument = CommonArgs.namespace
 
 
 def generate_launch_description():
-    default_controllers = include_launch_py_description(
-        "ari_controller_configuration", [
-            "launch", "default_controllers.launch.py"]
-    )
-
-    play_motion2 = include_launch_py_description(
-        "ari_bringup", ["launch", "ari_play_motion2.launch.py"]
-    )
-
-    twist_mux = include_launch_py_description(
-        "ari_bringup", ["launch", "twist_mux.launch.py"]
-    )
-
-    ari_state_publisher = include_launch_py_description(
-        "ari_description", ["launch", "robot_state_publisher.launch.py"]
-    )
-
-    # TODO: robot pose publisher
-    # TODO: tf lookup
-    # TODO: QR code detector
-    # TODO: torso front camera
-    # TODO: torso back camera
-
+    # Create the launch description
     ld = LaunchDescription()
 
-    ld.add_action(default_controllers)
-    ld.add_action(play_motion2)
-    ld.add_action(twist_mux)
-    ld.add_action(ari_state_publisher)
+    launch_arguments = LaunchArguments()
+
+    launch_arguments.add_to_launch_description(ld)
+
+    declare_actions(ld, launch_arguments)
 
     return ld
+
+
+def declare_actions(
+    launch_description: LaunchDescription, launch_args: LaunchArguments
+):
+
+    default_controllers = include_scoped_launch_py_description(
+        pkg_name="ari_controller_configuration", paths=[
+            "launch", "default_controllers.launch.py"],
+        launch_arguments={
+            "robot_model": launch_args.robot_model,
+            "is_public_sim": launch_args.is_public_sim,
+            "use_sim_time": launch_args.use_sim_time,
+
+        },
+    )
+
+    launch_description.add_action(default_controllers)
+
+    play_motion2 = include_scoped_launch_py_description(
+        pkg_name="ari_bringup",
+        paths=["launch", "ari_play_motion2.launch.py"],
+        launch_arguments={
+            "robot_model": launch_args.robot_model,
+        },
+    )
+
+    launch_description.add_action(play_motion2)
+
+    twist_mux = include_scoped_launch_py_description(
+        pkg_name="ari_bringup",
+        paths=["launch", "twist_mux.launch.py"],
+        launch_arguments={
+            "robot_model": launch_args.robot_model,
+            "use_sim_time": launch_args.use_sim_time,
+        },
+    )
+
+    launch_description.add_action(twist_mux)
+
+    robot_state_publisher = include_scoped_launch_py_description(
+        pkg_name="ari_description",
+        paths=["launch", "robot_state_publisher.launch.py"],
+        launch_arguments={
+            "robot_model": launch_args.robot_model,
+            "laser_model": launch_args.laser_model,
+            "end_effector": launch_args.end_effector,
+            "head_camera_model": launch_args.head_camera_model,
+            "torso_front_camera_model": launch_args.torso_front_camera_model,
+            "torso_back_camera_model": launch_args.torso_back_camera_model,
+            "use_sim_time": launch_args.use_sim_time,
+            "is_public_sim": launch_args.is_public_sim,
+            "namespace": launch_args.namespace,
+        },
+    )
+
+    launch_description.add_action(robot_state_publisher)
+
+    return
