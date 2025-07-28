@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.5.0 (2025-07-28)
+------------------
 * changing test_xacro
 * Changing test_xacro
 * Changing joystick

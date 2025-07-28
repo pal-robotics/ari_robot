@@ -2,8 +2,8 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.5.0 (2025-07-28)
+------------------
 * Changing joystick_teleop
 * Changing joystick
 * Changes twist_mux

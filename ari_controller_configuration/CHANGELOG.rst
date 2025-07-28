@@ -2,8 +2,8 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.5.0 (2025-07-28)
+------------------
 * Changing camera_model in head_camera_model
 * Modified files yaml
 * Fixing the values of wheels radius&separation
