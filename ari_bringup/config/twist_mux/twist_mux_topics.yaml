@@ -28,10 +28,10 @@
         topic   : tab_vel
         timeout : 0.5
         priority: 100
-      # assisted_teleop:
-      #   topic   : assisted_vel
-      #   timeout : 0.5
-        # priority: 200
+      assisted_teleop:
+        topic   : assisted_vel
+        timeout : 0.5
+        priority: 200
       # docking:
       #   topic   : docking_vel
       #   timeout : 0.5
