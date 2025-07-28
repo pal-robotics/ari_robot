@@ -15,12 +15,11 @@
         topic   : joy_priority
         timeout : 0.0
         priority: 100
-      # assisted_teleop:
-      #   topic   : assisted_teleop_priority
-      #   timeout : 0.0
-      #   priority: 200
+      assisted_teleop:
+        topic   : assisted_teleop_priority
+        timeout : 0.0
+        priority: 200
       charging:
         topic   : power/is_charging
         timeout : 0.0
         priority: 210
-
