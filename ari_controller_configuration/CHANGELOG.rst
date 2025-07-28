@@ -2,6 +2,19 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Changing camera_model in head_camera_model
+* Modified files yaml
+* Fixing the values of wheels radius&separation
+* Fixing problems after testing
+* Adding changes in deafault controllers
+* Fixing use_sim_time
+* Adding changes
+* Adding change 2
+* modified ari_bringup and ari_controller_configuration
+* Contributors: Susanna
+
 2.4.0 (2025-07-08)
 ------------------
 

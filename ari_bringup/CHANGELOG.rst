@@ -2,6 +2,23 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Changing joystick_teleop
+* Changing joystick
+* Changes twist_mux
+* Modify twist_mux
+* Modified files yaml
+* Add change twist_mux and joy_teleop
+* Fixing problems after testing
+* Add fix ros2 control gazebo
+* Adding changes in deafault controllers
+* Fixing use_sim_time
+* Adding changes
+* Adding change 2
+* modified ari_bringup and ari_controller_configuration
+* Contributors: Aina, Susanna, susannamastromauro, “susannamastromauro”
+
 2.4.0 (2025-07-08)
 ------------------
 * Add diagnostic analyzers

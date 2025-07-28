@@ -2,6 +2,28 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* changing test_xacro
+* Changing test_xacro
+* Changing joystick
+* Adding front&back camera
+* Changing test & test_xacro
+* Changing camera_model in head_camera_model
+* Changing test_xacro and pal_urdf_utils
+* Adding pal_urdf_utils
+* Removing foreach
+* Modified files yaml
+* Removed gazebo.urdf
+* Modify ros2_control
+* Fixing problems after testing
+* Add fix ros2 control gazebo
+* Adding changes in deafault controllers
+* Fixing use_sim_time
+* Adding changes
+* Adding change 2
+* Contributors: Aina, Susanna, susannamastromauro, “susannamastromauro”
+
 2.4.0 (2025-07-08)
 ------------------
 
