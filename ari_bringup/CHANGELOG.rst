@@ -2,8 +2,8 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.6.0 (2025-07-29)
+------------------
 * added joystick configuration
 * fix ros2 control interface and added assisted_teleop
 * Contributors: andreacapodacqua
