@@ -2,6 +2,12 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* fix ros2 control interface and added assisted_teleop
+* Update limits
+* Contributors: Aina, andreacapodacqua
+
 2.5.0 (2025-07-28)
 ------------------
 * changing test_xacro
