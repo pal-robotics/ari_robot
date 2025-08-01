@@ -24,8 +24,8 @@
   <xacro:property name="head_eps"      value="0.07" />
   <xacro:property name="head_1_lower_limit" value="-75"/>
   <xacro:property name="head_1_upper_limit" value="75"/>
-  <xacro:property name="head_2_lower_limit" value="-15"/>
-  <xacro:property name="head_2_upper_limit" value="25"/>
+  <xacro:property name="head_2_lower_limit" value="-25"/>
+  <xacro:property name="head_2_upper_limit" value="15"/>
 
   <!--Constant parameters-->
   <xacro:property name="head_realsense_camera_position_x" value="0.05215" />
