@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.6.1 (2025-08-01)
+------------------
 * Rotate head 2 limiits
 * Contributors: Aina Irisarri
 
