@@ -2,6 +2,11 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* add 'head_front' motion + add head motions to ARI v1
+* Contributors: Séverin Lemaignan
+
 2.6.1 (2025-08-01)
 ------------------
 
