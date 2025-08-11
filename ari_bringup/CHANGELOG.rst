@@ -2,8 +2,8 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.6.3 (2025-08-11)
+------------------
 * Revert "Modify twist_mux"
   This reverts commit 529146467de0d3b5e9ed40e599674c8b15d05066
 * Contributors: Noel Jimenez
