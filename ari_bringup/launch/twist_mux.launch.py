@@ -74,6 +74,7 @@ def declare_actions(
     twist_mux_analyzer = Node(
         package='diagnostic_aggregator',
         executable='add_analyzer',
+        namespace='twist_mux',
         output='screen',
         emulate_tty=True,
         parameters=[
