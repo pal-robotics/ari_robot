@@ -2,6 +2,12 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Revert "Modify twist_mux"
+  This reverts commit 529146467de0d3b5e9ed40e599674c8b15d05066
+* Contributors: Noel Jimenez
+
 2.6.2 (2025-08-07)
 ------------------
 * add 'head_front' motion + add head motions to ARI v1
