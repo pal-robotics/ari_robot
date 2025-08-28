@@ -2,6 +2,11 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* remove realsense overlay
+* Contributors: antoniobrandi
+
 2.6.3 (2025-08-11)
 ------------------
 

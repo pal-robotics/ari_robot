@@ -2,6 +2,9 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 2.6.3 (2025-08-11)
 ------------------
 * Revert "Modify twist_mux"
