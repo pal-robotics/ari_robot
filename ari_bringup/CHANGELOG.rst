@@ -2,8 +2,8 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.8.0 (2025-10-23)
+------------------
 * Add play_motion2 cli dependency
 * Contributors: Isaac Acevedo
 

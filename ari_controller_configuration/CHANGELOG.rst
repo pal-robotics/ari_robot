@@ -2,8 +2,8 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.8.0 (2025-10-23)
+------------------
 * Remove deprecated parameter has_jerk_limits
   [deprecated] has_jerk_limits parameter is deprecated, instead set the respective limits to NAN
   max_jerk already defaults to NAN
