@@ -2,8 +2,8 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.9.0 (2025-12-05)
+------------------
 * Add gazebo_version xacro argument
 * Contributors: Noel Jimenez
 
