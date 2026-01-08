@@ -2,6 +2,11 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add "Hardware Components Activity" module dependency
+* Contributors: Noel Jimenez
+
 2.9.0 (2025-12-05)
 ------------------
 
