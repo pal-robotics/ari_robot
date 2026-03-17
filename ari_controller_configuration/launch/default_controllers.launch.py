@@ -26,7 +26,7 @@ from launch_pal.robot_arguments import CommonArgs
 from ari_description.launch_arguments import AriArgs
 
 from ari_description.ari_launch_utils import get_ari_hw_suffix
-from launch_pal.param_utils import merge_param_files
+from launch_pal.param_utils import merge_param_files, parse_parametric_yaml
 
 
 @dataclass(frozen=True)
@@ -155,21 +155,25 @@ def set_arm_controllers(context):
     pkg_share_folder = get_package_share_directory(
         "ari_controller_configuration")
 
-    arm_left_path = os.path.join(
-        pkg_share_folder, 'config', f'arm_left_controller_{robot_model}.yaml')
-    arm_right_path = os.path.join(
-        pkg_share_folder, 'config', f'arm_right_controller_{robot_model}.yaml')
+    base_param_file = os.path.join(
+        pkg_share_folder, 'config', f'arm_controller_{robot_model}.yaml')
 
-    left_arm_spawner = GroupAction([
-        generate_load_controller_launch_description(
-            controller_name='arm_left_controller',
-            controller_params_file=arm_left_path)
-    ])
+    arm_spawners = []
 
-    right_arm_spawner = GroupAction([
-        generate_load_controller_launch_description(
-            controller_name='arm_right_controller',
-            controller_params_file=arm_right_path)
-    ])
+    for side in ["left", "right"]:
+        arm_prefix = f"arm_{side}"
 
-    return [left_arm_spawner, right_arm_spawner]
+        parsed_yaml = parse_parametric_yaml(
+            source_files=[base_param_file],
+            param_rewrites={"ARM_SIDE_PREFIX": arm_prefix}
+        )
+
+        spawner = GroupAction([
+            generate_load_controller_launch_description(
+                controller_name=f"{arm_prefix}_controller",
+                controller_params_file=parsed_yaml)
+        ])
+
+        arm_spawners.append(spawner)
+
+    return arm_spawners
