@@ -73,6 +73,7 @@ def declare_actions(
         paths=["launch", "ari_play_motion2.launch.py"],
         launch_arguments={
             "robot_model": launch_args.robot_model,
+            "use_sim_time": launch_args.use_sim_time,
         },
     )
 

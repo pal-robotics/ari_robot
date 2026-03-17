@@ -31,15 +31,15 @@
 
   </xacro:macro>
 
-  <xacro:macro name="ros2_control_arm" params="side" >
-      <xacro:ros2_control_arm_segment name="arm_${side}_1" reduction="1.0" offset="${arm_1_joint_offset}" />
-      <xacro:ros2_control_arm_segment name="arm_${side}_2" reduction="1.0" offset="${arm_2_joint_offset}" />
-      <xacro:ros2_control_arm_segment name="arm_${side}_3" reduction="1.0" offset="${arm_3_joint_offset}" />
-      <xacro:ros2_control_arm_segment name="arm_${side}_4" reduction="1.0" offset="${arm_4_joint_offset}" />
-      <xacro:ros2_control_arm_segment name="arm_${side}_5" reduction="1.0" offset="${arm_5_joint_offset}" />
-
-
-  </xacro:macro>
+  <xacro:macro name="ros2_control_arm" params="side robot_model:=v1" > <xacro:ros2_control_arm_segment name="arm_${side}_1" reduction="1.0" offset="${arm_1_joint_offset}" />
+        <xacro:ros2_control_arm_segment name="arm_${side}_2" reduction="1.0" offset="${arm_2_joint_offset}" />
+        <xacro:ros2_control_arm_segment name="arm_${side}_3" reduction="1.0" offset="${arm_3_joint_offset}" />
+        <xacro:ros2_control_arm_segment name="arm_${side}_4" reduction="1.0" offset="${arm_4_joint_offset}" />
+        
+        <xacro:if value="${robot_model != 'v1'}">
+            <xacro:ros2_control_arm_segment name="arm_${side}_5" reduction="1.0" offset="${arm_5_joint_offset}" />
+        </xacro:if>
+    </xacro:macro>
 
 
 </robot>

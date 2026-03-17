@@ -53,8 +53,8 @@
 
         <!-- arms -->
         <xacro:include filename="$(find ari_description)/urdf/arm/arm.ros2_control.xacro" />
-        <xacro:ros2_control_arm side="left" />
-        <xacro:ros2_control_arm side="right" />
+        <xacro:ros2_control_arm side="left" robot_model="${robot_model}" />
+        <xacro:ros2_control_arm side="right" robot_model="${robot_model}" />
       </ros2_control>
     </xacro:if>
 
@@ -69,8 +69,8 @@
 
         <!-- arms -->
         <xacro:include filename="$(find ari_description)/urdf/arm/arm.ros2_control.xacro" />
-        <xacro:ros2_control_arm side="left" />
-        <xacro:ros2_control_arm side="right" />
+        <xacro:ros2_control_arm side="left" robot_model="${robot_model}" />
+        <xacro:ros2_control_arm side="right" robot_model="${robot_model}" />
 
         <!-- head -->
         <xacro:include filename="$(find ari_description)/urdf/head/head.ros2_control.xacro" />

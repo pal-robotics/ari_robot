@@ -24,12 +24,14 @@ from launch.actions import DeclareLaunchArgument, SetLaunchConfiguration, Opaque
 from ari_description.ari_launch_utils import get_ari_hw_suffix
 from launch_pal.include_utils import include_scoped_launch_py_description
 from launch_pal.arg_utils import read_launch_argument
+from launch_pal.robot_arguments import CommonArgs
 
 
 @dataclass(frozen=True)
 class LaunchArguments(LaunchArgumentsBase):
 
     robot_model: DeclareLaunchArgument = AriArgs.robot_model
+    use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
 
 
 def generate_launch_description():
@@ -56,6 +58,7 @@ def declare_actions(
         launch_arguments={
             "motions_file": LaunchConfiguration("motions_file"),
             "motion_planner_config": LaunchConfiguration("motion_planner_config"),
+            "use_sim_time": LaunchConfiguration("use_sim_time"),
         },
     )
 
