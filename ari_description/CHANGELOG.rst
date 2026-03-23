@@ -2,6 +2,12 @@
 Changelog for package ari_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* fix ros2 parameter handling
+* add robot_model param
+* Contributors: silviamasiello
+
 2.9.1 (2026-01-08)
 ------------------
 

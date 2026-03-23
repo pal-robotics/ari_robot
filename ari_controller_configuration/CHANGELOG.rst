@@ -2,6 +2,15 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* fix test
+* fix ros2 parameter handling
+* parametric yaml for arm controllers
+* Fix indentation
+* add robot_model param
+* Contributors: silviamasiello, vivianamorlando
+
 2.9.1 (2026-01-08)
 ------------------
 * Add "Hardware Components Activity" module dependency
