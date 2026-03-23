@@ -15,6 +15,9 @@
   limitations under the License.
  -->
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find ari_description)/ros2_control/transmissions.urdf.xacro" />
+  
   <xacro:macro name="ros2_control_arm_segment" params="name reduction offset" >
     <joint name="${name}_joint">
       <command_interface name="position" />
@@ -31,15 +34,25 @@
 
   </xacro:macro>
 
-  <xacro:macro name="ros2_control_arm" params="side" >
-      <xacro:ros2_control_arm_segment name="arm_${side}_1" reduction="1.0" offset="${arm_1_joint_offset}" />
-      <xacro:ros2_control_arm_segment name="arm_${side}_2" reduction="1.0" offset="${arm_2_joint_offset}" />
-      <xacro:ros2_control_arm_segment name="arm_${side}_3" reduction="1.0" offset="${arm_3_joint_offset}" />
-      <xacro:ros2_control_arm_segment name="arm_${side}_4" reduction="1.0" offset="${arm_4_joint_offset}" />
-      <xacro:ros2_control_arm_segment name="arm_${side}_5" reduction="1.0" offset="${arm_5_joint_offset}" />
+  <xacro:macro name="ros2_control_arm" params="side robot_model:=v1" > <xacro:ros2_control_arm_segment name="arm_${side}_1" reduction="1.0" offset="${arm_1_joint_offset}" />
+        <xacro:ros2_control_arm_segment name="arm_${side}_2" reduction="1.0" offset="${arm_2_joint_offset}" />
+        <xacro:ros2_control_arm_segment name="arm_${side}_3" reduction="1.0" offset="${arm_3_joint_offset}" />
+        <xacro:ros2_control_arm_segment name="arm_${side}_4" reduction="1.0" offset="${arm_4_joint_offset}" />
+        
+        <xacro:if value="${robot_model == 'v2'}">
+            <xacro:ros2_control_arm_segment name="arm_${side}_5" reduction="1.0" offset="${arm_5_joint_offset}" />
+        </xacro:if>
 
+        <xacro:if value="${robot_model == 'v1' and end_effector == 'ari-hand'}">
+            <joint name="hand_${side}_fingers_joint">
+              <command_interface name="position" />
+              <state_interface name="position" />
+            </joint>
+            <xacro:ari_simple_transmission name="hand_${side}_fingers" reduction="1.0" offset_value="0.0" />
 
-  </xacro:macro>
+        </xacro:if>
+
+    </xacro:macro>
 
 
 </robot>
