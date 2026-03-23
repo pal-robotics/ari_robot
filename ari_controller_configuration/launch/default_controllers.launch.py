@@ -140,11 +140,11 @@ def set_joint_state_broadcaster(context):
     robot_model = read_launch_argument("robot_model", context)
     end_effector = read_launch_argument("end_effector", context)
 
+    suffix = get_ari_hw_suffix(robot_model=robot_model)
     if end_effector == 'no-end-effector':
-        joint_state_broadcaster_file = f"joint_state_broadcaster{get_ari_hw_suffix(robot_model=robot_model)}_no_ee.yaml"
+        joint_state_broadcaster_file = f"joint_state_broadcaster{suffix}_no_ee.yaml"
     else:
-        joint_state_broadcaster_file = f"joint_state_broadcaster{get_ari_hw_suffix(robot_model=robot_model)}.yaml"
-
+        joint_state_broadcaster_file = f"joint_state_broadcaster{suffix}.yaml"
     joint_state_broadcaster_path = os.path.join(
         get_package_share_directory("ari_controller_configuration"),
         "config", joint_state_broadcaster_file
