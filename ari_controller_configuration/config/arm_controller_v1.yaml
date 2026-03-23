@@ -11,14 +11,16 @@ ${ARM_SIDE_PREFIX}_controller:
     state_interfaces:
       - position
 
+    open_loop_control: true
+
     constraints:
-      goal_time: 0.6
+      goal_time: 0.8
       stopped_velocity_tolerance: 5.0
       ${ARM_SIDE_PREFIX}_1_joint:
-        goal: 0.02
+        goal: 0.05
       ${ARM_SIDE_PREFIX}_2_joint:
-        goal: 0.02
+        goal: 0.05
       ${ARM_SIDE_PREFIX}_3_joint:
-        goal: 0.02
+        goal: 0.05
       ${ARM_SIDE_PREFIX}_4_joint:
-        goal: 0.02
+        goal: 0.05

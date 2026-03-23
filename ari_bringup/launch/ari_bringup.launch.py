@@ -62,7 +62,7 @@ def declare_actions(
             "robot_model": launch_args.robot_model,
             "is_public_sim": launch_args.is_public_sim,
             "use_sim_time": launch_args.use_sim_time,
-
+            "end_effector": launch_args.end_effector,
         },
     )
 
@@ -74,6 +74,7 @@ def declare_actions(
         launch_arguments={
             "robot_model": launch_args.robot_model,
             "use_sim_time": launch_args.use_sim_time,
+            "end_effector": launch_args.end_effector,
         },
     )
 

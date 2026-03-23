@@ -34,6 +34,7 @@ class LaunchArguments(LaunchArgumentsBase):
 
     robot_model: DeclareLaunchArgument = AriArgs.robot_model
     is_public_sim: DeclareLaunchArgument = CommonArgs.is_public_sim
+    end_effector: DeclareLaunchArgument = AriArgs.end_effector
     use_sim_time: DeclareLaunchArgument = CommonArgs.use_sim_time
 
 
@@ -137,10 +138,12 @@ def set_base_config_file(context):
 def set_joint_state_broadcaster(context):
 
     robot_model = read_launch_argument("robot_model", context)
+    end_effector = read_launch_argument("end_effector", context)
 
-    joint_state_broadcaster_file = (
-        f"joint_state_broadcaster{get_ari_hw_suffix(robot_model=robot_model)}.yaml"
-    )
+    if end_effector == 'no-end-effector':
+        joint_state_broadcaster_file = f"joint_state_broadcaster{get_ari_hw_suffix(robot_model=robot_model)}_no_ee.yaml"
+    else:
+        joint_state_broadcaster_file = f"joint_state_broadcaster{get_ari_hw_suffix(robot_model=robot_model)}.yaml"
 
     joint_state_broadcaster_path = os.path.join(
         get_package_share_directory("ari_controller_configuration"),
@@ -152,28 +155,44 @@ def set_joint_state_broadcaster(context):
 
 def set_arm_controllers(context):
     robot_model = read_launch_argument("robot_model", context)
+    end_effector = read_launch_argument("end_effector", context)
     pkg_share_folder = get_package_share_directory(
         "ari_controller_configuration")
 
     base_param_file = os.path.join(
         pkg_share_folder, 'config', f'arm_controller_{robot_model}.yaml')
 
-    arm_spawners = []
+    hand_param_file = os.path.join(
+        pkg_share_folder, 'config', 'hand_controller.yaml')
+
+    all_spawners = []
 
     for side in ["left", "right"]:
         arm_prefix = f"arm_{side}"
 
-        parsed_yaml = parse_parametric_yaml(
+        parsed_arm_yaml = parse_parametric_yaml(
             source_files=[base_param_file],
             param_rewrites={"ARM_SIDE_PREFIX": arm_prefix}
         )
 
-        spawner = GroupAction([
+        arm_spawner = GroupAction([
             generate_load_controller_launch_description(
                 controller_name=f"{arm_prefix}_controller",
-                controller_params_file=parsed_yaml)
+                controller_params_file=parsed_arm_yaml)
         ])
+        all_spawners.append(arm_spawner)
 
-        arm_spawners.append(spawner)
+        if robot_model == 'v1' and end_effector == 'ari-hand':
+            parsed_hand_yaml = parse_parametric_yaml(
+                source_files=[hand_param_file],
+                param_rewrites={"ARM_SIDE_PREFIX": side}
+            )
 
-    return arm_spawners
+            hand_spawner = GroupAction([
+                generate_load_controller_launch_description(
+                    controller_name=f"hand_{side}_controller",
+                    controller_params_file=parsed_hand_yaml)
+            ])
+            all_spawners.append(hand_spawner)
+
+    return all_spawners

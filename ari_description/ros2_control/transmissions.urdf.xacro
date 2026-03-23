@@ -19,12 +19,60 @@
   <xacro:macro name="ari_simple_transmission" params="name reduction:=1.0 offset_value:=0.0" >
     <transmission name="${name}_trans">
       <plugin>transmission_interface/SimpleTransmission</plugin>
-      <actuator name="${name}_actuator"  role="actuator1"/>
+      <actuator name="${name}_actuator" role="actuator1"/>
       <joint name="${name}_joint" role="joint1">
         <mechanical_reduction>${reduction}</mechanical_reduction>
         <offset>${offset_value}</offset>
-     </joint>
+      </joint>
     </transmission>
+  </xacro:macro>
+
+  <xacro:macro name="finger_transmissions_ros2" params="finger_name act_name start reduction:=1.0">
+    
+    <ros2_control name="${finger_name}_virtual_system" type="system">
+      <hardware>
+        <plugin>mock_components/GenericSystem</plugin>
+      </hardware>
+      
+      <joint name="${finger_name}_virtual_1_joint">
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+      </joint>
+      
+      <transmission name="${finger_name}_virtual_1_trans">
+        <plugin>hey5_transmissions/Hey5Reducer</plugin>
+        <actuator name="${act_name}" role="actuator1">
+          <mechanical_reduction>${reduction}</mechanical_reduction>
+        </actuator>
+        <joint name="${finger_name}_virtual_1_joint" role="joint1">
+          <offset>0.0</offset>
+        </joint>
+        <param name="deadBandLower">0.0</param>
+        <param name="deadBandUpper">${start}</param>
+        <param name="saturationLower">0.0</param>
+        <param name="saturationUpper">3.0</param>
+      </transmission>
+
+      <joint name="${finger_name}_virtual_2_joint">
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+      </joint>
+      
+      <transmission name="${finger_name}_virtual_2_trans">
+        <plugin>hey5_transmissions/Hey5Reducer</plugin>
+        <actuator name="${act_name}" role="actuator1">
+          <mechanical_reduction>${reduction}</mechanical_reduction>
+        </actuator>
+        <joint name="${finger_name}_virtual_2_joint" role="joint1">
+          <offset>0.0</offset>
+        </joint>
+        <param name="deadBandLower">0.0</param>
+        <param name="deadBandUpper">${start}</param>
+        <param name="saturationLower">0.0</param>
+        <param name="saturationUpper">3.0</param>
+      </transmission>
+    </ros2_control>
+
   </xacro:macro>
 
 </robot>

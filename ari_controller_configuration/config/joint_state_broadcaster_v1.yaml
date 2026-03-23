@@ -5,3 +5,7 @@ joint_state_broadcaster:
     extra_joints: 
       - 'caster_left_joint'
       - 'caster_right_joint'
+      - 'hand_left_virtual_1_joint'
+      - 'hand_left_virtual_2_joint'
+      - 'hand_right_virtual_1_joint'
+      - 'hand_right_virtual_2_joint'

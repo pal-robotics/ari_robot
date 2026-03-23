@@ -9,7 +9,7 @@ laser_model:
 end_effector:
   description: 'End effector model'
   choices: ['no-end-effector', 'ari-hand']
-  default_value: 'no-end-effector'
+  default_value: 'ari-hand'
 head_camera_model:
   description: 'Head camera model'
   choices: ['raspi', 'realsense-d435i', 'realsense-d435']

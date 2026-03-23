@@ -24,12 +24,9 @@
 
     <xacro:property name="is_v2" value="${robot_model == 'v2'}" />
 
-    <!-- calibration offsets -->
     <xacro:include filename="$(arg description_calibration_dir)/calibration_constants.urdf.xacro" />
 
-    <!-- Simulation -->
     <xacro:if value="$(arg use_sim_time)">
-      <!-- Init the ROS 2 control gazebo interface -->
       <gazebo>
         <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
           <parameters>$(find ari_description)/ros2_control/gazebo_controller_manager_cfg.yaml</parameters>
@@ -41,55 +38,62 @@
           <plugin>gazebo_ros2_control/GazeboSystem</plugin>
         </hardware>
 
-        <!-- wheels -->
         <xacro:include filename="$(find ari_description)/urdf/wheels/wheel.ros2_control.xacro" />
         <xacro:ros2_control_wheel side="right" />
         <xacro:ros2_control_wheel side="left" />
 
-        <!-- head -->
         <xacro:include filename="$(find ari_description)/urdf/head/head.ros2_control.xacro" />
         <xacro:ros2_control_head name="head_1" reduction="1.0" offset="${head_1_joint_offset}" />
         <xacro:ros2_control_head name="head_2" reduction="1.0" offset="${head_2_joint_offset}" />
 
-        <!-- arms -->
         <xacro:include filename="$(find ari_description)/urdf/arm/arm.ros2_control.xacro" />
         <xacro:ros2_control_arm side="left" robot_model="${robot_model}" />
         <xacro:ros2_control_arm side="right" robot_model="${robot_model}" />
       </ros2_control>
     </xacro:if>
 
-    <!-- Hardware -->
     <xacro:unless value="$(arg use_sim_time)">
-      <!-- Dynamixels system -->
       <ros2_control name="ros2_control_ari_system_dynamixel" type="system" rw_rate="200">
         <hardware>
           <plugin>robot_control/RobotControl</plugin>
           <param name="group">dynamixel</param>
         </hardware>
 
-        <!-- arms -->
         <xacro:include filename="$(find ari_description)/urdf/arm/arm.ros2_control.xacro" />
         <xacro:ros2_control_arm side="left" robot_model="${robot_model}" />
         <xacro:ros2_control_arm side="right" robot_model="${robot_model}" />
 
-        <!-- head -->
         <xacro:include filename="$(find ari_description)/urdf/head/head.ros2_control.xacro" />
         <xacro:ros2_control_head name="head_1" reduction="1.0" offset="${head_1_joint_offset}" />
         <xacro:ros2_control_head name="head_2" reduction="1.0" offset="${head_2_joint_offset}" />
       </ros2_control>
 
-      <!-- PapstK4 system -->
       <ros2_control name="ros2_control_ari_system_papstk4" type="system" rw_rate="50">
         <hardware>
           <plugin>robot_control/RobotControl</plugin>
           <param name="group">papstk4</param>
         </hardware>
 
-        <!-- wheels -->
         <xacro:include filename="$(find ari_description)/urdf/wheels/wheel.ros2_control.xacro" />
         <xacro:ros2_control_wheel side="right" />
         <xacro:ros2_control_wheel side="left" />
       </ros2_control>
-    </xacro:unless>
+
+      <xacro:if value="${robot_model == 'v1'}">
+        <xacro:include filename="$(find ari_description)/ros2_control/transmissions.urdf.xacro" />
+        
+        <xacro:finger_transmissions_ros2 
+            finger_name="hand_left" 
+            act_name="hand_left_fingers_actuator" 
+            start="0.0" 
+            reduction="1.0" />
+            
+        <xacro:finger_transmissions_ros2 
+            finger_name="hand_right" 
+            act_name="hand_right_fingers_actuator" 
+            start="0.0" 
+            reduction="1.0" />
+      </xacro:if>
+      </xacro:unless>
   </xacro:macro>
 </robot>
