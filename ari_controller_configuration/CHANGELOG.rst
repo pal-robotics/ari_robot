@@ -2,8 +2,8 @@
 Changelog for package ari_controller_configuration
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.10.0 (2026-03-23)
+-------------------
 * fix test
 * fix ros2 parameter handling
 * parametric yaml for arm controllers

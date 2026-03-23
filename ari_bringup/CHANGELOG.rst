@@ -2,8 +2,8 @@
 Changelog for package ari_bringup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.10.0 (2026-03-23)
+-------------------
 * fix ros2 parameter handling
 * add robot_model param
 * Contributors: silviamasiello
